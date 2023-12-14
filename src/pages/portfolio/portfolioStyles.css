@@ -1,0 +1,23 @@
+.img-responsive:hover {
+	transform: scale(1.05);
+	transition: ease-in-out 0.2s;
+}
+
+@media screen and (max-width: 768px) {
+	.gallery-item img {
+		padding-top: 5px !important;
+		max-height: 125px;
+	}
+
+	.gallery-item img:hover {
+		transform: none;
+	}
+
+	.gallery-item {
+		margin: 10px !important;
+	}
+
+	.lg-react-element .animated-thumbnails-gallery {
+		padding: 0px !important;
+	}
+}
