@@ -1,0 +1,96 @@
+/* DropdownStyles.css */
+.dropdown-container {
+	position: fixed;
+	z-index: 999;
+	width: 100%;
+	height: 100%;
+	background: #24003b;
+	display: grid;
+	align-items: center;
+	top: 0;
+	left: 0;
+	transition: 0.3s ease-in-out;
+}
+
+.close-icon {
+	color: #fff0d8;
+}
+
+.icon {
+	position: absolute;
+	top: 1.2rem;
+	right: 1.5rem;
+	background: transparent;
+	font-size: 2rem;
+	cursor: pointer;
+	outline: none;
+}
+
+.dropdown-wrapper {
+	color: gray;
+}
+
+.dropdown-menu {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: repeat(6, 80px);
+	text-align: center;
+}
+
+.dropdown-menu-small {
+	grid-template-rows: repeat(6, 60px);
+}
+
+.dropdown-link {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.5rem;
+	text-decoration: none;
+	list-style: none;
+	transition: 0.2s ease-in-out;
+	color: #ddd8ff;
+	cursor: pointer;
+}
+
+.dropdown-link:hover,
+.dropdown-link.active {
+	color: #fff0d8;
+	transition: 0.2s ease-in-out;
+	text-decoration-line: underline;
+	text-decoration-style: wavy;
+	padding-bottom: 0.3em;
+}
+
+.dropdown-btn-wrap {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: 24px;
+}
+
+.icon-fb,
+.icon-insta {
+	border-radius: 15px;
+	outline: none;
+	color: #f0d8ff;
+	border: none;
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
+	text-decoration: none;
+	margin-left: 24px;
+}
+
+.icon-fb:hover {
+	color: #4267b2;
+	transform: scale(1.5);
+}
+
+.icon-insta:hover {
+	color: #e4405f;
+	transform: scale(1.5);
+}
+
+.icon-insta {
+	border-radius: 4px;
+}

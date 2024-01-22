@@ -1,41 +1,31 @@
 import React, {useState, useEffect} from 'react';
-import Dropdown from '../../components/dropdown/Dropdown';
-import Navbar from '../../components/nav/Navbar';
-import {PortfolioContainer, PortfolioHeader} from './portfolioElements';
+import styles from './css/portfolioStyles.module.css';
 import 'lightgallery/css/lightgallery.css';
-import 'lightgallery/css/lg-zoom.css';
-import 'lightgallery/css/lg-thumbnail.css';
-import {gallery} from './galleryImgData';
+
+import {gallery} from './data/galleryImgData';
 import GalleryGroup from './GalleryGroup';
 
 const WorkPortfolio = () => {
-	const [isOpen, setIsOpen] = useState(false);
-
-	const toggle = () => {
-		setIsOpen(!isOpen);
-	};
 	const [imageItems, setImageItems] = useState({});
 	useEffect(() => {
 		setImageItems(gallery);
 
 		return console.warn('cleanup');
 	}, [imageItems]);
+
 	//TODO: Cleanup Portfolio
 	return (
 		<div style={{scrollBehavior: 'smooth'}}>
-			<Dropdown isOpen={isOpen} toggle={toggle} />
-			<Navbar toggle={toggle} />
-
-			<PortfolioContainer>
-				<PortfolioHeader>
+			<div className={styles.portfolioContainer}>
+				<div className={styles.portfolioHeader}>
 					<h1>Portfolio</h1>
-				</PortfolioHeader>
+				</div>
 				{Object.entries(imageItems).map(([key, val]) => (
 					<React.Fragment key={key}>
 						<GalleryGroup imageData={val} />
 					</React.Fragment>
 				))}
-			</PortfolioContainer>
+			</div>
 		</div>
 	);
 };
