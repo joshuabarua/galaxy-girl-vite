@@ -1,11 +1,9 @@
-import React, {useState, useEffect} from "react";
-import Dropdown from "../../components/dropdown/Dropdown";
-import Navbar from "../../components/nav/Navbar";
-import emailjs from "emailjs-com";
-import Lottie from "react-lottie";
-import confettiData from "../../assets/lotties/confetti2.json";
-import "./contact.css";
-import {Box, Stack, Button} from "@mui/material";
+import React, {useState, useEffect} from 'react';
+import emailjs from 'emailjs-com';
+import Lottie from 'react-lottie';
+import confettiData from '../../assets/lotties/confetti2.json';
+import './contact.css';
+import {Box, Stack, Button} from '@mui/material';
 
 const Confetti = ({lottieResult}) => {
 	const defaultOptions = {
@@ -15,8 +13,8 @@ const Confetti = ({lottieResult}) => {
 	};
 
 	return (
-		<div className={`lottie-bg ${lottieResult ? "active" : ""}`}>
-			<Lottie options={defaultOptions} width={"100%"} />
+		<div className={`lottie-bg ${lottieResult ? 'active' : ''}`}>
+			<Lottie options={defaultOptions} width={'100%'} />
 		</div>
 	);
 };
@@ -24,26 +22,19 @@ const Confetti = ({lottieResult}) => {
 const MsgDetail = () => {
 	return (
 		<>
-			<p className="sentMsg">
-				Your message has successfully been sent! We will contact you soon.{" "}
-			</p>
+			<p className="sentMsg">Your message has successfully been sent! We will contact you soon. </p>
 		</>
 	);
 };
 
 const Contact = () => {
-	const [isOpen, setIsOpen] = useState(false);
 	const [result, setResult] = useState(false);
 	const [lottieResult, setLottieResult] = useState(false);
 	const [secondsLeft, setSecondsLeft] = useState(5);
-	const [name, setName] = useState("");
-	const [email, setEmail] = useState("");
-	const [subject, setSubject] = useState("");
-	const [message, setMessage] = useState("");
-
-	const toggle = () => {
-		setIsOpen((prevIsOpen) => !prevIsOpen);
-	};
+	const [name, setName] = useState('');
+	const [email, setEmail] = useState('');
+	const [subject, setSubject] = useState('');
+	const [message, setMessage] = useState('');
 
 	const customSubmit = (e) => {
 		e.preventDefault();
@@ -56,21 +47,14 @@ const Contact = () => {
 		setResult(false);
 		e.preventDefault();
 
-		emailjs
-			.sendForm(
-				"//service_2npcj2s",
-				"my-first-templat",
-				e.target,
-				"user_sA3tlOdalK12Wt9JkvHaZ"
-			)
-			.then(
-				(result) => {
-					console.log(result.text);
-				},
-				(error) => {
-					console.log(error.text);
-				}
-			);
+		emailjs.sendForm('//service_2npcj2s', 'my-first-templat', e.target, 'user_sA3tlOdalK12Wt9JkvHaZ').then(
+			(result) => {
+				console.log(result.text);
+			},
+			(error) => {
+				console.log(error.text);
+			}
+		);
 
 		e.target.reset();
 		setResult(true);
@@ -99,10 +83,6 @@ const Contact = () => {
 	return (
 		<>
 			<div>
-				<Dropdown isOpen={isOpen} toggle={toggle} />
-
-				<Navbar toggle={toggle} />
-
 				<Box className="contactBody">
 					<Box className="contactOverlay">
 						<Box className="titleBox" mb={8}>
@@ -113,24 +93,11 @@ const Contact = () => {
 
 						<Box className="form-container">
 							<form action="" onSubmit={customSubmit}>
-								<Stack
-									direction="row"
-									justifyContent={"space-evenly"}
-									spacing={8}
-									sx={{width: "100%"}}
-								>
-									<Stack direction="column" sx={{width: "50%"}}>
+								<Stack direction="row" justifyContent={'space-evenly'} spacing={8} sx={{width: '100%'}}>
+									<Stack direction="column" sx={{width: '50%'}}>
 										<Stack direction="column">
 											<label className="form-label">Name / Company</label>
-											<input
-												type="text"
-												placeholder="Name/Company"
-												name="name"
-												value={name}
-												required
-												className="form-input"
-												onChange={(e) => setName(e.target.value)}
-											/>
+											<input type="text" placeholder="Name/Company" name="name" value={name} required className="form-input" onChange={(e) => setName(e.target.value)} />
 										</Stack>
 										<Stack direction="column">
 											<label className="form-label"> Email</label>
@@ -158,7 +125,7 @@ const Contact = () => {
 										</Stack>
 									</Stack>
 
-									<Stack direction="column" sx={{width: "50%"}}>
+									<Stack direction="column" sx={{width: '50%'}}>
 										<Stack direction="column" className="form-input-field">
 											<label className="form-label"> Message</label>
 											<textarea
@@ -167,8 +134,7 @@ const Contact = () => {
 												value={message}
 												onChange={(e) => setMessage(e.target.value)}
 												required
-												className="form-textarea"
-											></textarea>
+												className="form-textarea"></textarea>
 										</Stack>
 									</Stack>
 								</Stack>
@@ -187,9 +153,7 @@ const Contact = () => {
 						<>
 							<MsgDetail />
 							<div id="timer" className="timer">
-								{secondsLeft === 0
-									? "Time is up!"
-									: `Time left: ${secondsLeft}`}
+								{secondsLeft === 0 ? 'Time is up!' : `Time left: ${secondsLeft}`}
 							</div>
 							<Confetti lottieResult={lottieResult} />
 						</>

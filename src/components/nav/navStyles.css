@@ -1,0 +1,108 @@
+/* NavbarStyles.css */
+.nav {
+	height: 80px;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	padding: 0.5rem calc((100vw - 1000px) / 2);
+	z-index: 10;
+	position: fixed;
+	transition: 1s ease-in-out;
+}
+
+.nav-link {
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+	padding: 0 1rem;
+	height: 100%;
+	cursor: pointer;
+	color: #ddd8ff;
+}
+
+.nav-link.active {
+	text-underline-offset: 5px;
+	padding-bottom: 0.3rem;
+	color: #fff0d8;
+}
+
+.nav-link:hover {
+	transition: 0.2s ease-in-out;
+	padding-bottom: 0.3em;
+	text-decoration-line: underline;
+	text-decoration-style: solid;
+	text-underline-offset: 5px;
+}
+
+.logo-img {
+	padding-top: 7px;
+	max-width: 50px;
+	transition: 0.5s ease-in-out;
+}
+
+.logo-img:hover {
+	/* Add the shake animation here */
+}
+
+.bars {
+	display: none;
+	color: #ddd8ff;
+}
+
+.nav-menu {
+	display: flex;
+	align-items: center;
+	margin-right: -24px;
+	white-space: nowrap;
+}
+
+.nav-btn {
+	display: flex;
+	align-items: center;
+	margin-right: 24px;
+}
+
+.icon-fb,
+.icon-insta {
+	border-radius: 15px;
+	outline: none;
+	color: #f0d8ff;
+	border: none;
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
+	text-decoration: none;
+	margin-left: 24px;
+}
+
+.icon-fb:hover {
+	color: #4267b2;
+	margin-bottom: 0.3em;
+	transform: scale(1.5);
+}
+
+.icon-insta {
+	border-radius: 4px;
+}
+
+.icon-insta:hover {
+	color: #e4405f;
+	margin-bottom: 0.3em;
+	transform: scale(1.5);
+}
+
+@media screen and (max-width: 768px) {
+	.bars {
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		transform: translate(-100%, 75%);
+		font-size: 1.8rem;
+		cursor: pointer;
+	}
+
+	.nav-menu,
+	.nav-btn {
+		display: none;
+	}
+}

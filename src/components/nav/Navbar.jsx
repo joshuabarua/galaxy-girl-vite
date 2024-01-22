@@ -1,64 +1,54 @@
-import React, { useState } from "react";
+import React, {useState} from 'react';
+import {FaBars, FaFacebook, FaInstagram} from 'react-icons/fa';
+import {Link as LinkR} from 'react-router-dom';
+import './navStyles.css';
+import logoImg from '../../assets/GalaxyGirlLogo.png';
 
-import {
-	Nav,
-	NavLink,
-	Bars,
-	NavMenu,
-	NavBtn,
-	IconInsta,
-	IconFB,
-	LogoImg,
-} from "./navElements";
-import logoImg from "../../assets/GalaxyGirlLogo.png";
-
-const Navbar = ({ toggle }) => {
+const Navbar = ({toggle, scrollHeight = 800, initialBackground = 'rgba(36, 0, 59, 0.02)', scrolledBackground = '#24003b'}) => {
 	const [scrollNav, setScrollNav] = useState(false);
 
 	const changeNav = () => {
-		if (window.scrollY >= 200) {
+		if (window.scrollY >= scrollHeight) {
 			setScrollNav(true);
 		} else {
 			setScrollNav(false);
 		}
 	};
 
-	window.addEventListener("scroll", changeNav);
+	window.addEventListener('scroll', changeNav);
 
 	return (
 		<>
-			<Nav scrollNav={scrollNav}>
-				<NavLink to="/">
-					<LogoImg src={logoImg} />
-				</NavLink>
-				<Bars onClick={toggle} />
+			<nav className="nav" style={{background: scrollNav ? scrolledBackground : initialBackground}}>
+				<LinkR className="nav-link" to="/">
+					<img src={logoImg} className="logo-img" alt="logo" />
+				</LinkR>
+				<FaBars className="bars" onClick={toggle} />
 
-				<NavMenu>
-					<NavLink to="/" exact="true" strict="true">
+				<div className="nav-menu">
+					<LinkR className="nav-link" to="/" exact="true" strict="true">
 						Home
-					</NavLink>
-					<NavLink to="/resume">CV</NavLink>
-					<NavLink to="/portfolio">Portfolio</NavLink>
-					<NavLink to="/contact">Contact</NavLink>
-				</NavMenu>
+					</LinkR>
+					<LinkR className="nav-link" to="/resume" strict="true">
+						CV
+					</LinkR>
+					<LinkR className="nav-link" to="/portfolio">
+						Portfolio
+					</LinkR>
+					<LinkR className="nav-link" to="/contact">
+						Contact
+					</LinkR>
+				</div>
 
-				<NavBtn>
-					<a
-						href="https://www.facebook.com/thegalaxygirl"
-						target="_blank"
-						rel="noreferrer"
-					>
-						<IconFB />
+				<div className="nav-btn">
+					<a href="https://www.facebook.com/thegalaxygirl" target="_blank" rel="noreferrer">
+						<FaFacebook className="icon-fb" />
 					</a>
-					<a
-						href="https://www.instagram.com/emmathegalaxygirl/"
-						target="_blank"
-						rel="noreferrer"
-					>
-						<IconInsta />
+					<a href="https://www.instagram.com/emmathegalaxygirl/" target="_blank" rel="noreferrer">
+						<FaInstagram className="icon-insta" />
 					</a>
-				</NavBtn>
-			</Nav>
+				</div>
+			</nav>
 		</>
 	);
 };
