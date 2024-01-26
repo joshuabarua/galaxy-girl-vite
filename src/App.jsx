@@ -21,12 +21,14 @@ function App() {
 			<Router basename={'/'}>
 				<Navbar toggle={toggle} />
 				<Dropdown isOpen={isOpen} toggle={toggle} />
-				<Routes>
-					<Route path="/" element={<Home />} exact="true" />
-					<Route path="/resume" element={<Resume />} exact="true" />
-					<Route path="/portfolio" element={<Portfolio />} exact="true" />
-					<Route path="/contact" element={<Contact />} exact="true" />
-				</Routes>
+				<div className="content">
+					<Routes>
+						<Route path="/" element={<Home />} exact="true" />
+						<Route path="/resume" element={<Resume />} exact="true" />
+						<Route path="/portfolio" element={<Portfolio />} exact="true" />
+						<Route path="/contact" element={<Contact />} exact="true" />
+					</Routes>
+				</div>
 				<Footer />
 			</Router>
 		</>

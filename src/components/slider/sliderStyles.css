@@ -1,139 +1,29 @@
-.sliderContainer {
-	width: 200vw;
-	height: 200px;
+.marquee-container {
+	position: relative;
 	overflow: hidden;
-}
-
-.sliderTitle {
-	color: black;
-	text-align: center;
-	margin-top: 50px;
-	margin-left: auto;
-}
-
-.slider {
-	width: 2000px;
-	margin: auto;
-	animation: cambio1080 15s linear infinite;
-	transform: translate3d(0, 0, 0);
-	margin-bottom: 50px;
-	transition: opacity 0.5s ease-out;
-	overflow-x: auto;
-}
-.slider ul {
 	display: flex;
-	padding: 0;
-	transform: translate3d(0, 0, 0);
+	justify-content: center;
+	align-items: center;
+	background-color: white;
+	height: 250px;
+}
+
+.marquee-container::before,
+.marquee-container::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 100px;
+	z-index: 1;
+	pointer-events: none;
+}
+
+.react-fast-marquee {
 	width: 100%;
-	overflow: auto;
-}
-.slider li {
-	list-style: none;
-	width: 100%;
-	overflow: auto;
-}
-.slider img {
-	max-width: fit-content !important;
-	height: auto !important;
-	width: 100%;
-	overflow: auto;
 }
 
-.logosImg {
-	margin-top: 75px;
-	max-width: fit-content !important;
-	height: auto !important;
-	margin-left: 50px;
-}
-
-.logosImg2 {
-	margin-top: 40px;
-	max-width: fit-content !important;
-	height: auto !important;
-	max-height: 150px;
-	margin-left: 50px;
-}
-
-.logosImg3 {
-	margin-top: 20px;
-	max-width: fit-content !important;
-	height: auto !important;
-	margin-left: 50px;
-}
-
-.logosImg4 {
-	margin-top: 50px;
-	max-width: fit-content !important;
-	height: auto !important;
-	margin-left: 50px;
-}
-
-@keyframes cambio1080 {
-	100% {
-		transform: translateX(-100%);
-	}
-	from {
-		margin-left: 0%;
-	}
-	to {
-		margin-left: -58.66%;
-	}
-}
-
-/* On Mobile */
-@keyframes cambioIphoneX {
-	100% {
-		transform: translateX(-100%);
-	}
-	from {
-		margin-left: 0%;
-	}
-	to {
-		margin-left: -285.66%;
-	}
-}
-
-@media screen and (max-width: 480px) {
-	.slider {
-		animation: cambioIphoneX 20s linear infinite;
-	}
-}
-
-/* On 720px */
-@keyframes cambioMedium {
-	100% {
-		transform: translateX(-100%);
-	}
-	from {
-		margin-left: 0%;
-	}
-	to {
-		margin-left: -280.66%;
-	}
-}
-
-@media screen and (max-width: 720px) {
-	.slider {
-		animation: cambioMedium 20s linear infinite;
-	}
-}
-
-/* On Tablet */
-@keyframes cambioIpad {
-	100% {
-		transform: translateX(-100%);
-	}
-	from {
-		margin-left: 0%;
-	}
-	to {
-		margin-left: -150.66%;
-	}
-}
-
-@media screen and (max-width: 1024px) {
-	.slider {
-		animation: cambioIpad 20s linear infinite;
-		transform: translate3d(0, 0, 0);
-	}
+.react-fast-marquee img {
+	margin-left: 20px;
+	margin-right: 20px;
 }

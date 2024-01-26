@@ -1,17 +1,8 @@
-import React, {useState} from "react";
-import Video from "../../../assets/videos/video4.mp4";
-import {
-	HeroContainer,
-	HeroBg,
-	VideoBg,
-	HeroContent,
-	HeroH1,
-	HeroP,
-	HeroBtnWrapper,
-	ArrowForward,
-	ArrowRight,
-} from "./heroElements";
-import {Button} from "../../../pages/buttonElement";
+import React, {useState} from 'react';
+import './HeroSectionStyles.css'; // Import the CSS file
+import Video from '../../../assets/videos/video4.mp4';
+import {Button} from '../../../pages/buttonElement';
+import {MdKeyboardArrowRight, MdArrowForward} from 'react-icons/md';
 
 const HeroSection = () => {
 	const [hover, setHover] = useState(false);
@@ -21,29 +12,19 @@ const HeroSection = () => {
 	};
 
 	return (
-		<div style={{display: "flex", width: "100vw", justifyContent: "center"}}>
-			<HeroContainer id="home">
-				<HeroBg>
-					<VideoBg autoPlay loop muted src={Video} type="video/mp4" />
-				</HeroBg>
-				<HeroContent>
-					<HeroH1> Emma Barua ~ Makeup Artist</HeroH1>
-					<HeroP>
-						"Everything has beauty in it, but not everyone sees it" - Confucius
-					</HeroP>
-					<HeroBtnWrapper>
-						<Button
-							to="/contact"
-							onMouseEnter={onHover}
-							onMouseLeave={onHover}
-							primary="true"
-							dark="true"
-						>
-							Work with me! {hover ? <ArrowForward /> : <ArrowRight />}
-						</Button>
-					</HeroBtnWrapper>
-				</HeroContent>
-			</HeroContainer>
+		<div className="hero-container" id="home">
+			<div className="hero-bg">
+				<video className="video-bg" autoPlay loop muted src={Video} disablePictureInPicture={true} disableRemotePlayback={true} type="video/mp4" />
+			</div>
+			<div className="hero-content">
+				<h1 className="hero-h1"> Emma Barua ~ Makeup Artist</h1>
+				<p className="hero-p">"Everything has beauty in it, but not everyone sees it" - Confucius</p>
+				<div className="hero-btn-wrapper">
+					<Button to="/contact" onMouseEnter={onHover} onMouseLeave={onHover} primary="true" dark="true">
+						Work with me! {hover ? <MdArrowForward className="arrow-forward" /> : <MdKeyboardArrowRight className="arrow-right" />}
+					</Button>
+				</div>
+			</div>
 		</div>
 	);
 };
