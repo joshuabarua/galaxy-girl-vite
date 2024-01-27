@@ -20,8 +20,8 @@ const HeroSection = () => {
 				<h1 className="hero-h1"> Emma Barua ~ Makeup Artist</h1>
 				<p className="hero-p">"Everything has beauty in it, but not everyone sees it" - Confucius</p>
 				<div className="hero-btn-wrapper">
-					<Button to="/contact" onMouseEnter={onHover} onMouseLeave={onHover} primary="true" dark="true">
-						Work with me! {hover ? <MdArrowForward className="arrow-forward" /> : <MdKeyboardArrowRight className="arrow-right" />}
+					<Button to="/portfolio" onMouseEnter={onHover} onMouseLeave={onHover} primary="true" dark="true">
+						Explore My Artistry {hover ? <MdArrowForward className="arrow-forward" /> : <MdKeyboardArrowRight className="arrow-right" />}
 					</Button>
 				</div>
 			</div>

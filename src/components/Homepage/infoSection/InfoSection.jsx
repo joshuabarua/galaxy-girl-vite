@@ -37,7 +37,7 @@ const InfoSection = ({lightBg, lightText, imgStart, topLine, headline, darkText,
 									{description}
 								</p>
 								<div className="btn-wrap">
-									<Button to="/portfolio" primary="true" dark="true">
+									<Button to="/contact" primary="true" dark="true">
 										{buttonLabel}
 									</Button>
 								</div>
