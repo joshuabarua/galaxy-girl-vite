@@ -4,7 +4,7 @@ import './infoSectionStyles.css';
 
 const InfoSection = ({lightBg, lightText, imgStart, topLine, headline, darkText, description, buttonLabel, alt, imgEm, services}) => {
 	return (
-		<div className={`info-container ${lightBg ? 'light-bg' : ''}`} style={{background: lightBg ? '#24003b' : '#ddd8ff'}}>
+		<div className={`${services ? 'info-container-services' : 'info-container'} ${lightBg ? 'light-bg' : ''}`} style={{background: lightBg ? '#24003b' : '#ddd8ff'}}>
 			<div className={`info-row ${imgStart ? 'img-start' : ''}`}>
 				{imgEm && (
 					<div className="img-wrap">
@@ -19,9 +19,12 @@ const InfoSection = ({lightBg, lightText, imgStart, topLine, headline, darkText,
 						</h1>
 						{services ? (
 							<div className="services-container">
-								{Object.entries(services).map(([key, {description, icon}]) => (
+								{Object.entries(services).map(([key, {description, icon, title}]) => (
 									<div key={key} className="service-item">
-										<img src={icon} alt={`${key}-icon`} className="service-icon" />
+										<div className="service-title">
+											<img src={icon} alt={`${key}-icon`} className="service-icon" />
+											<h2 style={{color: '#24003b'}}>{title}</h2>
+										</div>
 										<p className={`subtitle ${darkText ? 'dark-text' : ''}`} style={{color: darkText ? '#ddd8ff' : '#24003b'}}>
 											{description}
 										</p>

@@ -1,11 +1,14 @@
 /* InfoSectionStyles.css */
-.info-container {
+.info-container,
+.info-container-services {
 	overflow: hidden;
-	color: #fff;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	width: 100vw;
+}
+
+.info-container {
 	height: 100vh;
 }
 
@@ -16,13 +19,13 @@
 	flex-direction: row;
 	flex-wrap: nowrap;
 	z-index: 1;
-	gap: 30px;
+	gap: 20px;
 	width: 100%;
 	height: 100%;
 }
 
 .text-area {
-	width: 50%;
+	width: 60%;
 	display: flex;
 	justify-content: space-evenly;
 	align-items: flex-start;
@@ -31,7 +34,7 @@
 }
 
 .text-wrap {
-	padding: 20px;
+	padding: 50px;
 	display: flex;
 	justify-content: center;
 	gap: 50px;
@@ -64,18 +67,17 @@
 .btn-wrap {
 	display: flex;
 	justify-content: flex-start;
+	padding-left: 3%;
 }
 
 .btn-wrap a {
 	width: 300px;
-}
-.btn-homepage {
 	font-size: 18px;
 }
 
 .img-wrap {
-	padding: 10px;
-	width: 50%;
+	padding: 50px;
+	width: 40%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -83,7 +85,12 @@
 
 .text-area:nth-child(1) {
 	width: 100%;
-	padding: 20px;
+	padding: 50px;
+}
+
+.text-wrap:nth-child(1) > p,
+.text-wrap:nth-child(1) > h1 {
+	padding-left: 3%;
 }
 
 .services-container {
@@ -101,7 +108,16 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	gap: 20px;
+	text-align: center;
+	width: 75%;
+}
+
+.service-title {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
 }
 
 .service-item img {
@@ -116,7 +132,7 @@
 	min-width: 200px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
 	.info-container {
 		height: 100%;
 		padding: 10px 50px;
@@ -132,15 +148,12 @@
 
 	.btn-wrap a {
 		width: 200px;
-	}
-
-	.btn-homepage {
-		font-size: 16px;
+		font-size: 14px;
 	}
 
 	.info-row {
 		flex-wrap: wrap;
-		gap: 100px;
+		gap: 10px;
 		margin-bottom: 50px;
 	}
 
@@ -160,16 +173,16 @@
 	}
 
 	.services-container {
-		display: grid;
-		grid-template-columns: repeat(1, 1fr);
-		grid-template-rows: repeat(1, 1fr);
+		display: flex;
+		flex-direction: column;
 		width: 80%;
-		gap: 80px;
+		gap: 50px;
 	}
 
 	.service-item {
 		justify-items: center;
 		align-items: center;
+		width: 100%;
 	}
 
 	.service-item img {
