@@ -14,7 +14,7 @@ const HeroSection = () => {
 	return (
 		<div className="hero-container" id="home">
 			<div className="hero-bg">
-				<video className="video-bg" autoPlay loop muted src={Video} disablePictureInPicture={true} disableRemotePlayback={true} type="video/mp4" />
+				<video className="video-bg" autoPlay loop muted src={Video} disablePictureInPicture={true} disableRemotePlayback={true} controls={false} type="video/mp4" />
 			</div>
 			<div className="hero-content">
 				<h1 className="hero-h1"> Emma Barua ~ Makeup Artist</h1>

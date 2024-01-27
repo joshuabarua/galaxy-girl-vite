@@ -12,7 +12,7 @@ const Home = () => {
 			<InfoSection {...aboutObjOne} />
 			<Slider />
 			<InfoSection {...servicesObj} />
-			<ImageSection />
+			{/* <ImageSection /> */}
 		</div>
 	);
 };
