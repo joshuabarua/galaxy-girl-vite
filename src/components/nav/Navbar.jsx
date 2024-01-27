@@ -1,11 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {FaBars, FaFacebook, FaInstagram} from 'react-icons/fa';
-import {Link as LinkR} from 'react-router-dom';
+import {Link as LinkR, useLocation} from 'react-router-dom';
 import './navStyles.css';
 import logoImg from '../../assets/GalaxyGirlLogo.png';
 
 const Navbar = ({toggle, scrollHeight = 800, initialBackground = 'rgba(36, 0, 59, 0.02)', scrolledBackground = '#24003b'}) => {
 	const [scrollNav, setScrollNav] = useState(false);
+	const location = useLocation(); // Get the current location
 
 	const changeNav = () => {
 		if (window.scrollY >= scrollHeight) {
@@ -15,12 +16,18 @@ const Navbar = ({toggle, scrollHeight = 800, initialBackground = 'rgba(36, 0, 59
 		}
 	};
 
-	window.addEventListener('scroll', changeNav);
+	useEffect(() => {
+		window.addEventListener('scroll', changeNav);
+
+		return () => window.removeEventListener('scroll', changeNav);
+	}, []);
+
+	const background = location.pathname === '/' ? (scrollNav ? scrolledBackground : initialBackground) : scrolledBackground;
 
 	return (
 		<>
-			<nav className="nav" style={{background: scrollNav ? scrolledBackground : initialBackground}}>
-				<LinkR className="nav-link" to="/">
+			<nav className="nav" style={{background}}>
+				<LinkR className="nav-link" to="/" style={{color: scrollNav ? 'transparent' : '#ddd8ff'}}>
 					<img src={logoImg} className="logo-img" alt="logo" />
 				</LinkR>
 				<FaBars className="bars" onClick={toggle} />
@@ -29,7 +36,7 @@ const Navbar = ({toggle, scrollHeight = 800, initialBackground = 'rgba(36, 0, 59
 					<LinkR className="nav-link" to="/" exact="true" strict="true">
 						Home
 					</LinkR>
-					<LinkR className="nav-link" to="/resume" strict="true">
+					<LinkR className="nav-link" to="/resume">
 						CV
 					</LinkR>
 					<LinkR className="nav-link" to="/portfolio">
