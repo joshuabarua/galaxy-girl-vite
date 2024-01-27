@@ -31,7 +31,6 @@ export const servicesObj = {
 	lightText: false,
 	lightTextDesc: true,
 	topLine: 'Services',
-	headline: `Discover the Magic of Makeup Artistry`,
 	services: {
 		filmtv: {
 			title: 'Film & Television',

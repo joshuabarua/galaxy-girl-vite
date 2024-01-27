@@ -22,6 +22,7 @@
 	gap: 20px;
 	width: 100%;
 	height: 100%;
+	padding: 0 200px;
 }
 
 .text-area {
@@ -62,6 +63,7 @@
 	font-size: 22px;
 	line-height: 1.8;
 	font-weight: 400;
+	padding: 0 50px;
 }
 
 .btn-wrap {
@@ -94,22 +96,20 @@
 }
 
 .services-container {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: repeat(3, 1fr);
-	justify-items: center;
+	display: flex;
+	flex-wrap: wrap;
 	align-items: flex-start;
+	justify-content: center;
+	gap: 50px;
 	width: 100%;
-	gap: 40px;
+	margin-bottom: 100px;
 }
 
 .service-item {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+	flex: 1 1 calc(33.33% - 50px);
+	min-width: 200px;
+	min-width: 350px;
 	text-align: center;
-	width: 75%;
 }
 
 .service-title {
@@ -155,6 +155,7 @@
 		flex-wrap: wrap;
 		gap: 10px;
 		margin-bottom: 50px;
+		padding: 0;
 	}
 
 	.text-area,
@@ -175,7 +176,9 @@
 	.services-container {
 		display: flex;
 		flex-direction: column;
-		width: 80%;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
 		gap: 50px;
 	}
 
@@ -186,7 +189,7 @@
 	}
 
 	.service-item img {
-		width: 40px;
+		width: 60px;
 	}
 
 	.service-item p {
