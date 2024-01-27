@@ -1,20 +1,40 @@
 /* NavbarStyles.css */
-.nav {
+nav {
 	height: 80px;
-	width: 100%;
+	width: 100vw;
 	display: flex;
-	justify-content: space-between;
-	padding: 0.5rem calc((100vw - 1000px) / 2);
+	justify-content: center;
+	align-items: center;
 	z-index: 10;
 	position: fixed;
-	transition: 1s ease-in-out;
+	padding: 0px 20px;
+	gap: 10%;
+	transition: background-color 0.8s ease-in-out;
+}
+
+.nav-logo {
+	width: 10%;
+}
+
+.nav-menu {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	width: 60%;
+}
+
+.nav-btn {
+	width: 10%;
+	display: flex;
+	align-items: center;
 }
 
 .nav-link {
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	text-decoration: none;
-	padding: 0 1rem;
 	height: 100%;
 	cursor: pointer;
 	color: #ddd8ff;
@@ -22,20 +42,18 @@
 
 .nav-link.active {
 	text-underline-offset: 5px;
-	padding-bottom: 0.3rem;
+	padding-bottom: 0.4rem;
 	color: #fff0d8;
 }
 
 .nav-link:hover {
-	transition: 0.2s ease-in-out;
-	padding-bottom: 0.3em;
-	text-decoration-line: underline;
-	text-decoration-style: solid;
-	text-underline-offset: 5px;
+	transition: 0.3s transform ease-in-out;
+	transform: scale(1.2);
+	color: #fff0d8;
+	text-decoration-color: #fff0d8;
 }
 
 .logo-img {
-	padding-top: 7px;
 	max-width: 50px;
 	transition: 0.5s ease-in-out;
 }
@@ -49,19 +67,6 @@
 	color: #ddd8ff;
 }
 
-.nav-menu {
-	display: flex;
-	align-items: center;
-	margin-right: -24px;
-	white-space: nowrap;
-}
-
-.nav-btn {
-	display: flex;
-	align-items: center;
-	margin-right: 24px;
-}
-
 .icon-fb,
 .icon-insta {
 	border-radius: 15px;
@@ -69,14 +74,12 @@
 	color: #f0d8ff;
 	border: none;
 	cursor: pointer;
-	transition: all 0.2s ease-in-out;
+	transition: all 0.1s ease-in-out;
 	text-decoration: none;
-	margin-left: 24px;
 }
 
 .icon-fb:hover {
 	color: #4267b2;
-	margin-bottom: 0.3em;
 	transform: scale(1.5);
 }
 
@@ -86,11 +89,18 @@
 
 .icon-insta:hover {
 	color: #e4405f;
-	margin-bottom: 0.3em;
 	transform: scale(1.5);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
+	nav {
+		justify-content: space-between;
+	}
+
+	.nav-link {
+		justify-content: flex-start;
+	}
+
 	.bars {
 		display: block;
 		position: absolute;
