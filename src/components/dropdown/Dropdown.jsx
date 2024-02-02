@@ -1,7 +1,7 @@
 import React from 'react';
 import {FaTimes, FaFacebook, FaInstagram} from 'react-icons/fa';
 import {Link as LinkR} from 'react-router-dom';
-import './DropdownStyles.css'; // Import the CSS file here
+import './dropdownStyles.css'; // Import the CSS file here
 
 export const Dropdown = ({toggle, isOpen}) => {
 	return (
