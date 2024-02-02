@@ -51,7 +51,7 @@ text {
 .experience-item {
 	width: 100%;
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: 1.5fr 2fr 2fr 0.5fr;
 	grid-gap: 5px;
 	padding: 5px;
 }
