@@ -7,7 +7,7 @@
 	align-items: center;
 	justify-content: center;
 	width: 100vw;
-	height: 100vh;
+	height: 80vh;
 }
 
 .contactOverlay {
@@ -18,8 +18,9 @@
 
 .titleBox {
 	display: flex;
-	height: 8vh;
+	height: 10vh;
 	max-height: 80px;
+
 	justify-content: center;
 	align-items: center;
 }
@@ -27,6 +28,7 @@
 .titleMsgText {
 	display: flex;
 	height: 100%;
+	min-height: 100px;
 	justify-content: center;
 	align-items: center;
 	background-color: hsl(347, 62%, 92%);
@@ -34,7 +36,8 @@
 	border-radius: 5%;
 	box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.1);
 	width: 30vw;
-	min-width: 250px;
+	min-width: 350px;
+	max-width: 400px;
 }
 
 .titleMsgText > h1 {
@@ -46,11 +49,10 @@
 	justify-content: space-evenly;
 	align-items: center;
 	flex-direction: column;
-	padding: 30px;
-	height: 50vh;
+	padding: 20px;
 	border-radius: 20px;
 	background-color: hsl(347, 62%, 95%);
-	width: 80vw;
+	width: 60vw;
 	max-width: 750px;
 	min-width: 350px;
 }
@@ -63,29 +65,35 @@
 .form-label {
 	width: 100%;
 	font-size: 1rem;
+	color: #2a292c;
 }
 
 .form-input {
 	margin: 5px 0px 20px 0px;
 	padding: 0.5rem;
 	font-size: 1rem;
+	min-width: 280px;
 	border-radius: 5px;
-	width: 100%;
 	border: 0;
+	color: #2a292c;
 	-webkit-box-shadow: 0px 0px 48px 0px rgb(218, 218, 218);
 	box-shadow: 0px 2px 4px 0px rgb(218, 218, 218);
+	background-color: white;
 }
 
 .form-textarea {
 	margin: 5px 0px 20px 0px;
 	border: 0;
 	width: 100%;
+	min-width: 280px;
 	height: 200px;
 	padding: 5px;
-	margin-bottom: 20px;
-	color: black;
+	color: #2a292c;
+	background-color: white;
 	-webkit-box-shadow: 0px 0px 8px 0px rgb(218, 218, 218);
 	box-shadow: 0px 2px 4px 0px rgb(218, 218, 218);
+	border-radius: 5px;
+	resize: none;
 }
 
 .form-btn {

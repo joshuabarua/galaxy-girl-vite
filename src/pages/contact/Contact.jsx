@@ -4,6 +4,8 @@ import Lottie from 'react-lottie';
 import confettiData from '../../assets/lotties/confetti2.json';
 import './contact.css';
 import {Box, Stack, Button} from '@mui/material';
+import {useTheme} from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Confetti = ({lottieResult}) => {
 	const defaultOptions = {
@@ -35,6 +37,9 @@ const Contact = () => {
 	const [email, setEmail] = useState('');
 	const [subject, setSubject] = useState('');
 	const [message, setMessage] = useState('');
+
+	const theme = useTheme();
+	const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
 
 	const customSubmit = (e) => {
 		e.preventDefault();
@@ -93,8 +98,8 @@ const Contact = () => {
 
 						<Box className="form-container">
 							<form action="" onSubmit={customSubmit}>
-								<Stack direction="row" justifyContent={'space-evenly'} spacing={8} sx={{width: '100%'}}>
-									<Stack direction="column" sx={{width: '50%'}}>
+								<Stack direction={isSmallScreen ? 'column' : 'row'} justifyContent={'space-evenly'} spacing={5} sx={{width: '100%'}}>
+									<Stack direction="column" sx={{width: isSmallScreen ? '100%' : '50%'}}>
 										<Stack direction="column">
 											<label className="form-label">Name / Company</label>
 											<input type="text" placeholder="Name/Company" name="name" value={name} required className="form-input" onChange={(e) => setName(e.target.value)} />
@@ -125,7 +130,7 @@ const Contact = () => {
 										</Stack>
 									</Stack>
 
-									<Stack direction="column" sx={{width: '50%'}}>
+									<Stack direction="column" sx={{width: isSmallScreen ? '100%' : '50%'}}>
 										<Stack direction="column" className="form-input-field">
 											<label className="form-label"> Message</label>
 											<textarea
