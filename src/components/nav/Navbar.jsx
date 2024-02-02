@@ -6,7 +6,7 @@ import logoImg from '../../assets/GalaxyGirlLogo.png';
 
 const Navbar = ({toggle, scrollHeight = 800, initialBackground = 'rgba(36, 0, 59, 0.02)', scrolledBackground = '#24003b'}) => {
 	const [scrollNav, setScrollNav] = useState(false);
-	const location = useLocation(); // Get the current location
+	const location = useLocation();
 
 	const changeNav = () => {
 		if (window.scrollY >= scrollHeight) {
@@ -22,6 +22,8 @@ const Navbar = ({toggle, scrollHeight = 800, initialBackground = 'rgba(36, 0, 59
 		return () => window.removeEventListener('scroll', changeNav);
 	}, []);
 
+	const isActive = (path) => location.pathname === path;
+
 	const background = location.pathname === '/' ? (scrollNav ? scrolledBackground : initialBackground) : scrolledBackground;
 
 	return (
@@ -34,16 +36,16 @@ const Navbar = ({toggle, scrollHeight = 800, initialBackground = 'rgba(36, 0, 59
 			<FaBars className="bars" onClick={toggle} />
 
 			<div className="nav-menu">
-				<LinkR className="nav-link" to="/" exact="true" strict="true">
+				<LinkR className={`nav-link ${isActive('/') ? 'nav-link-active' : ''}`} to="/">
 					Home
 				</LinkR>
-				<LinkR className="nav-link" to="/resume">
+				<LinkR className={`nav-link ${isActive('/resume') ? 'nav-link-active' : ''}`} to="/resume">
 					CV
 				</LinkR>
-				<LinkR className="nav-link" to="/portfolio">
+				<LinkR className={`nav-link ${isActive('/portfolio') ? 'nav-link-active' : ''}`} to="/portfolio">
 					Portfolio
 				</LinkR>
-				<LinkR className="nav-link" to="/contact">
+				<LinkR className={`nav-link ${isActive('/contact') ? 'nav-link-active' : ''}`} to="/contact">
 					Contact
 				</LinkR>
 			</div>

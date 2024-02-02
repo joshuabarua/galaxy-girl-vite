@@ -40,8 +40,9 @@ nav {
 	color: #ddd8ff;
 }
 
-.nav-link.active {
-	text-underline-offset: 5px;
+.nav-link-active {
+	text-decoration: underline;
+	text-underline-offset: 10px;
 	padding-bottom: 0.4rem;
 	color: #fff0d8;
 }
