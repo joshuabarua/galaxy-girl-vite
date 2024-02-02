@@ -1,30 +1,4 @@
 import React, {useState} from 'react';
-import {
-	ResumeContainer,
-	ResumeWrapper,
-	ResumeContact,
-	ResumeBio,
-	WorkExperienceTitle,
-	WorkExperienceData,
-	TVExpTitle,
-	TvExpData,
-	CommercialExpTitle,
-	CommercialExpData,
-	QualificationTraining,
-	TheatreExpTitle,
-	TheatreExpData,
-	WorkshopsExpTitle,
-	WorkshopsExpData,
-	FashionExpTitle,
-	FashionExpData,
-	VideogamesExpTitle,
-	ClosingFoot,
-	ReferencesReq,
-	VideogamesExpData,
-	TransferrableSkills,
-} from './resumeElements';
-import Navbar from '../../components/nav/Navbar';
-import Dropdown from '../../components/dropdown/Dropdown';
 // import emmaCVpdf from "../../assets/CV/BlankCV.pdf";
 import './resume.css';
 import {expData, experienceData} from './data';
