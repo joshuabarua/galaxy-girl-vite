@@ -55,12 +55,7 @@ nav {
 }
 
 .logo-img {
-	max-width: 50px;
-	transition: 0.5s ease-in-out;
-}
-
-.logo-img:hover {
-	/* Add the shake animation here */
+	max-width: 40px;
 }
 
 .bars {
