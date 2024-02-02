@@ -132,7 +132,7 @@
 	min-width: 200px;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1500px) {
 	.info-container {
 		height: 100%;
 		padding: 10px 50px;
