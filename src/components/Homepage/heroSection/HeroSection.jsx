@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './HeroSectionStyles.css'; // Import the CSS file
+import './heroSectionStyles.css'; // Import the CSS file
 import Video from '../../../assets/videos/video4.mp4';
 import {Button} from '../../../pages/buttonElement';
 import {MdKeyboardArrowRight, MdArrowForward} from 'react-icons/md';
