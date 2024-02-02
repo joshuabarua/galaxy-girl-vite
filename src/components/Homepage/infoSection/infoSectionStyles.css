@@ -135,7 +135,7 @@
 @media screen and (max-width: 1500px) {
 	.info-container {
 		height: 100%;
-		padding: 10px 50px;
+		padding: 10px 20px;
 	}
 
 	.heading {
@@ -144,6 +144,7 @@
 
 	.subtitle {
 		font-size: 18px;
+		padding: 0 40px;
 	}
 
 	.btn-wrap a {
@@ -163,14 +164,27 @@
 		width: 100%;
 	}
 
+	.text-wrap {
+		padding: 0px;
+	}
+
 	.text-area {
 		justify-content: flex-start;
 		gap: 50px;
 		height: 40%;
+		padding: 0px;
 	}
 
-	.text-wrap {
+	.text-area:nth-child(1) {
 		justify-content: flex-start;
+		gap: 20px;
+		height: 40%;
+		padding: 0px;
+	}
+
+	.text-wrap:nth-child(1) {
+		justify-content: flex-start;
+		padding: 0px;
 	}
 
 	.services-container {
@@ -179,7 +193,7 @@
 		justify-content: center;
 		align-items: center;
 		width: 100%;
-		gap: 50px;
+		gap: 30px;
 	}
 
 	.service-item {
