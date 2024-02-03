@@ -94,7 +94,7 @@ const Contact = () => {
 							<h1> Message me! </h1>
 						</div>
 
-						<Box className="form-container" sx={{minWidth: isSmallScreen ? '300px' : '650px'}}>
+						<Box className="form-container" sx={{minWidth: isSmallScreen ? '300px' : '650px', boxShadow: 3}}>
 							<form action="" onSubmit={customSubmit}>
 								<Stack direction={isSmallScreen ? 'column' : 'row'} justifyContent={'space-evenly'} spacing={isSmallScreen ? 3 : 10} sx={{width: '100%'}}>
 									<Stack direction="column" sx={{width: isSmallScreen ? '100%' : '50%'}} gap={2}>
