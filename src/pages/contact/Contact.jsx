@@ -90,25 +90,23 @@ const Contact = () => {
 			<div>
 				<Box className="contactBody">
 					<Box className="contactOverlay">
-						<Box className="titleBox" mb={8}>
-							<div className="titleMsgText">
-								<h1> Message me! </h1>
-							</div>
-						</Box>
+						<div className="titleMsgText">
+							<h1> Message me! </h1>
+						</div>
 
-						<Box className="form-container">
+						<Box className="form-container" sx={{minWidth: isSmallScreen ? '300px' : '650px'}}>
 							<form action="" onSubmit={customSubmit}>
-								<Stack direction={isSmallScreen ? 'column' : 'row'} justifyContent={'space-evenly'} spacing={5} sx={{width: '100%'}}>
-									<Stack direction="column" sx={{width: isSmallScreen ? '100%' : '50%'}}>
+								<Stack direction={isSmallScreen ? 'column' : 'row'} justifyContent={'space-evenly'} spacing={isSmallScreen ? 3 : 10} sx={{width: '100%'}}>
+									<Stack direction="column" sx={{width: isSmallScreen ? '100%' : '50%'}} gap={2}>
 										<Stack direction="column">
 											<label className="form-label">Name / Company</label>
-											<input type="text" placeholder="Name/Company" name="name" value={name} required className="form-input" onChange={(e) => setName(e.target.value)} />
+											<input type="text" placeholder="John Smith" name="name" value={name} required className="form-input" onChange={(e) => setName(e.target.value)} />
 										</Stack>
 										<Stack direction="column">
 											<label className="form-label"> Email</label>
 											<input
 												type="email"
-												placeholder="Email Address"
+												placeholder="johnsmith@gmail.com"
 												name="email"
 												value={email}
 												onChange={(e) => setEmail(e.target.value)}
@@ -120,7 +118,7 @@ const Contact = () => {
 											<label className="form-label"> Subject </label>
 											<input
 												type="text"
-												placeholder="Subject"
+												placeholder="I would love to work together!"
 												name="subject"
 												value={subject}
 												onChange={(e) => setSubject(e.target.value)}
@@ -134,7 +132,7 @@ const Contact = () => {
 										<Stack direction="column" className="form-input-field">
 											<label className="form-label"> Message</label>
 											<textarea
-												placeholder="Your message"
+												placeholder="Lets make some magic..."
 												name="message"
 												value={message}
 												onChange={(e) => setMessage(e.target.value)}
