@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 // import emmaCVpdf from "../../assets/CV/BlankCV.pdf";
 import './resume.css';
 import {expData, experienceData} from './data';
+import {Icon} from '@iconify/react';
+import {Stack} from '@mui/material';
 
 const Resume = () => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -60,8 +62,13 @@ const Resume = () => {
 								<h2> Emma Robyn</h2>
 								<h5> Makeup Artist </h5>
 								<h5> ScreenSkills Film Trainee 2020-21</h5>
-								<h5> Brighton and London based, willing to travel </h5>
-								<h5>M: (+44) 1234567890 &nbsp;&nbsp;&nbsp;&nbsp; E: email@email.com </h5>
+								<h5> Brighton & London </h5>
+								<Stack gap={0.5} direction={'row'} display={'flex'} alignItems={'center'}>
+									<Icon icon="carbon:phone" />
+									<h5>(+44) 1234567890 &nbsp;&nbsp;&nbsp;&nbsp;</h5>
+									<Icon icon="carbon:email" />
+									<h5> email@email.com </h5>
+								</Stack>
 							</text>
 						</div>
 

@@ -29,7 +29,6 @@
 .section {
 	display: grid;
 	width: 100%;
-	gap: 1px;
 }
 
 .section h3 {
@@ -52,8 +51,8 @@ text {
 	width: 100%;
 	display: grid;
 	grid-template-columns: 1.5fr 2fr 2fr 0.5fr;
-	grid-gap: 5px;
-	padding: 5px;
+	grid-gap: 10px;
+	padding: 0px 0px 10px 10px;
 }
 
 .resume-contact {
@@ -61,9 +60,6 @@ text {
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-}
-
-.resume-bio {
 }
 
 .qualificatonList ul li {
@@ -83,12 +79,20 @@ h2 {
 	border: 0;
 	border-radius: 15px;
 	background-color: #7ce095;
-	-webkit-transition: 0.3s linear;
-	-o-transition: 0.3s linear;
-	transition: 0.3s linear;
 	color: hsl(0, 16%, 11%);
 	font-weight: bold;
 	text-decoration: none !important;
+}
+
+.downloadBtn:hover {
+	background-color: snow;
+	border: 1px solid #fca17d;
+	-webkit-transition: 0.3s linear;
+	-o-transition: 0.3s linear;
+	transition: 0.3s linear;
+	color: black;
+	cursor: pointer;
+	transition: 0.3s ease-in-out;
 }
 
 .downloadBtn a {
