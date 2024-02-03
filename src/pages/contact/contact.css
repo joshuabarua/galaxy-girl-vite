@@ -7,72 +7,76 @@
 	align-items: center;
 	justify-content: center;
 	width: 100vw;
-	height: 80vh;
+	height: 90vh;
+	overflow-x: hidden;
 }
 
 .contactOverlay {
+	margin-top: 80px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: space-evenly;
+	gap: 50px;
+	overflow-x: hidden;
 }
 
-.titleBox {
+.titleMsgText {
+	min-height: 60px;
+	height: 100px;
+	max-height: 100px;
+	background-color: hsl(347, 62%, 92%);
+	color: hsl(248, 50%, 70%);
+	border-radius: 5%;
+	box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.1);
+	min-width: 350px;
+	max-width: 400px;
 	display: flex;
-	height: 10vh;
-	max-height: 80px;
-
 	justify-content: center;
 	align-items: center;
 }
 
 .titleMsgText {
-	display: flex;
-	height: 100%;
-	min-height: 100px;
-	justify-content: center;
-	align-items: center;
-	background-color: hsl(347, 62%, 92%);
-	color: hsl(248, 50%, 70%);
-	border-radius: 5%;
-	box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.1);
-	width: 30vw;
-	min-width: 350px;
-	max-width: 400px;
-}
-
-.titleMsgText > h1 {
-	text-align: center;
+	font-size: 0.8rem;
 }
 
 .form-container {
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	padding: 20px;
+	padding: 10px;
 	border-radius: 20px;
 	background-color: hsl(347, 62%, 95%);
 	width: 60vw;
 	max-width: 750px;
-	min-width: 350px;
+	height: 400px;
+}
+
+.form-container form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: 20px;
 }
 
 .form-input-field {
 	display: flex;
 	width: 100%;
+	gap: 20px;
 }
 
 .form-label {
-	width: 100%;
 	font-size: 1rem;
 	color: #2a292c;
 }
 
 .form-input {
-	margin: 5px 0px 20px 0px;
+	display: flex;
+	gap: 20px;
 	padding: 0.5rem;
 	font-size: 1rem;
-	min-width: 280px;
 	border-radius: 5px;
 	border: 0;
 	color: #2a292c;
@@ -82,12 +86,10 @@
 }
 
 .form-textarea {
-	margin: 5px 0px 20px 0px;
 	border: 0;
-	width: 100%;
-	min-width: 280px;
-	height: 200px;
-	padding: 5px;
+	height: 100px;
+	max-height: 200px;
+	padding: 10px;
 	color: #2a292c;
 	background-color: white;
 	-webkit-box-shadow: 0px 0px 8px 0px rgb(218, 218, 218);
@@ -101,7 +103,6 @@
 	justify-content: center;
 	align-items: center;
 	width: 100%;
-	margin-top: 10px;
 }
 
 .form-btn button {
@@ -190,3 +191,38 @@ form button:hover {
   color: #0f0 !important;
   outline: solid #f00 1px !important;
 } */
+
+@media screen and (max-width: 1000px) {
+	.contactBody {
+		height: 100vh;
+	}
+
+	.contactOverlay {
+		margin-top: 100px;
+		gap: 30px;
+	}
+
+	.titleMsgText {
+		min-width: 200px;
+		height: 60px;
+	}
+
+	.titleMsgText > h1 {
+		font-size: 1.5rem;
+	}
+
+	.form-container {
+		max-height: 700px;
+		min-height: 500px;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.contactBody {
+		align-items: flex-start;
+	}
+
+	.contactOverlay {
+		margin-top: 120px;
+	}
+}
