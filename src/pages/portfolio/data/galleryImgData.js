@@ -167,7 +167,6 @@ export const gallery = {
 		images: [
 			{
 				id: Incrementer(),
-				size: '1600-2400',
 				src: importedImg131,
 				thumb: importedImg105,
 				subHtml: `<div class="lightGallery-captions">
@@ -176,7 +175,6 @@ export const gallery = {
 			},
 			{
 				id: Incrementer(),
-				size: '1600-2400',
 				src: importedImg138,
 				thumb: importedImg45,
 				subHtml: `<div class="lightGallery-captions">
@@ -186,7 +184,6 @@ export const gallery = {
 
 			{
 				id: Incrementer(),
-				size: '2400-1600',
 				src: importedImg82,
 				thumb: importedImg127,
 				subHtml: `<div class="lightGallery-captions">
@@ -196,7 +193,6 @@ export const gallery = {
 
 			{
 				id: Incrementer(),
-				size: '1600-2400',
 				src: importedImg32,
 				thumb: importedImg149,
 				subHtml: `<div class="lightGallery-captions">
@@ -413,20 +409,21 @@ export const gallery = {
 		images: [
 			{
 				id: Incrementer(),
-				src: importedImg59,
-				thumb: importedImg44,
-				subHtml: `<div class="lightGallery-captions">
-			<h4>Photo by <a href="https://jeffmood.wordpress.com">Jeff Mood</a></h4>
-			<p>Evil Faun </p></div>`,
-			},
-			{
-				id: Incrementer(),
 				src: importedImg107,
 				thumb: importedImg155,
 				subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://jeffmood.wordpress.com">Jeff Mood</a></h4>
 			<p>Evil Faun </p></div>`,
 			},
+			{
+				id: Incrementer(),
+				src: importedImg59,
+				thumb: importedImg44,
+				subHtml: `<div class="lightGallery-captions">
+			<h4>Photo by <a href="https://jeffmood.wordpress.com">Jeff Mood</a></h4>
+			<p>Evil Faun </p></div>`,
+			},
+
 			{
 				id: Incrementer(),
 				src: importedImg0,
@@ -546,7 +543,19 @@ export const gallery = {
 		images: [
 			{
 				id: Incrementer(),
+				src: importedImg8,
+				thumb: importedImg28,
+				width: 600,
+				height: 800,
+				subHtml: `<div class="lightGallery-captions">
+				<h4>Photo by <a href="https://jeffmood.wordpress.com">Jeff Mood</a></h4>
+			<p>Lizard Person</p></div>`,
+			},
+			{
+				id: Incrementer(),
 				src: importedImg119,
+				width: 750,
+				height: 800,
 				thumb: importedImg71,
 				subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua </h4>
@@ -554,16 +563,10 @@ export const gallery = {
 			},
 			{
 				id: Incrementer(),
-				src: importedImg8,
-				thumb: importedImg28,
-				subHtml: `<div class="lightGallery-captions">
-				<h4>Photo by <a href="https://jeffmood.wordpress.com">Jeff Mood</a></h4>
-			<p>Lizard Person</p></div>`,
-			},
-			{
-				id: Incrementer(),
 				src: importedImg116,
 				thumb: importedImg146,
+				width: 600,
+				height: 800,
 				subHtml: `<div class="lightGallery-captions">
 				<h4>Photo by <a href="https://jeffmood.wordpress.com">Jeff Mood</a></h4>
 			<p>Lizard Person</p></div>`,
@@ -572,31 +575,25 @@ export const gallery = {
 				id: Incrementer(),
 				src: importedImg86,
 				thumb: importedImg49,
+				width: 750,
+				height: 800,
 				subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Zombie</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg104,
-				thumb: importedImg148,
-				subHtml: `<div class="lightGallery-captions">
-			<h4>Photo by Emma Barua</h4>
-			<p>Zombie</p></div>`,
-			},
-			{
-				id: 6,
-				src: importedImg135,
-				thumb: importedImg20,
-				subHtml: `<div class="lightGallery-captions">
-			<h4>Photo by Emma Barua</h4>
-			<p> Cleopatra Skeleton (Self-Portrait) </p></div>`,
 			},
 		],
 	},
 	4: {
 		name: 'Theatrical',
 		images: [
+			{
+				id: Incrementer(),
+				src: importedImg64,
+				thumb: importedImg50,
+				subHtml: `<div class="lightGallery-captions">
+			<h4>Photo by Emma Barua</h4>
+			<p>Goblin Skull</p></div>`,
+			},
 			{
 				id: Incrementer(),
 				src: importedImg102,
@@ -621,14 +618,7 @@ export const gallery = {
 			<h4>Photo by Emma Barua</h4>
 			<p><a href="https://www.modelmayhem.com/jasonfarries"> Jason Farries as Dorian Grey </a></p></div>`,
 			},
-			{
-				id: Incrementer(),
-				src: importedImg64,
-				thumb: importedImg50,
-				subHtml: `<div class="lightGallery-captions">
-			<h4>Photo by Emma Barua</h4>
-			<p>Goblin Skull</p></div>`,
-			},
+
 			{
 				id: Incrementer(),
 				src: importedImg51,
@@ -750,20 +740,21 @@ export const gallery = {
 		images: [
 			{
 				id: Incrementer(),
-				src: importedImg48,
-				thumb: importedImg75,
-				subHtml: `<div class="lightGallery-captions">
-			<h4>Photo by Emma Barua </h4>
-			<p><a href="https://podcasts.apple.com/gb/podcast/queer-talk/id1498803004">Queer Talk Live </a> </p></div>`,
-			},
-			{
-				id: Incrementer(),
 				src: importedImg137,
 				thumb: importedImg154,
 				subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua </h4>
 			<p><a href="https://podcasts.apple.com/gb/podcast/queer-talk/id1498803004">Queer Talk Live </a> </p></div>`,
 			},
+			{
+				id: Incrementer(),
+				src: importedImg48,
+				thumb: importedImg75,
+				subHtml: `<div class="lightGallery-captions">
+			<h4>Photo by Emma Barua </h4>
+			<p><a href="https://podcasts.apple.com/gb/podcast/queer-talk/id1498803004">Queer Talk Live </a> </p></div>`,
+			},
+
 			{
 				id: Incrementer(),
 				src: importedImg147,
