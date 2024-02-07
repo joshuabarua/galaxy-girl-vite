@@ -1,30 +1,23 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
 import styles from './css/portfolioStyles.module.css';
-import 'lightgallery/css/lightgallery.css';
-
 import {gallery} from './data/galleryImgData';
-import GalleryGroup from './GalleryGroup';
+import {useTheme} from '@mui/material';
+import {useMediaQuery} from '@mui/material';
+import GalleryCard from './GalleryCard';
 
 const WorkPortfolio = () => {
-	const [imageItems, setImageItems] = useState({});
-	useEffect(() => {
-		setImageItems(gallery);
-
-		return console.warn('cleanup');
-	}, [imageItems]);
-
-	//TODO: Cleanup Portfolio
 	return (
 		<div style={{scrollBehavior: 'smooth'}}>
 			<div className={styles.portfolioContainer}>
 				<div className={styles.portfolioHeader}>
 					<h1>Portfolio</h1>
 				</div>
-				{Object.entries(imageItems).map(([key, val]) => (
-					<React.Fragment key={key}>
-						<GalleryGroup imageData={val} />
-					</React.Fragment>
-				))}
+
+				<div className={styles.gallery_card_container}>
+					{Object.values(gallery).map((val, idx) => (
+						<GalleryCard imageGroup={val} id={idx + 1} key={idx} />
+					))}
+				</div>
 			</div>
 		</div>
 	);
