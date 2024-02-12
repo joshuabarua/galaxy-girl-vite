@@ -199,9 +199,12 @@
 	}
 
 	.service-item {
-		justify-items: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 		align-items: center;
 		width: 100%;
+		min-width: 300px;
 	}
 
 	.service-item img {
@@ -211,5 +214,12 @@
 	.service-item p {
 		line-height: 1.2;
 		font-size: medium;
+		padding: 0px 200px;
+	}
+}
+
+@media screen and (min-width: 300px) and (max-width: 700px) {
+	.service-item p {
+		padding: 0px 50px;
 	}
 }
