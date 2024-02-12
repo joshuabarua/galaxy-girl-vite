@@ -129,6 +129,10 @@
 		font-size: 9px;
 	}
 
+	.galleryHeader h1 {
+		font-size: x-large
+	}
+
 	.albumContainer {
 		margin: 20px 0;
 	}
