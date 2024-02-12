@@ -10,7 +10,7 @@
 	width: 100vw;
 	padding-top: 40px;
 	padding-bottom: 60px;
-
+	gap: 20px;
 	overflow: hidden;
 	display: flex;
 	justify-content: center;
@@ -18,7 +18,8 @@
 	flex-direction: column;
 }
 
-.portfolioHeader {
+.portfolioHeader,
+.galleryHeader {
 	margin-top: 100px;
 	display: flex;
 	justify-content: center;
@@ -29,17 +30,6 @@
 	border-radius: 1%;
 	box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.1);
 	height: 125px;
-}
-
-.albumContainer {
-	width: 90%;
-	background-color: hsl(248, 50%, 80%);
-	border-radius: 2px;
-	box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
-}
-
-.imageContainer {
-	padding: 5%;
 }
 
 .gallery_card_container {
@@ -55,6 +45,12 @@
 	flex-direction: row;
 	flex-wrap: wrap;
 	padding: 2rem;
+}
+
+.galleryGroup {
+	background-color: hsl(347, 62%, 92%);
+	width: 80%;
+	padding: 20px;
 }
 
 .gallery_card {
@@ -111,6 +107,18 @@
 	border-spacing: 5px;
 	border-width: 2px;
 	transition: 0.1s ease-in-out;
+}
+
+.galleryHeader {
+	width: calc(30vw + 30px);
+	max-width: 550px;
+}
+
+.albumContainer {
+	width: 90%;
+	background-color: hsl(248, 50%, 80%);
+	border-radius: 2px;
+	box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
 }
 
 @media screen and (min-width: 400px) and (max-width: 1200px) {
