@@ -61,7 +61,7 @@ const Resume = () => {
 							<text>
 								<h2> Emma Robyn</h2>
 								<h5> Makeup Artist </h5>
-								<h5> ScreenSkills Film Trainee 2020-21</h5>
+								<h5> Screen Skills Film Trainee 2020-21</h5>
 								<h5> Brighton & London </h5>
 								<Stack gap={0.5} direction={'row'} display={'flex'} alignItems={'center'}>
 									<Icon icon="carbon:phone" />
