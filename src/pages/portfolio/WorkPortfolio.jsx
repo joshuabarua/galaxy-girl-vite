@@ -14,7 +14,7 @@ const WorkPortfolio = () => {
 				</div>
 
 				<div className={styles.gallery_card_container}>
-					{Object.values(gallery).map((val, idx) => (
+					{Object.values(gallery[0]).map((val, idx) => (
 						<GalleryCard imageGroup={val} id={idx + 1} key={idx} />
 					))}
 				</div>

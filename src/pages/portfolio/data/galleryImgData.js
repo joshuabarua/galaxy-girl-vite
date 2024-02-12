@@ -161,674 +161,735 @@ function Incrementer() {
 	counter += 1000;
 	return counter;
 }
-export const gallery = {
-	1: {
-		name: 'Beauty and Editorial',
-		images: [
-			{
-				id: Incrementer(),
-				src: importedImg131,
-				thumb: importedImg105,
-				subHtml: `<div class="lightGallery-captions">
+
+export const gallery = [
+	{
+		1: {
+			name: 'Beauty and Editorial',
+			images: [
+				{
+					id: Incrementer(),
+					src: importedImg131,
+					thumb: importedImg105,
+					height: 2400,
+					width: 1600,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://www.susangracehinman.co.uk/home">Susan Hinman</a></h4>
 			<p>The Countess</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg138,
-				thumb: importedImg45,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg138,
+					thumb: importedImg45,
+					width: 1600,
+					height: 2400,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://www.susangracehinman.co.uk/home">Susan Hinman</a></h4>
 			<p>The Countess</p></div>`,
-			},
+				},
 
-			{
-				id: Incrementer(),
-				src: importedImg82,
-				thumb: importedImg127,
-				subHtml: `<div class="lightGallery-captions">
+				{
+					id: Incrementer(),
+					src: importedImg82,
+					thumb: importedImg127,
+					width: 2400,
+					height: 1600,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://www.susangracehinman.co.uk/home">Susan Hinman</a></h4>
 			<p>The Countess</p></div>`,
-			},
+				},
 
-			{
-				id: Incrementer(),
-				src: importedImg32,
-				thumb: importedImg149,
-				subHtml: `<div class="lightGallery-captions">
+				{
+					id: Incrementer(),
+					src: importedImg32,
+					thumb: importedImg149,
+					width: 1600,
+					height: 2400,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://www.susangracehinman.co.uk/home">Susan Hinman</a></h4>
 			<p>The Countess</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg100,
-				thumb: importedImg72,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg100,
+					thumb: importedImg72,
+					width: 1600,
+					height: 2400,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://www.susangracehinman.co.uk/home">Susan Hinman</a></h4>
 			<p>Jarin</p></div>`,
-			},
+				},
 
-			{
-				id: Incrementer(),
-				src: importedImg132,
-				thumb: importedImg150,
-				subHtml: `<div class="lightGallery-captions">
+				{
+					id: Incrementer(),
+					src: importedImg132,
+					thumb: importedImg150,
+					width: 1600,
+					height: 2400,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://www.susangracehinman.co.uk/home">Susan Hinman</a></h4>
 			<p>Jarin</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg29,
-				thumb: importedImg77,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg29,
+					thumb: importedImg77,
+					width: 1600,
+					height: 2400,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://www.susangracehinman.co.uk/home">Susan Hinman</a></h4>
 			<p>Jarin</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg62,
-				thumb: importedImg58,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg62,
+					thumb: importedImg58,
+					width: 1600,
+					height: 2400,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://www.susangracehinman.co.uk/home">Susan Hinman</a></h4>
 			<p>Jarin</p></div>`,
-			},
+				},
 
-			{
-				id: Incrementer(),
-				src: importedImg22,
-				thumb: importedImg56,
-				subHtml: `<div class="lightGallery-captions">
+				{
+					id: Incrementer(),
+					src: importedImg22,
+					thumb: importedImg56,
+					width: 2400,
+					height: 3600,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://www.susangracehinman.co.uk/home">Susan Hinman</a></h4>
 			<p>Jarin</p></div>`,
-			},
+				},
 
-			{
-				id: Incrementer(),
-				src: importedImg125,
-				thumb: importedImg5,
-				subHtml: `<div class="lightGallery-captions">
+				{
+					id: Incrementer(),
+					src: importedImg125,
+					width: 533,
+					height: 800,
+					thumb: importedImg5,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://www.susangracehinman.co.uk/home">Susan Hinman</a></h4>
 			<p>Boudoir</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg23,
-				thumb: importedImg117,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg23,
+					thumb: importedImg117,
+					width: 3744,
+					height: 5616,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://www.susangracehinman.co.uk/home">Susan Hinman</a></h4>
 			<p>Boudoir</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg81,
-				thumb: importedImg87,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg81,
+					thumb: importedImg87,
+					width: 2828,
+					height: 4498,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://www.susangracehinman.co.uk/home">Susan Hinman</a></h4>
 			<p>Mother and Daughter </p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg111,
-				thumb: importedImg10,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg111,
+					thumb: importedImg10,
+					width: 576,
+					height: 640,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://www.susangracehinman.co.uk/home">Susan Hinman</a></h4>
 			<p>Boudoir</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg90,
-				thumb: importedImg109,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg90,
+					thumb: importedImg109,
+					width: 576,
+					height: 726,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://cherrydeck.com/cheemluke"> Luke Okafur </a></h4>
 			<p>Stephanie Prior, Charity Fashion Show </p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg19,
-				thumb: importedImg94,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg19,
+					thumb: importedImg94,
+					height: 2400,
+					width: 3600,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://www.susangracehinman.co.uk/home">Susan Hinman</a></h4>
 			<p>Mother and Daughter</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg129,
-				thumb: importedImg124,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg129,
+					thumb: importedImg124,
+					width: 2400,
+					height: 3600,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://www.susangracehinman.co.uk/home">Susan Hinman</a></h4>
 			<p> Mother and Daughter </p> </div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg133,
-				thumb: importedImg83,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg133,
+					thumb: importedImg83,
+					width: 3600,
+					height: 2400,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://www.susangracehinman.co.uk/home">Susan Hinman</a></h4>
 			<p>Mother and Daughter</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg91,
-				thumb: importedImg97,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg91,
+					width: 2400,
+					height: 3600,
+					thumb: importedImg97,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://www.susangracehinman.co.uk/home">Susan Hinman</a></h4>
 			<p></p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg78,
-				thumb: importedImg25,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg78,
+					height: 4032,
+					width: 3024,
+					thumb: importedImg25,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://www.susangracehinman.co.uk/home">Susan Hinman</a></h4>
 			<p>Behind the Scenes</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg69,
-				thumb: importedImg42,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg69,
+					width: 1250,
+					height: 1870,
+					thumb: importedImg42,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://www.susangracehinman.co.uk/home">Susan Hinman</a></h4>
 			<p>Behind the Scenes</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg15,
-				thumb: importedImg6,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg15,
+					width: 2384,
+					height: 3554,
+					thumb: importedImg6,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://www.susangracehinman.co.uk/home">Susan Hinman</a></h4>
 			<p>Vampiric</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg74,
-				thumb: importedImg103,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg74,
+					width: 1376,
+					height: 1600,
+					thumb: importedImg103,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua </h4>
 			<p>2021</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg128,
-				thumb: importedImg110,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg128,
+					width: 1467,
+					height: 1873,
+					thumb: importedImg110,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Brighton University Fashion Show, 2019</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg140,
-				thumb: importedImg139,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg140,
+					width: 1536,
+					height: 2048,
+					thumb: importedImg139,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Spencer at <a href="https://podcasts.apple.com/gb/podcast/queer-talk/id1498803004">Queer Talk Live </a> </p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg95,
-				thumb: importedImg7,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg95,
+					width: 2035,
+					height: 2714,
+					thumb: importedImg7,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Elle, University project </p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg122,
-				thumb: importedImg79,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg122,
+					width: 2036,
+					height: 2714,
+					thumb: importedImg79,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Elle, University project </p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg80,
-				thumb: importedImg142,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg80,
+					width: 1200,
+					height: 1600,
+					thumb: importedImg142,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Spencer at <a href="https://podcasts.apple.com/gb/podcast/queer-talk/id1498803004">Queer Talk Live </a> </p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg43,
-				thumb: importedImg141,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg43,
+					width: 1931,
+					height: 1203,
+					thumb: importedImg141,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://www.martinchristie.co.uk">Martin Christie</a></h4>
 			<p></p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg36,
-				thumb: importedImg96,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg36,
+					width: 1660,
+					height: 1768,
+					thumb: importedImg96,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p> Personal Editorial </p></div>`,
-			},
-		],
-	},
-	2: {
-		name: 'SFX Makeup',
-		images: [
-			{
-				id: Incrementer(),
-				src: importedImg107,
-				thumb: importedImg155,
-				subHtml: `<div class="lightGallery-captions">
+				},
+			],
+		},
+		2: {
+			name: 'SFX Makeup',
+			images: [
+				{
+					id: Incrementer(),
+					src: importedImg107,
+					thumb: importedImg155,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://jeffmood.wordpress.com">Jeff Mood</a></h4>
 			<p>Evil Faun </p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg59,
-				thumb: importedImg44,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg59,
+					thumb: importedImg44,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://jeffmood.wordpress.com">Jeff Mood</a></h4>
 			<p>Evil Faun </p></div>`,
-			},
+				},
 
-			{
-				id: Incrementer(),
-				src: importedImg0,
-				thumb: importedImg68,
-				subHtml: `<div class="lightGallery-captions">
+				{
+					id: Incrementer(),
+					src: importedImg0,
+					thumb: importedImg68,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://jeffmood.wordpress.com">Jeff Mood</a></h4>
 			<p>Evil Faun </p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg112,
-				thumb: importedImg92,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg112,
+					thumb: importedImg92,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://jeffmood.wordpress.com">Jeff Mood</a></h4>
 			<p>Evil Faun </p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg130,
-				thumb: importedImg144,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg130,
+					thumb: importedImg144,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://jeffmood.wordpress.com">Jeff Mood</a></h4>
 			<p>Leopard</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg41,
-				thumb: importedImg145,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg41,
+					thumb: importedImg145,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://jeffmood.wordpress.com">Jeff Mood</a></h4>
 			<p>Leopard</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg106,
-				thumb: importedImg63,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg106,
+					thumb: importedImg63,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://jeffmood.wordpress.com">Jeff Mood</a></h4>
 			<p>Leopard</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg4,
-				thumb: importedImg126,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg4,
+					thumb: importedImg126,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Leopard</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg134,
-				thumb: importedImg153,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg134,
+					thumb: importedImg153,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Leopard</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg12,
-				thumb: importedImg101,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg12,
+					thumb: importedImg101,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Witch</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg99,
-				thumb: importedImg26,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg99,
+					thumb: importedImg26,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Witch</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg60,
-				thumb: importedImg93,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg60,
+					thumb: importedImg93,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Grease Paint Bruise</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg151,
-				thumb: importedImg13,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg151,
+					thumb: importedImg13,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p> Illustrator Bruise</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg143,
-				thumb: importedImg108,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg143,
+					thumb: importedImg108,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p></p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg70,
-				thumb: importedImg1,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg70,
+					thumb: importedImg1,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Angel and Spike</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg11,
-				thumb: importedImg31,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg11,
+					thumb: importedImg31,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Angel</p></div>`,
-			},
-		],
-	},
-	3: {
-		name: 'Body Paint',
-		images: [
-			{
-				id: Incrementer(),
-				src: importedImg8,
-				thumb: importedImg28,
-				width: 600,
-				height: 800,
-				subHtml: `<div class="lightGallery-captions">
+				},
+			],
+		},
+		3: {
+			name: 'Body Paint',
+			images: [
+				{
+					id: Incrementer(),
+					src: importedImg8,
+					thumb: importedImg28,
+					width: 600,
+					height: 800,
+					subHtml: `<div class="lightGallery-captions">
 				<h4>Photo by <a href="https://jeffmood.wordpress.com">Jeff Mood</a></h4>
 			<p>Lizard Person</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg119,
-				width: 750,
-				height: 800,
-				thumb: importedImg71,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg119,
+					width: 750,
+					height: 800,
+					thumb: importedImg71,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua </h4>
 			<p>Sun and Moon</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg116,
-				thumb: importedImg146,
-				width: 600,
-				height: 800,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg116,
+					thumb: importedImg146,
+					width: 600,
+					height: 800,
+					subHtml: `<div class="lightGallery-captions">
 				<h4>Photo by <a href="https://jeffmood.wordpress.com">Jeff Mood</a></h4>
 			<p>Lizard Person</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg86,
-				thumb: importedImg49,
-				width: 750,
-				height: 800,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg86,
+					thumb: importedImg49,
+					width: 2828,
+					height: 4498,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Zombie</p></div>`,
-			},
-		],
-	},
-	4: {
-		name: 'Theatrical',
-		images: [
-			{
-				id: Incrementer(),
-				src: importedImg64,
-				thumb: importedImg50,
-				subHtml: `<div class="lightGallery-captions">
+				},
+			],
+		},
+		4: {
+			name: 'Theatrical',
+			images: [
+				{
+					id: Incrementer(),
+					src: importedImg64,
+					thumb: importedImg50,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Goblin Skull</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg102,
-				thumb: importedImg27,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg102,
+					thumb: importedImg27,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p><a href="https://www.modelmayhem.com/jasonfarries"> Jason Farries as Dorian Grey </a></p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg118,
-				thumb: importedImg73,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg118,
+					thumb: importedImg73,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p><a href="https://www.modelmayhem.com/jasonfarries"> Jason Farries as Dorian Grey </a></p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg24,
-				thumb: importedImg40,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg24,
+					thumb: importedImg40,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p><a href="https://www.modelmayhem.com/jasonfarries"> Jason Farries as Dorian Grey </a></p></div>`,
-			},
+				},
 
-			{
-				id: Incrementer(),
-				src: importedImg51,
-				thumb: importedImg21,
-				subHtml: `<div class="lightGallery-captions">
+				{
+					id: Incrementer(),
+					src: importedImg51,
+					thumb: importedImg21,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Goblin Skull</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg113,
-				thumb: importedImg30,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg113,
+					thumb: importedImg30,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Stamp Promo</p></div>`,
-			},
-		],
-	},
-	5: {
-		name: 'Wedding',
-		images: [
-			{
-				id: Incrementer(),
-				src: importedImg3,
-				thumb: importedImg33,
-				subHtml: `<div class="lightGallery-captions">
+				},
+			],
+		},
+		5: {
+			name: 'Wedding',
+			images: [
+				{
+					id: Incrementer(),
+					src: importedImg3,
+					thumb: importedImg33,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Wedding Shoot</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg120,
-				thumb: importedImg37,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg120,
+					thumb: importedImg37,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Wedding Shoot</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg38,
-				thumb: importedImg76,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg38,
+					thumb: importedImg76,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Wedding Shoot</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg88,
-				thumb: importedImg16,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg88,
+					thumb: importedImg16,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Wedding Shoot</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg14,
-				thumb: importedImg39,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg14,
+					thumb: importedImg39,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Wedding Shoot</p></div>`,
-			},
-		],
-	},
-	6: {
-		name: 'Period Piece',
-		images: [
-			{
-				id: Incrementer(),
-				src: importedImg53,
-				thumb: importedImg152,
-				subHtml: `<div class="lightGallery-captions">
+				},
+			],
+		},
+		6: {
+			name: 'Period Piece',
+			images: [
+				{
+					id: Incrementer(),
+					src: importedImg53,
+					thumb: importedImg152,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua </h4>
 			<p>1960's era </p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg9,
-				thumb: importedImg2,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg9,
+					thumb: importedImg2,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>1960's era </p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg35,
-				thumb: importedImg65,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg35,
+					thumb: importedImg65,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua </h4>
 			<p>1950's era </p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg17,
-				thumb: importedImg121,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg17,
+					thumb: importedImg121,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua </h4>
 			<p>1920's era </p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg18,
-				thumb: importedImg57,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg18,
+					thumb: importedImg57,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Accurate Egyptian Cleopatra</p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg114,
-				thumb: importedImg89,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg114,
+					thumb: importedImg89,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://www.susangracehinman.co.uk/home">Susan Hinman</a></h4>
 			<p>Victorian</p></div>`,
-			},
-		],
-	},
-	7: {
-		name: 'On Site / Working',
-		images: [
-			{
-				id: Incrementer(),
-				src: importedImg137,
-				thumb: importedImg154,
-				subHtml: `<div class="lightGallery-captions">
+				},
+			],
+		},
+		7: {
+			name: 'On Site / Working',
+			images: [
+				{
+					id: Incrementer(),
+					src: importedImg137,
+					thumb: importedImg154,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua </h4>
 			<p><a href="https://podcasts.apple.com/gb/podcast/queer-talk/id1498803004">Queer Talk Live </a> </p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg48,
-				thumb: importedImg75,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg48,
+					thumb: importedImg75,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua </h4>
 			<p><a href="https://podcasts.apple.com/gb/podcast/queer-talk/id1498803004">Queer Talk Live </a> </p></div>`,
-			},
+				},
 
-			{
-				id: Incrementer(),
-				src: importedImg147,
-				thumb: importedImg47,
-				subHtml: `<div class="lightGallery-captions">
+				{
+					id: Incrementer(),
+					src: importedImg147,
+					thumb: importedImg47,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua </h4>
 			<p><a href="https://podcasts.apple.com/gb/podcast/queer-talk/id1498803004">Queer Talk Live </a> </p></div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg136,
-				thumb: importedImg98,
-				subHtml: `<div class="lightGallery-captions">
+				},
+				{
+					id: Incrementer(),
+					src: importedImg136,
+					thumb: importedImg98,
+					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua </h4>
 			<p>On Set</p></div>`,
-			},
-		],
+				},
+			],
+		},
+		8: {
+			name: 'Nails',
+			images: [
+				{
+					id: Incrementer(),
+					src: importedImg52,
+					thumb: importedImg46,
+					subHtml: `<div class="lightGallery-captions">
+			<h4>Photo by Emma Barua</h4>
+			</div>`,
+				},
+				{
+					id: Incrementer(),
+					src: importedImg115,
+					thumb: importedImg123,
+					subHtml: `<div class="lightGallery-captions">
+			<h4>Photo by Emma Barua</h4>
+			</div>`,
+				},
+				{
+					id: Incrementer(),
+					src: importedImg84,
+					thumb: importedImg61,
+					subHtml: `<div class="lightGallery-captions">
+			<h4>Photo by Emma Barua</h4>
+			</div>`,
+				},
+				{
+					id: Incrementer(),
+					src: importedImg54,
+					thumb: importedImg66,
+					subHtml: `<div class="lightGallery-captions">
+			<h4>Photo by Emma Barua</h4>
+			</div>`,
+				},
+				{
+					id: Incrementer(),
+					src: importedImg55,
+					thumb: importedImg85,
+					subHtml: `<div class="lightGallery-captions">
+			<h4>Photo by Emma Barua</h4>
+			</div>`,
+				},
+			],
+		},
+		9: {
+			name: 'Camouflage',
+			images: [
+				{
+					id: Incrementer(),
+					src: importedImg34,
+					thumb: importedImg67,
+					subHtml: `<div class="lightGallery-captions">
+			<h4>Photo by Emma Barua</h4>
+			</div>`,
+				},
+			],
+		},
 	},
-	8: {
-		name: 'Nails',
-		images: [
-			{
-				id: Incrementer(),
-				src: importedImg52,
-				thumb: importedImg46,
-				subHtml: `<div class="lightGallery-captions">
-			<h4>Photo by Emma Barua</h4>
-			</div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg115,
-				thumb: importedImg123,
-				subHtml: `<div class="lightGallery-captions">
-			<h4>Photo by Emma Barua</h4>
-			</div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg84,
-				thumb: importedImg61,
-				subHtml: `<div class="lightGallery-captions">
-			<h4>Photo by Emma Barua</h4>
-			</div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg54,
-				thumb: importedImg66,
-				subHtml: `<div class="lightGallery-captions">
-			<h4>Photo by Emma Barua</h4>
-			</div>`,
-			},
-			{
-				id: Incrementer(),
-				src: importedImg55,
-				thumb: importedImg85,
-				subHtml: `<div class="lightGallery-captions">
-			<h4>Photo by Emma Barua</h4>
-			</div>`,
-			},
-		],
-	},
-	9: {
-		name: 'Camouflage',
-		images: [
-			{
-				id: Incrementer(),
-				src: importedImg34,
-				thumb: importedImg67,
-				subHtml: `<div class="lightGallery-captions">
-			<h4>Photo by Emma Barua</h4>
-			</div>`,
-			},
-		],
-	},
-};
+];
