@@ -10,6 +10,7 @@
 	width: 100vw;
 	padding-top: 40px;
 	padding-bottom: 60px;
+
 	overflow: hidden;
 	display: flex;
 	justify-content: center;
@@ -18,15 +19,15 @@
 }
 
 .portfolioHeader {
-	margin: 90px auto;
-	padding: 45px 50px 0px 50px;
+	margin-top: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	text-align: center;
-	justify-content: middle;
 	background-color: hsl(347, 62%, 92%);
 	color: hsl(248, 50%, 70%);
 	border-radius: 1%;
 	box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.1);
-	width: 30%;
 	height: 125px;
 }
 
@@ -42,33 +43,39 @@
 }
 
 .gallery_card_container {
-	background-color: rgba(79, 50, 52, 0.29);
-	gap: 30px;
-	width: 90%;
+	background-color: hsl(347, 62%, 92%);
+	gap: 50px;
+	width: 80%;
 	min-width: 400px;
+	max-width: 1500px;
 	height: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: row;
 	flex-wrap: wrap;
-	padding: 20px;
+	padding: 2rem;
 }
 
 .gallery_card {
 	overflow: hidden;
-	width: 100%;
-	background-color: rgba(36, 39, 39, 0.309);
+	background-color: rgba(249, 122, 156, 0.154);
 	max-width: 700px;
 	height: 400px;
 	display: flex;
 	flex-direction: column;
-	padding: 10px;
-	gap: 20px;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 10px;
+	border-radius: 7px;
+}
+
+.gallery_card h2 {
+	color: hsl(248, 50%, 70%);
+	font-family: 'Rowdies', sans-serif !important;
 }
 
 .gallery_card_img {
-	width: 100%;
 	height: 300px;
 	overflow: hidden;
 }
@@ -79,7 +86,34 @@
 	object-position: center -100px;
 }
 
-@media screen and (max-width: 768px) {
+.card_text {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.gallery_link {
+	text-align: center;
+	text-decoration: none;
+	color: #01cf71;
+	width: 125px !important;
+	font-family: 'Rowdies', sans-serif !important;
+}
+
+.gallery_link:hover,
+.gallery_link:visited {
+	color: #01cf71;
+}
+
+.gallery_link:hover {
+	border-bottom: 1px solid #01cf71;
+	border-spacing: 5px;
+	border-width: 2px;
+	transition: 0.1s ease-in-out;
+}
+
+@media screen and (min-width: 400px) and (max-width: 1200px) {
 	.portfolioHeader {
 		width: 200px;
 		margin: 85px auto;
@@ -88,11 +122,14 @@
 	}
 
 	.albumContainer {
-		width: 95%;
 		margin: 20px 0;
 	}
 
 	.imageContainer {
 		padding: 1%;
+	}
+
+	.gallery_card_container {
+		max-width: 800px;
 	}
 }
