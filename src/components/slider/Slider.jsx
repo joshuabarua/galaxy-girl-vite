@@ -29,7 +29,7 @@ const Slider = () => {
 
 	return (
 		<div className="marquee-container">
-			<Marquee speed={70} gradient={true}>
+			<Marquee speed={70} gradient={false}>
 				{companies.map((company, index) => {
 					return <img key={index} src={company.logo} className={`${company.className} marquee-logo`} style={{margin: '0 30px'}} alt="company-logo" />;
 				})}

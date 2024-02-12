@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 
 export const FooterContainer = styled.footer`
 	background-color: #24003b;
+	width: 100vw;
 `;
 
 export const FooterWrapper = styled.div`
@@ -11,8 +12,6 @@ export const FooterWrapper = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	max-width: 1100px;
-	margin: 0 auto;
 	@media screen and (max-width: 768px) {
 		padding: 22px 10px;
 	}
@@ -47,7 +46,6 @@ export const FooterLinkItems = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	margin: 16px;
 	text-align: left;
 	width: 160px;
 	box-sizing: border-box;
@@ -67,11 +65,10 @@ export const FooterLinkItems = styled.div`
 `;
 
 export const FooterLinkTitle = styled.h1`
-	font-size: 12px;
+	font-size: 22px;
 	margin-bottom: 10px;
-
 	@media screen and (max-width: 480px) {
-		font-size: 12px;
+		font-size: 14px;
 		margin-bottom: 5px;
 	}
 `;
@@ -80,7 +77,7 @@ export const FooterLink = styled(Link)`
 	color: #ddd8ff;
 	text-decoration: none;
 	margin-bottom: 0.5rem;
-	font-size: 10px;
+	font-size: 12px;
 
 	&:hover {
 		color: #e4405f;
@@ -88,7 +85,6 @@ export const FooterLink = styled(Link)`
 	}
 
 	@media screen and (max-width: 480px) {
-		font-size: 8px;
 		margin-bottom: 5px;
 	}
 `;
@@ -105,7 +101,6 @@ export const FooterSocialLink = styled.a`
 	}
 
 	@media screen and (max-width: 480px) {
-		font-size: 8px;
 		margin-bottom: 5px;
 	}
 `;
@@ -150,7 +145,7 @@ export const WebsiteRights = styled.small`
 	margin-bottom: 16px;
 
 	@media screen and (max-width: 480px) {
-		font-size: 8px;
+		font-size: 10px;
 		margin-bottom: 5px;
 	}
 `;
@@ -202,7 +197,7 @@ export const JB = styled(Link)`
 	}
 
 	@media screen and (max-width: 480px) {
-		font-size: 8px;
+		font-size: 12px;
 		margin-bottom: 5px;
 	}
 `;

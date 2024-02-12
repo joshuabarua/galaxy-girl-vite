@@ -60,10 +60,10 @@
 	font-style: italic;
 }
 
-a {
-	font-size: 18px !important;
-	width: 250px !important;
-	max-width: none !important;
+.hero-btn-wrapper a {
+	font-size: 18px;
+	width: 250px;
+	max-width: none;
 }
 a svg {
 	margin-left: 5px;
@@ -72,14 +72,15 @@ a svg {
 }
 
 @media screen and (max-width: 768px) {
-	a {
-		font-size: 14px !important;
-		width: 200px !important;
-		max-width: none !important;
+	.hero-btn-wrapper a {
+		font-size: 14px;
+		width: 200px;
+		max-width: none;
 	}
-	a svg {
+	.hero-btn-wrapper a,
+	.hero-btn-wrapper svg {
 		margin-top: 3px;
-		font-size: 14px !important;
+		font-size: 14px;
 	}
 	.hero-h1 {
 		font-size: 40px;
