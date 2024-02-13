@@ -154,6 +154,8 @@ import importedImg152 from '../../../assets/images/portfolio/Period/300H/5.jpg';
 import importedImg153 from '../../../assets/images/portfolio/SFX_makeup/300H/9.jpg';
 import importedImg154 from '../../../assets/images/portfolio/OnSite/300H/2.jpg';
 import importedImg155 from '../../../assets/images/portfolio/SFX_makeup/300H/2.jpg';
+import importedImg156 from '../../../assets/images/portfolio/OnSite/5.jpg';
+import importedImg157 from '../../../assets/images/portfolio/Camouflage/2.jpg';
 
 let counter = 0;
 function Incrementer() {
@@ -868,6 +870,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg137,
 					thumb: importedImg154,
+					width: 1200,
+					height: 1600,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua </h4>
 			<p><a href="https://podcasts.apple.com/gb/podcast/queer-talk/id1498803004">Queer Talk Live </a> </p></div>`,
@@ -876,6 +880,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg48,
 					thumb: importedImg75,
+					width: 1200,
+					height: 1600,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua </h4>
 			<p><a href="https://podcasts.apple.com/gb/podcast/queer-talk/id1498803004">Queer Talk Live </a> </p></div>`,
@@ -885,6 +891,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg147,
 					thumb: importedImg47,
+					width: 1200,
+					height: 1600,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua </h4>
 			<p><a href="https://podcasts.apple.com/gb/podcast/queer-talk/id1498803004">Queer Talk Live </a> </p></div>`,
@@ -893,6 +901,18 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg136,
 					thumb: importedImg98,
+					width: 3024,
+					height: 3826,
+					subHtml: `<div class="lightGallery-captions">
+			<h4>Photo by Emma Barua </h4>
+			<p>On Set</p></div>`,
+				},
+				{
+					id: Incrementer(),
+					src: importedImg156,
+					thumb: importedImg98,
+					width: 2674,
+					height: 2925,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua </h4>
 			<p>On Set</p></div>`,
@@ -906,6 +926,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg52,
 					thumb: importedImg46,
+					width: 1694,
+					height: 1851,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			</div>`,
@@ -914,6 +936,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg115,
 					thumb: importedImg123,
+					width: 1040,
+					height: 1032,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			</div>`,
@@ -922,6 +946,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg84,
 					thumb: importedImg61,
+					width: 750,
+					height: 870,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			</div>`,
@@ -930,6 +956,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg54,
 					thumb: importedImg66,
+					width: 750,
+					height: 677,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			</div>`,
@@ -938,6 +966,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg55,
 					thumb: importedImg85,
+					width: 485,
+					height: 709,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			</div>`,
@@ -951,6 +981,18 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg34,
 					thumb: importedImg67,
+					width: 913,
+					height: 1471,
+					subHtml: `<div class="lightGallery-captions">
+			<h4>Photo by Emma Barua</h4>
+			</div>`,
+				},
+				{
+					id: Incrementer(),
+					src: importedImg157,
+					thumb: importedImg67,
+					width: 904,
+					height: 1471,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			</div>`,
