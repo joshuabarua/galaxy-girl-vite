@@ -471,6 +471,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg107,
 					thumb: importedImg155,
+					width: 1228,
+					height: 1864,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://jeffmood.wordpress.com">Jeff Mood</a></h4>
 			<p>Evil Faun </p></div>`,
@@ -479,6 +481,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg59,
 					thumb: importedImg44,
+					width: 1000,
+					height: 665,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://jeffmood.wordpress.com">Jeff Mood</a></h4>
 			<p>Evil Faun </p></div>`,
@@ -488,6 +492,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg0,
 					thumb: importedImg68,
+					height: 1230,
+					width: 1864,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://jeffmood.wordpress.com">Jeff Mood</a></h4>
 			<p>Evil Faun </p></div>`,
@@ -496,6 +502,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg112,
 					thumb: importedImg92,
+					width: 663,
+					height: 991,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://jeffmood.wordpress.com">Jeff Mood</a></h4>
 			<p>Evil Faun </p></div>`,
@@ -504,6 +512,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg130,
 					thumb: importedImg144,
+					width: 1862,
+					height: 1697,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://jeffmood.wordpress.com">Jeff Mood</a></h4>
 			<p>Leopard</p></div>`,
@@ -512,6 +522,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg41,
 					thumb: importedImg145,
+					width: 1757,
+					height: 1864,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://jeffmood.wordpress.com">Jeff Mood</a></h4>
 			<p>Leopard</p></div>`,
@@ -520,6 +532,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg106,
 					thumb: importedImg63,
+					width: 854,
+					height: 1280,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://jeffmood.wordpress.com">Jeff Mood</a></h4>
 			<p>Leopard</p></div>`,
@@ -528,6 +542,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg4,
 					thumb: importedImg126,
+					width: 1216,
+					height: 1546,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Leopard</p></div>`,
@@ -536,6 +552,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg134,
 					thumb: importedImg153,
+					width: 962,
+					height: 1390,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Leopard</p></div>`,
@@ -544,6 +562,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg12,
 					thumb: importedImg101,
+					width: 882,
+					height: 1162,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Witch</p></div>`,
@@ -552,6 +572,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg99,
 					thumb: importedImg26,
+					width: 951,
+					height: 1926,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Witch</p></div>`,
@@ -560,6 +582,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg60,
 					thumb: importedImg93,
+					width: 1695,
+					height: 1864,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Grease Paint Bruise</p></div>`,
@@ -568,6 +592,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg151,
 					thumb: importedImg13,
+					width: 292,
+					height: 667,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p> Illustrator Bruise</p></div>`,
@@ -576,6 +602,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg143,
 					thumb: importedImg108,
+					width: 1533,
+					height: 1535,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p></p></div>`,
@@ -584,6 +612,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg70,
 					thumb: importedImg1,
+					width: 680,
+					height: 915,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Angel and Spike</p></div>`,
@@ -592,6 +622,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg11,
 					thumb: importedImg31,
+					width: 746,
+					height: 1096,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Angel</p></div>`,
