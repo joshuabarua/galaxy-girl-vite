@@ -113,4 +113,13 @@ h2 {
 		width: 75px;
 		border-radius: 10px;
 	}
+
+	.resume-container {
+		padding: 30px;
+	}
+
+	.resume-wrapper {
+		width: 95vw;
+		padding: 30px;
+	}
 }

@@ -32,7 +32,7 @@ export default function GalleryGroup() {
 	};
 
 	useEffect(() => {
-		if (isSmallScreen) setCols(2);
+		if (isSmallScreen || gallery[0][galleryId].images.length < 3) setCols(2);
 		else setCols(3);
 	}, [isSmallScreen]);
 
