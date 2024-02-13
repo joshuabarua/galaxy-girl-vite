@@ -6,15 +6,9 @@ import {Icon} from '@iconify/react';
 import {Stack} from '@mui/material';
 
 const Resume = () => {
-	const [isOpen, setIsOpen] = useState(false);
-
-	const toggle = () => {
-		setIsOpen(!isOpen);
-	};
-
 	const renderExperienceSection = (sectionData, sectionTitle) => {
 		return (
-			<div className="section">
+			<div className="section" key={sectionTitle}>
 				<h3>{sectionTitle.includes('_') ? sectionTitle.replace('_', '/') : sectionTitle}</h3>
 				{Object.entries(sectionData).map(([id, data]) => (
 					<div key={id} className="experience-item">
@@ -26,24 +20,6 @@ const Resume = () => {
 				))}
 			</div>
 		);
-	};
-
-	const renderExperienceData = (start, end) => {
-		return expData.slice(start, end).map((list) => (
-			<React.Fragment key={list.id}>
-				<span>
-					<h5>{list.title}</h5>
-				</span>
-
-				<span>
-					<h5>{list.designer} </h5>
-				</span>
-
-				<span>
-					<h5>{list.role}</h5>
-				</span>
-			</React.Fragment>
-		));
 	};
 
 	return (
@@ -58,7 +34,7 @@ const Resume = () => {
 						</button>
 
 						<div className="resume-contact">
-							<text>
+							<span>
 								<h2> Emma Robyn</h2>
 								<h5> Makeup Artist </h5>
 								<h5> Screen Skills Film Trainee 2020-21</h5>
@@ -69,17 +45,15 @@ const Resume = () => {
 									<Icon icon="carbon:email" />
 									<h5> email@email.com </h5>
 								</Stack>
-							</text>
+							</span>
 						</div>
 
 						<div className="resume-bio">
-							<text>
-								<h4>
-									A creative makeup artist looking to work in the film industry by expanding my expertise, knowledge, and repertoire of skills having been accepted as a
-									Screenskills 2020/21 trainee. Currently training 1.5 days a week as a Barber in an effort to expand upon my skills during Covid related downtime,
-									finishing in July 2021. Based in Brighton, London (close to Pinewood or South East) and Norwich with accommodation at each location.
-								</h4>
-							</text>
+							<h4>
+								A creative makeup artist looking to work in the film industry by expanding my expertise, knowledge, and repertoire of skills having been accepted as a
+								Screenskills 2020/21 trainee. Currently training 1.5 days a week as a Barber in an effort to expand upon my skills during Covid related downtime, finishing
+								in July 2021. Based in Brighton, London (close to Pinewood or South East) and Norwich with accommodation at each location.
+							</h4>
 						</div>
 
 						<div className="exp-container">{Object.entries(experienceData).map(([sectionTitle, sectionData]) => renderExperienceSection(sectionData, sectionTitle))}</div>
