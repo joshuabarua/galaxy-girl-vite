@@ -96,13 +96,13 @@ const Contact = () => {
 
 						<Box className="form-container" sx={{minWidth: isSmallScreen ? '300px' : '650px', boxShadow: 3}}>
 							<form action="" onSubmit={customSubmit}>
-								<Stack direction={isSmallScreen ? 'column' : 'row'} justifyContent={'space-evenly'} spacing={isSmallScreen ? 3 : 10} sx={{width: '100%'}}>
-									<Stack direction="column" sx={{width: isSmallScreen ? '100%' : '50%'}} gap={2}>
-										<Stack direction="column">
+								<Stack direction={isSmallScreen ? 'column' : 'row'} className="flexCol" spacing={isSmallScreen ? 3 : 10} sx={{width: '100%', height: '100%'}}>
+									<Stack direction="column" sx={{width: isSmallScreen ? '100%' : '50%', height: '70%'}} className="flexCol" gap={8}>
+										<Stack direction="column" gap={1} className="inputStack">
 											<label className="form-label">Name / Company</label>
 											<input type="text" placeholder="John Smith" name="name" value={name} required className="form-input" onChange={(e) => setName(e.target.value)} />
 										</Stack>
-										<Stack direction="column">
+										<Stack direction="column" gap={1} className="inputStack">
 											<label className="form-label"> Email</label>
 											<input
 												type="email"
@@ -114,7 +114,7 @@ const Contact = () => {
 												className="form-input"
 											/>
 										</Stack>
-										<Stack direction="column">
+										<Stack direction="column" gap={1} className="inputStack">
 											<label className="form-label"> Subject </label>
 											<input
 												type="text"
@@ -128,8 +128,8 @@ const Contact = () => {
 										</Stack>
 									</Stack>
 
-									<Stack direction="column" sx={{width: isSmallScreen ? '100%' : '50%'}}>
-										<Stack direction="column" className="form-input-field">
+									<Stack sx={{width: isSmallScreen ? '100%' : '100%', height: '100%'}} className="flexCol">
+										<Stack direction="column" className="inputStack flexCol" gap={1} alignItems={'flex-start'}>
 											<label className="form-label"> Message</label>
 											<textarea
 												placeholder="Lets make some magic..."
