@@ -682,6 +682,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg64,
 					thumb: importedImg50,
+					width: 1590,
+					height: 1999,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Goblin Skull</p></div>`,
@@ -690,31 +692,39 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg102,
 					thumb: importedImg27,
+					width: 1846,
+					height: 1253,
 					subHtml: `<div class="lightGallery-captions">
-			<h4>Photo by Emma Barua</h4>
-			<p><a href="https://www.modelmayhem.com/jasonfarries"> Jason Farries as Dorian Grey </a></p></div>`,
+					<h4>Photo by Emma Barua</h4>
+					<p><a href="https://www.modelmayhem.com/jasonfarries"> Jason Farries as Dorian Grey </a></p></div>`,
 				},
 				{
 					id: Incrementer(),
 					src: importedImg118,
 					thumb: importedImg73,
+					width: 1846,
+					height: 1253,
 					subHtml: `<div class="lightGallery-captions">
-			<h4>Photo by Emma Barua</h4>
-			<p><a href="https://www.modelmayhem.com/jasonfarries"> Jason Farries as Dorian Grey </a></p></div>`,
+					<h4>Photo by Emma Barua</h4>
+					<p><a href="https://www.modelmayhem.com/jasonfarries"> Jason Farries as Dorian Grey </a></p></div>`,
 				},
 				{
 					id: Incrementer(),
 					src: importedImg24,
 					thumb: importedImg40,
+					width: 1846,
+					height: 1253,
 					subHtml: `<div class="lightGallery-captions">
-			<h4>Photo by Emma Barua</h4>
-			<p><a href="https://www.modelmayhem.com/jasonfarries"> Jason Farries as Dorian Grey </a></p></div>`,
+					<h4>Photo by Emma Barua</h4>
+					<p><a href="https://www.modelmayhem.com/jasonfarries"> Jason Farries as Dorian Grey </a></p></div>`,
 				},
 
 				{
 					id: Incrementer(),
 					src: importedImg51,
 					thumb: importedImg21,
+					height: 2308,
+					width: 1500,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Goblin Skull</p></div>`,
@@ -723,6 +733,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg113,
 					thumb: importedImg30,
+					width: 1100,
+					height: 777,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Stamp Promo</p></div>`,
@@ -736,6 +748,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg3,
 					thumb: importedImg33,
+					width: 1519,
+					height: 2048,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Wedding Shoot</p></div>`,
@@ -744,6 +758,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg120,
 					thumb: importedImg37,
+					width: 1646,
+					height: 2048,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Wedding Shoot</p></div>`,
@@ -752,6 +768,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg38,
 					thumb: importedImg76,
+					width: 1360,
+					height: 1851,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Wedding Shoot</p></div>`,
@@ -760,6 +778,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg88,
 					thumb: importedImg16,
+					width: 1500,
+					height: 2000,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Wedding Shoot</p></div>`,
@@ -768,6 +788,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg14,
 					thumb: importedImg39,
+					width: 527,
+					height: 717,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Wedding Shoot</p></div>`,
@@ -781,6 +803,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg53,
 					thumb: importedImg152,
+					width: 750,
+					height: 925,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua </h4>
 			<p>1960's era </p></div>`,
@@ -789,6 +813,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg9,
 					thumb: importedImg2,
+					width: 1064,
+					height: 1448,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>1960's era </p></div>`,
@@ -797,6 +823,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg35,
 					thumb: importedImg65,
+					width: 750,
+					height: 920,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua </h4>
 			<p>1950's era </p></div>`,
@@ -805,6 +833,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg17,
 					thumb: importedImg121,
+					width: 1009,
+					height: 1468,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua </h4>
 			<p>1920's era </p></div>`,
@@ -813,6 +843,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg18,
 					thumb: importedImg57,
+					width: 1360,
+					height: 1851,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Accurate Egyptian Cleopatra</p></div>`,
@@ -821,6 +853,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg114,
 					thumb: importedImg89,
+					width: 2400,
+					height: 3600,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by <a href="https://www.susangracehinman.co.uk/home">Susan Hinman</a></h4>
 			<p>Victorian</p></div>`,
