@@ -84,7 +84,7 @@ import importedImg82 from '../../../assets/images/portfolio/beautyEditorial/1600
 import importedImg83 from '../../../assets/images/portfolio/beautyEditorial/More/300H/30.jpg';
 import importedImg84 from '../../../assets/images/portfolio/Nails/3.jpg';
 import importedImg85 from '../../../assets/images/portfolio/Nails/300H/5.jpg';
-import importedImg86 from '../../../assets/images/portfolio/bodypaint/1200H/4.jpg';
+import importedImg86 from '../../../assets/images/portfolio/bodypaint/4.jpg';
 import importedImg87 from '../../../assets/images/portfolio/beautyEditorial/More/300H/26.jpg';
 import importedImg88 from '../../../assets/images/portfolio/Wedding/4.jpg';
 import importedImg89 from '../../../assets/images/portfolio/Period/300H/4.jpg';
@@ -637,8 +637,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg8,
 					thumb: importedImg28,
-					width: 600,
-					height: 800,
+					width: 667,
+					height: 1000,
 					subHtml: `<div class="lightGallery-captions">
 				<h4>Photo by <a href="https://jeffmood.wordpress.com">Jeff Mood</a></h4>
 			<p>Lizard Person</p></div>`,
@@ -646,8 +646,8 @@ export const gallery = [
 				{
 					id: Incrementer(),
 					src: importedImg119,
-					width: 750,
-					height: 800,
+					width: 1137,
+					height: 1132,
 					thumb: importedImg71,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua </h4>
@@ -657,8 +657,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg116,
 					thumb: importedImg146,
-					width: 600,
-					height: 800,
+					width: 667,
+					height: 1000,
 					subHtml: `<div class="lightGallery-captions">
 				<h4>Photo by <a href="https://jeffmood.wordpress.com">Jeff Mood</a></h4>
 			<p>Lizard Person</p></div>`,
@@ -667,8 +667,8 @@ export const gallery = [
 					id: Incrementer(),
 					src: importedImg86,
 					thumb: importedImg49,
-					width: 2828,
-					height: 4498,
+					width: 786,
+					height: 1132,
 					subHtml: `<div class="lightGallery-captions">
 			<h4>Photo by Emma Barua</h4>
 			<p>Zombie</p></div>`,
