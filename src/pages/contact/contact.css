@@ -25,7 +25,7 @@
 
 .titleMsgText {
     color: #01cf71;
-    font-size: 32px;
+    font-size: 24px;
     line-height: 1.2;
     font-weight: 700;
     letter-spacing: 10px;
@@ -34,10 +34,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.titleMsgText {
-    font-size: 0.8rem;
 }
 
 .form-container {
@@ -215,7 +211,7 @@ form button:hover {
     }
 
     .titleMsgText > h1 {
-        font-size: 1.5rem;
+        font-size: 20px;
     }
 
     .form-container {
