@@ -7,9 +7,9 @@
     background-color: rgb(221, 216, 255);
     height: 100%;
     width: 100vw;
-    padding-top: 40px;
+    padding-top: 80px;
     padding-bottom: 60px;
-    gap: 20px;
+    gap: 60px;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -25,7 +25,7 @@
     align-items: center;
     text-align: center;
     color: #01cf71;
-    font-size: 32px;
+    font-size: 24px;
     line-height: 1.2;
     font-weight: 700;
     letter-spacing: 10px;
@@ -35,7 +35,7 @@
 
 .gallery_card_container {
     background-color: rgb(221, 216, 255);
-    gap: 50px;
+    gap: 60px;
     width: 80%;
     min-width: 450px;
     max-width: 1600px;
@@ -45,7 +45,6 @@
     align-items: center;
     flex-direction: row;
     flex-wrap: wrap;
-    padding: 2rem;
 }
 
 .galleryGroup {
@@ -88,7 +87,7 @@
 .gallery_card img {
     width: 100%;
     min-width: 400px;
-    object-position: center -100px;
+    object-position: center -200px;
 }
 
 .card_text {
@@ -121,6 +120,7 @@
 .galleryHeader {
     width: calc(30vw + 30px);
     max-width: 550px;
+    height: 150px;
 }
 
 @media screen and (min-width: 301px) and (max-width: 1400px) {
@@ -129,14 +129,6 @@
         height: 75px;
         min-width: 150px;
         margin-top: 65px;
-    }
-
-    .portfolioHeader h1 {
-        font-size: 32px;
-    }
-
-    .galleryHeader h1 {
-        font-size: 32px;
     }
 
     .galleryHeader {
@@ -155,9 +147,9 @@
 
 @media screen and (min-width: 1401px) and (max-width: 1900px) {
     .gallery_card_container {
-        max-width: 1200px;
+        max-width: 1600px;
         padding: 10px;
-        gap: 20px;
-        width: 60%;
+        gap: 30px;
+        width: 100%;
     }
 }

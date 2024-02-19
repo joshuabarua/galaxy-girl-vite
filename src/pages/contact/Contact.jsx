@@ -100,7 +100,7 @@ const Contact = () => {
         <Box className="contactBody">
           <Box className="contactOverlay">
             <div className="titleMsgText">
-              <h1> Message me! </h1>
+              <h1> Send Me A Message </h1>
             </div>
 
             <Box className="form-container" sx={{ minWidth: "300px" }}>
