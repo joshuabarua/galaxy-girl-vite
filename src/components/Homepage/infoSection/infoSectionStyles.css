@@ -189,13 +189,17 @@
         padding-top: 5px;
     }
 
+    .info-container-services .top-line {
+        margin-left: 20px;
+    }
+
     .services-container {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         width: 100%;
-        gap: 30px;
+        gap: 80px;
     }
 
     .service-item {
