@@ -53,6 +53,7 @@
     background-color: hsl(347, 62%, 92%);
     height: 100%;
     padding: 20px;
+    border-radius: 5px;
 }
 
 .gallery_card {
