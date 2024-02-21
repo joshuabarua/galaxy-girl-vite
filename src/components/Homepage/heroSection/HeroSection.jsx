@@ -16,19 +16,18 @@ const HeroSection = () => {
       <div className="hero-bg">
         <video
           className="video-bg"
-          autoPlay
-          loop
           muted
+          autoPlay="true"
+          loop
           src={Video}
           disablePictureInPicture={true}
           disableRemotePlayback={true}
-          controls={false}
           type="video/mp4"
         />
       </div>
       <div className="hero-content">
         <h1 className="hero-h1"> Emma Robyn </h1>
-        <h1>Makeup Artist</h1>
+        <h1>SFX Makeup Artist</h1>
         <h2 className="hero-p">
           Everything has beauty in it, but not everyone sees it - Confucius
         </h2>
