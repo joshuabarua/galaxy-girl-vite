@@ -8,6 +8,7 @@
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+    margin-bottom: 50px;
 }
 
 .contactOverlay {
@@ -15,21 +16,21 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    gap: 50px;
+    gap: 30px;
     overflow: hidden;
     width: 70%;
     max-width: 1200px;
     min-width: 400px;
+    margin-top: 120px;
 }
 
 .titleMsgText {
     color: #01cf71;
-    font-size: 24px;
+    font-size: 22px;
     line-height: 1.2;
     font-weight: 700;
     letter-spacing: 10px;
     text-transform: uppercase;
-    text-align: left;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,7 +45,7 @@
     background-color: hsl(347, 62%, 95%);
     width: 100%;
     max-width: 800px;
-    padding: 50px;
+    padding: 30px;
 }
 
 .form-container form {
@@ -234,6 +235,13 @@ form button:hover {
 }
 
 @media screen and (max-width: 500px) {
+    .contactBody {
+        margin-top: 100px;
+        align-items: flex-start;
+        margin-bottom: 40px;
+        height: 100%;
+    }
+
     .contactOverlay {
         width: 90%;
         .form-container {
@@ -242,6 +250,11 @@ form button:hover {
         }
 
         .form-container form {
+            height: 100%;
+        }
+
+        .titleMsgText {
+            font-size: 16px;
         }
     }
 }
