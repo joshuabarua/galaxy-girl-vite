@@ -20,6 +20,7 @@ const HeroSection = () => {
       <div className="hero-bg">
         <video
           className="video-bg"
+          playsInline
           ref={vidRef}
           muted
           autoPlay={true}
