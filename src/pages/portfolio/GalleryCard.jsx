@@ -1,24 +1,23 @@
-import React from 'react';
-import styles from './css/portfolioStyles.module.css';
-import {NavLink, useParams} from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import styles from "./css/portfolioStyles.module.css";
 
-function GalleryCard({imageGroup, id}) {
-	const {galleryId} = useParams();
+function GalleryCard({ imageGroup, id }) {
+  const navigate = useNavigate();
 
-	//TODO: Add arrows >> next to navlink
-	return (
-		<div className={styles.gallery_card}>
-			<div className={styles.gallery_card_img}>
-				<img src={`${imageGroup.images[0].src}`} />
-			</div>
-			<div className={styles.card_text}>
-				<h2>{imageGroup.name}</h2>
-				<NavLink to={`/portfolio/gallery/${id}`} className={styles.gallery_link}>
-					TO GALLERY
-				</NavLink>
-			</div>
-		</div>
-	);
+  const handleClick = () => {
+    navigate(`/portfolio/gallery/${id}`);
+  };
+  return (
+    <div className={styles.gallery_card} onClick={handleClick}>
+      <div className={styles.gallery_card_img}>
+        <img src={`${imageGroup.images[0].src}`} />
+      </div>
+      <div className={styles.card_text}>
+        <h2>{imageGroup.name}</h2>
+      </div>
+    </div>
+  );
 }
 
 export default GalleryCard;

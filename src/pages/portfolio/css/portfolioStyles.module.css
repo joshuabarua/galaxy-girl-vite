@@ -60,23 +60,23 @@
     overflow: hidden;
     background-color: hsl(347, 62%, 92%);
     max-width: 700px;
-    height: 400px;
+    height: 370px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     gap: 10px;
     border-radius: 7px;
+    cursor: pointer;
 }
 
 .gallery_card:hover {
     transform: translateY(-5px);
     transition: ease-in-out 0.3s all;
-    border-bottom: 1px solid #58028e;
 }
 
 .gallery_card h2 {
-    color: rgb(88, 2, 142);
+    color: #01cf71;
     font-family: "Rowdies", sans-serif !important;
 }
 
@@ -96,6 +96,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    height: 45px;
 }
 
 .gallery_link {
@@ -124,15 +125,21 @@
     height: 150px;
 }
 
-@media screen and (min-width: 301px) and (max-width: 1400px) {
+@media screen and (min-width: 301px) and (max-width: 800px) {
+    .portfolioHeader,
+    .galleryHeader {
+        font-size: 16px;
+    }
+
     .portfolioHeader {
         width: 200px;
         height: 75px;
         min-width: 150px;
-        margin-top: 65px;
+        margin-top: 25px;
     }
 
     .galleryHeader {
+        margin-top: 25px;
         height: 100px;
     }
 
@@ -146,15 +153,19 @@
     }
 
     .gallery_card {
-        height: 370px;
+        height: 350px;
     }
 
     .gallery_card img {
         object-position: center -100px;
     }
+
+    .card_text {
+        height: 30px;
+    }
 }
 
-@media screen and (min-width: 1401px) and (max-width: 1900px) {
+@media screen and (min-width: 801px) and (max-width: 1900px) {
     .gallery_card_container {
         max-width: 1600px;
         padding: 10px;
