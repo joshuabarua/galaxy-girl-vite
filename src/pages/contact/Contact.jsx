@@ -95,91 +95,90 @@ const Contact = () => {
   }, [lottieResult, secondsLeft]);
 
   return (
-    <>
-      <div>
-        <Box className="contactBody">
-          <Box className="contactOverlay">
-            <div className="titleMsgText">
-              <h1> Send Me A Message </h1>
-            </div>
+    <div className="contactPage">
+      <Box className="contactBody">
+        <Box className="contactOverlay">
+          <div className="titleMsgText">
+            <h1> Send Me A Message </h1>
+          </div>
 
-            <Box className="form-container" sx={{ minWidth: "300px" }}>
-              <form action="" onSubmit={customSubmit}>
+          <Box className="form-container" sx={{ minWidth: "300px" }}>
+            <form action="" onSubmit={customSubmit}>
+              <Stack
+                className="flexCol"
+                spacing={5}
+                sx={{ width: "100%", height: "100%" }}
+              >
                 <Stack
-                  className="flexCol"
-                  spacing={5}
-                  sx={{ width: "100%", height: "100%" }}
+                  direction="column"
+                  className="flexCol inputGroup"
+                  gap={2}
                 >
-                  <Stack
-                    direction="column"
-                    className="flexCol inputGroup"
-                    gap={2}
-                  >
-                    <Stack direction="column" gap={1} className="inputStack">
-                      <label className="form-label">Name / Company</label>
-                      <input
-                        type="text"
-                        placeholder="John Smith"
-                        name="name"
-                        value={name}
-                        required
-                        className="form-input"
-                        onChange={(e) => setName(e.target.value)}
-                      />
-                    </Stack>
-                    <Stack direction="column" gap={1} className="inputStack">
-                      <label className="form-label"> Email</label>
-                      <input
-                        type="email"
-                        placeholder="johnsmith@gmail.com"
-                        name="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        className="form-input"
-                      />
-                    </Stack>
-                    <Stack direction="column" gap={1} className="inputStack">
-                      <label className="form-label"> Subject </label>
-                      <input
-                        type="text"
-                        placeholder="I would love to work together!"
-                        name="subject"
-                        value={subject}
-                        onChange={(e) => setSubject(e.target.value)}
-                        required
-                        className="form-input"
-                      />
-                    </Stack>
+                  <Stack direction="column" gap={1} className="inputStack">
+                    <label className="form-label">Name / Company</label>
+                    <input
+                      type="text"
+                      placeholder="John Smith"
+                      name="name"
+                      value={name}
+                      required
+                      className="form-input"
+                      onChange={(e) => setName(e.target.value)}
+                    />
                   </Stack>
-
-                  <Stack className="flexCol inputGroup">
-                    <Stack
-                      className="inputStack flexCol"
-                      gap={1}
-                      alignItems={"flex-start"}
-                    >
-                      <label className="form-label"> Message</label>
-                      <textarea
-                        placeholder="Lets make some magic..."
-                        name="message"
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        required
-                        className="form-textarea"
-                      ></textarea>
-                    </Stack>
+                  <Stack direction="column" gap={1} className="inputStack">
+                    <label className="form-label"> Email</label>
+                    <input
+                      type="email"
+                      placeholder="johnsmith@gmail.com"
+                      name="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      className="form-input"
+                    />
+                  </Stack>
+                  <Stack direction="column" gap={1} className="inputStack">
+                    <label className="form-label"> Subject </label>
+                    <input
+                      type="text"
+                      placeholder="I would love to work together!"
+                      name="subject"
+                      value={subject}
+                      onChange={(e) => setSubject(e.target.value)}
+                      required
+                      className="form-input"
+                    />
                   </Stack>
                 </Stack>
 
-                <div className="form-row form-btn">
-                  <button> Send Message </button>
-                </div>
-              </form>
-            </Box>
+                <Stack className="flexCol inputGroup2">
+                  <Stack
+                    className="inputStack flexCol"
+                    gap={1}
+                    alignItems={"flex-start"}
+                  >
+                    <label className="form-label"> Message</label>
+                    <textarea
+                      placeholder="Lets make some magic..."
+                      name="message"
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      required
+                      className="form-textarea"
+                    ></textarea>
+                  </Stack>
+                </Stack>
+              </Stack>
+
+              <div className="form-row form-btn">
+                <button> Send Message </button>
+              </div>
+            </form>
           </Box>
         </Box>
-      </div>
+      </Box>
+
       {result && lottieResult && (
         <div className="modal">
           <div className="submittedForm">
@@ -195,7 +194,7 @@ const Contact = () => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
