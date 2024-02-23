@@ -142,7 +142,15 @@
 
     .gallery_card_container {
         max-width: 800px;
-        padding: 10px;
+        min-width: 340px;
+    }
+
+    .gallery_card {
+        height: 370px;
+    }
+
+    .gallery_card img {
+        object-position: center -100px;
     }
 }
 
