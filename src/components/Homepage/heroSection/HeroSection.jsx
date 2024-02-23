@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./heroSectionStyles.css"; // Import the CSS file
 import Video from "../../../assets/videos/video4.mp4";
 import { Button } from "../../../pages/buttonElement";
@@ -6,7 +6,7 @@ import { MdKeyboardArrowRight, MdArrowForward } from "react-icons/md";
 
 const HeroSection = () => {
   const [hover, setHover] = useState(false);
-
+  const vidRef = useRef();
   useEffect(() => {
     vidRef.current.play();
   }, []);
