@@ -94,6 +94,7 @@ nav {
 @media screen and (max-width: 800px) {
     nav {
         justify-content: space-between;
+        height: 50px;
     }
 
     .nav-link {
@@ -105,7 +106,7 @@ nav {
         position: absolute;
         top: 0;
         right: 0;
-        transform: translate(-100%, 75%);
+        transform: translate(-100%, 40%);
         font-size: 1.8rem;
         cursor: pointer;
     }
