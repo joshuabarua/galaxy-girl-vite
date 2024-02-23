@@ -2,8 +2,6 @@
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
-    min-width: 500px;
-
     color-scheme: light dark;
     color: rgba(255, 255, 255, 0.87);
     background-color: #ddd8ff;
@@ -25,11 +23,13 @@ a:hover {
 }
 
 body {
-    overflow-x: hidden;
+    overflow: hidden;
     margin: 0;
     display: flex;
     place-items: center;
     min-height: 100vh;
+    min-width: 100vw;
+    width: 100vw;
 }
 
 .content {
