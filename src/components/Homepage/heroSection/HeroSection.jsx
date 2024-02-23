@@ -7,6 +7,10 @@ import { MdKeyboardArrowRight, MdArrowForward } from "react-icons/md";
 const HeroSection = () => {
   const [hover, setHover] = useState(false);
 
+  useEffect(() => {
+    vidRef.current.play();
+  }, []);
+
   const onHover = () => {
     setHover(!hover);
   };
@@ -16,8 +20,9 @@ const HeroSection = () => {
       <div className="hero-bg">
         <video
           className="video-bg"
+          ref={vidRef}
           muted
-          autoPlay="true"
+          autoPlay={true}
           loop
           src={Video}
           disablePictureInPicture={true}
