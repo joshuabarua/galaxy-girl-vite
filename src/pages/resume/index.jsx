@@ -12,18 +12,18 @@ const Resume = () => {
 		return (
 			<div className="section" key={sectionTitle}>
 				<h3>{sectionTitle.includes('_') ? sectionTitle.replace('_', '/') : sectionTitle}</h3>
-				{Object.entries(sectionData).map(([id, data]) => (
-					<div key={id} className="experience-item">
-						<h4>{data.title}</h4>
-						<p>
-							{data.designer} - {data.position}
-						</p>
-						{/* <p>{data.designer2 ? data.designer2 : ''}</p>
+				{Object.entries(sectionData)
+					.toReversed()
+					.map(([id, data]) => (
+						<div key={id} className="experience-item">
+							<h4>{data.title}</h4>
+							<p>{`${data.designer} ${data.position ? `- ${data.position}` : ''} `}</p>
+							{/* <p>{data.designer2 ? data.designer2 : ''}</p>
 						<p>{data.position2 ? data.position2 : ''}</p> */}
-						<p>{data.role}</p>
-						<p>{data.date}</p>
-					</div>
-				))}
+							<p>{data.role}</p>
+							<p>{data.date}</p>
+						</div>
+					))}
 			</div>
 		);
 	};
@@ -51,9 +51,9 @@ const Resume = () => {
 								<h5> Makeup Artist Trainee </h5>
 								<h5> Screen Skills Film Trainee 2020-21</h5>
 								<h5> London & Brighton based, willing to travel </h5>
-								<h5> Full UK Driving License </h5>
 								<h5> Level 3 Theatrical Hair & Media Makeup </h5>
 								<h5>Level 2 Barbering</h5>
+								<h5> Full UK Driving License </h5>
 
 								<Stack gap={0.5} direction={'row'} display={'flex'} alignItems={'center'}>
 									<Icon icon="carbon:phone" />
@@ -98,7 +98,9 @@ const Resume = () => {
 						</div>
 
 						<div className="references">
-							<h4> References Available on Request</h4>
+							<h4>
+								<strong>References Available on Request</strong>
+							</h4>
 						</div>
 
 						<div className="gpdr">
