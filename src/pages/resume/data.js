@@ -90,7 +90,7 @@ export const experienceData = {
 			date: 'Aug 2018',
 		},
 		3: {
-			title: 'The time machine (Short film) ',
+			title: 'The Time Machine (Short film) ',
 			designer: 'Matthew Grant',
 			position: 'Director',
 			role: 'Makeup Artist - SFX',
@@ -169,7 +169,7 @@ export const experienceData = {
 		},
 	},
 	Theatre: {
-		11: {
+		1: {
 			title: 'Alcina (local theatre production)',
 			designer: 'Joe Paxton',
 			position: 'Director',
@@ -178,7 +178,7 @@ export const experienceData = {
 		},
 	},
 	Workshops: {
-		12: {
+		1: {
 			title: 'ILS ltd SFX Workshop (International Location Safety) ',
 			designer: 'ILS ltd',
 			role: 'Makeup Artist – SFX casualty makeup tutoring for NGO training program',
@@ -186,13 +186,14 @@ export const experienceData = {
 		},
 	},
 	Fashion: {
-		13: {
+		2: {
 			title: 'Betty Lou Vintage',
-			designer: 'Owned by Elizabeth Samways & Emily Dauris',
+			designer: 'Elizabeth Samways & Emily Dauris',
+			position: 'Owners',
 			role: 'Makeup Artist - Vintage Themed Weddings & Hen Parties',
 			date: 'Jun 2017 - Present',
 		},
-		14: {
+		1: {
 			title: 'Boudoir & Creative Photoshoots',
 			designer: 'Susan Grace Hinman - Owner & Photographer',
 			role: 'Makeup Artist - Boudoir photoshoots, creative hair & makeup for editorial',
@@ -200,13 +201,14 @@ export const experienceData = {
 		},
 	},
 	Others: {
-		16: {
+		2: {
 			title: 'Peaky Blinders Charity Fashion Show',
-			designer: 'Hosted by Stephanie Prior',
+			designer: 'Stephanie Prior',
+			position: 'Host',
 			role: 'Makeup Artist',
 			date: 'May 2018',
 		},
-		17: {
+		1: {
 			title: 'Brighton University Fashion Show b19/b20',
 			designer: 'Brighton University students',
 			role: 'Makeup Artist',

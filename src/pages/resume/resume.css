@@ -22,7 +22,10 @@
 	max-width: 34cm;
 	min-width: 300px;
 	position: relative;
-	anchor-name: --resume;
+}
+
+.resume-bio h4 {
+	padding: 10px 10px;
 }
 
 .section {
@@ -64,8 +67,10 @@ text {
 
 .qualifications ul li {
 	list-style: inside;
+	font-family: Arial;
 	list-style-type: circle;
 	font-weight: normal;
+	padding-left: 10px;
 }
 
 .downloadBtn,
@@ -96,10 +101,21 @@ text {
 	background-color: black;
 }
 
+.transferrable-skills h4 {
+	padding: 0px 10px;
+}
+
 .references,
 .gpdr {
+	margin-top: 25px;
 	display: flex;
 	justify-content: center;
+}
+
+.qualifications h3,
+.transferrable-skills h3,
+.section h3 {
+	font-weight: 600;
 }
 
 @media screen and (max-width: 768px) {
