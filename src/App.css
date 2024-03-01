@@ -1,22 +1,19 @@
-@import url("https://fonts.googleapis.com/css2?family=Sora&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Sora&display=swap');
 @font-face {
-    font-family: "Rowdies";
-    src:
-        local("Rowdies-Light"),
-        url("./assets/fonts/Rowdies-Light.ttf") format("truetype");
+	font-family: 'Rowdies';
+	src: local('Rowdies-Light'), url('./assets/fonts/Rowdies-Light.ttf') format('truetype');
 }
 
 * {
-    font-family: "Rowdies", sans-serif;
-    font-weight: 200;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    list-style: inside;
+	font-family: 'Rowdies', sans-serif;
+	font-weight: 200;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 #root {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
 }

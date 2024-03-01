@@ -259,7 +259,10 @@ form button:hover {
     }
 }
 
-@media screen and (min-height: 781px) and (min-height: 1080px) {
+@media screen and (max-height: 1080px) {
+    .contactBody {
+        margin-top: 0px;
+    }
 }
 
 @media screen and (min-height: 300px) and(max-height: 780px) {
