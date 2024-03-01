@@ -1,42 +1,39 @@
 .resume-container {
-    background-color: rgb(221, 216, 255);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    padding-top: 40px;
-    padding: 80px;
+	background-color: rgb(221, 216, 255);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100vw;
+	padding-top: 40px;
+	padding: 80px;
 }
 
 .resume-wrapper {
-    display: grid;
-    grid-gap: 10px;
-    margin-top: 80px;
-    margin-bottom: 20px;
-    color: black;
-    background: white;
-    box-shadow:
-        0 5px 5px 0 rgba(0, 0, 0, 0.14),
-        0 1px 5px 0 rgba(0, 0, 0, 0.12),
-        0 3px 1px -2px rgba(0, 0, 0, 0.2);
-    height: 100%;
-    padding: 50px;
-    width: 95vw;
-    max-width: 34cm;
-    min-width: 300px;
-    position: relative;
-    anchor-name: --resume;
+	display: grid;
+	grid-gap: 10px;
+	margin-top: 80px;
+	margin-bottom: 20px;
+	color: black;
+	background: white;
+	box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+	height: 100%;
+	padding: 50px;
+	width: 95vw;
+	max-width: 34cm;
+	min-width: 300px;
+	position: relative;
+	anchor-name: --resume;
 }
 
 .section {
-    width: 100%;
-    display: grid;
-    padding: 2px;
+	width: 100%;
+	display: grid;
+	padding: 2px;
 }
 
 .section h3 {
-    grid-column: 1 / -1;
-    border-bottom: solid 2px black;
+	grid-column: 1 / -1;
+	border-bottom: solid 2px black;
 }
 
 p,
@@ -46,88 +43,90 @@ h4,
 h5,
 h6,
 text {
-    font-family: Arial !important;
-    font-weight: 500;
+	font-family: Arial !important;
+	font-weight: 500;
 }
 
 .experience-item {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1.5fr 2fr 2fr 0.5fr;
-    grid-gap: 10px;
-    padding: 0px 0px 10px 10px;
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 0.5fr;
+	grid-gap: 10px;
+	padding: 0px 0px 10px 10px;
 }
 
 .resume-contact {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
 }
 
-.qualificatonList ul li {
-    list-style-type: none;
+.qualifications ul li {
+	list-style: inside;
+	list-style-type: circle;
+	font-weight: normal;
 }
 
 .downloadBtn,
 .downloadBtn:visited {
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    top: 15px;
-    right: 15px;
+	z-index: 2;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	top: 15px;
+	right: 15px;
 }
 
 .downloadBtn:hover {
-    cursor: pointer;
-    transform: translateY(10px);
-    transition: 0.3s ease-in-out;
+	cursor: pointer;
+	transform: translateY(10px);
+	transition: 0.3s ease-in-out;
 }
 
 .downloadBtn a {
-    text-decoration: none !important;
-    color: hsl(348, 14%, 14%);
+	text-decoration: none !important;
+	color: hsl(348, 14%, 14%);
 }
 
 .downloadBtn path {
-    background-color: black;
+	background-color: black;
 }
 
 .references,
 .gpdr {
-    display: flex;
-    justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 @media screen and (max-width: 768px) {
-    .downloadBtn {
-        border-radius: 10px;
-        width: 30px;
-    }
+	.downloadBtn {
+		border-radius: 10px;
+		width: 30px;
+	}
 
-    .resume-container {
-        padding: 30px;
-    }
+	.resume-container {
+		padding: 30px;
+	}
 
-    .resume-wrapper {
-        padding: 10px;
-        min-width: 330px;
-    }
-    h2 {
-        font-size: small;
-    }
+	.resume-wrapper {
+		padding: 10px;
+		min-width: 330px;
+	}
+	h2 {
+		font-size: small;
+	}
 
-    h3 {
-        font-size: smaller;
-    }
-    p,
-    h4,
-    h5,
-    h6 {
-        font-size: x-small;
-    }
+	h3 {
+		font-size: smaller;
+	}
+	p,
+	h4,
+	h5,
+	h6 {
+		font-size: x-small;
+	}
 }
