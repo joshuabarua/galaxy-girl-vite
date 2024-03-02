@@ -59,7 +59,7 @@ const Contact = () => {
 				import.meta.env.VITE_EMAILJS_SERVICE_ID,
 				import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
 				formRef.current,
-				import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+				import.meta.env.VITE_EMAILJS_PUBLIC
 			);
 			console.log('Form sent successfully:', result.text);
 			setFormData({
@@ -78,8 +78,8 @@ const Contact = () => {
 	const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
 
 	const playConfetti = (e) => {
-    e.preventDefault();
-    console.log("running")
+		e.preventDefault();
+		console.log('running');
 		setLottieResult(true);
 		setSecondsLeft(5);
 	};
