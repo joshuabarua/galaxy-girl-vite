@@ -1,118 +1,119 @@
 /* NavbarStyles.css */
 nav {
-    height: 80px;
-    width: 100vw;
-    overflow-x: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-    position: fixed;
-    padding: 0px 20px;
-    gap: 10%;
-    transition: background-color 0.8s ease-in-out;
+	height: 80px;
+	width: 100vw;
+	overflow-x: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 10;
+	position: fixed;
+	padding: 0px 20px;
+	gap: 10%;
+	transition: background-color 0.8s ease-in-out;
+	top: 0;
 }
 
 .nav-logo {
-    width: 10%;
+	width: 10%;
 }
 
 .nav-menu {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 60%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-evenly;
+	width: 60%;
 }
 
 .nav-btn {
-    width: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+	width: 10%;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
 }
 
 .nav-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    height: 100%;
-    cursor: pointer;
-    color: #ddd8ff;
-    font-size: 24px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+	height: 100%;
+	cursor: pointer;
+	color: #ddd8ff;
+	font-size: 24px;
 }
 
 .nav-link-active {
-    text-decoration: underline;
-    text-underline-offset: 10px;
-    padding-bottom: 0.4rem;
-    color: #fff0d8;
+	text-decoration: underline;
+	text-underline-offset: 10px;
+	padding-bottom: 0.4rem;
+	color: #fff0d8;
 }
 
 .nav-link:hover {
-    transition: 0.3s transform ease-in-out;
-    transform: scale(1.2);
-    color: #fff0d8;
-    text-decoration-color: #fff0d8;
+	transition: 0.3s transform ease-in-out;
+	transform: scale(1.2);
+	color: #fff0d8;
+	text-decoration-color: #fff0d8;
 }
 
 .logo-img {
-    max-width: 40px;
+	max-width: 40px;
 }
 
 .bars {
-    display: none;
-    color: #ddd8ff;
+	display: none;
+	color: #ddd8ff;
 }
 
 .icon-fb,
 .icon-insta {
-    border-radius: 15px;
-    outline: none;
-    color: #f0d8ff;
-    border: none;
-    cursor: pointer;
-    transition: all 0.1s ease-in-out;
-    text-decoration: none;
+	border-radius: 15px;
+	outline: none;
+	color: #f0d8ff;
+	border: none;
+	cursor: pointer;
+	transition: all 0.1s ease-in-out;
+	text-decoration: none;
 }
 
 .icon-fb:hover {
-    color: #4267b2;
-    transform: scale(1.5);
+	color: #4267b2;
+	transform: scale(1.5);
 }
 
 .icon-insta {
-    border-radius: 4px;
+	border-radius: 4px;
 }
 
 .icon-insta:hover {
-    color: #e4405f;
-    transform: scale(1.5);
+	color: #e4405f;
+	transform: scale(1.5);
 }
 
 @media screen and (max-width: 800px) {
-    nav {
-        justify-content: space-between;
-        height: 50px;
-    }
+	nav {
+		justify-content: space-between;
+		height: 50px;
+	}
 
-    .nav-link {
-        justify-content: flex-start;
-    }
+	.nav-link {
+		justify-content: flex-start;
+	}
 
-    .bars {
-        display: block;
-        position: absolute;
-        top: 0;
-        right: 0;
-        transform: translate(-100%, 40%);
-        font-size: 1.8rem;
-        cursor: pointer;
-    }
+	.bars {
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		transform: translate(-100%, 40%);
+		font-size: 1.8rem;
+		cursor: pointer;
+	}
 
-    .nav-menu,
-    .nav-btn {
-        display: none;
-    }
+	.nav-menu,
+	.nav-btn {
+		display: none;
+	}
 }
