@@ -32,7 +32,7 @@ const Contact = () => {
 		from_email: '',
 		subject: '',
 		message: '',
-		to_name: 'Emma Barua',
+		to_name: 'Galaxy Girl Website',
 	});
 
 	const handleInputChange = (e) => {
@@ -59,7 +59,7 @@ const Contact = () => {
 				from_email: '',
 				subject: '',
 				message: '',
-				to_name: 'Emma Barua',
+				to_name: 'Galaxy Girl Website',
 			});
 		} catch (error) {
 			console.error('Failed to send form:', error);

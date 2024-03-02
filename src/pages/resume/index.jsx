@@ -41,9 +41,9 @@ const Resume = () => {
 									color: '#63E6BE',
 									size: '40px',
 								}}>
-								<FaArrowCircleDown>
-									<a href="/" download={ResumeFile}></a>
-								</FaArrowCircleDown>
+								<a href={ResumeFile} download={ResumeFile} style={{textDecoration: 'none'}}>
+									<FaArrowCircleDown />
+								</a>
 							</IconContext.Provider>
 						</div>
 
