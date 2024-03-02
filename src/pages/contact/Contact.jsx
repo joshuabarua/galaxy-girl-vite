@@ -7,33 +7,25 @@ import {useTheme} from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import emailjs from '@emailjs/browser';
 
-const Confetti = ({lottieResult}) => {
+const Confetti = ({show}) => {
 	const defaultOptions = {
 		loop: false,
 		autoplay: true,
 		animationData: confettiData,
 	};
 
-	return (
-		<div className={`lottie-bg ${lottieResult ? 'active' : ''}`}>
-			<Lottie options={defaultOptions} width={'100%'} />
+	return show ? (
+		<div className="modal">
+			<div className="submittedForm">
+				<Lottie options={defaultOptions} width={'100%'} className={'lottie-bg'} />
+				<p className="sentMsg">Your message has successfully been sent! We will contact you soon. </p>
+			</div>
 		</div>
-	);
-};
-
-const MsgDetail = () => {
-	return (
-		<>
-			<p className="sentMsg">Your message has successfully been sent! We will contact you soon. </p>
-		</>
-	);
+	) : null;
 };
 
 const Contact = () => {
-	const [result, setResult] = useState(false);
-	const [lottieResult, setLottieResult] = useState(false);
-	const [secondsLeft, setSecondsLeft] = useState(5);
-
+	const [showConfetti, setShowConfetti] = useState(false);
 	const formRef = useRef();
 	const [formData, setFormData] = useState({
 		from_name: '',
@@ -53,7 +45,7 @@ const Contact = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		playConfetti(e);
+		setShowConfetti(true);
 		try {
 			const result = await emailjs.sendForm(
 				import.meta.env.VITE_EMAILJS_SERVICE_ID,
@@ -67,36 +59,19 @@ const Contact = () => {
 				from_email: '',
 				subject: '',
 				message: '',
-				to_name: 'Joshua Barua-Fowle',
+				to_name: 'Emma Barua',
 			});
 		} catch (error) {
 			console.error('Failed to send form:', error);
+		} finally {
+			setTimeout(() => {
+				setShowConfetti(false);
+			}, 5000);
 		}
 	};
 
 	const theme = useTheme();
 	const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
-
-	const playConfetti = (e) => {
-		e.preventDefault();
-		console.log('running');
-		setLottieResult(true);
-		setSecondsLeft(5);
-	};
-
-	useEffect(() => {
-		if (lottieResult && secondsLeft > 0) {
-			const timerInterval = setInterval(() => {
-				setSecondsLeft((prevSeconds) => prevSeconds - 1);
-			}, 1000);
-
-			return () => {
-				clearInterval(timerInterval);
-			};
-		} else if (lottieResult && secondsLeft === 0) {
-			setLottieResult(false);
-		}
-	}, [lottieResult, secondsLeft]);
 
 	return (
 		<div className="contactPage">
@@ -189,21 +164,8 @@ const Contact = () => {
 						</form>
 					</Box>
 				</Box>
+				<Confetti show={showConfetti} />
 			</Box>
-
-			{result && lottieResult && (
-				<div className="modal">
-					<div className="submittedForm">
-						<>
-							<MsgDetail />
-							<div id="timer" className="timer">
-								{secondsLeft === 0 ? 'Time is up!' : `Time left: ${secondsLeft}`}
-							</div>
-							<Confetti lottieResult={lottieResult} />
-						</>
-					</div>
-				</div>
-			)}
 		</div>
 	);
 };
