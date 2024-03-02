@@ -81,6 +81,10 @@ button:focus-visible {
 	flex-direction: column;
 }
 
+.yarl__toolbar {
+	z-index: 1000;
+}
+
 @media (prefers-color-scheme: light) {
 	:root {
 		color: #213547;
