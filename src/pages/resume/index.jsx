@@ -35,14 +35,14 @@ const Resume = () => {
 			<div style={{scrollBehavior: 'smooth'}}>
 				<div className="resume-container">
 					<div className="resume-wrapper">
-						<div className="downloadBtn">
+						<div className="downloadBtn" aria-label="Download Resume">
 							<IconContext.Provider
 								value={{
 									color: '#63E6BE',
 									size: '40px',
 								}}>
 								<a href={ResumeFile} download={ResumeFile} style={{textDecoration: 'none'}}>
-									<FaArrowCircleDown />
+									<FaArrowCircleDown alt="Download Resume" />
 								</a>
 							</IconContext.Provider>
 						</div>
