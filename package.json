@@ -10,6 +10,7 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"@emailjs/browser": "^4.2.0",
 		"@emotion/react": "^11.11.1",
 		"@emotion/styled": "^11.11.0",
 		"@fortawesome/fontawesome-svg-core": "^6.5.1",
@@ -17,7 +18,8 @@
 		"@fortawesome/react-fontawesome": "^0.2.0",
 		"@iconify/react": "^4.1.1",
 		"@mui/material": "^5.15.0",
-		"emailjs-com": "^3.2.0",
+		"dotenv": "^16.4.5",
+		"env": "^0.0.2",
 		"lightgallery": "^2.7.2",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",

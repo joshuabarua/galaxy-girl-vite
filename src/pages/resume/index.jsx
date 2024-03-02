@@ -7,6 +7,8 @@ import {Stack} from '@mui/material';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {FaArrowCircleDown} from 'react-icons/fa';
 import {IconContext} from 'react-icons/lib';
+import ResumeFile from '/src/assets/Emma_Barua_CV_trainee_mua.pdf';
+
 const Resume = () => {
 	const renderExperienceSection = (sectionData, sectionTitle) => {
 		return (
@@ -40,7 +42,7 @@ const Resume = () => {
 									size: '40px',
 								}}>
 								<FaArrowCircleDown>
-									<a href="/" download="MUA_EmmaRoby_CV"></a>
+									<a href="/" download={ResumeFile}></a>
 								</FaArrowCircleDown>
 							</IconContext.Provider>
 						</div>
