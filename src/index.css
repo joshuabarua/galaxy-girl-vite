@@ -40,6 +40,7 @@ body {
 
 .content {
 	overflow-y: auto;
+	flex: 1;
 }
 
 h1 {
