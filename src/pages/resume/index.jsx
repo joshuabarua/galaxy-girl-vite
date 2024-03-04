@@ -5,7 +5,7 @@ import {expData, experienceData} from './data';
 import {Icon} from '@iconify/react';
 import {Stack} from '@mui/material';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {FaArrowCircleDown} from 'react-icons/fa';
+import {FaArrowCircleDown, FaEnvelope, FaPhone} from 'react-icons/fa';
 import {IconContext} from 'react-icons/lib';
 import ResumeFile from '/src/assets/Emma_Barua_CV_trainee_mua.pdf';
 
@@ -41,6 +41,12 @@ const Resume = () => {
 									color: '#63E6BE',
 									size: '40px',
 								}}>
+								<a href={`tel:${VITE_PHONE}`} style={{textDecoration: 'none'}}>
+									<FaPhone />
+								</a>
+								<a href={`email:${VITE_EMAIL}`} style={{textDecoration: 'none'}}>
+									<FaEnvelope />
+								</a>
 								<a href={ResumeFile} download={ResumeFile} style={{textDecoration: 'none'}}>
 									<FaArrowCircleDown alt="Download Resume" />
 								</a>
@@ -56,13 +62,6 @@ const Resume = () => {
 								<h5> Level 3 Theatrical Hair & Media Makeup </h5>
 								<h5>Level 2 Barbering</h5>
 								<h5> Full UK Driving License </h5>
-
-								<Stack gap={0.5} direction={'row'} display={'flex'} alignItems={'center'}>
-									<Icon icon="carbon:phone" />
-									<h5>07449 203 870</h5>
-									<Icon icon="carbon:email" />
-									<h5> emmabarua@yahoo.co.uk </h5>
-								</Stack>
 							</span>
 						</div>
 
