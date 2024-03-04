@@ -1,10 +1,7 @@
-import React, {useState} from 'react';
-// import emmaCVpdf from "../../assets/CV/BlankCV.pdf";
+import React from 'react';
 import './resume.css';
-import {expData, experienceData} from './data';
-import {Icon} from '@iconify/react';
-import {Stack} from '@mui/material';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {experienceData} from './data';
+import {Stack, useTheme, useMediaQuery} from '@mui/material';
 import {FaArrowCircleDown, FaEnvelope, FaPhone} from 'react-icons/fa';
 import {IconContext} from 'react-icons/lib';
 import ResumeFile from '/src/assets/Emma_Barua_CV_trainee_mua.pdf';
@@ -20,8 +17,6 @@ const Resume = () => {
 						<div key={id} className="experience-item">
 							<h4>{data.title}</h4>
 							<p>{`${data.designer} ${data.position ? `- ${data.position}` : ''} `}</p>
-							{/* <p>{data.designer2 ? data.designer2 : ''}</p>
-						<p>{data.position2 ? data.position2 : ''}</p> */}
 							<p>{data.role}</p>
 							<p>{data.date}</p>
 						</div>
@@ -30,27 +25,32 @@ const Resume = () => {
 		);
 	};
 
+	const theme = useTheme();
+	const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
+
 	return (
 		<>
 			<div style={{scrollBehavior: 'smooth'}}>
 				<div className="resume-container">
 					<div className="resume-wrapper">
-						<div className="downloadBtn" aria-label="Download Resume">
-							<IconContext.Provider
-								value={{
-									color: '#63E6BE',
-									size: '40px',
-								}}>
-								<a href={`tel:${import.meta.env.VITE_PHONE}`} style={{textDecoration: 'none'}}>
-									<FaPhone />
-								</a>
-								<a href={`email:${import.meta.env.VITE_EMAIL}`} style={{textDecoration: 'none'}}>
-									<FaEnvelope />
-								</a>
-								<a href={ResumeFile} download={ResumeFile} style={{textDecoration: 'none'}}>
-									<FaArrowCircleDown alt="Download Resume" />
-								</a>
-							</IconContext.Provider>
+						<div className="downloadBtn" aria-label="Download Resume" style={{right: isSmallScreen ? '45px' : '75px', top: isSmallScreen ? '0px' : '15px'}}>
+							<Stack direction={'row'} spacing={isSmallScreen ? 1 : 3}>
+								<IconContext.Provider
+									value={{
+										color: '#63E6BE',
+										size: isSmallScreen ? '25px' : '30px',
+									}}>
+									<a href={`tel:${import.meta.env.VITE_PHONE}`}>
+										<FaPhone />
+									</a>
+									<a href={`mailto:${import.meta.env.VITE_EMAIL}`}>
+										<FaEnvelope />
+									</a>
+									<a href={ResumeFile} download={ResumeFile}>
+										<FaArrowCircleDown alt="Download Resume" />
+									</a>
+								</IconContext.Provider>
+							</Stack>
 						</div>
 
 						<div className="resume-contact">
