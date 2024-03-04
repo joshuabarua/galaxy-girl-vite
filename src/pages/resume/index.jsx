@@ -41,10 +41,10 @@ const Resume = () => {
 									color: '#63E6BE',
 									size: '40px',
 								}}>
-								<a href={`tel:${VITE_PHONE}`} style={{textDecoration: 'none'}}>
+								<a href={`tel:${import.meta.env.VITE_PHONE}`} style={{textDecoration: 'none'}}>
 									<FaPhone />
 								</a>
-								<a href={`email:${VITE_EMAIL}`} style={{textDecoration: 'none'}}>
+								<a href={`email:${import.meta.env.VITE_EMAIL}`} style={{textDecoration: 'none'}}>
 									<FaEnvelope />
 								</a>
 								<a href={ResumeFile} download={ResumeFile} style={{textDecoration: 'none'}}>
