@@ -33,8 +33,8 @@ const Resume = () => {
 			<div style={{scrollBehavior: 'smooth'}}>
 				<div className="resume-container">
 					<div className="resume-wrapper">
-						<div className="downloadBtn" aria-label="Download Resume" style={{right: isSmallScreen ? '45px' : '75px', top: isSmallScreen ? '0px' : '15px'}}>
-							<Stack direction={'row'} spacing={isSmallScreen ? 1 : 3}>
+						<div className="downloadBtn" aria-label="Download Resume" style={{right: isSmallScreen ? '40px' : '75px', top: isSmallScreen ? '0px' : '15px'}}>
+							<Stack direction={'row'} spacing={isSmallScreen ? 0.5 : 3}>
 								<IconContext.Provider
 									value={{
 										color: '#63E6BE',
