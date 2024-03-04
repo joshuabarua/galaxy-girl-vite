@@ -92,7 +92,7 @@ const Contact = () => {
 										</label>
 										<input
 											type="text"
-											placeholder="John Smith"
+											placeholder="Pat McGrath"
 											name="from_name"
 											id="contact-name"
 											required
@@ -110,7 +110,7 @@ const Contact = () => {
 										</label>
 										<input
 											type="email"
-											placeholder="johnsmith@gmail.com"
+											placeholder="patmcgrath@gmail.com"
 											name="from_email"
 											id="contact-email"
 											value={formData.from_email}
@@ -128,7 +128,7 @@ const Contact = () => {
 										</label>
 										<input
 											type="text"
-											placeholder="I would love to work together!"
+											placeholder="I would love to work with you!"
 											id="contact-subject"
 											name="subject"
 											value={formData.subject}
@@ -147,7 +147,7 @@ const Contact = () => {
 											Message
 										</label>
 										<textarea
-											placeholder="Lets make some magic..."
+											placeholder="Lets make it happen..."
 											id="message"
 											name="message"
 											value={formData.message}
