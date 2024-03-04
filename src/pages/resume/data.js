@@ -114,7 +114,7 @@ export const experienceData = {
 	TV_Adverts: {
 		8: {
 			title: 'Aimate music video',
-			designer: 'Emma Barua',
+			designer: 'Emma Robyn',
 			position: 'Makeup Designer',
 			role: 'Makeup Designer',
 			date: 'Nov 2023',
