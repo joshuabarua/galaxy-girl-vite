@@ -1,4 +1,4 @@
 {
-	"routes": [{"src": "/(.*)", "dest": "/index.html", "status": 200}],
-	"rewrites": [{"src": "/(.*)", "dest": "/index.html", "status": 200}]
+	"routes": [{"src": "/(.*)", "dest": "/", "status": 200}],
+	"rewrites": [{"src": "/(.*)", "dest": "/", "status": 200}]
 }
