@@ -8,7 +8,7 @@ import Portfolio from './pages/portfolio/WorkPortfolio';
 import Footer from './components/footer/Footer';
 import Navbar from './components/nav/Navbar';
 import Dropdown from './components/dropdown/Dropdown';
-import GalleryCard from './pages/portfolio/GalleryCard';
+import NotFound from './pages/NotFound';
 import GalleryGroup from './pages/portfolio/GalleryGroup';
 
 function App() {
