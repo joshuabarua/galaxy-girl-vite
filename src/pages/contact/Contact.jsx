@@ -6,6 +6,7 @@ import {Box, Stack, Button} from '@mui/material';
 import {useTheme} from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import emailjs from '@emailjs/browser';
+import BrushStrokeImg from '../../assets/images/abstract/BrushStroke10.png';
 
 const Confetti = ({show}) => {
 	const defaultOptions = {
@@ -77,6 +78,7 @@ const Contact = () => {
 		<div className="contactPage">
 			<Box className="contactBody">
 				<Box className="contactOverlay">
+					<img src={BrushStrokeImg} className="brushstrokeImg" />
 					<div className="titleMsgText">
 						<h1> Send Me A Message </h1>
 					</div>

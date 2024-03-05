@@ -33,7 +33,7 @@ const HeroSection = () => {
 			</div>
 			<div className="hero-content">
 				<h1 className="hero-h1"> Emma Robyn </h1>
-				<h1 className="hero-h1">SFX Makeup Artist</h1>
+				<h1 className="hero-h2">SFX Makeup Artist</h1>
 				<h2 className="hero-p">Everything has beauty in it, but not everyone sees it - Confucius</h2>
 				<div className="hero-btn-wrapper">
 					<Button to="/portfolio" onMouseEnter={onHover} onMouseLeave={onHover} primary="true" dark="true">
