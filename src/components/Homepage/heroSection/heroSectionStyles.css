@@ -44,7 +44,7 @@
 .hero-h1 {
 	color: #fff0d8;
 	font-size: 58px;
-	line-height: 0;
+	line-height: 1;
 	text-align: center;
 	z-index: 4;
 	font-weight: 700;
@@ -54,8 +54,8 @@
 
 .hero-h2 {
 	color: #fff0d8;
-	font-size: 48px;
-	line-height: 1.1;
+	font-size: 38px;
+	line-height: 1;
 	text-align: center;
 	z-index: 4;
 	font-weight: 700;
