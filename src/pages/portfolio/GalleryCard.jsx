@@ -19,14 +19,12 @@ function GalleryCard({imageGroup, id}) {
 			p.setup = () => {
 				p.frameRate(10);
 				let canvas = p.createCanvas(1024, 780);
-				p.image(img);
+				p.image(img, -1000, -1000);
 				canvas.mouseOver(pauseDrawing);
 				canvas.mouseOut(resumeDrawing);
 			};
 
 			p.draw = () => {
-				p.image(img, 0, 0, p.width, p.height);
-
 				for (let x = 0; x < p.width; x += 7) {
 					let offset = p.sin(p.frameCount * 0.05 + x * 0.02) * 10;
 
@@ -46,16 +44,10 @@ function GalleryCard({imageGroup, id}) {
 
 			function pauseDrawing() {
 				p.noLoop();
-				resetImage();
 			}
 
 			function resumeDrawing() {
 				p.loop();
-			}
-
-			function resetImage() {
-				p.clear();
-				p.image(img, 0, 0, p.width, p.height);
 			}
 		}, sketchRef.current);
 
