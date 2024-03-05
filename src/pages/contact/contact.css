@@ -20,6 +20,7 @@
 	overflow: hidden;
 	width: 70%;
 	max-width: 1200px;
+	z-index: 1;
 	min-width: 400px;
 }
 
@@ -33,6 +34,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	z-index: 1;
 }
 
 .form-container {
@@ -45,6 +47,8 @@
 	width: 100%;
 	max-width: 800px;
 	padding: 30px;
+	z-index: 1;
+	opacity: 100%;
 }
 
 .form-container form {
@@ -55,6 +59,7 @@
 	gap: 20px;
 	height: 100%;
 	width: 100%;
+	opacity: 100%;
 }
 
 .inputStack {
@@ -185,6 +190,28 @@ form button:hover {
 	max-height: 450px;
 }
 
+.brushstrokeImg {
+	position: absolute;
+	width: 200px;
+	height: 200px;
+	z-index: 1;
+	top: 200px;
+	opacity: 100%;
+	animation: ease-in-out 40s infinite scaleUp;
+}
+
+@keyframes scaleUp {
+	0% {
+		transform: rotate(0deg) scale(0.8);
+	}
+	50% {
+		transform: rotate(180deg) scale(1.2);
+	}
+	100% {
+		transform: rotate(360deg) scale(0.8);
+	}
+}
+
 /* * {
   background: #000 !important;
   color: #0f0 !important;
@@ -237,6 +264,9 @@ form button:hover {
 		.titleMsgText {
 			font-size: 16px;
 		}
+	}
+	.brushstrokeImg {
+		top: -0px;
 	}
 }
 
