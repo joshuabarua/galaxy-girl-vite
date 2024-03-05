@@ -33,3 +33,7 @@ dist-ssr
 /build
 
 /coverage
+
+eyeshadow.zip
+eyeshadow/*
+eyeshadow
