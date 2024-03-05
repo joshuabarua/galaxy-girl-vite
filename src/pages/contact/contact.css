@@ -192,9 +192,6 @@ form button:hover {
 } */
 
 @media screen and (max-width: 1000px) {
-	.contactPage {
-	}
-
 	.contactBody {
 		height: 100vh;
 	}
