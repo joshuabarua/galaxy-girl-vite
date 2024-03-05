@@ -96,7 +96,7 @@
 }
 
 .services-container {
-	overflow: hidden;
+	overflow: hidden !important;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: flex-start;

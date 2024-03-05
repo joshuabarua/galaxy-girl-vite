@@ -67,7 +67,16 @@ const InfoSection = ({lightBg, lightText, imgStart, topLine, headline, darkText,
 								<img
 									src={BrushStrokeImg2}
 									alt="imghere"
-									style={{height: '150px', position: 'absolute', zIndex: -1, left: '5%', marginTop: '400px', transform: 'rotate(10deg)', opacity: '60%'}}
+									style={{
+										height: '100px',
+										position: 'absolute',
+										zIndex: -1,
+										left: '4%',
+										marginTop: '400px',
+										transform: 'rotate(10deg)',
+										opacity: '60%',
+										overflow: 'hidden',
+									}}
 								/>
 							</div>
 						) : (
