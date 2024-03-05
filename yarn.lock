@@ -2156,6 +2156,11 @@ p-locate@^5.0.0:
   dependencies:
     p-limit "^3.0.2"
 
+p5@^1.9.1:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/p5/-/p5-1.9.1.tgz#3bcd9f8950b4175fbe417fbe98382240ae8deb31"
+  integrity sha512-TpuCll0KwyY8jyQbY9j4wCt+pA3Qv0egd4MqkrhJ58pBgdj5im5XsKpP/64gepDilJXTk126vWXiNAPeSezNdg==
+
 parent-module@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/parent-module/-/parent-module-1.0.1.tgz#691d2709e78c79fae3a156622452d00762caaaa2"
