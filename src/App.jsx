@@ -19,17 +19,18 @@ function App() {
 	};
 
 	return (
-		<Router basename={'/'}>
+		<Router>
 			<Navbar toggle={toggle} />
 			<Dropdown isOpen={isOpen} toggle={toggle} />
 			<div className="body-container">
 				<div className="content">
 					<Routes>
-						<Route path="/" element={<Home />} exact="true" />
-						<Route path="/resume" element={<Resume />} exact="true" />
-						<Route path="/portfolio" element={<Portfolio />} exact="true" />
-						<Route path="/portfolio/gallery/:galleryId" element={<GalleryGroup />} exact="true" />
-						<Route path="/contact" element={<Contact />} exact="true" />
+						<Route path="/" element={<Home />} />
+						<Route path="/resume" element={<Resume />} />
+						<Route path="/portfolio" element={<Portfolio />} />
+						<Route path="/portfolio/gallery/:galleryId" element={<GalleryGroup />} />
+						<Route path="/contact" element={<Contact />} />
+						<Route path="*" element={<NotFound />} />
 					</Routes>
 				</div>
 				<Footer />
