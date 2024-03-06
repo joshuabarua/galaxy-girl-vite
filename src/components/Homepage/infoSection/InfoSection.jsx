@@ -68,7 +68,7 @@ const InfoSection = ({lightBg, lightText, imgStart, topLine, headline, darkText,
 									src={BrushStrokeImg2}
 									alt="imghere"
 									style={{
-										height: '100px',
+										width: '200px',
 										position: 'absolute',
 										zIndex: -1,
 										left: '4%',
