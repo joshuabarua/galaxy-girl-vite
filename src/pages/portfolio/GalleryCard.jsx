@@ -62,7 +62,7 @@ function GalleryCard({imageGroup, id}) {
 		navigate(`/portfolio/gallery/${id}`);
 	};
 	return (
-		<div className={styles.gallery_card} onClick={handleClick}>
+		<div className={styles.gallery_card} style={{animationDelay: `${0.1 * id}s`}} onClick={handleClick}>
 			<div className={styles.gallery_card_img}>
 				{/* <div ref={sketchRef} className={styles.galleryCardImgDiv} /> */}
 				<img src={`${imageGroup.images[0].src}`} />
