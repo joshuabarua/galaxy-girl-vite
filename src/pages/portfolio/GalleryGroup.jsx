@@ -22,7 +22,7 @@ export default function GalleryGroup() {
 	const theme = useTheme();
 	const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 	const {galleryId} = useParams();
-	const [index, setIndex] = useState(-1);
+	const [imgIndex, setIndex] = useState(-1);
 
 	const photoData = (i) => {
 		return gallery[0][i].images.map((photo) => ({
@@ -40,15 +40,11 @@ export default function GalleryGroup() {
 		}));
 	};
 
-	//TODO: Fix onclick to open lightbox! (onClick={({index}) => setIndex(index)})
-
-	const renderPhoto = ({imageProps: {src, alt}}) => (
-		<a onClick={({index}) => setIndex(index)}>
-			<FadeInSection id={index} key={index}>
-				<img src={src} alt={alt} style={{width: '100%'}} />
-			</FadeInSection>
-		</a>
-	);
+	const renderPhoto = ({imageProps: {src, alt}}) => {
+		<FadeInSection id={imgIndex} key={imgIndex}>
+			<img src={src} alt={alt} style={{width: '100%'}} />
+		</FadeInSection>;
+	};
 
 	useEffect(() => {
 		if (isSmallScreen || gallery[0][galleryId].images.length < 3) setCols(2);
@@ -61,8 +57,18 @@ export default function GalleryGroup() {
 				<h1>{gallery[0][galleryId].name}</h1>
 			</div>
 			<div className={styles.galleryGroup}>
-				<PhotoAlbum layout="columns" photos={photoData(galleryId)} renderPhoto={renderPhoto} columns={columns} spacing={6} padding={0} onClick={({index}) => setIndex(index)} />
-				<Lightbox slides={photoData(galleryId)} open={index >= 0} index={index} close={() => setIndex(-1)} plugins={[Fullscreen, Slideshow, Thumbnails, Zoom]} />
+				<PhotoAlbum
+					layout="columns"
+					photos={photoData(galleryId)}
+					renderPhoto={renderPhoto}
+					columns={columns}
+					spacing={6}
+					padding={0}
+					onClick={({index}) => {
+						setIndex(index);
+					}}
+				/>
+				<Lightbox slides={photoData(galleryId)} open={imgIndex >= 0} index={imgIndex} close={() => setIndex(-1)} plugins={[Fullscreen, Slideshow, Thumbnails]} />
 			</div>
 		</div>
 	);
