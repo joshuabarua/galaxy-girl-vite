@@ -6,9 +6,8 @@
 	align-items: center;
 	justify-content: center;
 	width: 100vw;
-	height: 90vh;
+	height: 100vh;
 	overflow: hidden;
-	margin-bottom: 50px;
 }
 
 .contactOverlay {
@@ -20,7 +19,7 @@
 	overflow: hidden;
 	width: 70%;
 	max-width: 1200px;
-	z-index: 1;
+	z-index: 0;
 	min-width: 400px;
 }
 
@@ -190,14 +189,19 @@ form button:hover {
 	max-height: 450px;
 }
 
-.brushstrokeImg {
+.DVDLogo {
+	width: 100%;
+	height: 100%;
 	position: absolute;
-	width: 200px;
-	height: 200px;
-	z-index: 1;
-	top: 200px;
+	padding: 70px 125px 150px 0px;
+}
+
+.brushstrokeImg {
+	position: relative;
+	width: 150px;
+	height: 150px;
 	opacity: 100%;
-	animation: ease-in-out 40s infinite scaleUp;
+	animation: ease-in-out 10s infinite scaleUp, moveX 10s linear 0s infinite alternate, moveY 7s linear 0s infinite alternate;
 }
 
 @keyframes scaleUp {
@@ -209,6 +213,25 @@ form button:hover {
 	}
 	100% {
 		transform: rotate(360deg) scale(0.8);
+	}
+}
+
+@keyframes moveX {
+	from {
+		left: 0;
+	}
+	to {
+		left: 100%;
+	}
+}
+
+/* Define the animation for moving vertically */
+@keyframes moveY {
+	from {
+		top: 0;
+	}
+	to {
+		top: 100%;
 	}
 }
 
