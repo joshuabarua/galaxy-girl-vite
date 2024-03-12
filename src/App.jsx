@@ -1,5 +1,5 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import './App.css';
 import Home from './pages/index';
 import Resume from './pages/resume/index';
@@ -17,6 +17,24 @@ function App() {
 	const toggle = () => {
 		setIsOpen(!isOpen);
 	};
+
+	useEffect(() => {
+		const checkScrollable = () => {
+			const element = document.body;
+			const isScrollable = element.scrollHeight > window.innerHeight;
+			if (isScrollable) {
+				element.classList.add('scrollable-indicator');
+			} else {
+				element.classList.remove('scrollable-indicator');
+			}
+		};
+
+		checkScrollable();
+
+		window.addEventListener('resize', checkScrollable);
+
+		return () => window.removeEventListener('resize', checkScrollable);
+	}, []);
 
 	return (
 		<Router>
