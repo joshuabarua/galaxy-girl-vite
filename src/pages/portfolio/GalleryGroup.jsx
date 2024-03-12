@@ -40,10 +40,14 @@ export default function GalleryGroup() {
 		}));
 	};
 
+	//TODO: Fix onclick to open lightbox! (onClick={({index}) => setIndex(index)})
+
 	const renderPhoto = ({imageProps: {src, alt}}) => (
-		<FadeInSection id={index} key={index}>
-			<img src={src} alt={alt} style={{width: '100%'}} />
-		</FadeInSection>
+		<a onClick={({index}) => setIndex(index)}>
+			<FadeInSection id={index} key={index}>
+				<img src={src} alt={alt} style={{width: '100%'}} />
+			</FadeInSection>
+		</a>
 	);
 
 	useEffect(() => {
