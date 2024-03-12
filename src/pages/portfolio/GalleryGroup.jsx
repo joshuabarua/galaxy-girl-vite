@@ -12,6 +12,7 @@ import Slideshow from 'yet-another-react-lightbox/plugins/slideshow';
 import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails';
 import Zoom from 'yet-another-react-lightbox/plugins/zoom';
 import 'yet-another-react-lightbox/plugins/thumbnails.css';
+import FadeInSection from '../../components/FadeInSection/FadeInSection';
 
 const breakpoints = [1080, 640, 384, 256, 128, 96, 64, 48];
 
@@ -39,6 +40,12 @@ export default function GalleryGroup() {
 		}));
 	};
 
+	const renderPhoto = ({imageProps: {src, alt}}) => (
+		<FadeInSection id={index} key={index}>
+			<img src={src} alt={alt} style={{width: '100%'}} />
+		</FadeInSection>
+	);
+
 	useEffect(() => {
 		if (isSmallScreen || gallery[0][galleryId].images.length < 3) setCols(2);
 		else setCols(3);
@@ -50,7 +57,7 @@ export default function GalleryGroup() {
 				<h1>{gallery[0][galleryId].name}</h1>
 			</div>
 			<div className={styles.galleryGroup}>
-				<PhotoAlbum layout="columns" photos={photoData(galleryId)} columns={columns} spacing={8} onClick={({index}) => setIndex(index)} />
+				<PhotoAlbum layout="columns" photos={photoData(galleryId)} renderPhoto={renderPhoto} columns={columns} spacing={6} padding={0} onClick={({index}) => setIndex(index)} />
 				<Lightbox slides={photoData(galleryId)} open={index >= 0} index={index} close={() => setIndex(-1)} plugins={[Fullscreen, Slideshow, Thumbnails, Zoom]} />
 			</div>
 		</div>
