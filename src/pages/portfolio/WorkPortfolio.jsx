@@ -1,9 +1,8 @@
 import React, {useState, useEffect, useMemo} from 'react';
 import styles from './css/portfolioStyles.module.css';
 import {gallery} from './data/galleryImgData';
-import {useTheme} from '@mui/material';
-import {useMediaQuery} from '@mui/material';
 import GalleryCard from './GalleryCard';
+import FadeInSection from '../../components/FadeInSection/FadeInSection';
 
 const WorkPortfolio = () => {
 	return (
@@ -15,7 +14,9 @@ const WorkPortfolio = () => {
 
 				<div className={styles.gallery_card_container}>
 					{Object.values(gallery[0]).map((val, idx) => (
-						<GalleryCard imageGroup={val} id={idx + 1} key={idx} />
+						<FadeInSection key={idx} id={idx}>
+							<GalleryCard imageGroup={val} id={idx + 1} />
+						</FadeInSection>
 					))}
 				</div>
 			</div>
