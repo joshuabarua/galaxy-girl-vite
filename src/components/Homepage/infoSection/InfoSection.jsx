@@ -17,13 +17,13 @@ const InfoSection = ({lightBg, lightText, imgStart, topLine, headline, darkText,
 						<img
 							src={BrushStrokeImg3}
 							alt="imghere"
-							style={{width: '10vw', minWidth: '200px', position: 'absolute', zIndex: -1, right: '-25px', marginTop: '-200px', transform: 'rotate(50deg)', opacity: '60%'}}
+							style={{width: '5vw', minWidth: '100px', position: 'absolute', zIndex: -1, right: '-25px', marginTop: '-200px', transform: 'rotate(50deg)', opacity: '60%'}}
 						/>
 						<img
 							src={BrushStrokeImg4}
 							alt="imghere"
 							style={{
-								width: '10vw',
+								width: '5vw',
 								minWidth: '150px',
 								position: 'absolute',
 								zIndex: -1,
@@ -46,7 +46,7 @@ const InfoSection = ({lightBg, lightText, imgStart, topLine, headline, darkText,
 								<img
 									src={BrushStrokeImg}
 									alt="imghere"
-									style={{height: '200px', position: 'absolute', zIndex: -1, right: '10%', marginBottom: '900px', transform: 'rotate(30deg)', opacity: '60%'}}
+									style={{height: '100px', position: 'absolute', zIndex: -1, right: '10%', marginBottom: '900px', transform: 'rotate(30deg)', opacity: '60%'}}
 								/>
 								{Object.entries(services).map(([key, {description, icon, title}]) => (
 									<div key={key} className="service-item">
@@ -68,7 +68,7 @@ const InfoSection = ({lightBg, lightText, imgStart, topLine, headline, darkText,
 									src={BrushStrokeImg2}
 									alt="imghere"
 									style={{
-										width: '200px',
+										width: '175px',
 										position: 'absolute',
 										zIndex: -1,
 										left: '4%',

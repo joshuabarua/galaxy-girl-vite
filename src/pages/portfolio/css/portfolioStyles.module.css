@@ -85,6 +85,12 @@
 	overflow: hidden;
 }
 
+.gallery_card_img img {
+	width: 100%;
+	min-width: 100px;
+	object-position: center -200px;
+}
+
 .galleryCardImgDiv {
 	min-width: 100px;
 }
