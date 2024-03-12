@@ -7,6 +7,7 @@ import {useTheme} from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import emailjs from '@emailjs/browser';
 import BrushStrokeImg from '../../assets/images/abstract/BrushStroke10.png';
+import Marquee from 'react-fast-marquee';
 
 const Confetti = ({show}) => {
 	const defaultOptions = {
@@ -75,100 +76,100 @@ const Contact = () => {
 	const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
 
 	return (
-		<div className="contactPage">
-			<Box className="contactBody">
-				<Box className="contactOverlay">
-					<img src={BrushStrokeImg} className="brushstrokeImg" />
-					<div className="titleMsgText">
-						<h1> Send Me A Message </h1>
-					</div>
+		<Box className="contactBody">
+			<div className='DVDLogo'>
+				<img src={BrushStrokeImg} className="brushstrokeImg" />
+			</div>
+			<Box className="contactOverlay">
+				<div className="titleMsgText">
+					<h1> Send Me A Message </h1>
+				</div>
 
-					<Box className="form-container" sx={{minWidth: '300px'}}>
-						<form action="" onSubmit={handleSubmit} ref={formRef}>
-							<Stack className="flexCol" spacing={5} sx={{width: '100%', height: '100%'}}>
-								<Stack direction="column" className="flexCol inputGroup" gap={2}>
-									{/* Name */}
-									<Stack direction="column" gap={1} className="inputStack">
-										<label className="form-label" htmlFor="contact-name">
-											Name / Company
-										</label>
-										<input
-											type="text"
-											placeholder="Pat McGrath"
-											name="from_name"
-											id="contact-name"
-											required
-											className="form-input"
-											value={formData.from_name}
-											onChange={handleInputChange}
-										/>
-									</Stack>
-
-									{/* Email */}
-									<Stack direction="column" gap={1} className="inputStack">
-										<label className="form-label" htmlFor="contact-email">
-											{' '}
-											Email
-										</label>
-										<input
-											type="email"
-											placeholder="patmcgrath@gmail.com"
-											name="from_email"
-											id="contact-email"
-											value={formData.from_email}
-											onChange={handleInputChange}
-											required
-											className="form-input"
-										/>
-									</Stack>
-
-									{/* Subject */}
-									<Stack direction="column" gap={1} className="inputStack">
-										<label className="form-label" htmlFor="contact-subject">
-											{' '}
-											Subject{' '}
-										</label>
-										<input
-											type="text"
-											placeholder="I would love to work with you!"
-											id="contact-subject"
-											name="subject"
-											value={formData.subject}
-											onChange={handleInputChange}
-											required
-											className="form-input"
-										/>
-									</Stack>
+				<Box className="form-container" sx={{minWidth: '300px'}}>
+					<form action="" onSubmit={handleSubmit} ref={formRef}>
+						<Stack className="flexCol" spacing={5} sx={{width: '100%', height: '100%'}}>
+							<Stack direction="column" className="flexCol inputGroup" gap={2}>
+								{/* Name */}
+								<Stack direction="column" gap={1} className="inputStack">
+									<label className="form-label" htmlFor="contact-name">
+										Name / Company
+									</label>
+									<input
+										type="text"
+										placeholder="Pat McGrath"
+										name="from_name"
+										id="contact-name"
+										required
+										className="form-input"
+										value={formData.from_name}
+										onChange={handleInputChange}
+									/>
 								</Stack>
 
-								{/* Message */}
-								<Stack className="flexCol inputGroup2">
-									<Stack className="inputStack flexCol" gap={1} alignItems={'flex-start'}>
-										<label className="form-label" htmlFor="message">
-											{' '}
-											Message
-										</label>
-										<textarea
-											placeholder="Lets make it happen..."
-											id="message"
-											name="message"
-											value={formData.message}
-											onChange={handleInputChange}
-											required
-											className="form-textarea"></textarea>
-									</Stack>
+								{/* Email */}
+								<Stack direction="column" gap={1} className="inputStack">
+									<label className="form-label" htmlFor="contact-email">
+										{' '}
+										Email
+									</label>
+									<input
+										type="email"
+										placeholder="patmcgrath@gmail.com"
+										name="from_email"
+										id="contact-email"
+										value={formData.from_email}
+										onChange={handleInputChange}
+										required
+										className="form-input"
+									/>
+								</Stack>
+
+								{/* Subject */}
+								<Stack direction="column" gap={1} className="inputStack">
+									<label className="form-label" htmlFor="contact-subject">
+										{' '}
+										Subject{' '}
+									</label>
+									<input
+										type="text"
+										placeholder="I would love to work with you!"
+										id="contact-subject"
+										name="subject"
+										value={formData.subject}
+										onChange={handleInputChange}
+										required
+										className="form-input"
+									/>
 								</Stack>
 							</Stack>
 
-							<div className="form-row form-btn">
-								<button> Send Message </button>
-							</div>
-						</form>
-					</Box>
+							{/* Message */}
+							<Stack className="flexCol inputGroup2">
+								<Stack className="inputStack flexCol" gap={1} alignItems={'flex-start'}>
+									<label className="form-label" htmlFor="message">
+										{' '}
+										Message
+									</label>
+									<textarea
+										placeholder="Lets make it happen..."
+										id="message"
+										name="message"
+										value={formData.message}
+										onChange={handleInputChange}
+										required
+										className="form-textarea"></textarea>
+								</Stack>
+							</Stack>
+						</Stack>
+
+						<div className="form-row form-btn">
+							<button> Send Message </button>
+						</div>
+					</form>
 				</Box>
-				<Confetti show={showConfetti} />
 			</Box>
-		</div>
+			<Confetti show={showConfetti} />
+		</Box>
 	);
 };
 
