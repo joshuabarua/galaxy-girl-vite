@@ -40,8 +40,10 @@ export default function GalleryGroup() {
 		}));
 	};
 
+	const handleClick = ({index}) => setIndex(index);
+
 	const renderPhoto = ({imageProps: {src, alt}}) => {
-		<FadeInSection id={imgIndex} key={imgIndex}>
+		<FadeInSection key={imgIndex}>
 			<img src={src} alt={alt} style={{width: '100%'}} />
 		</FadeInSection>;
 	};
@@ -57,17 +59,7 @@ export default function GalleryGroup() {
 				<h1>{gallery[0][galleryId].name}</h1>
 			</div>
 			<div className={styles.galleryGroup}>
-				<PhotoAlbum
-					layout="columns"
-					photos={photoData(galleryId)}
-					renderPhoto={renderPhoto}
-					columns={columns}
-					spacing={6}
-					padding={0}
-					onClick={({index}) => {
-						setIndex(index);
-					}}
-				/>
+				<PhotoAlbum layout="columns" photos={photoData(galleryId)} renderPhoto={renderPhoto} columns={columns} spacing={6} padding={0} onClick={handleClick} />
 				<Lightbox slides={photoData(galleryId)} open={imgIndex >= 0} index={imgIndex} close={() => setIndex(-1)} plugins={[Fullscreen, Slideshow, Thumbnails]} />
 			</div>
 		</div>
