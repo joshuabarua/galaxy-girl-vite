@@ -23,7 +23,10 @@ export default function GalleryGroup() {
 	const [isLoading, setIsLoading] = useState(true);
 
 	const preloadImages = async () => {
-		const imageUrls = gallery[0][galleryId].images.map((photo) => photo.src);
+		const imageUrls = gallery[0][galleryId].images.map((photo) => {
+			// console.log(photo.id);
+			photo.src;
+		});
 		const loadImage = (src) =>
 			new Promise((resolve, reject) => {
 				const img = new Image();
@@ -58,11 +61,25 @@ export default function GalleryGroup() {
 		}
 	}, [isSmallScreen, galleryId, isLoading]);
 
-	const renderPhoto = ({imageProps: {src, alt}}) => (
-		<FadeInSection>
-			<img src={src} alt={alt} style={{width: '100%'}} />
-		</FadeInSection>
-	);
+	const handleClick = (index) => {
+		console.log(index.id);
+		setIndex(index);
+	};
+
+	//TODO: Error with  the KEY/Index/ID property for the onClick property to update and allow the lightbox to open. Make sure the  right key/index is passed to ensure the setIndex received the correct ID
+
+	const renderPhoto = (photo) => {
+		const {
+			photo: {src, alt, key},
+		} = photo;
+
+		// console.log(key);
+		return (
+			<FadeInSection key={src}>
+				<img src={src} alt={alt} style={{width: '100%', cursor: 'pointer'}} onClick={() => handleClick()} />
+			</FadeInSection>
+		);
+	};
 
 	return (
 		<div className={styles.portfolioContainer}>
@@ -72,17 +89,16 @@ export default function GalleryGroup() {
 			<div className={styles.galleryGroup}>
 				<PhotoAlbum
 					layout="columns"
-					photos={gallery[0][galleryId].images.map((photo, index) => ({
+					photos={gallery[0][galleryId].images.map((photo) => ({
 						src: photo.src,
 						width: photo.width,
 						height: photo.height,
-						key: index, // Make sure to provide a unique key for each photo
+						key: photo.id,
 					}))}
 					renderPhoto={renderPhoto}
 					columns={columns}
 					spacing={6}
 					padding={0}
-					onClick={({index}) => setIndex(index)}
 				/>
 				<Lightbox
 					slides={gallery[0][galleryId].images.map((photo) => ({
