@@ -11,20 +11,16 @@ const Resume = () => {
 	const renderExperienceSection = (sectionData, sectionTitle) => {
 		return (
 			<div className="section" key={sectionTitle}>
-				<FadeInSection>
-					<h3>{sectionTitle.includes('_') ? sectionTitle.replace('_', '/') : sectionTitle}</h3>
-				</FadeInSection>
+				<h3>{sectionTitle.includes('_') ? sectionTitle.replace('_', '/') : sectionTitle}</h3>
 				{Object.entries(sectionData)
 					.toReversed()
 					.map(([id, data]) => (
-						<FadeInSection key={id}>
-							<div className="experience-item">
-								<h4>{data.title}</h4>
-								<p>{`${data.designer} ${data.position ? `- ${data.position}` : ''} `}</p>
-								<p>{data.role}</p>
-								<p>{data.date}</p>
-							</div>
-						</FadeInSection>
+						<div className="experience-item">
+							<h4>{data.title}</h4>
+							<p>{`${data.designer} ${data.position ? `- ${data.position}` : ''} `}</p>
+							<p>{data.role}</p>
+							<p>{data.date}</p>
+						</div>
 					))}
 			</div>
 		);
