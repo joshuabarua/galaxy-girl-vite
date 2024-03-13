@@ -1,10 +1,12 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {useNavigate} from 'react-router-dom';
 import styles from './css/portfolioStyles.module.css';
 import p5 from 'p5';
+import {CircularProgress} from '@mui/material';
 
 function GalleryCard({imageGroup, id}) {
 	const navigate = useNavigate();
+	const [isLoading, setIsLoading] = useState(true);
 
 	// const sketchRef = useRef();
 	// let p5Instance = useRef(null);
@@ -64,8 +66,12 @@ function GalleryCard({imageGroup, id}) {
 	return (
 		<div className={styles.gallery_card} style={{animationDelay: `${0.1 * id}s`}} onClick={handleClick}>
 			<div className={styles.gallery_card_img}>
-				{/* <div ref={sketchRef} className={styles.galleryCardImgDiv} /> */}
-				<img src={`${imageGroup.images[0].src}`} />
+				{isLoading && (
+					<div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%'}}>
+						<CircularProgress />
+					</div>
+				)}
+				<img src={`${imageGroup.images[0].src}`} onLoad={() => setIsLoading(false)} />
 			</div>
 			<div className={styles.card_text}>
 				<h2>{imageGroup.name}</h2>
