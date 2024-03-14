@@ -6,7 +6,6 @@ import {useParams} from 'react-router-dom';
 import PhotoAlbum from 'react-photo-album';
 import Lightbox from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
-import Fullscreen from 'yet-another-react-lightbox/plugins/fullscreen';
 import Slideshow from 'yet-another-react-lightbox/plugins/slideshow';
 import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails';
 import 'yet-another-react-lightbox/plugins/thumbnails.css';
@@ -66,15 +65,9 @@ export default function GalleryGroup() {
 		} = photoAlbumObj;
 
 		return (
-			<>
-				{isLoading ? (
-					<CircularProgress />
-				) : (
-					<FadeInSection key={src}>
-						<img src={src} alt={alt} style={{width: '100%', cursor: 'pointer'}} onClick={() => handleClick(index)} />
-					</FadeInSection>
-				)}
-			</>
+			<FadeInSection key={src}>
+				{isLoading ? <CircularProgress /> : <img src={src} alt={alt} style={{width: '100%', cursor: 'pointer'}} onClick={() => handleClick(index)} />}
+			</FadeInSection>
 		);
 	};
 
@@ -106,7 +99,7 @@ export default function GalleryGroup() {
 					open={imgIndex >= 0}
 					index={imgIndex}
 					close={() => setIndex(-1)}
-					plugins={[Fullscreen, Slideshow, Thumbnails]}
+					plugins={[Slideshow, Thumbnails]}
 				/>
 			</div>
 		</div>
