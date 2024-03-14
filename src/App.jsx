@@ -10,15 +10,19 @@ import Navbar from './components/nav/Navbar';
 import Dropdown from './components/dropdown/Dropdown';
 import NotFound from './pages/NotFound';
 import GalleryGroup from './pages/portfolio/GalleryGroup';
+import PageLoading from './components/pageLoading/PageLoading';
 
 function App() {
 	const [isOpen, setIsOpen] = useState(false);
+	const [loading, setLoading] = useState(true);
 
 	const toggle = () => {
 		setIsOpen(!isOpen);
 	};
 
 	useEffect(() => {
+		setLoading(true);
+
 		const checkScrollable = () => {
 			const element = document.body;
 			const isScrollable = element.scrollHeight > window.innerHeight;
@@ -33,26 +37,37 @@ function App() {
 
 		window.addEventListener('resize', checkScrollable);
 
-		return () => window.removeEventListener('resize', checkScrollable);
+		return () => {
+			window.removeEventListener('resize', checkScrollable);
+			setTimeout(() => {
+				setLoading(false);
+			}, 2000);
+		};
 	}, []);
 
 	return (
 		<Router>
-			<Navbar toggle={toggle} />
-			<Dropdown isOpen={isOpen} toggle={toggle} />
-			<div className="body-container">
-				<div className="content">
-					<Routes>
-						<Route path="/" element={<Home />} />
-						<Route path="/resume" element={<Resume />} />
-						<Route path="/portfolio" element={<Portfolio />} />
-						<Route path="/portfolio/gallery/:galleryId" element={<GalleryGroup />} />
-						<Route path="/contact" element={<Contact />} />
-						<Route path="*" element={<NotFound />} />
-					</Routes>
-				</div>
-				<Footer />
-			</div>
+			{loading ? (
+				<PageLoading loading={loading} />
+			) : (
+				<>
+					<Navbar toggle={toggle} />
+					<Dropdown isOpen={isOpen} toggle={toggle} />
+					<div className="body-container">
+						<div className="content">
+							<Routes>
+								<Route path="/" element={<Home />} />
+								<Route path="/resume" element={<Resume />} />
+								<Route path="/portfolio" element={<Portfolio />} />
+								<Route path="/portfolio/gallery/:galleryId" element={<GalleryGroup />} />
+								<Route path="/contact" element={<Contact />} />
+								<Route path="*" element={<NotFound />} />
+							</Routes>
+						</div>
+						<Footer />
+					</div>
+				</>
+			)}
 		</Router>
 	);
 }
