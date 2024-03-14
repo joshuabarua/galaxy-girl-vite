@@ -24,17 +24,16 @@ export default function GalleryGroup() {
 
 	const preloadImages = async () => {
 		const imageUrls = gallery[0][galleryId].images.map((photo) => {
-			// console.log(photo.id);
-			photo.src;
+			return photo.src;
 		});
-		const loadImage = (src) =>
+		const loadImage = (src) => {
 			new Promise((resolve, reject) => {
 				const img = new Image();
 				img.src = src;
 				img.onload = resolve;
 				img.onerror = reject;
 			});
-
+		};
 		try {
 			await Promise.all(imageUrls.map(loadImage));
 		} catch (error) {
@@ -55,28 +54,29 @@ export default function GalleryGroup() {
 			setCols(3);
 		}
 		if (isLoading) {
-			<div className={styles.loadingContainer}>
-				<CircularProgress />
-			</div>;
+			{
+				isLoading && (
+					<div className={styles.loadingContainer}>
+						<CircularProgress />
+					</div>
+				);
+			}
 		}
 	}, [isSmallScreen, galleryId, isLoading]);
 
-	const handleClick = (index) => {
-		console.log(index.id);
-		setIndex(index);
+	const handleClick = (photoIndex) => {
+		setIndex(photoIndex);
 	};
 
-	//TODO: Error with  the KEY/Index/ID property for the onClick property to update and allow the lightbox to open. Make sure the  right key/index is passed to ensure the setIndex received the correct ID
-
-	const renderPhoto = (photo) => {
+	const renderPhoto = (photoAlbumObj) => {
 		const {
-			photo: {src, alt, key},
-		} = photo;
+			photo: {src, alt},
+			layout: {index},
+		} = photoAlbumObj;
 
-		// console.log(key);
 		return (
 			<FadeInSection key={src}>
-				<img src={src} alt={alt} style={{width: '100%', cursor: 'pointer'}} onClick={() => handleClick()} />
+				<img src={src} alt={alt} style={{width: '100%', cursor: 'pointer'}} onClick={() => handleClick(index)} />
 			</FadeInSection>
 		);
 	};
