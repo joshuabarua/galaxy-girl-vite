@@ -38,13 +38,13 @@ export default function GalleryGroup() {
 			await Promise.all(imageUrls.map(loadImage));
 		} catch (error) {
 			console.error('An error occurred while preloading images:', error);
-		} finally {
-			setIsLoading(false);
 		}
 	};
 
 	useEffect(() => {
-		preloadImages();
+		preloadImages().finally(() => {
+			setIsLoading(false);
+		});
 	}, [galleryId]);
 
 	useEffect(() => {
@@ -53,16 +53,7 @@ export default function GalleryGroup() {
 		} else {
 			setCols(3);
 		}
-		if (isLoading) {
-			{
-				isLoading && (
-					<div className={styles.loadingContainer}>
-						<CircularProgress />
-					</div>
-				);
-			}
-		}
-	}, [isSmallScreen, galleryId, isLoading]);
+	}, [isSmallScreen, galleryId]);
 
 	const handleClick = (photoIndex) => {
 		setIndex(photoIndex);
@@ -75,9 +66,15 @@ export default function GalleryGroup() {
 		} = photoAlbumObj;
 
 		return (
-			<FadeInSection key={src}>
-				<img src={src} alt={alt} style={{width: '100%', cursor: 'pointer'}} onClick={() => handleClick(index)} />
-			</FadeInSection>
+			<>
+				{isLoading ? (
+					<CircularProgress />
+				) : (
+					<FadeInSection key={src}>
+						<img src={src} alt={alt} style={{width: '100%', cursor: 'pointer'}} onClick={() => handleClick(index)} />
+					</FadeInSection>
+				)}
+			</>
 		);
 	};
 
