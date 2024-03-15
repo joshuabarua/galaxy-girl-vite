@@ -47,27 +47,27 @@ function App() {
 
 	return (
 		<Router>
-			{loading ? (
+			{/* {loading ? (
 				<PageLoading loading={loading} />
-			) : (
-				<>
-					<Navbar toggle={toggle} />
-					<Dropdown isOpen={isOpen} toggle={toggle} />
-					<div className="body-container">
-						<div className="content">
-							<Routes>
-								<Route path="/" element={<Home />} />
-								<Route path="/resume" element={<Resume />} />
-								<Route path="/portfolio" element={<Portfolio />} />
-								<Route path="/portfolio/gallery/:galleryId" element={<GalleryGroup />} />
-								<Route path="/contact" element={<Contact />} />
-								<Route path="*" element={<NotFound />} />
-							</Routes>
-						</div>
-						<Footer />
+			) : ( */}
+			<>
+				<Navbar toggle={toggle} />
+				<Dropdown isOpen={isOpen} toggle={toggle} />
+				<div className="body-container">
+					<div className="content">
+						<Routes>
+							<Route path="/" element={<Home />} />
+							<Route path="/resume" element={<Resume />} />
+							<Route path="/portfolio" element={<Portfolio />} />
+							<Route path="/portfolio/gallery/:galleryId" element={<GalleryGroup />} />
+							<Route path="/contact" element={<Contact />} />
+							<Route path="*" element={<NotFound />} />
+						</Routes>
 					</div>
-				</>
-			)}
+					<Footer />
+				</div>
+			</>
+			{/* )} */}
 		</Router>
 	);
 }
