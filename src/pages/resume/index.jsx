@@ -14,7 +14,7 @@ const Resume = () => {
 				{Object.entries(sectionData)
 					.toReversed()
 					.map(([id, data]) => (
-						<div className="experience-item">
+						<div className="experience-item" key={id}>
 							<h4>{data.title}</h4>
 							<p>{`${data.designer} ${data.position ? `- ${data.position}` : ''} `}</p>
 							<p>{data.role}</p>
