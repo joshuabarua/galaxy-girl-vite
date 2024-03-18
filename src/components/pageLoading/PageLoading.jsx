@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './pageLoading.css';
+
 const PageLoading = ({loading}) => {
 	const [progress, setProgress] = useState(0);
 

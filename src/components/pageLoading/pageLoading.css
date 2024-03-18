@@ -22,7 +22,7 @@
 	transition: width 0.2s;
 }
 
-p {
+.loading-screen p {
 	color: #3c3939;
 	font-style: oblique;
 	font-weight: 700;
