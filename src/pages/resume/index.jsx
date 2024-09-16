@@ -4,7 +4,7 @@ import {experienceData} from './data';
 import {Stack, useTheme, useMediaQuery} from '@mui/material';
 import {FaArrowCircleDown, FaEnvelope, FaPhone} from 'react-icons/fa';
 import {IconContext} from 'react-icons/lib';
-import ResumeFile from '/src/assets/Emma_Barua_CV_trainee_mua.pdf';
+import ResumeFile from '/src/assets/Emma_Barua_Jr_24.pdf';
 
 const Resume = () => {
 	const renderExperienceSection = (sectionData, sectionTitle) => {
