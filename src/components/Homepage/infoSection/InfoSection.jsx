@@ -7,6 +7,8 @@ import BrushStrokeImg3 from '../../../assets/images/abstract/BrushStroke9.png';
 import BrushStrokeImg4 from '../../../assets/images/abstract/BrushStroke3.png';
 import BrushStrokeImg5 from '../../../assets/images/abstract/BrushStroke6.png';
 
+//TODO: Change pic  to emma working, Add pics of her new work sfx stuff, remove  fluff
+
 const InfoSection = ({lightBg, lightText, imgStart, topLine, headline, darkText, description, buttonLabel, alt, imgEm, services}) => {
 	return (
 		<div className={`${'info-container'} ${lightBg ? 'light-bg' : ''} h-screen`}>
