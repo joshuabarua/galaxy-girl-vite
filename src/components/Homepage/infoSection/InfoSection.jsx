@@ -6,7 +6,6 @@ import BrushStrokeImg2 from '../../../assets/images/abstract/BrushStroke2.png';
 import BrushStrokeImg3 from '../../../assets/images/abstract/BrushStroke9.png';
 import BrushStrokeImg4 from '../../../assets/images/abstract/BrushStroke3.png';
 import BrushStrokeImg5 from '../../../assets/images/abstract/BrushStroke6.png';
-import ServicesSection from '../servicesSection/servicesSection';
 
 const InfoSection = ({lightBg, lightText, imgStart, topLine, headline, darkText, description, buttonLabel, alt, imgEm, services}) => {
 	return (

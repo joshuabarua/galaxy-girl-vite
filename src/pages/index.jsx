@@ -3,7 +3,7 @@ import HeroSection from '../components/Homepage/heroSection/HeroSection';
 import InfoSection from '../components/Homepage/infoSection/InfoSection';
 import Slider from '../components/slider/Slider';
 import {aboutObjOne, servicesObj} from '../components/Homepage/infoSection/data';
-import ServicesSection from '../components/Homepage/servicesSection/servicesSection';
+import ServicesSection from '../components/Homepage/servicesSection/ServicesSection';
 import gsap from 'gsap';
 import {useGSAP} from '@gsap/react';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
