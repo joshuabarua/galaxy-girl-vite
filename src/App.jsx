@@ -20,31 +20,6 @@ function App() {
 		setIsOpen(!isOpen);
 	};
 
-	useEffect(() => {
-		setLoading(true);
-
-		const checkScrollable = () => {
-			const element = document.body;
-			const isScrollable = element.scrollHeight > window.innerHeight;
-			if (isScrollable) {
-				element.classList.add('scrollable-indicator');
-			} else {
-				element.classList.remove('scrollable-indicator');
-			}
-		};
-
-		checkScrollable();
-
-		window.addEventListener('resize', checkScrollable);
-
-		return () => {
-			window.removeEventListener('resize', checkScrollable);
-			setTimeout(() => {
-				setLoading(false);
-			}, 2000);
-		};
-	}, []);
-
 	return (
 		<Router>
 			{/* {loading ? (
@@ -67,7 +42,6 @@ function App() {
 					<Footer />
 				</div>
 			</>
-			{/* )} */}
 		</Router>
 	);
 }

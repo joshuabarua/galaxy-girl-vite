@@ -7,6 +7,9 @@ import {MdKeyboardArrowRight, MdArrowForward} from 'react-icons/md';
 const HeroSection = () => {
 	const [hover, setHover] = useState(false);
 	const vidRef = useRef();
+
+	//
+
 	useEffect(() => {
 		vidRef.current.play();
 	}, []);
@@ -31,8 +34,8 @@ const HeroSection = () => {
 					type="video/mp4"
 				/>
 			</div>
-			<div className="hero-content">
-				<h1 className="hero-h1"> Emma Robyn </h1>
+			<div className="hero-content opacity-0">
+				<h1 className="hero-h1 "> Emma Robyn </h1>
 				<h1 className="hero-h2">SFX Makeup Artist</h1>
 				<h2 className="hero-p">Everything has beauty in it, but not everyone sees it - Confucius</h2>
 				<div className="hero-btn-wrapper">

@@ -31,43 +31,6 @@ export const servicesObj = {
 	lightText: false,
 	lightTextDesc: true,
 	topLine: 'Services',
-	services: {
-		filmtv: {
-			title: 'Film & Television',
-			description:
-				'From Netflix dramas to ITV’s live segments, I bring narratives to life with my diverse skill set, adapting from subtle enhancements to vibrant transformations.',
-			icon: filmtv,
-		},
-		commercial: {
-			title: 'Commercial & Advertising',
-			description:
-				' Partner with me for campaigns that resonate. My portfolio includes major brands like Jacob’s Mini Cheddars and Amazon Web Services, ensuring your message is impactful and memorable.',
-			icon: commercials,
-		},
-		theatre: {
-			title: 'Theatre & Performance',
-			description:
-				"Experience the magic of theatre and performance makeup. Whether it's for a local play or a high-profile fashion show, I capture the essence of each character with meticulous detail.",
-			icon: theatre,
-		},
-		workshops: {
-			title: 'Workshops & Training',
-			description:
-				'Join my transformative workshops where I share my extensive knowledge, from SFX casualty makeup to intensive training sessions, nurturing the next generation of makeup artists.',
-			icon: workshops,
-		},
-		fashion: {
-			title: 'Fashion & Editorial',
-			description:
-				'Elevate your fashion projects with my creative flair. From fashion shows to editorial shoots, my work ensures your project is the epitome of style and sophistication.',
-			icon: fashion,
-		},
-		bespoke: {
-			title: 'Bespoke Services',
-			description: 'Tailored for your special occasions, from weddings to events, I provide personalized makeup services that ensure you look and feel your absolute best.',
-			icon: bespoke,
-		},
-	},
 	imgStart: false,
 	alt: 'Emma Robyn at Work',
 	dark: true,
