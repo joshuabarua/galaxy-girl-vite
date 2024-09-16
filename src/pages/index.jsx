@@ -52,7 +52,7 @@ const Home = () => {
 				start: 'top top',
 				end: 'bottom bottom',
 				scrub: 1.5,
-				markers: true,
+				markers: false,
 			},
 		});
 		scrollTr
