@@ -21,7 +21,7 @@ const Home = () => {
 				opacity: 0,
 				delay: 0.2,
 				ease: 'power4.in',
-				stagger: 0.8,
+				stagger: 0.3,
 			})
 			.from(
 				'.hero-h2',
@@ -29,7 +29,7 @@ const Home = () => {
 					opacity: 0,
 					y: 30,
 				},
-				'+=.8'
+				'+=.5'
 			)
 			.from('.hero-p', {
 				opacity: 0,

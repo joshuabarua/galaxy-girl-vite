@@ -89,11 +89,10 @@ const Resume = () => {
 						<div className="transferrable-skills">
 							<h3>Transferrable Skills</h3>
 							<h4>
-								Drawing from my hospitality background, I've mastered swift, attentive service and meticulous attention to detail, vital in the time-sensitive and
-								detail-oriented realm of makeup artistry and VFX makeup. My experience has ingrained in me stringent hygiene standards, keen customer insight, and robust
-								organizational skills, essential for excelling in creative roles that demand precision, client understanding, and effective resource management. These
-								transferable skills, coupled with my financial acumen from managing monetary transactions and inventory, make me uniquely equipped to deliver exceptional
-								results in the dynamic field of makeup artistry.
+								Working in hospitality has allowed me to effectively manage my time cluring short turn arounds, promptly resolving issues and anticipating needs while
+								delivering a fast, frienclly service. It's also taught me to mal‹e great tea and coffee! I have training in hygiene, health and safety and customer service.
+								I've managed opening and closing cluties inclucling reconciliation of the cash drawer, so I have cash handling sl‹ills, as well as overseeing and
+								prioritising daily tasl‹s and handling stocl‹ control.
 							</h4>
 						</div>
 
