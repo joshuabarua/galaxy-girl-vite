@@ -18,6 +18,8 @@ const HeroSection = () => {
 		setHover(!hover);
 	};
 
+	const handleTouch = (e) => {};
+
 	return (
 		<div className="hero-container" id="home">
 			<div className="hero-bg">
@@ -32,6 +34,9 @@ const HeroSection = () => {
 					disablePictureInPicture={true}
 					disableRemotePlayback={true}
 					type="video/mp4"
+					onTouchMove={handleTouch}
+					onTouchStart={handleTouch}
+					onTouchEnd={handleTouch}
 				/>
 			</div>
 			<div className="hero-content opacity-0">
