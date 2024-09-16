@@ -8,6 +8,9 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import emailjs from '@emailjs/browser';
 import BrushStrokeImg from '../../assets/images/abstract/BrushStroke10.png';
 import Marquee from 'react-fast-marquee';
+import gsap from 'gsap';
+import {useGSAP} from '@gsap/react';
+import {ScrollTrigger} from 'gsap/ScrollTrigger';
 
 const Confetti = ({show}) => {
 	const defaultOptions = {
@@ -27,6 +30,30 @@ const Confetti = ({show}) => {
 };
 
 const Contact = () => {
+	useGSAP(() => {
+		const pageIntroTl = gsap.timeline();
+
+		pageIntroTl
+			.set('.contactOverlay', {opacity: 1})
+			.from('.pageTitle-header', {
+				opacity: 0,
+				y: 10,
+				duration: 0.5,
+				delay: 0.3,
+			})
+
+			.from(
+				'.form-container',
+				{
+					opacity: 0,
+					y: 20,
+					duration: 0.7,
+					delay: 0.3,
+				},
+				1
+			);
+	});
+
 	const [showConfetti, setShowConfetti] = useState(false);
 	const formRef = useRef();
 	const [formData, setFormData] = useState({
@@ -77,12 +104,12 @@ const Contact = () => {
 
 	return (
 		<Box className="contactBody">
-			<div className='DVDLogo'>
+			<div className="DVDLogo">
 				<img src={BrushStrokeImg} className="brushstrokeImg" />
 			</div>
-			<Box className="contactOverlay">
-				<div className="titleMsgText">
-					<h1> Send Me A Message </h1>
+			<Box className="contactOverlay opacity-0">
+				<div className="titleMsgText pageTitle-header">
+					<h1 className="text-3xl"> Send Me A Message </h1>
 				</div>
 
 				<Box className="form-container" sx={{minWidth: '300px'}}>
