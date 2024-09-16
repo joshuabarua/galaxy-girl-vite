@@ -77,7 +77,7 @@ const Home = () => {
 					ease: 'back.out(3)',
 					duration: 0.3,
 				},
-				0.6
+				0.9
 			)
 			.from('.heading', {
 				y: 20,
