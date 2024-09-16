@@ -42,9 +42,9 @@ const InfoSection = ({lightBg, lightText, imgStart, topLine, headline, darkText,
 							{headline}
 						</h1>
 						<>
-							<p className={`subtitle ${darkText ? 'dark-text' : ''}`} style={{color: darkText ? '#ddd8ff' : '#24003b'}}>
+							<span className={`subtitle ${darkText ? 'dark-text' : ''}`} style={{color: darkText ? '#ddd8ff' : '#24003b'}}>
 								<h1 fontSize={200}>{description}</h1>
-							</p>
+							</span>
 							<div className="btn-wrap">
 								{/* <Button to="/contact" primary="true" dark="true">
 									<h1>{buttonLabel}</h1>

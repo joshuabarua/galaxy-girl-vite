@@ -64,7 +64,7 @@ function GalleryCard({imageGroup, id}) {
 		navigate(`/portfolio/gallery/${id}`);
 	};
 	return (
-		<div className={styles.gallery_card} style={{animationDelay: `${0.1 * id}s`}} onClick={handleClick}>
+		<div className={`g_card ${styles.gallery_card}`} style={{animationDelay: `${0.1 * id}s`}} onClick={handleClick}>
 			<div className={styles.gallery_card_img}>
 				{isLoading && (
 					<div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%'}}>
@@ -74,7 +74,7 @@ function GalleryCard({imageGroup, id}) {
 				<img src={`${imageGroup.images[0].src}`} onLoad={() => setIsLoading(false)} />
 			</div>
 			<div className={styles.card_text}>
-				<h2>{imageGroup.name}</h2>
+				<h2 className="text-xl">{imageGroup.name}</h2>
 			</div>
 		</div>
 	);

@@ -55,20 +55,18 @@ const Resume = () => {
 
 						<div className="resume-contact">
 							<span>
-								<h2> Emma Robyn</h2>
-								<h5> Makeup Artist Trainee </h5>
-								<h5> Screen Skills Film Trainee 2020-21</h5>
-								<h5> London & Brighton based, willing to travel </h5>
-								<h5> Level 3 Theatrical Hair & Media Makeup </h5>
-								<h5>Level 2 Barbering</h5>
+								<h1 className="text-2xl"> Emma Robyn</h1>
+								<h5 className="text-xl"> Makeup Junior </h5>
+								<h5> Screen Skills Film Trainee Alumni 2021</h5>
+								<h5> London | Brighton | Reading </h5>
 								<h5> Full UK Driving License </h5>
 							</span>
 						</div>
 
 						<div className="resume-bio">
 							<h4>
-								A creative makeup artist looking to work in the film industry by expanding my expertise, knowledge, and repertoire of skills having been accepted as a
-								Screenskills 2020/21 trainee.
+								An aspiring makeup artist junior, passionate about creating magic in the world of film and television, excited to enhance my skills and use my craft to aid
+								in the storytelling process. Looking to move into the world of SFX makeup.
 							</h4>
 						</div>
 
@@ -77,15 +75,14 @@ const Resume = () => {
 						<div className="qualifications">
 							<h3>Qualifications and Training</h3>
 							<ul>
-								<li>Extended Level 3 Diploma in Theatrical hair and Media Makeup – Grade: Distinction.</li>
-								<li>Diploma in Gel Polish – accredited by the Guild of Beauty Therapists.</li>
-								<li>3 intensive Days Flat mould and SFX training with Laura Odette Phipps.</li>
-								<li>Screenskills training -Production safety Passport (Safe management of productions). Tackling Harassment and Bullying at work</li>
+								<li>Extended Level 3 Theatrical hair and Media Makeup</li>
+								<li>Level 2 Barbering</li>
+								<li>MOISO 3 day Afro hair skills course - Iver Academy</li>
+								<li>Diploma in Gel Polish – accredited by the Guild of Beauty Therapists</li>
+								<li>3 Intensive Days Flat mould and SFX training</li>
+								<li>Screenskills training -Production safety Passport: Safe management of productions. Tackling Harassment and Bullying at work</li>
 								<li>Coronavirus basic awareness on production training.</li>
 								<li>Barbicide Certification and Barbicide Covid-19 Certification.</li>
-								<li>Kryolan Casualty effects and Camouflage workshop.</li>
-								<li>Online Workshop with Naomi Donne.</li>
-								<li>Level 2 Barbering</li>
 							</ul>
 						</div>
 
