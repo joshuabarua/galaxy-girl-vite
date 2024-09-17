@@ -31,7 +31,7 @@ const WorkPortfolio = () => {
 					delay: 0.3,
 					stagger: 0.3,
 				},
-				1
+				0.6
 			);
 	});
 	return (

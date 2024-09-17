@@ -50,7 +50,7 @@ const Contact = () => {
 					duration: 0.7,
 					delay: 0.3,
 				},
-				1
+				0.6
 			);
 	});
 
