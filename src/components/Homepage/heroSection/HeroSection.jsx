@@ -1,15 +1,13 @@
-import React, {useState, useEffect, useRef} from 'react';
-import './heroSectionStyles.css'; // Import the CSS file
+import React, {useState, useEffect} from 'react';
+import './heroSectionStyles.css';
 import Video from '../../../assets/videos/video4.mp4';
 import {Button} from '../../../pages/buttonElement';
 import {MdKeyboardArrowRight, MdArrowForward} from 'react-icons/md';
 
-const HeroSection = () => {
+const HeroSection = (props) => {
+	const {vidRef} = props;
 	const [hover, setHover] = useState(false);
-	const vidRef = useRef();
-
-	//
-
+	//TODO: Uncomment this for prod
 	useEffect(() => {
 		vidRef.current.play();
 	}, []);
@@ -18,11 +16,16 @@ const HeroSection = () => {
 		setHover(!hover);
 	};
 
-	const handleTouch = (e) => {};
+	const handleTouch = (e) => {
+		e.preventDefault();
+	};
 
 	return (
 		<div className="hero-container" id="home">
 			<div className="hero-bg">
+				{
+					//TODO: Uncomment this for prod
+				}
 				<video
 					className="video-bg"
 					playsInline
