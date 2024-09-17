@@ -1,6 +1,5 @@
 import React from 'react';
-import {Button} from '../../../pages/buttonElement';
-import './infoSectionStyles.css';
+// import './infoSectionStyles.css';
 import BrushStrokeImg from '../../../assets/images/abstract/BrushStroke4.png';
 import BrushStrokeImg2 from '../../../assets/images/abstract/BrushStroke2.png';
 import BrushStrokeImg3 from '../../../assets/images/abstract/BrushStroke9.png';
@@ -11,64 +10,35 @@ import BrushStrokeImg5 from '../../../assets/images/abstract/BrushStroke6.png';
 
 const InfoSection = ({lightBg, lightText, imgStart, topLine, headline, darkText, description, buttonLabel, alt, imgEm, services}) => {
 	return (
-		<div className={`${'info-container'} ${lightBg ? 'light-bg' : ''} h-screen`}>
-			<div className={`info-row ${imgStart ? 'img-start' : ''} pt-8`}>
-				{imgEm && (
-					<div className="img-wrap">
-						<img src={imgEm} alt={alt} className="infoSectionImg" />
-						<img
-							src={BrushStrokeImg3}
-							alt="imghere"
-							style={{width: '5vw', minWidth: '100px', position: 'absolute', zIndex: -1, right: '-25px', marginTop: '-200px', transform: 'rotate(50deg)', opacity: '60%'}}
-						/>
-						<img
-							src={BrushStrokeImg4}
-							alt="imghere"
-							style={{
-								width: '5vw',
-								minWidth: '150px',
-								position: 'absolute',
-								zIndex: -1,
-								left: '50px',
-								marginBottom: '-700px',
-								transform: 'rotate(100deg)',
-								opacity: '60%',
-							}}
-						/>
-					</div>
-				)}
-				<div className="text-area">
-					<div className="text-wrap">
-						<p className="top-line"> {topLine} </p>
-						<h1 className={`heading ${lightText ? 'light-text' : ''}`} style={{color: darkText ? '#ddd8ff' : '#24003b'}}>
-							{headline}
-						</h1>
-						<>
-							<span className={`subtitle ${darkText ? 'dark-text' : ''}`} style={{color: darkText ? '#ddd8ff' : '#24003b'}}>
-								<h1 fontSize={200}>{description}</h1>
-							</span>
-							<div className="btn-wrap">
-								{/* <Button to="/contact" primary="true" dark="true">
-									<h1>{buttonLabel}</h1>
-								</Button> */}
-								<img
-									src={BrushStrokeImg5}
-									alt="imghere"
-									style={{
-										width: '10vw',
-										minWidth: '200px',
-										position: 'absolute',
-										zIndex: -1,
-										right: '25%',
-										marginTop: '-100px',
-										transform: 'rotate(70deg)',
-										opacity: '60%',
-									}}
-								/>
-							</div>
-						</>
-					</div>
+		<div className={`h-screen flex justify-start items-center w-screen`}>
+			{/* <div className="img-wrap">
+				<img
+					src={BrushStrokeImg3}
+					alt="imghere"
+					style={{width: '5vw', minWidth: '100px', position: 'absolute', zIndex: -1, right: '-25px', marginTop: '-200px', transform: 'rotate(50deg)', opacity: '60%'}}
+				/>
+				<img
+					src={BrushStrokeImg4}
+					alt="imghere"
+					style={{
+						width: '5vw',
+						minWidth: '150px',
+						position: 'absolute',
+						zIndex: -1,
+						left: '50px',
+						marginBottom: '-700px',
+						transform: 'rotate(100deg)',
+						opacity: '60%',
+					}}
+				/>
+			</div> */}
+			<div className="w-screen h-[80vh] grid grid-cols-1 md:grid-cols-2 content-start items-start md:content-center md:items-start gap-8 px-4">
+				<div className="px-8 py-8 flex flex-col gap-4">
+					<p className="top-line text-[#01cf71] text-[44px] leading-[1.1] font-bold tracking-[10px] uppercase text-left font-[Rowdies]"> {topLine} </p>
+					<h1 className="heading text-lg md:text-2xl"> {headline} </h1>
+					<p className="subtitle text-base md:text-xl"> {description} </p>
 				</div>
+				{imgEm && <img src={imgEm} alt={alt} className="max-w-[700px] w-full rounded-[12px] min-w-[200px] img-em" />}
 			</div>
 		</div>
 	);
