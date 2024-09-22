@@ -89,10 +89,10 @@ const Resume = () => {
 						<div className="transferrable-skills">
 							<h3>Transferrable Skills</h3>
 							<h4>
-								Working in hospitality has allowed me to effectively manage my time cluring short turn arounds, promptly resolving issues and anticipating needs while
-								delivering a fast, frienclly service. It's also taught me to mal‹e great tea and coffee! I have training in hygiene, health and safety and customer service.
-								I've managed opening and closing cluties inclucling reconciliation of the cash drawer, so I have cash handling sl‹ills, as well as overseeing and
-								prioritising daily tasl‹s and handling stocl‹ control.
+								Working in hospitality has allowed me to effectively manage my time during short turn arounds, promptly resolving issues and anticipating needs while
+								delivering a fast, friendly service. It's also taught me to mal‹e great tea and coffee! I have training in hygiene, health and safety and customer service.
+								I've managed opening and closing duties including reconciliation of the cash drawer, so I have cash handling skills, as well as overseeing and prioritising
+								daily tasks and handling stock control.
 							</h4>
 						</div>
 
