@@ -10,11 +10,9 @@ import Navbar from './components/nav/Navbar';
 import Dropdown from './components/dropdown/Dropdown';
 import NotFound from './pages/NotFound';
 import GalleryGroup from './pages/portfolio/GalleryGroup';
-import PageLoading from './components/pageLoading/PageLoading';
 
 function App() {
 	const [isOpen, setIsOpen] = useState(false);
-	const [loading, setLoading] = useState(true);
 
 	const toggle = () => {
 		setIsOpen(!isOpen);
@@ -22,9 +20,6 @@ function App() {
 
 	return (
 		<Router>
-			{/* {loading ? (
-				<PageLoading loading={loading} />
-			) : ( */}
 			<>
 				<Navbar toggle={toggle} />
 				<Dropdown isOpen={isOpen} toggle={toggle} />

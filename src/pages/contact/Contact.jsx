@@ -1,10 +1,8 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import Lottie from 'react-lottie';
 import confettiData from '../../assets/lotties/confetti2.json';
 import './contact.css';
 import {Box, Stack, Button} from '@mui/material';
-import {useTheme} from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import emailjs from '@emailjs/browser';
 import BrushStrokeImg from '../../assets/images/abstract/BrushStroke10.png';
 import gsap from 'gsap';
@@ -78,8 +76,29 @@ const Contact = () => {
 		}
 	};
 
-	const theme = useTheme();
-	const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
+	useEffect(() => {
+		const handleKeyboardVisibilityChange = (event) => {
+			if (event.visible) {
+				console.log('Keyboard is visible');
+				document.body.style.overflow = 'hidden';
+				const activeElement = document.activeElement;
+				if (activeElement && inputRefs.current[activeElement.name]) {
+					inputRefs.current[activeElement.name].scrollIntoView({behavior: 'smooth', block: 'center'});
+				}
+			} else {
+				console.log('Keyboard is hidden');
+				document.body.style.overflow = '';
+			}
+		};
+
+		if ('virtualKeyboard' in navigator) {
+			navigator.virtualKeyboard.addEventListener('keyboardvisibilitychange', handleKeyboardVisibilityChange);
+
+			return () => {
+				navigator.virtualKeyboard.removeEventListener('keyboardvisibilitychange', handleKeyboardVisibilityChange);
+			};
+		}
+	}, []);
 
 	return (
 		<Box className="contactBody 100vh">
