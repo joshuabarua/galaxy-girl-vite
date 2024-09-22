@@ -114,7 +114,7 @@ const Home = () => {
 		{dependencies: [ready]};
 
 	return (
-		<div className="home">
+		<div className="flex flex-col">
 			<HeroSection vidRef={vidRef} />
 			<InfoSection {...aboutObjOne} />
 			<Slider />

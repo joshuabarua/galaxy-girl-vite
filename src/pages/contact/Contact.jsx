@@ -103,7 +103,7 @@ const Contact = () => {
 	const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
 
 	return (
-		<Box className="contactBody">
+		<Box className="contactBody 100vh">
 			<div className="DVDLogo">
 				<img src={BrushStrokeImg} className="brushstrokeImg" />
 			</div>
