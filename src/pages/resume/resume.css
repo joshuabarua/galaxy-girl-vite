@@ -128,11 +128,12 @@ text {
 	}
 
 	.resume-container {
-		padding: 30px;
+		padding: 10px;
 	}
 
 	.resume-wrapper {
 		padding: 10px;
+		margin-top: 50px;
 		min-width: 330px;
 	}
 	h2 {
