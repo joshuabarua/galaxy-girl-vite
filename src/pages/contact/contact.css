@@ -267,14 +267,13 @@ form button:hover {
 
 @media screen and (max-width: 500px) {
 	.contactBody {
-		margin-top: 100px;
 		align-items: flex-start;
-		margin-bottom: 40px;
 		height: 100vh;
 	}
 
 	.contactOverlay {
 		width: 90%;
+		padding-top: 80px;
 		.form-container {
 			height: 100%;
 			padding: 10px;
@@ -295,7 +294,6 @@ form button:hover {
 
 @media screen and (max-height: 1080px) {
 	.contactBody {
-		margin-top: 80px;
 	}
 }
 

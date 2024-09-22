@@ -11,7 +11,7 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const WorkPortfolio = () => {
 	useGSAP(() => {
-		const pageIntroTl = gsap.timeline();
+		const pageIntroTl = gsap.timeline({});
 
 		pageIntroTl
 			.set('.pageContainer', {opacity: 1})
@@ -27,12 +27,20 @@ const WorkPortfolio = () => {
 				{
 					opacity: 0,
 					y: 20,
-					duration: 0.7,
+					duration: 0.6,
 					delay: 0.3,
 					stagger: 0.3,
 				},
 				0.6
 			);
+
+		ScrollTrigger.create({
+			trigger: '.pageContainer',
+			start: 'top center',
+			onEnter: () => pageIntroTl.play(),
+			onLeaveBack: () => {},
+			once: true,
+		});
 	});
 	return (
 		<div style={{scrollBehavior: 'smooth'}}>
@@ -43,9 +51,7 @@ const WorkPortfolio = () => {
 
 				<div className={`galleryCards ${styles.gallery_card_container}`}>
 					{Object.values(gallery[0]).map((val, idx) => (
-						<FadeInSection key={idx} id={idx}>
-							<GalleryCard imageGroup={val} id={idx + 1} />
-						</FadeInSection>
+						<GalleryCard imageGroup={val} id={idx + 1} key={idx} />
 					))}
 				</div>
 			</div>

@@ -15,7 +15,7 @@ const Resume = () => {
 					.toReversed()
 					.map(([id, data]) => (
 						<div className="experience-item" key={id}>
-							<h4>{data.title}</h4>
+							<p>{data.title}</p>
 							<p>{`${data.designer} ${data.position ? `- ${data.position}` : ''} `}</p>
 							<p>{data.role}</p>
 							<p>{data.date}</p>
@@ -102,8 +102,9 @@ const Resume = () => {
 							</h4>
 						</div>
 
-						<div className="gpdr">
-							<h5>GDPR STATEMENT: This CV may be kept on file and distributed for employment purposes</h5>
+						<div className="gpdr italic felx flex-col">
+							<h5>GDPR STATEMENT</h5>
+							<h5>This CV may be kept on file and distributed for employment purposes</h5>
 						</div>
 					</div>
 				</div>

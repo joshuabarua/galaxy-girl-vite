@@ -96,10 +96,10 @@
 	}
 }
 
-.gallery_card:hover {
+/* .gallery_card:hover {
 	transform: translateY(-5px);
 	transition: ease-in-out 0.3s all;
-}
+} */
 
 .gallery_card h2 {
 	color: #01cf71;

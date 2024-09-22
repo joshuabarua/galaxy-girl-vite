@@ -15,23 +15,29 @@ import Marquee from 'react-fast-marquee';
 
 const Slider = () => {
 	const companies = [
-		{logo: Underglass, className: 'logosImg4'},
 		{logo: Jacobsminis, className: 'logosImg3'},
 		{logo: Imdb, className: 'logosImg2'},
-		{logo: Goodwood, className: 'logosImg2'},
 		{logo: Netflix, className: 'logosImg2'},
 		{logo: perfect10, className: 'logosImg2'},
 		{logo: Itv, className: 'logosImg2'},
 		{logo: Amw, className: 'logosImg2'},
-		{logo: Baerclaw, className: 'logosImg2'},
 		{logo: Aws, className: 'logosImg2'},
 	];
 
 	return (
-		<div className="marquee-container">
+		<div className="marquee-container flex">
 			<Marquee speed={70} gradient={false}>
 				{companies.map((company, index) => {
-					return <img key={index} src={company.logo} className={`${company.className} marquee-logo`} style={{margin: '0 30px'}} alt="company-logo" />;
+					return (
+						<img
+							size={'40px'}
+							key={index}
+							src={company.logo}
+							className={`${company.className} marquee-logo size-20 rounded-sm`}
+							style={{margin: '0 20px'}}
+							alt="company-logo"
+						/>
+					);
 				})}
 			</Marquee>
 		</div>

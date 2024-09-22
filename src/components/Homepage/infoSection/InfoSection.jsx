@@ -10,7 +10,7 @@ import BrushStrokeImg5 from '../../../assets/images/abstract/BrushStroke6.png';
 
 const InfoSection = ({lightBg, lightText, imgStart, topLine, headline, darkText, description, buttonLabel, alt, imgEm, services}) => {
 	return (
-		<div className={`h-screen flex justify-start items-center w-screen`}>
+		<div className={` flex justify-start items-center w-screen`}>
 			{/* <div className="img-wrap">
 				<img
 					src={BrushStrokeImg3}
@@ -32,13 +32,15 @@ const InfoSection = ({lightBg, lightText, imgStart, topLine, headline, darkText,
 					}}
 				/>
 			</div> */}
-			<div className="w-screen h-[80vh] grid grid-cols-1 md:grid-cols-2 content-start items-start md:content-center md:items-start gap-8 px-4">
+			<div className="w-screen h-full grid grid-cols-1 md:grid-cols-2 content-start items-start md:content-center md:items-start gap-8 px-4">
 				<div className="px-8 py-8 flex flex-col gap-4">
 					<p className="top-line text-[#01cf71] text-[44px] leading-[1.1] font-bold tracking-[10px] uppercase text-left font-[Rowdies]"> {topLine} </p>
 					<h1 className="heading text-lg md:text-2xl"> {headline} </h1>
 					<p className="subtitle text-base md:text-xl"> {description} </p>
 				</div>
-				{imgEm && <img src={imgEm} alt={alt} className="max-w-[700px] w-full rounded-[12px] min-w-[200px] img-em" />}
+				<div className="flex justify-center items-center p-8">
+					{imgEm && <img src={imgEm} alt={alt} className=" max-w-[400px] md:max-w-[600px] w-full rounded-[12px] min-w-[200px] img-em" />}
+				</div>
 			</div>
 		</div>
 	);

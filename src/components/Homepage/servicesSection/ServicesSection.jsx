@@ -23,7 +23,7 @@ export default function ServicesSection() {
 	];
 
 	return (
-		<section className="w-full h-1/2 py-12 md:py-24 lg:py-32 bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 ">
+		<section className="w-full h-full py-12 md:py-24 lg:py-32 bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 ">
 			<div className="flex flex-col justify-center items-center  gap-24">
 				<div className="grid gap-6 sm:grid-cols-1 lg:grid-cols-3 h-2/3  px-20">
 					{services.map((service, index) => (

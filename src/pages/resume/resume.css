@@ -105,9 +105,10 @@ text {
 
 .references,
 .gpdr {
-	margin-top: 25px;
+	margin: 25px 25px 0 25px;
 	display: flex;
 	justify-content: center;
+	align-items: center;
 }
 
 .qualifications h3,
@@ -142,6 +143,6 @@ text {
 	h5,
 	h6,
 	ul li {
-		font-size: x-small;
+		font-size: small;
 	}
 }
