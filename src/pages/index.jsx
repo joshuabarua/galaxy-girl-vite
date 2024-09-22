@@ -85,7 +85,7 @@ const Home = () => {
 					ease: 'back.out(3)',
 					duration: 0.3,
 				},
-				0.2
+				0.1
 			)
 			.from(
 				'.heading',
@@ -93,7 +93,7 @@ const Home = () => {
 					y: 30,
 					opacity: 0,
 				},
-				0.4
+				0.2
 			)
 			.from(
 				'.subtitle',
@@ -101,14 +101,14 @@ const Home = () => {
 					y: 30,
 					opacity: 0,
 				},
-				0.5
+				0.2
 			)
 			.from(
 				'.img-em',
 				{
 					opacity: 0,
 				},
-				0.5
+				0.3
 			);
 	}),
 		{dependencies: [ready]};
