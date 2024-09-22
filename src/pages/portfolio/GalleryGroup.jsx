@@ -64,11 +64,7 @@ export default function GalleryGroup() {
 			layout: {index},
 		} = photoAlbumObj;
 
-		return (
-			<FadeInSection key={src}>
-				{isLoading ? <CircularProgress /> : <img src={src} alt={alt} style={{width: '100%', cursor: 'pointer'}} onClick={() => handleClick(index)} />}
-			</FadeInSection>
-		);
+		return isLoading ? <CircularProgress /> : <img src={src} alt={alt} style={{width: '100%', cursor: 'pointer'}} onClick={() => handleClick(index)} />;
 	};
 
 	return (
@@ -87,8 +83,8 @@ export default function GalleryGroup() {
 					}))}
 					renderPhoto={renderPhoto}
 					columns={columns}
-					spacing={6}
-					padding={0}
+					spacing={1}
+					padding={2}
 				/>
 				<Lightbox
 					slides={gallery[0][galleryId].images.map((photo) => ({

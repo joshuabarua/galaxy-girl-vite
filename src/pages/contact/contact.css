@@ -25,10 +25,8 @@
 
 .titleMsgText {
 	color: #01cf71;
-	font-size: 22px;
-	line-height: 1.2;
 	font-weight: 700;
-	letter-spacing: 10px;
+	letter-spacing: 5px;
 	text-transform: uppercase;
 	display: flex;
 	justify-content: center;
@@ -108,7 +106,6 @@
 	border-radius: 5px;
 	resize: none;
 	width: 100%;
-
 	color: rgb(88, 2, 142);
 }
 
@@ -247,17 +244,13 @@ form button:hover {
 	}
 
 	.contactOverlay {
-		gap: 30px;
+		gap: 10px;
 		min-width: 300px;
 	}
 
 	.titleMsgText {
 		min-width: 200px;
 		height: 50px;
-	}
-
-	.titleMsgText > h1 {
-		font-size: 20px;
 	}
 
 	.form-container {
@@ -282,24 +275,19 @@ form button:hover {
 		.form-container form {
 			height: 100%;
 		}
-
-		.titleMsgText {
-			font-size: 16px;
-		}
 	}
+
+	.form-btn button {
+		width: 40%;
+		min-width: 150px;
+		height: 40px;
+	}
+
+	.form-container form {
+		gap: 10px;
+	}
+
 	.brushstrokeImg {
 		top: -0px;
-	}
-}
-
-@media screen and (max-height: 1080px) {
-	.contactBody {
-	}
-}
-
-@media screen and (min-height: 300px) and(max-height: 780px) {
-	.contactBody {
-		margin-top: 100px;
-		height: 100vh;
 	}
 }

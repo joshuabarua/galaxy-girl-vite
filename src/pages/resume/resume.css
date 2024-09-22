@@ -58,6 +58,10 @@ text {
 	padding: 0px 0px 10px 10px;
 }
 
+.experience-item:nth-child(odd) {
+	background-color: #fbf8fc6e; /* Grey background color */
+}
+
 .resume-contact {
 	display: flex;
 	justify-content: center;
