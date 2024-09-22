@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useRef} from 'react';
 import Lottie from 'react-lottie';
 import confettiData from '../../assets/lotties/confetti2.json';
 import './contact.css';
@@ -7,12 +7,11 @@ import {useTheme} from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import emailjs from '@emailjs/browser';
 import BrushStrokeImg from '../../assets/images/abstract/BrushStroke10.png';
-import Marquee from 'react-fast-marquee';
 import gsap from 'gsap';
 import {useGSAP} from '@gsap/react';
-import {ScrollTrigger} from 'gsap/ScrollTrigger';
+import useFormData from '../../hooks/useFormData';
 
-const Confetti = ({show}) => {
+export const Confetti = ({show}) => {
 	const defaultOptions = {
 		loop: false,
 		autoplay: true,
@@ -54,35 +53,15 @@ const Contact = () => {
 			);
 	});
 
+	const {formData, setFormData, handleInputChange} = useFormData();
 	const [showConfetti, setShowConfetti] = useState(false);
 	const formRef = useRef();
-	const [formData, setFormData] = useState({
-		from_name: '',
-		from_email: '',
-		subject: '',
-		message: '',
-		to_name: 'Galaxy Girl Website',
-	});
-
-	const handleInputChange = (e) => {
-		const {name, value} = e.target;
-		setFormData((prevState) => ({
-			...prevState,
-			[name]: value,
-		}));
-	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setShowConfetti(true);
 		try {
-			const result = await emailjs.sendForm(
-				import.meta.env.VITE_EMAILJS_SERVICE_ID,
-				import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-				formRef.current,
-				import.meta.env.VITE_EMAILJS_PUBLIC
-			);
-			console.log('Form sent successfully:', result.text);
+			await emailjs.sendForm(import.meta.env.VITE_EMAILJS_SERVICE_ID, import.meta.env.VITE_EMAILJS_TEMPLATE_ID, formRef.current, import.meta.env.VITE_EMAILJS_PUBLIC);
 			setFormData({
 				from_name: '',
 				from_email: '',
@@ -109,15 +88,15 @@ const Contact = () => {
 			</div>
 			<Box className="contactOverlay opacity-0">
 				<div className="titleMsgText pageTitle-header">
-					<h1 className="text-3xl"> Send Me A Message </h1>
+					<h1 className="text-xl md:text-3xl"> Send Me A Message </h1>
 				</div>
 
 				<Box className="form-container" sx={{minWidth: '300px'}}>
-					<form action="" onSubmit={handleSubmit} ref={formRef}>
-						<Stack className="flexCol" spacing={5} sx={{width: '100%', height: '100%'}}>
-							<Stack direction="column" className="flexCol inputGroup" gap={2}>
+					<form ref={formRef} onSubmit={handleSubmit}>
+						<Stack spacing={1} sx={{width: '100%', height: '100%'}}>
+							<Stack direction="column" gap={2} className="inputGroup">
 								{/* Name */}
-								<Stack direction="column" gap={1} className="inputStack">
+								<Stack direction="column" className="inputStack">
 									<label className="form-label" htmlFor="contact-name">
 										Name / Company
 									</label>
@@ -134,9 +113,8 @@ const Contact = () => {
 								</Stack>
 
 								{/* Email */}
-								<Stack direction="column" gap={1} className="inputStack">
+								<Stack direction="column" className="inputStack">
 									<label className="form-label" htmlFor="contact-email">
-										{' '}
 										Email
 									</label>
 									<input
@@ -152,10 +130,9 @@ const Contact = () => {
 								</Stack>
 
 								{/* Subject */}
-								<Stack direction="column" gap={1} className="inputStack">
+								<Stack direction="column" className="inputStack">
 									<label className="form-label" htmlFor="contact-subject">
-										{' '}
-										Subject{' '}
+										Subject
 									</label>
 									<input
 										type="text"
@@ -172,13 +149,12 @@ const Contact = () => {
 
 							{/* Message */}
 							<Stack className="flexCol inputGroup2">
-								<Stack className="inputStack flexCol" gap={1} alignItems={'flex-start'}>
+								<Stack className="inputStack flexCol" alignItems={'flex-start'}>
 									<label className="form-label" htmlFor="message">
-										{' '}
 										Message
 									</label>
 									<textarea
-										placeholder="Lets make it happen..."
+										placeholder="Let's make it happen..."
 										id="message"
 										name="message"
 										value={formData.message}
@@ -190,7 +166,9 @@ const Contact = () => {
 						</Stack>
 
 						<div className="form-row form-btn">
-							<button> Send Message </button>
+							<Button size="small" type="submit" variant="contained" color="primary">
+								Send Message
+							</Button>
 						</div>
 					</form>
 				</Box>
@@ -201,3 +179,15 @@ const Contact = () => {
 };
 
 export default Contact;
+
+{
+	/* <Stack spacing={3}>
+	<input type="text" name="from_name" placeholder="Your Name" value={formData.from_name} onChange={handleInputChange} required />
+	<input type="email" name="from_email" placeholder="Your Email" value={formData.from_email} onChange={handleInputChange} required />
+	<input type="text" name="subject" placeholder="Subject" value={formData.subject} onChange={handleInputChange} required />
+	<textarea name="message" placeholder="Your Message" value={formData.message} onChange={handleInputChange} required></textarea>
+	<Button type="submit" variant="contained" color="primary">
+		Send Message
+	</Button>
+</Stack>; */
+}

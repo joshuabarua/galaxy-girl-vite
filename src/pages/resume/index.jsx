@@ -38,7 +38,7 @@ const Resume = () => {
 								<IconContext.Provider
 									value={{
 										color: '#63E6BE',
-										size: isSmallScreen ? '20px' : '30px',
+										size: isSmallScreen ? '16px' : '30px',
 									}}>
 									<a href={`tel:${import.meta.env.VITE_PHONE}`}>
 										<FaPhone />
