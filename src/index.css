@@ -2,13 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Minimal Scandinavian Design - Global Styles */
+
 :root {
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-	line-height: 1.5;
-	font-weight: 400;
-	color-scheme: light dark;
-	color: rgba(255, 255, 255, 0.87);
-	background-color: #ddd8ff;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+	line-height: 1.6;
+	font-weight: 300;
+	color-scheme: light;
+	color: #000;
+	background-color: #fff;
 	overflow-x: hidden;
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
@@ -16,35 +18,33 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-a {
-	font-weight: 500;
-	color: #646cff;
-	text-decoration: inherit;
-}
-
-a:hover {
-	color: #535bf2;
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 body {
-	overflow: hidden;
 	margin: 0;
-	display: flex;
-	place-items: center;
 	min-height: 100vh;
-	min-width: 100vw;
-	width: 100vw;
+	background: #fff;
+	color: #000;
+	overflow-x: hidden;
 }
 
-.body-container {
-	display: flex;
-	flex-direction: column;
+#root {
 	min-height: 100vh;
 }
 
+.app-minimal {
+	min-height: 100vh;
+	background: #fff;
+}
+
+/* Remove old body-container and content classes */
+.body-container,
 .content {
-	overflow-y: auto;
-	flex: 1;
+	display: block;
 }
 
 h1 {

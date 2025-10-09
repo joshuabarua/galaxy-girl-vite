@@ -1,0 +1,16 @@
+.context-logo {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* GSAP will manage x/y or xPercent/yPercent and scaling */
+  font-size: clamp(3rem, 10vw, 9rem);
+  font-weight: 200;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: #000;
+  pointer-events: none;
+  z-index: 1001;
+  will-change: transform, top, left;
+  text-decoration: none;
+  white-space: nowrap;
+}
