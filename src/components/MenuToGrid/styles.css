@@ -1,0 +1,320 @@
+/* MenuToGrid Styles - Minimal Scandinavian Design */
+
+.menu-to-grid {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  background: #fff;
+}
+
+/* Loading state */
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  color: #000;
+  font-size: 1.5rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  z-index: 9999;
+}
+
+body.loading {
+  overflow: hidden;
+}
+
+body.oh {
+  overflow: hidden;
+}
+
+/* Rows Container */
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Row */
+.row {
+  position: relative;
+  border-top: 1px solid #e0e0e0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.row:last-child {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.row:hover {
+  background-color: #fafafa;
+}
+
+.row--current {
+  pointer-events: none;
+}
+
+.row__content {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  padding: 2rem 0;
+  gap: 2rem;
+}
+
+/* Cell - Image */
+.cell--image {
+  position: relative;
+  overflow: hidden;
+}
+
+.cell__img-wrap {
+  display: flex;
+  gap: 1rem;
+  position: relative;
+}
+
+.cell__img {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.8);
+  background-size: cover;
+  background-position: center;
+}
+
+.cell__img-inner {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.3s ease;
+}
+
+.row:hover .cell__img-inner {
+  transform: scale(1.05);
+}
+
+/* Cell - Title */
+.cell--title {
+  position: relative;
+}
+
+.cell__title-wrap {
+  position: relative;
+  overflow: hidden;
+  height: 3rem;
+}
+
+.cell__title {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 300;
+  line-height: 1;
+  color: #000;
+  position: relative;
+  letter-spacing: -0.01em;
+}
+
+.cell__title-inner {
+  display: block;
+  position: relative;
+}
+
+.cell__title--switch .cell__title-inner {
+  position: absolute;
+}
+
+/* Preview Container */
+.preview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.preview__item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  overflow: auto;
+}
+
+.preview__item--current {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.preview__item-content {
+  padding: 4rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.preview__item-header {
+  margin-bottom: 3rem;
+  overflow: hidden;
+}
+
+.preview__item-title {
+  margin: 0;
+  font-size: 3rem;
+  font-weight: 300;
+  color: #000;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.preview__item-title-inner {
+  display: block;
+}
+
+/* Preview Grid */
+.preview__item-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  position: relative;
+}
+
+.preview__item-img {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0);
+}
+
+.preview__item-img-inner {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.3s ease;
+}
+
+.preview__item-img:hover .preview__item-img-inner {
+  transform: scale(1.05);
+}
+
+/* Close Button */
+.preview__close {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  border: 1px solid #e0e0e0;
+  background: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.preview__close--show {
+  pointer-events: auto;
+}
+
+.preview__close:hover {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.preview__close svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Cover */
+.cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 50;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .menu-to-grid {
+    padding: 1rem;
+  }
+
+  .row__content {
+    grid-template-columns: 1fr;
+    padding: 1.5rem 0;
+  }
+
+  .cell__img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .cell__title {
+    font-size: 1.8rem;
+  }
+
+  .preview__item-title {
+    font-size: 2rem;
+  }
+
+  .preview__item-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+
+  .preview__item-content {
+    padding: 3rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cell__img-wrap {
+    gap: 0.5rem;
+  }
+
+  .cell__img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .cell__title {
+    font-size: 1.5rem;
+  }
+
+  .preview__item-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+}
