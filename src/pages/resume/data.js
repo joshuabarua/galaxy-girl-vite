@@ -18,7 +18,7 @@ export const experienceData = {
 			date: 'Feb - Apr 2024',
 		},
 		15: {
-			title: 'The Blitz (reshoots)',
+			title: 'Blitz (reshoots)',
 			designer: 'Naomi Donne',
 			position: 'Makeup Designer',
 			role: 'Main Team, hair & makeup trainee',
@@ -46,7 +46,7 @@ export const experienceData = {
 			date: 'Apr 2023',
 		},
 		11: {
-			title: 'The Blitz',
+			title: 'Blitz',
 			designer: 'Naomi Donne',
 			position: 'Makeup Designer',
 			role: 'Main Team, hair & makeup trainee',
