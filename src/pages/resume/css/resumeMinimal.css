@@ -8,6 +8,60 @@
   padding: 4rem 2rem 4rem;
 }
 
+@font-face {
+  font-family: 'BunnyMiltonTwoBold';
+  src: url('../../../assets/fonts/BunnyMonro/MiltonTwoBold/Milton_Two_Bold.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BunnyMLBBrewers';
+  src: url('../../../assets/fonts/BunnyMonro/MLB-Brewers/MLBBREWE.TTF') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EmpireSansSerifFLF';
+  src: url('../../../assets/fonts/Empireoflight/SansSerifFLF-Italic/SansSerifFLF-Italic.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EmpireColombia';
+  src: url('../../../assets/fonts/Empireoflight/Colombia1/Colombia-Regular.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'FlorencesansSCOutline';
+  src: url('../../../assets/fonts/Franchise/Florencesans-SC-Outline/Florsn39.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'LemonMilk';
+  src: url('../../../assets/fonts/Blitz/LEMON-MILK-Regular/LEMONMILK-Regular.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BrusioCondensed';
+  src: url('../../../assets/fonts/Allelujah/BrusioCondensed/Brusio_Condensed.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GameOfThrones';
+  src: url("../../../assets/fonts/HouseofDrag/Game of Thrones.ttf") format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Edelsans';
+  src: url('../../../assets/fonts/Witcher/edelsans_regular.otf') format('opentype');
+  font-display: swap;
+}
+
 .resume-container {
   max-width: 900px;
   margin: 0 auto;
@@ -138,6 +192,64 @@
   font-weight: 400;
   margin: 0;
   line-height: 1.3;
+}
+
+.experience-project.font-bunny {
+  font-family: 'BunnyMiltonTwoBold', 'Rowdies', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.experience-project.font-empire-of-light .empire {
+  font-family: 'EmpireSansSerifFLF', 'Rowdies', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  text-transform: uppercase;
+
+}
+
+.experience-project.font-empire-of-light .empire-of {
+  font-family: 'EmpireColombia', 'Rowdies', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  text-transform: lowercase;
+  font-size: 1.5rem;
+}
+
+.experience-project.font-franchise {
+  font-family: 'FlorencesansSCOutline', 'Rowdies', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+font-size: 2rem;
+}
+
+.experience-project.font-blitz {
+  font-family: 'LemonMilk', 'Rowdies', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.experience-project.font-allelujah {
+  font-family: 'BrusioCondensed', 'Rowdies', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+font-size: 2rem;
+
+}
+
+.experience-project.font-bunny .bunny-the {
+  font-family: 'BunnyMLBBrewers', 'Rowdies', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.experience-project.font-bunny .bunny-part-2 {
+  font-family: 'BunnyMiltonTwoBold', 'Rowdies', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+font-size: 2.5rem;
+}
+
+
+.experience-project.font-bunny .bunny-rest {
+  font-family: 'BunnyMLBBrewers', 'Rowdies', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.experience-project.font-house-of-dragon {
+  font-family: 'GameOfThrones', Georgia, 'Times New Roman', Times, serif;
+}
+
+.experience-project.font-witcher {
+  font-family: 'Edelsans', 'Rowdies', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* Prevent custom font overrides inside parentheses */
+.experience-project .no-custom-font {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
 }
 
 .experience-role {
