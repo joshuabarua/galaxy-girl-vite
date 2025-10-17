@@ -2,7 +2,7 @@
 
 .contact-minimal {
   min-height: 100vh;
-  background: #fff;
+  background: #f5f5f5;
   color: #000;
   padding: 6rem 2rem 4rem;
 }
@@ -124,7 +124,7 @@ a.info-value:hover {
   font-family: inherit;
   font-weight: 300;
   color: #000;
-  background: #fff;
+  background: #fafafa;
   border: 1px solid #e0e0e0;
   border-radius: 0;
   transition: border-color 0.3s ease;

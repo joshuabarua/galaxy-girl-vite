@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { getCloudinaryUrl } from '../../utils/cloudinary';
+import { getImageKitUrl } from '../../utils/imagekit';
 import './styles.css';
 
 /**
@@ -22,23 +22,30 @@ const Row = ({ data, index, onClick, isOpen }) => {
       <div className="row__content">
         <div className="cell cell--image">
           <div ref={imagesWrapRef} className="cell__img-wrap">
-            {data.images.slice(0, 5).map((img, idx) => (
-              <div 
-                key={idx} 
-                className="cell__img"
-                data-img-index={idx}
-                style={{ 
-                  backgroundImage: `url(${img.thumb || getCloudinaryUrl(img.cloudinaryId, { width: 300, height: 300 })})`,
-                }}
-              >
+            {data.images.slice(0, 5).map((img, idx) => {
+              const url = img.thumb
+                || (img.imagekitPath ? getImageKitUrl(img.imagekitPath, { width: 300, height: 300 }) : null)
+                || img.src
+                || '';
+              return (
                 <div 
-                  className="cell__img-inner"
+                  key={idx} 
+                  className="cell__img"
+                  data-img-index={idx}
                   style={{ 
-                    backgroundImage: `url(${img.thumb || getCloudinaryUrl(img.cloudinaryId, { width: 300, height: 300 })})`,
+                    backgroundImage: url ? `url(${url})` : undefined,
+                    '--img-index': idx
                   }}
-                />
-              </div>
-            ))}
+                >
+                  <div 
+                    className="cell__img-inner"
+                    style={{ 
+                      backgroundImage: url ? `url(${url})` : undefined,
+                    }}
+                  />
+                </div>
+              );
+            })}
           </div>
         </div>
         <div className="cell cell--title">

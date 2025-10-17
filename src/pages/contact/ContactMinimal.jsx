@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useGrained } from '../../hooks/useGrained';
+import { useFadeUpStagger } from '../../hooks/useFadeUpStagger';
 import './css/contactMinimal.css';
 
 /**
@@ -32,17 +34,28 @@ const ContactMinimal = () => {
     setTimeout(() => setStatus(''), 3000);
   };
 
+  // Apply grain to white background
+  useGrained('contact-minimal-bg');
+
+  // Staggered fade-up animations
+  useFadeUpStagger('.fade-up-item', {
+    delay: 250,
+    stagger: 70,
+    duration: 600,
+    distance: 40
+  });
+
   return (
-    <div className="contact-minimal">
+    <div id="contact-minimal-bg" className="contact-minimal">
       <div className="contact-container">
-        <header className="contact-header">
+        <header className="contact-header fade-up-item">
           <h1 className="contact-title">Get in Touch</h1>
           <p className="contact-subtitle">Let's work together</p>
         </header>
 
         <div className="contact-content">
           {/* Contact Info */}
-          <div className="contact-info">
+          <div className="contact-info fade-up-item">
             <div className="info-item">
               <span className="info-label">Email</span>
               <a href="mailto:emma@example.com" className="info-value">
@@ -76,7 +89,7 @@ const ContactMinimal = () => {
           </div>
 
           {/* Contact Form */}
-          <form className="contact-form" onSubmit={handleSubmit}>
+          <form className="contact-form fade-up-item" onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="name" className="form-label">Name</label>
               <input

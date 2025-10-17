@@ -1,6 +1,6 @@
 import React from 'react';
 import MenuToGrid from '../../components/MenuToGrid/MenuToGrid';
-import { cloudinaryGalleries } from './data/cloudinaryGalleryData';
+import { imagekitGalleries } from './data/imagekitGalleryData';
 import './css/portfolioMenuToGrid.css';
 
 /**
@@ -15,7 +15,7 @@ const PortfolioMenuToGrid = () => {
         <p className="portfolio-subtitle">Click on any category to explore the gallery</p>
       </div>
       
-      <MenuToGrid galleries={cloudinaryGalleries} />
+      <MenuToGrid galleries={imagekitGalleries} />
     </div>
   );
 };

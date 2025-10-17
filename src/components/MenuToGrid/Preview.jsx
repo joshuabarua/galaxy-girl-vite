@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { getCloudinaryUrl } from '../../utils/cloudinary';
+import { getImageKitUrl } from '../../utils/imagekit';
 import './styles.css';
 
 /**
@@ -24,20 +24,25 @@ const Preview = ({ data, index, isActive }) => {
           </h2>
         </div>
         <div ref={gridRef} className="preview__item-grid">
-          {data.images.map((img, idx) => (
-            <div 
-              key={idx} 
-              className="preview__item-img"
-              data-img-index={idx}
-            >
+          {data.images.map((img, idx) => {
+            const url = img.src
+              || (img.imagekitPath ? getImageKitUrl(img.imagekitPath, { width: 600, height: 600 }) : null)
+              || '';
+            return (
               <div 
-                className="preview__item-img-inner"
-                style={{ 
-                  backgroundImage: `url(${img.src || getCloudinaryUrl(img.cloudinaryId, { width: 600, height: 600 })})`,
-                }}
-              />
-            </div>
-          ))}
+                key={idx} 
+                className="preview__item-img"
+                data-img-index={idx}
+              >
+                <div 
+                  className="preview__item-img-inner"
+                  style={{ 
+                    backgroundImage: url ? `url(${url})` : undefined,
+                  }}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

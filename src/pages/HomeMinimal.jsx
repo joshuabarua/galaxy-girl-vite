@@ -2,7 +2,9 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MenuToGrid from '../components/MenuToGrid/MenuToGrid';
 import ContextLogo from '../components/ContextLogo/ContextLogo';
-import { cloudinaryGalleries } from './portfolio/data/cloudinaryGalleryData';
+import { imagekitGalleries } from './portfolio/data/imagekitGalleryData';
+import { useGrained } from '../hooks/useGrained';
+import { useFadeUpStagger } from '../hooks/useFadeUpStagger';
 import './css/homeMinimal.css';
 
 /**
@@ -17,8 +19,40 @@ const HomeMinimal = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  useEffect(() => {
+    const HERO_KEY = 'heroSubtitleAnimated';
+    const already = typeof window !== 'undefined' && window.localStorage && window.localStorage.getItem(HERO_KEY);
+
+    if (already) return; // do not re-animate on later visits
+
+    const handler = () => {
+      try {
+        const el = document.querySelector('.hero-content');
+        if (el) {
+          el.classList.add('hero-animated');
+        }
+        if (window.localStorage) window.localStorage.setItem(HERO_KEY, '1');
+      } catch {}
+      window.removeEventListener('route-transition-in-complete', handler);
+    };
+
+    window.addEventListener('route-transition-in-complete', handler);
+    return () => window.removeEventListener('route-transition-in-complete', handler);
+  }, []);
+
+  // Apply grain to white background
+  useGrained('home-minimal-bg');
+
+  // Staggered fade-up animations for page elements
+  useFadeUpStagger('.fade-up-item', {
+    delay: 250, // Wait for transition to complete
+    stagger: 80,
+    duration: 600,
+    distance: 40
+  });
+
   return (
-    <div className="home-minimal">
+    <div id="home-minimal-bg" className="home-minimal">
       <ContextLogo
         initialMode="center"
         trigger={{ type: 'scrollPercent', percent: 0.15 }}
@@ -29,12 +63,12 @@ const HomeMinimal = () => {
       />
       {/* Hero Section */}
       <section className="hero-section" id="hero-logo-container">
-        <div className="hero-content">
+        <div className="hero-content fade-up-item">
           <p className="hero-subtitle">Makeup Artist</p>
         </div>
         
         {/* Scroll indicator */}
-        <div className="scroll-indicator">
+        <div className="scroll-indicator fade-up-item">
           <span className="scroll-text">Scroll to explore</span>
           <div className="scroll-line"></div>
         </div>
@@ -42,7 +76,7 @@ const HomeMinimal = () => {
 
       {/* Gallery Section */}
       <section className="gallery-section">
-        <MenuToGrid galleries={cloudinaryGalleries} />
+        <MenuToGrid galleries={imagekitGalleries} />
       </section>
     </div>
   );

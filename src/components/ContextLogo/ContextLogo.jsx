@@ -44,7 +44,10 @@ const ContextLogo = ({
   dockOffsets = {},
   // legacy fallback
   offsets,
-  stabilize
+  stabilize,
+  // new: only animate into dock once, then stay docked on subsequent loads
+  animateOnce = true,
+  animateOnceKey = 'contextLogoAnimated'
 }) => {
   const logoRef = useRef(null);
 
@@ -176,15 +179,30 @@ const ContextLogo = ({
 
     const setupTriggers = (tl) => {
       let st;
+      const alreadyAnimated = animateOnce && typeof window !== 'undefined' && window.localStorage && window.localStorage.getItem(animateOnceKey);
+
+      if (alreadyAnimated) {
+        // Immediately dock and do not set any reverse behavior
+        tl.progress(1);
+        return null;
+      }
+
       if (trigger && trigger.type === 'scrollPercent') {
         const startPx = Math.round(window.innerHeight * (trigger.percent || 0.15));
         st = ScrollTrigger.create({
           trigger: 'body',
           start: () => startPx,
           end: 'max',
-          onEnter: () => tl.play(0),
-          onLeaveBack: () => tl.reverse(),
-          toggleActions: 'play none none reverse'
+          onEnter: () => {
+            tl.play(0);
+            if (animateOnce && window.localStorage) {
+              try { window.localStorage.setItem(animateOnceKey, '1'); } catch {}
+            }
+          },
+          onLeaveBack: () => {
+            if (!animateOnce) tl.reverse();
+          },
+          toggleActions: animateOnce ? 'play none none none' : 'play none none reverse'
         });
       } else if (trigger && trigger.type === 'element') {
         const trg = document.querySelector(trigger.selector) || 'body';
@@ -192,9 +210,16 @@ const ContextLogo = ({
           trigger: trg,
           start: trigger.start || 'bottom top+=100',
           end: 'max',
-          onEnter: () => tl.play(0),
-          onLeaveBack: () => tl.reverse(),
-          toggleActions: 'play none none reverse'
+          onEnter: () => {
+            tl.play(0);
+            if (animateOnce && window.localStorage) {
+              try { window.localStorage.setItem(animateOnceKey, '1'); } catch {}
+            }
+          },
+          onLeaveBack: () => {
+            if (!animateOnce) tl.reverse();
+          },
+          toggleActions: animateOnce ? 'play none none none' : 'play none none reverse'
         });
       } else {
         // No trigger: instantly dock
@@ -233,7 +258,9 @@ const ContextLogo = ({
     (dockOffsets && dockOffsets.x) || 0,
     (dockOffsets && dockOffsets.y) || 0,
     initialIncludeMargin ? 1 : 0,
-    stabilize || ''
+    stabilize || '',
+    animateOnce ? 1 : 0,
+    animateOnceKey
   ]);
 
   return (

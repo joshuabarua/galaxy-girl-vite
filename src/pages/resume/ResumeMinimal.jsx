@@ -1,5 +1,7 @@
 import React from 'react';
 import resumeData from './resumeData.json';
+import { useGrained } from '../../hooks/useGrained';
+import { useFadeUpStagger } from '../../hooks/useFadeUpStagger';
 import './css/resumeMinimal.css';
 
 /**
@@ -54,11 +56,22 @@ const ResumeMinimal = () => {
     return title;
   };
 
+  // Apply grain to white background
+  useGrained('resume-minimal-bg');
+
+  // Staggered fade-up animations
+  useFadeUpStagger('.fade-up-item', {
+    delay: 250,
+    stagger: 70,
+    duration: 600,
+    distance: 40
+  });
+
   return (
-    <div className="resume-minimal">
+    <div id="resume-minimal-bg" className="resume-minimal">
       <div className="resume-container">
         {/* Header */}
-        <header className="resume-header">
+        <header className="resume-header fade-up-item">
           <div className="resume-header-inner">
             <h1 className="resume-name">{resumeData.name}</h1>
             <p className="resume-title">{resumeData.title}</p>
@@ -69,7 +82,7 @@ const ResumeMinimal = () => {
         </header>
 
         {/* Contact */}
-        <section className="resume-section">
+        <section className="resume-section fade-up-item">
           <div className="resume-contact">
             {resumeData.contact.location && (
               <span className="contact-item">{resumeData.contact.location}</span>
@@ -82,14 +95,14 @@ const ResumeMinimal = () => {
 
         {/* Bio */}
         {resumeData.bio && (
-          <section className="resume-section">
+          <section className="resume-section fade-up-item">
             <p className="resume-bio">{resumeData.bio}</p>
           </section>
         )}
 
         {/* Experience */}
         {resumeData.experience && resumeData.experience.length > 0 && (
-          <section className="resume-section">
+          <section className="resume-section fade-up-item">
             <h2 className="section-title">Experience</h2>
             <div className="experience-list">
               {resumeData.experience.map((item, index) => (
@@ -114,7 +127,7 @@ const ResumeMinimal = () => {
 
         {/* Ongoing Projects */}
         {resumeData.ongoing && resumeData.ongoing.length > 0 && (
-          <section className="resume-section">
+          <section className="resume-section fade-up-item">
             <h2 className="section-title">Ongoing Work</h2>
             <div className="experience-list">
               {resumeData.ongoing.map((item, index) => (
