@@ -30,6 +30,8 @@ dist-ssr
 .env.production.local
 *.md
 
+# Local fonts (now served from ImageKit)
+/src/assets/fonts
 
 /build
 
