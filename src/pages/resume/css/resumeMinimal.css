@@ -10,55 +10,55 @@
 
 @font-face {
   font-family: 'BunnyMiltonTwoBold';
-  src: url('../../../assets/fonts/BunnyMonro/MiltonTwoBold/Milton_Two_Bold.otf') format('opentype');
+  src: url('https://ik.imagekit.io/t3aewf67s/fonts/BunnyMonro/MiltonTwoBold/Milton_Two_Bold.otf') format('opentype');
   font-display: swap;
 }
 
 @font-face {
   font-family: 'BunnyMLBBrewers';
-  src: url('../../../assets/fonts/BunnyMonro/MLB-Brewers/MLBBREWE.TTF') format('truetype');
+  src: url('https://ik.imagekit.io/t3aewf67s/fonts/BunnyMonro/MLB-Brewers/MLBBREWE.TTF') format('truetype');
   font-display: swap;
 }
 
 @font-face {
   font-family: 'EmpireSansSerifFLF';
-  src: url('../../../assets/fonts/Empireoflight/SansSerifFLF-Italic/SansSerifFLF-Italic.otf') format('opentype');
+  src: url('https://ik.imagekit.io/t3aewf67s/fonts/Empireoflight/SansSerifFLF-Italic/SansSerifFLF-Italic.otf') format('opentype');
   font-display: swap;
 }
 
 @font-face {
   font-family: 'EmpireColombia';
-  src: url('../../../assets/fonts/Empireoflight/Colombia1/Colombia-Regular.ttf') format('truetype');
+  src: url('https://ik.imagekit.io/t3aewf67s/fonts/Empireoflight/Columbia1/Colombia-Regular.ttf') format('truetype');
   font-display: swap;
 }
 
 @font-face {
   font-family: 'FlorencesansSCOutline';
-  src: url('../../../assets/fonts/Franchise/Florencesans-SC-Outline/Florsn39.ttf') format('truetype');
+  src: url('https://ik.imagekit.io/t3aewf67s/fonts/Franchise/Florencesans-SC-Outline/Florsn39.ttf') format('truetype');
   font-display: swap;
 }
 
 @font-face {
   font-family: 'LemonMilk';
-  src: url('../../../assets/fonts/Blitz/LEMON-MILK-Regular/LEMONMILK-Regular.otf') format('opentype');
+  src: url('https://ik.imagekit.io/t3aewf67s/fonts/Blitz/LEMON-MILK-Regular/LEMONMILK-Regular.otf') format('opentype');
   font-display: swap;
 }
 
 @font-face {
   font-family: 'BrusioCondensed';
-  src: url('../../../assets/fonts/Allelujah/BrusioCondensed/Brusio_Condensed.ttf') format('truetype');
+  src: url('https://ik.imagekit.io/t3aewf67s/fonts/Allelujah/BrusioCondensed/Brusio_Condensed.ttf') format('truetype');
   font-display: swap;
 }
 
 @font-face {
   font-family: 'GameOfThrones';
-  src: url("../../../assets/fonts/HouseofDrag/Game of Thrones.ttf") format('truetype');
+  src: url('https://ik.imagekit.io/t3aewf67s/fonts/HouseofDrag/Game%20of%20Thrones.ttf') format('truetype');
   font-display: swap;
 }
 
 @font-face {
   font-family: 'Edelsans';
-  src: url('../../../assets/fonts/Witcher/edelsans_regular.otf') format('opentype');
+  src: url('https://ik.imagekit.io/t3aewf67s/fonts/Witcher/edelsans_regular.otf') format('opentype');
   font-display: swap;
 }
 
