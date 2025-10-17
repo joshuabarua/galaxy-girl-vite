@@ -3,7 +3,7 @@ import { gsap } from 'gsap';
 import { Flip } from 'gsap/Flip';
 import Row from './Row';
 import Preview from './Preview';
-import { preloadImages, preloadFonts } from '../../utils/cloudinary';
+import { preloadImages, preloadFonts } from '../../utils/media';
 import './styles.css';
 
 gsap.registerPlugin(Flip);
@@ -186,7 +186,7 @@ const MenuToGrid = ({ galleries }) => {
     <div className="menu-to-grid">
       <div className="rows">
         {galleries.map((gallery, index) => (
-          <div key={index} ref={el => rowRefs.current[index] = el}>
+          <div key={index} ref={el => rowRefs.current[index] = el} className="fade-up-item">
             <Row 
               data={gallery}
               index={index}

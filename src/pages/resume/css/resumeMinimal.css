@@ -2,7 +2,7 @@
 
 .resume-minimal {
   min-height: 100vh;
-  background: #fff;
+  background: #f5f5f5;
   color: #000;
   /* Reduce top padding since animated logo is removed */
   padding: 4rem 2rem 4rem;

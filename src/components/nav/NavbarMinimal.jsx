@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import DelayedLink from '../DelayedLink/DelayedLink';
+import { useGrained } from '../../hooks/useGrained';
 import './navbarMinimal.css';
 
 /**
@@ -22,32 +24,35 @@ const NavbarMinimal = () => {
   const isActive = (path) => location.pathname === path;
   const onHome = location.pathname === '/';
 
+  // Apply grain to navbar when scrolled
+  useGrained('navbar-minimal-grain');
+
   return (
-    <nav className={`navbar-minimal ${scrolled ? 'navbar-scrolled' : ''} ${onHome ? '' : 'show-logo-text'}`}>
+    <nav id="navbar-minimal-grain" className={`navbar-minimal ${scrolled ? 'navbar-scrolled' : ''} ${onHome ? '' : 'show-logo-text'}`}>
       <div className="navbar-container">
-        <Link to="/" className="navbar-logo" id="navbar-logo-slot">
+        <DelayedLink to="/" className="navbar-logo" id="navbar-logo-slot">
           <span className="navbar-logo-text">Emma Barua</span>
-        </Link>
+        </DelayedLink>
 
         <div className="navbar-links">
-          <Link 
+          <DelayedLink 
             to="/" 
             className={`nav-link ${isActive('/') ? 'nav-link-active' : ''}`}
           >
             Work
-          </Link>
-          <Link 
+          </DelayedLink>
+          <DelayedLink 
             to="/resume" 
             className={`nav-link ${isActive('/resume') ? 'nav-link-active' : ''}`}
           >
             CV
-          </Link>
-          <Link 
+          </DelayedLink>
+          <DelayedLink 
             to="/contact" 
             className={`nav-link ${isActive('/contact') ? 'nav-link-active' : ''}`}
           >
             Contact
-          </Link>
+          </DelayedLink>
         </div>
       </div>
     </nav>
