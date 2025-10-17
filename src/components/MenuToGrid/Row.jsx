@@ -20,6 +20,14 @@ const Row = ({ data, index, onClick, isOpen }) => {
       style={{ pointerEvents: isOpen ? 'none' : 'auto' }}
     >
       <div className="row__content">
+        <div className="cell cell--title">
+          <div ref={titleWrapRef} className="cell__title-wrap">
+            <h3 className="cell__title" style={{ '--title-index': index }}>
+              <span className="cell__title-inner cell__title-inner--base">{data.name}</span>
+              <span className="cell__title-inner cell__title-inner--alt" aria-hidden="true">{data.name}</span>
+            </h3>
+          </div>
+        </div>
         <div className="cell cell--image">
           <div ref={imagesWrapRef} className="cell__img-wrap">
             {data.images.slice(0, 5).map((img, idx) => {
@@ -46,13 +54,6 @@ const Row = ({ data, index, onClick, isOpen }) => {
                 </div>
               );
             })}
-          </div>
-        </div>
-        <div className="cell cell--title">
-          <div ref={titleWrapRef} className="cell__title-wrap">
-            <h3 className="cell__title">
-              <span className="cell__title-inner">{data.name}</span>
-            </h3>
           </div>
         </div>
       </div>

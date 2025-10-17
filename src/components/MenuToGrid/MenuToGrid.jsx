@@ -34,6 +34,86 @@ const MenuToGrid = ({ galleries }) => {
     });
   }, []);
 
+  // GSAP-powered hover animations for rows (images fade/slide in on hover)
+  useEffect(() => {
+    if (isLoading) return;
+    const disposers = [];
+
+    rowRefs.current.forEach((wrap) => {
+      if (!wrap) return;
+      const rowEl = wrap.querySelector('.row');
+      if (!rowEl) return;
+      const imgs = [...wrap.querySelectorAll('.cell__img')];
+      const titleWrap = wrap.querySelector('.cell__title-wrap');
+      const titleBase = wrap.querySelector('.cell__title-inner--base');
+      const titleAlt = wrap.querySelector('.cell__title-inner--alt');
+
+      const onEnter = () => {
+        if (isOpen) return;
+        gsap.killTweensOf([imgs, titleBase, titleAlt]);
+        const tl = gsap.timeline();
+        tl.addLabel('start', 0)
+          .to(imgs, {
+            duration: 0.4,
+            ease: 'power3',
+            startAt: { scale: 0.8, xPercent: 20 },
+            scale: 1,
+            xPercent: 0,
+            opacity: 1,
+            stagger: -0.035
+          }, 'start')
+          .set(titleBase, { transformOrigin: '0% 50%' }, 'start')
+          .to(titleBase, {
+            duration: 0.1,
+            ease: 'power1.in',
+            yPercent: -100,
+            onComplete: () => titleWrap && titleWrap.classList.add('cell__title--switch')
+          }, 'start')
+          .to(titleAlt, {
+            duration: 0.5,
+            ease: 'expo',
+            startAt: { yPercent: 100, rotation: 15 },
+            yPercent: 0,
+            rotation: 0
+          }, 'start+=0.1');
+      };
+      const onLeave = () => {
+        if (isOpen) return; // keep visible when preview is open
+        gsap.killTweensOf([imgs, titleBase, titleAlt]);
+        const tl = gsap.timeline();
+        tl.addLabel('start')
+          .to(imgs, {
+            duration: 0.4,
+            ease: 'power4',
+            opacity: 0,
+            scale: 0.8
+          }, 'start')
+          .to(titleAlt, {
+            duration: 0.1,
+            ease: 'power1.in',
+            yPercent: -100,
+            onComplete: () => titleWrap && titleWrap.classList.remove('cell__title--switch')
+          }, 'start')
+          .to(titleBase, {
+            duration: 0.5,
+            ease: 'expo',
+            startAt: { yPercent: 100, rotation: 15 },
+            yPercent: 0,
+            rotation: 0
+          }, 'start+=0.1');
+      };
+
+      rowEl.addEventListener('mouseenter', onEnter);
+      rowEl.addEventListener('mouseleave', onLeave);
+      disposers.push(() => {
+        rowEl.removeEventListener('mouseenter', onEnter);
+        rowEl.removeEventListener('mouseleave', onLeave);
+      });
+    });
+
+    return () => disposers.forEach((fn) => fn());
+  }, [isLoading, isOpen]);
+
   const handleRowClick = (rowIndex) => {
     if (isAnimating) return;
     setIsAnimating(true);
@@ -64,6 +144,8 @@ const MenuToGrid = ({ galleries }) => {
         previewEl.classList.add('preview__item--current');
 
         gsap.set(previewImages, { opacity: 0 });
+        // Ensure row images are visible (in case click occurs without hover)
+        gsap.set(rowImages, { opacity: 1, y: 0, scale: 1 });
 
         gsap.set(cover, {
           height: rowEl.offsetHeight - 1,

@@ -12,8 +12,15 @@
 	padding: 0;
 }
 
+html, body {
+	overflow-x: hidden;
+	width: 100%;
+}
+
 #root {
 	display: flex;
 	flex-direction: column;
 	height: 100%;
+	overflow-x: hidden;
+	width: 100%;
 }

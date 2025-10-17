@@ -43,6 +43,18 @@ const HomeMinimal = () => {
   // Apply grain to white background
   useGrained('home-minimal-bg');
 
+  // Enable scroll snapping only on the home page
+  useEffect(() => {
+    const html = document.documentElement;
+    const body = document.body;
+    html.classList.add('home-snap');
+    body.classList.add('home-snap');
+    return () => {
+      html.classList.remove('home-snap');
+      body.classList.remove('home-snap');
+    };
+  }, []);
+
   // Staggered fade-up animations for page elements
   useFadeUpStagger('.fade-up-item', {
     delay: 250, // Wait for transition to complete
@@ -55,7 +67,7 @@ const HomeMinimal = () => {
     <div id="home-minimal-bg" className="home-minimal">
       <ContextLogo
         initialMode="center"
-        trigger={{ type: 'scrollPercent', percent: 0.15 }}
+        trigger={{ type: 'element', selector: '.gallery-section', start: 'top center' }}
         scaleStrategy="matchNav"
         scaleMultiplier={1.5}
         dockTargetSelector=".navbar-container"

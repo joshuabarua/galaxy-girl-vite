@@ -162,6 +162,16 @@ const ContextLogo = ({
     const buildDockTimeline = () => {
       const { top: dockTop, left: dockLeft, scale: dockScale } = computeDock();
       const tl = gsap.timeline({ paused: true });
+      // If starting centered, first dip down/fade out briefly
+      if (initialMode === 'center') {
+        tl.to(logo, {
+          y: 60,
+          opacity: 0,
+          duration: 0.3,
+          ease: 'power1.in'
+        });
+      }
+      // Then move and reveal docked in navbar
       tl.to(logo, {
         top: dockTop,
         left: dockLeft,
@@ -172,7 +182,8 @@ const ContextLogo = ({
         scale: dockScale,
         transformOrigin: 'top left',
         duration: 0.7,
-        ease: 'power2.inOut'
+        ease: 'power2.out',
+        opacity: 1
       });
       return tl;
     }
