@@ -24,7 +24,7 @@ const Preview = ({ data, index, isActive }) => {
           </h2>
         </div>
         <div ref={gridRef} className="preview__item-grid">
-          {data.images.map((img, idx) => {
+          {data.images.slice(5).map((img, idx) => {
             const url = img.src
               || (img.imagekitPath ? getImageKitUrl(img.imagekitPath, { width: 600, height: 600 }) : null)
               || '';
