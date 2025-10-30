@@ -22,7 +22,6 @@ export const imagekitGalleries = [
   {
     id: 1,
     name: "Beauty and Editorial",
-    // Adjust count, width, height to your actual images
     images: makeSeries("beautyEditorial", 12, 1000, 1600, 2400, "Beauty Editorial Photo", "")
   },
   {

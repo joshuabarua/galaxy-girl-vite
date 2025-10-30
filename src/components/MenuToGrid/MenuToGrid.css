@@ -12,8 +12,8 @@
   --color-text-alt: #000;
   --image-gap: 0.8vw;
   --image-gap-large: 1.5vw;
-  --img-size: 8vw;
-  --img-size-large: 12vw;
+  --img-size: 6vw;
+  --img-size-large: 8vw;
 }
 
 .menu-to-grid {
@@ -247,6 +247,9 @@ body.loading {
   pointer-events: none;
   z-index: 200;
   background: transparent;
+  display: grid;            /* center the active item in viewport */
+  align-items: center;
+  justify-items: center;
 }
 
 .preview__close {
@@ -271,23 +274,19 @@ body.loading {
 
 .preview__item {
   width: 100%;
-  height: 100%;
-  display: grid;
-  align-items: center;
-  justify-items: center;
-  align-content: center;
-  grid-gap: 10vh;
   height: 0;
   opacity: 0;
-  overflow: hidden;
   background: transparent; /* allow cover to provide the grey during expansion */
+  overflow: hidden;
 }
 
 .preview__item--current {
   pointer-events: auto;
-  height: 100vh;
+  height: 100vh;            /* occupy full viewport height */
   opacity: 1;
-  background: transparent; /* keep transparent so cover is visible underneath */
+  background: transparent;  /* keep transparent so cover is visible underneath */
+  overflow-y: auto;          /* scroll when content exceeds viewport */
+  -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
 }
 
 .preview__item-title {
@@ -297,20 +296,50 @@ body.loading {
 }
 
 .preview__item-content {
-  padding: 4rem 2rem;
+  /* Center when content shorter than viewport; start at top when taller */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: calc(3rem + env(safe-area-inset-top, 0px)) 2rem 4rem; /* small top offset */
   max-width: 1400px;
   margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .preview__item-content {
+    padding-top: calc(4rem + env(safe-area-inset-top, 0px)); /* a bit more on larger screens */
+  }
 }
 
 .preview__item-title-inner {
   display: block;
 }
 
+/* Load more button */
+.preview__load-more {
+  margin: 2rem auto 4rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid #000;
+  background: #fff;
+  color: #000;
+  cursor: pointer;
+  font-family: 'ZaiRoyalVogueTypewriter';
+  font-size: 1rem;
+  border-radius: 4px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.preview__load-more:hover {
+  background: #000;
+  color: #fff;
+}
+
 /* Preview Grid */
 .grid {
   position: relative;
   display: grid;
-  max-width: 1200px;
+  max-width: 1600px; /* allow more columns before wrapping */
   width: 100%;
   grid-gap: var(--image-gap-large);
   justify-content: center;
@@ -418,6 +447,31 @@ body.oh {
   :root {
     --padding-sides: 4rem;
     --padding-row: 2rem;
+  }
+}
+
+/* Double image size from tablet up while fitting within container */
+@media (min-width: 768px) {
+  :root {
+    --img-size-large: clamp(260px, 20vw, 420px);
+  }
+  .grid {
+    grid-template-columns: repeat(2, var(--img-size-large));
+    grid-template-rows: repeat(2, var(--img-size-large));
+    grid-auto-rows: var(--img-size-large);
+  }
+}
+
+/* Widen grid progressively on larger screens */
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, var(--img-size-large));
+  }
+}
+
+@media (min-width: 1400px) {
+  .grid {
+    grid-template-columns: repeat(4, var(--img-size-large));
   }
 }
 
