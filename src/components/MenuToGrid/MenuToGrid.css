@@ -190,6 +190,7 @@ body.loading {
   font-size: 2.4rem;
   font-family: 'ZaiOlivettiLettera22';
   line-height: 1;
+  top: 20px;
 }
 
 .cell__title-inner--alt {
@@ -197,11 +198,18 @@ body.loading {
   font-family: 'ZaiRoyalVogueTypewriter';
   letter-spacing: -0.225em;
   font-size: 1.8rem;
-  line-height: 1;
+  line-height: 0;
+  bottom: 3px;
+  visibility: hidden;
 }
 
-.cell__title--switch .cell__title-inner--alt { visibility: visible; }
-.cell__title--switch .cell__title-inner--base { visibility: hidden; }
+.cell__title--switch .cell__title-inner--alt { 
+  visibility: visible; 
+}
+
+.cell__title--switch .cell__title-inner--base { 
+  visibility: hidden; 
+}
 
 /* Cover */
 .cover {
