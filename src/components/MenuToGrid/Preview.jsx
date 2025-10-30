@@ -20,6 +20,7 @@ const Preview = forwardRef(({ data, index, isActive }, ref) => {
   return (
     <div 
       ref={previewRef}
+      id={`preview-item-${index}`}
       className={`preview__item ${isActive ? 'preview__item--current' : ''}`}
       data-preview-index={index}
     >

@@ -8,7 +8,7 @@
   --padding-sides: 1rem;
   --padding-row: 1rem;
   --color-row-border: #f0f0f0;
-  --color-bg-row-hover: #f0f0f0;
+  --color-bg-row-hover: #e0e0e0;
   --color-text-alt: #000;
   --image-gap: 0.8vw;
   --image-gap-large: 1.5vw;
@@ -95,8 +95,19 @@ body.loading {
   transition: background-color 0.3s ease-out, border-color 0.3s ease-out;
 }
 
-.row:hover {
+.row::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background-color: var(--color-bg-row-hover);
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.row:hover::before {
+  opacity: 1;
 }
 
 .row--current {
@@ -221,9 +232,10 @@ body.loading {
   height: 0;
   opacity: 0;
   pointer-events: none;
-  z-index: 10;
+  z-index: 150;
   position: fixed;
   left: 0;
+  top: 0;
   will-change: height, top;
 }
 
@@ -266,14 +278,14 @@ body.loading {
   height: 0;
   opacity: 0;
   overflow: hidden;
-  background: #fff;
+  background: var(--color-bg-row-hover);
 }
 
 .preview__item--current {
   pointer-events: auto;
   height: 100vh;
   opacity: 1;
-  background: #fff;
+  background: var(--color-bg-row-hover);
 }
 
 .preview__item-title {

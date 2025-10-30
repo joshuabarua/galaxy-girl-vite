@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { Flip } from 'gsap/Flip';
 import { preloadImages, preloadFonts } from '../../utils/media';
 import { getImageKitUrl } from '../../utils/imagekit';
+import { useGrained } from '../../hooks/useGrained';
 import { Row } from './Row';
 import Preview from './Preview';
 import './MenuToGrid.css';
@@ -25,6 +26,32 @@ const MenuToGrid = ({ galleries }) => {
   const currentRowRef = useRef(-1);
   const rowsArrRef = useRef([]);
   const mouseenterTimelineRef = useRef(null);
+
+  // Apply grain effect to cover
+  useGrained('menu-to-grid-cover', {
+    grainOpacity: 0.09,
+    grainDensity: 1,
+    grainWidth: 1,
+    grainHeight: 1
+  });
+
+  // Apply grain to each preview item
+  galleries.forEach((_, index) => {
+    useGrained(`preview-item-${index}`, {
+      grainOpacity: 0.09,
+      grainDensity: 1,
+      grainWidth: 1,
+      grainHeight: 1
+    });
+    
+    // Apply grain to each row
+    useGrained(`row-${index}`, {
+      grainOpacity: 0.09,
+      grainDensity: 1,
+      grainWidth: 1,
+      grainHeight: 1
+    });
+  });
 
   useEffect(() => {
     // Initialize immediately for hover animations
@@ -127,7 +154,7 @@ const MenuToGrid = ({ galleries }) => {
     })
     .addLabel('start', 0)
     .to(cover, {
-      duration: 0.9,
+      duration: 0.5,
       ease: 'power4.inOut',
       height: window.innerHeight,
       top: 0,
@@ -285,14 +312,15 @@ const MenuToGrid = ({ galleries }) => {
       opacity: 0
     }, 'start')
     .to(cover, {
+      duration: 0.5,
       ease: 'power4',
       height: 0,
       top: row.DOM.el.getBoundingClientRect()['top']+row.DOM.el.offsetHeight/2
-    }, 'start+=0.4')
+    }, 'start+=0.3')
     .to(cover, {
-      duration: 0.3,
+      duration: 0.2,
       opacity: 0
-    }, 'start+=0.9')
+    }, 'start+=0.8')
     .to(rowsArrRef.current.map(r => r.DOM.title), {
       yPercent: 0,
       stagger: {
@@ -315,7 +343,7 @@ const MenuToGrid = ({ galleries }) => {
         <div className="rows">
           {galleries.map((gallery, index) => (
             <div key={index} ref={el => rowRefs.current[index] = el}>
-              <div className="row" data-row-index={index} 
+              <div id={`row-${index}`} className="row" data-row-index={index} 
        onClick={() => handleRowClick(index)}
        onMouseEnter={() => handleMouseEnter(index)}
        onMouseLeave={() => handleMouseLeave(index)}>
@@ -374,7 +402,7 @@ const MenuToGrid = ({ galleries }) => {
         ))}
       </div>
 
-      <div ref={coverRef} className="cover"></div>
+      <div ref={coverRef} id="menu-to-grid-cover" className="cover"></div>
       
       {/* Close Button */}
       <div ref={closeCtrlRef} className="preview__close">
