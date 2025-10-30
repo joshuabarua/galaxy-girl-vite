@@ -16,6 +16,11 @@
   z-index: 999999;
 }
 
+/* Hide overlay during MenuToGrid transitions so the cover panel is visible */
+body.oh .route-transition-overlay {
+  display: none !important;
+}
+
 /* Individual overlay rows (top and bottom half) */
 .overlay-row {
   position: relative;
