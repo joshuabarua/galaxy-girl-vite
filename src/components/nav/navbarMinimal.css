@@ -22,7 +22,7 @@
 .navbar-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 1.5rem 1.25rem;
+  padding: 1rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -30,7 +30,6 @@
 
 /* Logo */
 .navbar-logo {
-  font-size: 1rem;
   font-weight: 400;
   letter-spacing: 0.05em;
   color: #000;
@@ -40,15 +39,11 @@
 }
 
 /* Hide the navbar logo text - animated logo will appear over it */
-.navbar-logo-text {
+#navbar-logo-text {
   opacity: 0;
   visibility: hidden;
-}
+  font-size: 3rem;
 
-/* On non-home routes, show the navbar logo text */
-.show-logo-text .navbar-logo-text {
-  opacity: 1;
-  visibility: visible;
 }
 
 .navbar-logo:hover {
@@ -58,12 +53,12 @@
 /* Links */
 .navbar-links {
   display: flex;
-  gap: 2.5rem;
+  gap: 2rem;
   align-items: center;
 }
 
 .nav-link {
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   font-weight: 400;
   letter-spacing: 0.05em;
   color: #666;
@@ -75,7 +70,7 @@
 .nav-link::after {
   content: '';
   position: absolute;
-  bottom: -4px;
+  bottom: 0px;
   left: 0;
   width: 0;
   height: 1px;
@@ -110,11 +105,11 @@
   }
 
   .navbar-logo {
-    font-size: 0.9rem;
+    font-size: 1.6rem;
   }
 
   .nav-link {
-    font-size: 0.85rem;
+    font-size: 1rem;
   }
 }
 
@@ -128,10 +123,10 @@
   }
 
   .navbar-logo {
-    font-size: 0.85rem;
+    font-size: 1.5rem;
   }
 
   .nav-link {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 }

@@ -41,12 +41,12 @@ nav {
 	height: 100%;
 	cursor: pointer;
 	color: #ddd8ff;
-	font-size: 24px;
+	font-size: 32px;
 }
 
 .nav-link-active {
 	text-decoration: underline;
-	text-underline-offset: 10px;
+	text-underline-offset: 5px;
 	padding-bottom: 0.4rem;
 	color: #fff0d8;
 }
@@ -108,7 +108,7 @@ nav {
 		top: 0;
 		right: 0;
 		transform: translate(-100%, 40%);
-		font-size: 1.8rem;
+		font-size: 2.8rem;
 		cursor: pointer;
 	}
 
