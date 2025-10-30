@@ -15,6 +15,8 @@ gsap.registerPlugin(Flip);
  */
 const MenuToGrid = ({ galleries }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const [galleriesState, setGalleriesState] = useState(Array.isArray(galleries) ? galleries : []);
+  const [activeIndex, setActiveIndex] = useState(-1);
   const coverRef = useRef(null);
   const closeCtrlRef = useRef(null);
   const rowRefs = useRef([]);
@@ -26,6 +28,51 @@ const MenuToGrid = ({ galleries }) => {
   const currentRowRef = useRef(-1);
   const rowsArrRef = useRef([]);
   const mouseenterTimelineRef = useRef(null);
+  const prefetchedRef = useRef(new Set());
+
+  // Load more from ImageKit via Vercel API for any album
+  const handleLoadMore = async (index, currentCount) => {
+    try {
+      const g = galleriesState[index];
+      if (!g || !Array.isArray(g.images) || g.images.length === 0) return;
+      const first = g.images[0];
+      const folderSlug = (first?.imagekitPath || '').split('/')[0] || '';
+      if (!folderSlug) return;
+      const folder = `/${folderSlug}`;
+      const limit = 20;
+      const skip = currentCount; // we've already shown currentCount images beyond the 5 thumbs
+      const params = new URLSearchParams({ folder, limit: String(limit), skip: String(skip) });
+      const resp = await fetch(`/api/images?${params.toString()}`);
+      if (!resp.ok) return;
+      const json = await resp.json();
+      const files = Array.isArray(json?.files) ? json.files : [];
+      if (!files.length) return;
+
+      setGalleriesState(prev => {
+        const next = [...prev];
+        const gi = { ...next[index] };
+        const existing = new Set((gi.images || []).map(it => it.imagekitPath || it.src || it.id));
+        const additions = files
+          .filter(f => {
+            const key = f.imagekitPath || f.src || f.id;
+            return key && !existing.has(key);
+          })
+          .map(f => ({
+            imagekitPath: f.imagekitPath || '',
+            width: f.width,
+            height: f.height,
+            src: f.src,
+            thumb: f.thumb,
+            id: f.id || f.imagekitPath,
+          }));
+        gi.images = [...(gi.images || []), ...additions];
+        next[index] = gi;
+        return next;
+      });
+    } catch (e) {
+      // swallow fetch errors; UI will still increase visibleCount for any already present items
+    }
+  };
 
   // Apply grain effect to cover
   useGrained('menu-to-grid-cover', {
@@ -36,7 +83,7 @@ const MenuToGrid = ({ galleries }) => {
   });
 
   // Apply grain to each preview item
-  galleries.forEach((_, index) => {
+  galleriesState.forEach((_, index) => {
     useGrained(`preview-item-${index}`, {
       grainOpacity: 0.09,
       grainDensity: 1,
@@ -98,29 +145,6 @@ const MenuToGrid = ({ galleries }) => {
       rowsArrRef.current = rowsArr;
     };
 
-  // Debug helper: list top fixed overlays by z-index
-  const debugLogFixedOverlays = () => {
-    try {
-      const fixed = Array.from(document.querySelectorAll('body *'))
-        .filter(el => getComputedStyle(el).position === 'fixed');
-      const top = fixed
-        .map(el => {
-          const cs = getComputedStyle(el);
-          const zi = parseInt(cs.zIndex || '0', 10) || 0;
-          const selector = el.id ? `#${el.id}` : (el.className ? `.${String(el.className).split(' ').join('.')}` : el.tagName.toLowerCase());
-          return { selector, zIndex: zi, display: cs.display, opacity: cs.opacity };
-        })
-        .sort((a,b) => b.zIndex - a.zIndex)
-        .slice(0, 10);
-      // eslint-disable-next-line no-console
-      console.table(top);
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.warn('debugLogFixedOverlays error', e);
-    }
-  };
-    
-    // Start initialization after a small delay
     setTimeout(() => tryInitialize(), 100);
   };
 
@@ -137,6 +161,7 @@ const MenuToGrid = ({ galleries }) => {
     isAnimatingRef.current = true;
     isOpenRef.current = true;
     currentRowRef.current = index;
+    setActiveIndex(index);
     
     const row = rowsArrRef.current[index];
     if (!row) {
@@ -166,7 +191,6 @@ const MenuToGrid = ({ galleries }) => {
 
         gsap.set(row.previewItem.DOM.images, {opacity: 0});
         
-        // set cover to be on top of the row and then animate it to cover the whole page
         gsap.set(cover, {
           height: row.DOM.el.offsetHeight - 1, // minus border width
           top: row.DOM.el.getBoundingClientRect()['top'],
@@ -175,21 +199,11 @@ const MenuToGrid = ({ galleries }) => {
           left: 0,
           width: '100%'
         });
-        // DEBUG
-        // eslint-disable-next-line no-console
-        console.group('MenuToGrid open');
-        // eslint-disable-next-line no-console
-        console.log('row rect', row.DOM.el.getBoundingClientRect());
         const csCover = cover ? getComputedStyle(cover) : null;
-        // eslint-disable-next-line no-console
-        console.log('cover computed (after set):', csCover && { zIndex: csCover.zIndex, pos: csCover.position, width: csCover.width, height: csCover.height, opacity: csCover.opacity });
         const rto = document.querySelector('.route-transition-overlay');
         if (rto) {
           const csRto = getComputedStyle(rto);
-          // eslint-disable-next-line no-console
-          console.log('route-transition-overlay present, z-index:', csRto.zIndex);
         }
-        // debugLogFixedOverlays(); // disabled to avoid ReferenceError if treeshaken
         
         if (previewTitle) {
           gsap.set(previewTitle, {
@@ -224,9 +238,6 @@ const MenuToGrid = ({ galleries }) => {
       const rowImages = rowImagesOpen;
       const flipstate = Flip.getState(rowImages, { simple: true });
       if (row.previewItem?.DOM?.grid && rowImages.length) {
-        // DEBUG
-        // eslint-disable-next-line no-console
-        console.log('Prepending row images into preview grid:', rowImages.length);
         row.previewItem.DOM.grid.prepend(...rowImages);
       }
       const tlInner = gsap.timeline();
@@ -237,8 +248,6 @@ const MenuToGrid = ({ galleries }) => {
       }));
       const previewImages = previewImagesOpen;
       if (previewImages.length) {
-        // eslint-disable-next-line no-console
-        console.log('Animating preview images count:', previewImages.length);
         tlInner.to(previewImages, {
           duration: 0.5,
           ease: 'power4.inOut',
@@ -266,6 +275,15 @@ const MenuToGrid = ({ galleries }) => {
   };
 
   const handleMouseEnter = (index) => {
+    // Prefetch once per row so preview has more on open
+    try {
+      if (!prefetchedRef.current.has(index)) {
+        const currentCount = (galleriesState[index]?.images?.length || 0) - 5; // beyond thumbnails
+        handleLoadMore(index, Math.max(0, currentCount));
+        prefetchedRef.current.add(index);
+      }
+    } catch {}
+    
     if (isOpenRef.current) return;
     
     const row = rowsArrRef.current[index];
@@ -365,9 +383,7 @@ const MenuToGrid = ({ galleries }) => {
     gsap.timeline({
       defaults: {duration: 0.5, ease: 'power4.inOut'},
       onStart: () => {
-        // keep body.oh so the route overlay stays hidden during close
         closeCtrl.classList.remove('preview__close--show');
-        // ensure cover starts full screen under preview
         if (cover) {
           gsap.set(cover, {
             position: 'fixed',
@@ -385,31 +401,28 @@ const MenuToGrid = ({ galleries }) => {
         row.previewItem.DOM.el.classList.remove('preview__item--current');
         body.classList.remove('oh');
         isAnimatingRef.current = false;
+        setActiveIndex(-1);
       }
     })
     .addLabel('start', 0)
-    // Fade out close button immediately
     .to(closeCtrl ? closeCtrl : [], {
       duration: 0.3,
       opacity: 0
     }, 'start')
-    // Fade out title first
     .to(previewTitleClose ? previewTitleClose : [], {
       duration: 0.3,
       ease: 'power3.in',
       yPercent: 100,
       opacity: 0
     }, 'start')
-    // Fade out images
     .to(imageTargetsClose, {
-      duration: 0.4,
+      duration: 0.3,
       ease: 'power3.in',
       scale: 0,
       opacity: 0,
-      stagger: 0.025,
+      stagger: 0.02,
       onComplete: () => row.DOM.imagesWrap.prepend(...row.DOM.images)
     }, 'start+=0.2')
-    // Shrink cover back to the row (mirror open)
     .to(cover ? cover : [], {
       duration: 1.1,
       ease: 'power4.inOut',
@@ -432,15 +445,13 @@ const MenuToGrid = ({ galleries }) => {
 
   return (
     <div className="menu-to-grid">
-      {/* Loading state */}
       {isLoading && (
         <div className="loading"></div>
       )}
       
-      {/* Content Wrapper */}
       <div className="content">
         <div className="rows">
-          {galleries.map((gallery, index) => (
+          {galleriesState.map((gallery, index) => (
             <div key={index} ref={el => rowRefs.current[index] = el}>
               <div id={`row-${index}`} className="row" data-row-index={index} 
        onClick={() => handleRowClick(index)}
@@ -488,22 +499,21 @@ const MenuToGrid = ({ galleries }) => {
         </div>
       </div>
 
-      {/* Preview Container */}
       <div className="preview">
-        {galleries.map((gallery, index) => (
+        {galleriesState.map((gallery, index) => (
           <Preview 
             key={index}
             ref={el => previewRefs.current[index] = el}
             data={gallery}
             index={index}
-            isActive={false}
+            isActive={activeIndex === index}
+            onLoadMore={handleLoadMore}
           />
         ))}
       </div>
 
       <div ref={coverRef} id="menu-to-grid-cover" className="cover"></div>
       
-      {/* Close Button */}
       <div ref={closeCtrlRef} className="preview__close">
         <button className="preview__close-button" onClick={handleCloseClick}>×</button>
       </div>

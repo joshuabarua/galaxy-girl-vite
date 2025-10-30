@@ -8,27 +8,34 @@
   width: 100%;
 }
 
+/* Typography scale: subtitle size is the base; title is exactly 2x */
+:root {
+  --hero-sub-size: clamp(1.2rem, 3vw, 3rem);
+  --hero-title-size: calc(var(--hero-sub-size) * 2);
+}
+
 /* Hero Section */
 .hero-section {
-  height: 100vh;
   display: flex;
-  flex-direction: column;
+  min-height: 60vh;
   align-items: center;
   justify-content: center;
-  position: relative;
+  flex-direction: column;
+  height: 100vh;
   background: transparent;
   padding: 2rem;
   overflow: hidden;
   scroll-snap-align: start;
   scroll-snap-stop: always;
+  position: relative; /* anchor absolute children like scroll-indicator */
 }
 
 .hero-content {
   text-align: center;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 100%;
+  gap: 0.5rem;
   max-width: 600px;
   padding: 0 2rem;
   box-sizing: border-box;
@@ -40,16 +47,27 @@
 }
 
 .hero-subtitle {
-  font-size: clamp(0.85rem, 1.8vw, 1.2rem);
+  font-size: var(--hero-sub-size);
   font-weight: 300;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  margin: 0;
-  color: #999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
+  color: #666;
+  white-space: nowrap; /* force single line */
+  opacity: 0;               /* start hidden for GSAP fade-up */
+  transform: translateY(0); /* GSAP will nudge down slightly */
+}
+
+.hero-title-text {
+  display: inline-block;
+  font-family: 'ZaiRoyalVogueTypewriter';
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  font-size: var(--hero-title-size); /* exactly 2x subtitle */
+  white-space: nowrap;
+  overflow: visible;            /* let content grow naturally for GSAP */
+  border-right: none;           /* caret from CSS not needed with GSAP */
+  width: auto;                  /* ensure container can expand */
+  animation: none;              /* disable CSS typing to avoid width:0 */
 }
 
 /* Scroll Indicator */
@@ -62,12 +80,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
-  animation: fadeIn 1.5s ease-out 0.5s both;
+  gap: 0.35rem;
+  opacity: 0;               /* start hidden for GSAP fade-up */
+  z-index: 2;               /* ensure above backgrounds */
 }
 
 .scroll-text {
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #999;
@@ -75,10 +94,18 @@
 }
 
 .scroll-line {
-  width: 1px;
-  height: 60px;
-  background: linear-gradient(to bottom, #999, transparent);
-  animation: scrollPulse 2s ease-in-out infinite;
+  width: 2px;
+  height: 42px;
+  background: #999;
+  opacity: 0.8;
+  border-radius: 2px;
+  animation: scrollDrop 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollDrop {
+  0% { transform: translateY(-6px); opacity: 0.4; }
+  50% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-6px); opacity: 0.4; }
 }
 
 /* Gallery Section */

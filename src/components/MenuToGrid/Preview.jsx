@@ -1,10 +1,18 @@
-import React, { forwardRef, useRef, useImperativeHandle } from 'react';
+import React, { forwardRef, useRef, useImperativeHandle, useState, useEffect } from 'react';
 import { getImageKitUrl } from '../../utils/imagekit';
 
-const Preview = forwardRef(({ data, index, isActive }, ref) => {
+const Preview = forwardRef(({ data, index, isActive, onLoadMore }, ref) => {
   const previewRef = useRef(null);
   const gridRef = useRef(null);
   const titleRef = useRef(null);
+  const [visibleCount, setVisibleCount] = useState(20);
+
+  useEffect(() => {
+    if (isActive) {
+      const initial = typeof window !== 'undefined' && window.innerWidth >= 1024 ? 40 : 20;
+      setVisibleCount(initial);
+    }
+  }, [isActive]);
 
   useImperativeHandle(ref, () => ({
     DOM: {
@@ -31,7 +39,7 @@ const Preview = forwardRef(({ data, index, isActive }, ref) => {
           </h2>
         </div>
         <div ref={gridRef} className="preview__item-grid grid">
-          {data.images.slice(5, 20).map((img, idx) => {
+          {data.images.slice(5, visibleCount).map((img, idx) => {
             const url = img.src
               || (img.imagekitPath ? getImageKitUrl(img.imagekitPath, { width: 600, height: 600 }) : null)
               || '';
@@ -51,6 +59,20 @@ const Preview = forwardRef(({ data, index, isActive }, ref) => {
             );
           })}
         </div>
+        {data.images.length > visibleCount && (
+          <button
+            type="button"
+            className="preview__load-more"
+            onClick={async () => {
+              if (typeof onLoadMore === 'function') {
+                try { await onLoadMore(index, visibleCount); } catch {}
+              }
+              setVisibleCount(prev => prev + 24);
+            }}
+          >
+            Load more
+          </button>
+        )}
       </div>
     </div>
   );

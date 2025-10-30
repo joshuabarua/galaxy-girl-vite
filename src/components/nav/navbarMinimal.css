@@ -40,10 +40,16 @@
 
 /* Hide the navbar logo text - animated logo will appear over it */
 #navbar-logo-text {
-  opacity: 0;
-  visibility: hidden;
+  opacity: 1;
+  visibility: visible;
   font-size: 3rem;
+  transition: opacity 200ms ease, visibility 200ms ease;
+}
 
+body.home-hide-nav #navbar-logo-text {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  display: none !important;
 }
 
 .navbar-logo:hover {
