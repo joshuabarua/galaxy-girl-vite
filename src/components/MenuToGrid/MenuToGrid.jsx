@@ -97,6 +97,28 @@ const MenuToGrid = ({ galleries }) => {
       
       rowsArrRef.current = rowsArr;
     };
+
+  // Debug helper: list top fixed overlays by z-index
+  const debugLogFixedOverlays = () => {
+    try {
+      const fixed = Array.from(document.querySelectorAll('body *'))
+        .filter(el => getComputedStyle(el).position === 'fixed');
+      const top = fixed
+        .map(el => {
+          const cs = getComputedStyle(el);
+          const zi = parseInt(cs.zIndex || '0', 10) || 0;
+          const selector = el.id ? `#${el.id}` : (el.className ? `.${String(el.className).split(' ').join('.')}` : el.tagName.toLowerCase());
+          return { selector, zIndex: zi, display: cs.display, opacity: cs.opacity };
+        })
+        .sort((a,b) => b.zIndex - a.zIndex)
+        .slice(0, 10);
+      // eslint-disable-next-line no-console
+      console.table(top);
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.warn('debugLogFixedOverlays error', e);
+    }
+  };
     
     // Start initialization after a small delay
     setTimeout(() => tryInitialize(), 100);
@@ -125,8 +147,16 @@ const MenuToGrid = ({ galleries }) => {
     const cover = coverRef.current;
     const closeCtrl = closeCtrlRef.current;
     const body = document.body;
-    
-    gsap.killTweensOf([cover, rowsArrRef.current.map(r => r.DOM.title)]);
+
+    const titleTargets = rowsArrRef.current
+      .map(r => r?.DOM?.title)
+      .filter(Boolean);
+    gsap.killTweensOf([cover, ...titleTargets]);
+
+    const previewTitle = row.previewItem?.DOM?.title || null;
+    const rowImagesOpen = Array.isArray(row.DOM.images) ? row.DOM.images.filter(Boolean) : [];
+    const previewImagesOpen = Array.from(row.previewItem?.DOM?.images || []);
+    const imageTargetsOpen = [...rowImagesOpen, ...previewImagesOpen];
 
     gsap.timeline({
       onStart: () => {
@@ -136,17 +166,39 @@ const MenuToGrid = ({ galleries }) => {
 
         gsap.set(row.previewItem.DOM.images, {opacity: 0});
         
+        // set cover to be on top of the row and then animate it to cover the whole page
         gsap.set(cover, {
-          height: row.DOM.el.offsetHeight-1,
+          height: row.DOM.el.offsetHeight - 1, // minus border width
           top: row.DOM.el.getBoundingClientRect()['top'],
-          opacity: 1
+          opacity: 1,
+          position: 'fixed',
+          left: 0,
+          width: '100%'
         });
+        // DEBUG
+        // eslint-disable-next-line no-console
+        console.group('MenuToGrid open');
+        // eslint-disable-next-line no-console
+        console.log('row rect', row.DOM.el.getBoundingClientRect());
+        const csCover = cover ? getComputedStyle(cover) : null;
+        // eslint-disable-next-line no-console
+        console.log('cover computed (after set):', csCover && { zIndex: csCover.zIndex, pos: csCover.position, width: csCover.width, height: csCover.height, opacity: csCover.opacity });
+        const rto = document.querySelector('.route-transition-overlay');
+        if (rto) {
+          const csRto = getComputedStyle(rto);
+          // eslint-disable-next-line no-console
+          console.log('route-transition-overlay present, z-index:', csRto.zIndex);
+        }
+        // debugLogFixedOverlays(); // disabled to avoid ReferenceError if treeshaken
         
-        gsap.set(row.previewItem.DOM.title, {
+        if (previewTitle) {
+          gsap.set(previewTitle, {
           yPercent: -100,
           rotation: 15,
-          transformOrigin: '100% 50%'
-        });
+          transformOrigin: '100% 50%',
+          opacity: 0
+          });
+        }
 
         closeCtrl.classList.add('preview__close--show');
       },
@@ -154,13 +206,13 @@ const MenuToGrid = ({ galleries }) => {
     })
     .addLabel('start', 0)
     .to(cover, {
-      duration: 0.5,
+      duration: 0.7,
       ease: 'power4.inOut',
       height: window.innerHeight,
-      top: 0,
+      top: 0
     }, 'start')
-    .to(rowsArrRef.current.map(r => r.DOM.title), {
-      duration: 0.5,
+    .to(titleTargets, {
+      duration: 0.4,
       ease: 'power4.inOut',
       yPercent: (_, target) => {
         return target.getBoundingClientRect()['top'] > row.DOM.el.getBoundingClientRect()['top'] ? 100 : -100;
@@ -169,32 +221,45 @@ const MenuToGrid = ({ galleries }) => {
     }, 'start')
     .add(() => {
       mouseenterTimelineRef.current?.progress(1, false);
-      const flipstate = Flip.getState(row.DOM.images, {simple: true});
-      row.previewItem.DOM.grid.prepend(...row.DOM.images);
-      Flip.from(flipstate, {
-        duration: 0.9,
+      const rowImages = rowImagesOpen;
+      const flipstate = Flip.getState(rowImages, { simple: true });
+      if (row.previewItem?.DOM?.grid && rowImages.length) {
+        // DEBUG
+        // eslint-disable-next-line no-console
+        console.log('Prepending row images into preview grid:', rowImages.length);
+        row.previewItem.DOM.grid.prepend(...rowImages);
+      }
+      const tlInner = gsap.timeline();
+      tlInner.add(Flip.from(flipstate, {
+        duration: 0.5,
         ease: 'power4.inOut',
-        stagger: 0.04,
-      })
-      .to(row.previewItem.DOM.images, {
-        duration: 0.9,
-        ease: 'power4.inOut',
-        startAt: {scale: 0, yPercent: () => gsap.utils.random(0,200)},
-        scale: 1,
-        opacity: 1,
-        yPercent: 0,
-        stagger: 0.04
-      }, 0.04*(row.DOM.images.length))
+        stagger: 0.02,
+      }));
+      const previewImages = previewImagesOpen;
+      if (previewImages.length) {
+        // eslint-disable-next-line no-console
+        console.log('Animating preview images count:', previewImages.length);
+        tlInner.to(previewImages, {
+          duration: 0.5,
+          ease: 'power4.inOut',
+          startAt: { scale: 0, yPercent: () => gsap.utils.random(0, 200) },
+          scale: 1,
+          opacity: 1,
+          yPercent: 0,
+          stagger: 0.02
+        }, 0.03 * (rowImages.length || 0));
+      }
     }, 'start')
-    .to(row.previewItem.DOM.title, {
-      duration: 1,
+    .to(previewTitle ? previewTitle : [], {
+      duration: 0.7,
       ease: 'power4.inOut',
       yPercent: 0,
       rotation: 0,
+      opacity: 1,
       onComplete: () => row.DOM.titleWrap.classList.remove('cell__title--switch')
     }, 'start')
     .to(closeCtrl, {
-      duration: 1,
+      duration: 0.8,
       ease: 'power4.inOut',
       opacity: 1
     }, 'start');
@@ -211,8 +276,8 @@ const MenuToGrid = ({ galleries }) => {
     mouseenterTimelineRef.current = gsap.timeline()
       .addLabel('start', 0)
       .to(row.DOM.images, {
-        duration: 0.4,
-        ease: 'power3',
+        duration: 0.25,
+        ease: 'power4.out',
         startAt: {
           scale: 0.8, 
           xPercent: 20
@@ -224,14 +289,14 @@ const MenuToGrid = ({ galleries }) => {
       }, 'start')
       .set(row.DOM.title, {transformOrigin: '0% 50%'}, 'start')
       .to(row.DOM.title, {
-        duration: 0.3,
-        ease: 'power1.in',
+        duration: 0.2,
+        ease: 'power2.in',
         yPercent: -50,
         onComplete: () => row.DOM.titleWrap.classList.add('cell__title--switch')
       }, 'start')
       .to(row.DOM.title, {
-        duration: 0.6,
-        ease: 'power2.out',
+        duration: 0.35,
+        ease: 'power4.out',
         startAt: {
           yPercent: 50, 
           rotation: 5
@@ -252,20 +317,20 @@ const MenuToGrid = ({ galleries }) => {
     gsap.timeline()
       .addLabel('start')
       .to(row.DOM.images, {
-        duration: 0.4,
-        ease: 'power4',
+        duration: 0.25,
+        ease: 'power4.in',
         opacity: 0,
         scale: 0.8
       }, 'start')
       .to(row.DOM.title, {
-        duration: 0.3,
-        ease: 'power1.in',
+        duration: 0.2,
+        ease: 'power2.in',
         yPercent: -50,
         onComplete: () => row.DOM.titleWrap.classList.remove('cell__title--switch')
       }, 'start')
       .to(row.DOM.title, {
-        duration: 0.6,
-        ease: 'power2.out',
+        duration: 0.35,
+        ease: 'power4.out',
         startAt: {
           yPercent: 50, 
           rotation: 5
@@ -284,44 +349,78 @@ const MenuToGrid = ({ galleries }) => {
     const row = rowsArrRef.current[currentRow];
     if (!row) return;
     
+    // Build safe target lists for GSAP (avoid nulls / undefined)
+    const previewTitleClose = row.previewItem?.DOM?.title || null;
+    const rowImagesClose = Array.isArray(row.DOM.images) ? row.DOM.images.filter(Boolean) : [];
+    const previewImagesClose = Array.from(row.previewItem?.DOM?.images || []);
+    const imageTargetsClose = [...rowImagesClose, ...previewImagesClose];
+    const titleTargetsClose = rowsArrRef.current.map(r => r?.DOM?.title).filter(Boolean);
+    
     const cover = coverRef.current;
     const closeCtrl = closeCtrlRef.current;
     const body = document.body;
     
+    const rowRect = row.DOM.el.getBoundingClientRect();
+
     gsap.timeline({
       defaults: {duration: 0.5, ease: 'power4.inOut'},
-      onStart: () => body.classList.remove('oh'),
+      onStart: () => {
+        // keep body.oh so the route overlay stays hidden during close
+        closeCtrl.classList.remove('preview__close--show');
+        // ensure cover starts full screen under preview
+        if (cover) {
+          gsap.set(cover, {
+            position: 'fixed',
+            left: 0,
+            width: '100%',
+            height: window.innerHeight,
+            top: 0,
+            opacity: 1,
+            zIndex: 150
+          });
+        }
+      },
       onComplete: () => {
         row.DOM.el.classList.remove('row--current');
         row.previewItem.DOM.el.classList.remove('preview__item--current');
+        body.classList.remove('oh');
         isAnimatingRef.current = false;
       }
     })
     .addLabel('start', 0)
-    .to([row.DOM.images, row.previewItem.DOM.images], {
+    // Fade out close button immediately
+    .to(closeCtrl ? closeCtrl : [], {
+      duration: 0.3,
+      opacity: 0
+    }, 'start')
+    // Fade out title first
+    .to(previewTitleClose ? previewTitleClose : [], {
+      duration: 0.3,
+      ease: 'power3.in',
+      yPercent: 100,
+      opacity: 0
+    }, 'start')
+    // Fade out images
+    .to(imageTargetsClose, {
+      duration: 0.4,
+      ease: 'power3.in',
       scale: 0,
       opacity: 0,
-      stagger: 0.04,
+      stagger: 0.025,
       onComplete: () => row.DOM.imagesWrap.prepend(...row.DOM.images)
-    }, 0)
-    .to(row.previewItem.DOM.title, {
-      duration: 0.6,
-      yPercent: 100
+    }, 'start+=0.2')
+    // Shrink cover back to the row (mirror open)
+    .to(cover ? cover : [], {
+      duration: 1.1,
+      ease: 'power4.inOut',
+      height: Math.max(0, row.DOM.el.offsetHeight - 1),
+      top: rowRect.top
     }, 'start')
-    .to(closeCtrl, {
-      opacity: 0
-    }, 'start')
-    .to(cover, {
-      duration: 0.5,
-      ease: 'power4',
-      height: 0,
-      top: row.DOM.el.getBoundingClientRect()['top']+row.DOM.el.offsetHeight/2
-    }, 'start+=0.3')
-    .to(cover, {
+    .to(cover ? cover : [], {
       duration: 0.2,
       opacity: 0
-    }, 'start+=0.8')
-    .to(rowsArrRef.current.map(r => r.DOM.title), {
+    }, 'start+=0.9')
+    .to(titleTargetsClose, {
       yPercent: 0,
       stagger: {
         each: 0.03,
