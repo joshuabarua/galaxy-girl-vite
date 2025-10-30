@@ -1,15 +1,21 @@
-import React, { useRef } from 'react';
+import React, { forwardRef, useRef, useImperativeHandle } from 'react';
 import { getImageKitUrl } from '../../utils/imagekit';
-import './styles.css';
 
-/**
- * Preview component for MenuToGrid animation
- * Displays the full grid of images when a row is clicked
- */
-const Preview = ({ data, index, isActive }) => {
+const Preview = forwardRef(({ data, index, isActive }, ref) => {
   const previewRef = useRef(null);
   const gridRef = useRef(null);
   const titleRef = useRef(null);
+
+  useImperativeHandle(ref, () => ({
+    DOM: {
+      el: previewRef.current,
+      grid: gridRef.current,
+      title: titleRef.current,
+      get images() {
+        return [...(gridRef.current?.querySelectorAll('.preview__item-img') || [])];
+      }
+    }
+  }), []);
 
   return (
     <div 
@@ -23,7 +29,7 @@ const Preview = ({ data, index, isActive }) => {
             <span className="preview__item-title-inner">{data.name}</span>
           </h2>
         </div>
-        <div ref={gridRef} className="preview__item-grid">
+        <div ref={gridRef} className="preview__item-grid grid">
           {data.images.slice(5).map((img, idx) => {
             const url = img.src
               || (img.imagekitPath ? getImageKitUrl(img.imagekitPath, { width: 600, height: 600 }) : null)
@@ -47,6 +53,8 @@ const Preview = ({ data, index, isActive }) => {
       </div>
     </div>
   );
-};
+});
+
+Preview.displayName = 'Preview';
 
 export default Preview;

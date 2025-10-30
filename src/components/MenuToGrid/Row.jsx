@@ -1,19 +1,25 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import { getImageKitUrl } from '../../utils/imagekit';
-import './styles.css';
 
-/**
- * Row component for MenuToGrid animation
- * Displays a row of thumbnail images that animate on hover
- */
-const Row = ({ data, index, onClick, isOpen }) => {
-  const rowRef = useRef(null);
-  const imagesWrapRef = useRef(null);
-  const titleWrapRef = useRef(null);
 
+export class Row {
+  constructor(rowEl, previewItem) {
+    this.DOM = {
+      el: rowEl,
+      images: [...rowEl.querySelectorAll('.cell__img')],
+      title: rowEl.querySelector('.cell__title'),
+      titleWrap: rowEl.querySelector('.cell__title-wrap'),
+      imagesWrap: rowEl.querySelector('.cell__img-wrap')
+    };
+    
+    this.previewItem = previewItem;
+  }
+}
+
+
+const RowComponent = ({ data, index, onClick, isOpen }) => {
   return (
     <div 
-      ref={rowRef}
       className="row"
       data-row-index={index}
       onClick={onClick}
@@ -21,7 +27,7 @@ const Row = ({ data, index, onClick, isOpen }) => {
     >
       <div className="row__content">
         <div className="cell cell--title">
-          <div ref={titleWrapRef} className="cell__title-wrap">
+          <div className="cell__title-wrap">
             <h3 className="cell__title" style={{ '--title-index': index }}>
               <span className="cell__title-inner cell__title-inner--base">{data.name}</span>
               <span className="cell__title-inner cell__title-inner--alt" aria-hidden="true">{data.name}</span>
@@ -29,7 +35,7 @@ const Row = ({ data, index, onClick, isOpen }) => {
           </div>
         </div>
         <div className="cell cell--image">
-          <div ref={imagesWrapRef} className="cell__img-wrap">
+          <div className="cell__img-wrap">
             {data.images.slice(0, 5).map((img, idx) => {
               const url = img.thumb
                 || (img.imagekitPath ? getImageKitUrl(img.imagekitPath, { width: 300, height: 300 }) : null)
@@ -61,4 +67,4 @@ const Row = ({ data, index, onClick, isOpen }) => {
   );
 };
 
-export default Row;
+export default RowComponent;
