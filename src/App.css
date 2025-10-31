@@ -22,13 +22,6 @@
 }
 
 @font-face {
-	font-family: 'NeueHaasDisplayThinItalic';
-	src: url('https://ik.imagekit.io/t3aewf67s/fonts/Other/neue-haas-grotesk-display-pro/NeueHaasDisplayThinItalic.ttf?updatedAt=1761842500468') format('truetype');
-	font-weight: 100;
-	font-style: italic;
-}
-
-@font-face {
 	font-family: 'ZaiOlivettiLettera22';
 	src: url('https://ik.imagekit.io/t3aewf67s/fonts/Other/zai-olivetti-lettera-22-typewriter/ZaiOlivettiLettera22Typewriter-rg5BK.ttf?updatedAt=1761842499351') format('truetype');
 	font-weight: 400;
@@ -43,13 +36,6 @@
 }
 
 @font-face {
-	font-family: 'Vardena';
-	src: url('https://ik.imagekit.io/t3aewf67s/fonts/Other/vardena/VardenaPersonalUsed-z8vnw.ttf?updatedAt=1761842499147') format('truetype');
-	font-weight: 400;
-	font-style: normal;
-}
-
-@font-face {
 	font-family: 'ThoderanNotes';
 	src: url('https://ik.imagekit.io/t3aewf67s/fonts/Other/thoderan-notes/ThoderanNotes-vmPKO.ttf?updatedAt=1761842499958') format('truetype');
 	font-weight: 400;
@@ -57,21 +43,71 @@
 }
 
 @font-face {
-	font-family: 'Tenderness';
-	src: url('https://ik.imagekit.io/t3aewf67s/fonts/Other/tenderness-5/Tenderness.otf?updatedAt=1761842499472') format('opentype');
+	font-family: 'Fixedsys62';
+	src: url('https://ik.imagekit.io/t3aewf67s/fonts/Other/fixedsys-62/Fixedsys62.ttf?updatedAt=1761918808844') format('truetype');
 	font-weight: 400;
 	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
-	font-family: 'EmpireColombia';
-	src: url('https://ik.imagekit.io/t3aewf67s/fonts/Empireoflight/Colombia1/Colombia-Regular-Italic.ttf?updatedAt=1760629179094') format('truetype');
+	font-family: 'KlaskyCsupoNew';
+	src: url('https://ik.imagekit.io/t3aewf67s/fonts/Other/klasky-csupo-new/Klasky%20Csupo%20New.ttf?updatedAt=1761918796161') format('truetype');
 	font-weight: 400;
-	font-style: italic;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'NuCenturyGothic';
+	src: url('https://ik.imagekit.io/t3aewf67s/fonts/Other/nu-century-gothic/nu_century_gothic.ttf?updatedAt=1761918780301') format('truetype');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'BariolRegular';
+	src: url('https://ik.imagekit.io/t3aewf67s/fonts/Other/bariol-regular-2/Bariol_Regular_0.otf?updatedAt=1761918762943') format('opentype');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Capsuula';
+	src: url('https://ik.imagekit.io/t3aewf67s/fonts/Other/capsuula/Capsuula.ttf?updatedAt=1761918749590') format('truetype');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Report1942';
+	src: url('https://ik.imagekit.io/t3aewf67s/fonts/Other/1942-report-2/1942.ttf?updatedAt=1761918732625') format('truetype');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'BastineRegular';
+	src: url('https://ik.imagekit.io/t3aewf67s/fonts/Other/bastine/BastineRegular-8MqEg.ttf?updatedAt=1761918697641') format('truetype');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'BastineOutline';
+	src: url('https://ik.imagekit.io/t3aewf67s/fonts/Other/bastine/BastineOutline-YzBYO.ttf?updatedAt=1761918697728') format('truetype');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
 }
 
 * {
-	font-family: 'ZaiOlivettiLettera22';
+	/* font-family: 'ZaiOlivettiLettera22'; */
 	font-weight: 200;
 	box-sizing: border-box;
 	margin: 0;

@@ -8,13 +8,11 @@
   width: 100%;
 }
 
-/* Typography scale: subtitle size is the base; title is exactly 2x */
 :root {
   --hero-sub-size: clamp(1.2rem, 3vw, 3rem);
   --hero-title-size: calc(var(--hero-sub-size) * 2);
 }
 
-/* Hero Section */
 .hero-section {
   display: flex;
   min-height: 60vh;
@@ -27,7 +25,7 @@
   overflow: hidden;
   scroll-snap-align: start;
   scroll-snap-stop: always;
-  position: relative; /* anchor absolute children like scroll-indicator */
+  position: relative; 
 }
 
 .hero-content {
@@ -52,25 +50,24 @@
   letter-spacing: 0.35em;
   text-transform: uppercase;
   color: #666;
-  white-space: nowrap; /* force single line */
-  opacity: 0;               /* start hidden for GSAP fade-up */
-  transform: translateY(0); /* GSAP will nudge down slightly */
+  white-space: nowrap; 
+  opacity: 0; 
+  transform: translateY(0); 
 }
 
 .hero-title-text {
   display: inline-block;
-  font-family: 'ZaiRoyalVogueTypewriter';
+  font-family: 'ThoderanNotes';
   font-weight: 700;
   letter-spacing: 0.15em;
-  font-size: var(--hero-title-size); /* exactly 2x subtitle */
+  font-size: var(--hero-title-size); 
   white-space: nowrap;
-  overflow: visible;            /* let content grow naturally for GSAP */
-  border-right: none;           /* caret from CSS not needed with GSAP */
-  width: auto;                  /* ensure container can expand */
-  animation: none;              /* disable CSS typing to avoid width:0 */
+  overflow: visible; 
+  border-right: none; 
+  width: auto; 
+  animation: none; 
 }
 
-/* Scroll Indicator */
 .scroll-indicator {
   position: absolute;
   bottom: 3rem;
@@ -81,8 +78,8 @@
   align-items: center;
   justify-content: center;
   gap: 0.35rem;
-  opacity: 0;               /* start hidden for GSAP fade-up */
-  z-index: 2;               /* ensure above backgrounds */
+  opacity: 0; 
+  z-index: 2; 
 }
 
 .scroll-text {
@@ -108,7 +105,6 @@
   100% { transform: translateY(-6px); opacity: 0.4; }
 }
 
-/* Gallery Section */
 .gallery-section {
   background: transparent;
   min-height: 100vh;
@@ -119,14 +115,12 @@
   scroll-snap-stop: always;
 }
 
-/* Enable scroll snapping only when Home page is active */
 html.home-snap, body.home-snap {
   scroll-snap-type: y mandatory;
   overscroll-behavior-y: contain;
   scroll-behavior: smooth;
 }
 
-/* Animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -158,7 +152,6 @@ html.home-snap, body.home-snap {
   }
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .hero-section {
     padding: 1rem;
