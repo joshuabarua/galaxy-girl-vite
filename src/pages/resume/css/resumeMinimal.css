@@ -63,7 +63,7 @@
 }
 
 .resume-container {
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
@@ -401,6 +401,48 @@ font-size: 2.5rem;
 }
 
 /* Responsive */
+@media (min-width: 1200px) {
+  .resume-minimal {
+    padding: 5rem 3rem 5rem;
+  }
+
+  .resume-container {
+    max-width: 92vw;
+  }
+
+  .experience-header {
+    grid-template-columns: 200px 1fr;
+    gap: 3.25rem;
+  }
+
+  .experience-project {
+    font-size: 1.75rem;
+  }
+
+  .resume-bio {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 1600px) {
+  .resume-container {
+    max-width: 85vw;
+  }
+
+  .experience-header {
+    grid-template-columns: 240px 1fr;
+    gap: 3.75rem;
+  }
+
+  .experience-project {
+    font-size: 1.9rem;
+  }
+
+  .resume-bio {
+    font-size: 1.3rem;
+  }
+}
+
 @media (max-width: 768px) {
   .resume-minimal {
     padding: 4rem 1.5rem 3rem;
