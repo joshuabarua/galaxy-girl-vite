@@ -1,10 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useCallback } from 'react';
 
-/**
- * Hook for delayed navigation with fade-to-black transition
- * Dispatches event to trigger overlay, waits for fade-to-black, then navigates
- */
 export const useDelayedNavigation = ({ 
   fadeToDuration = 200, 
   blackHoldDuration = 50 

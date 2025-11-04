@@ -62,8 +62,32 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'ITVBrand';
+  src: url('https://ik.imagekit.io/t3aewf67s/fonts/ITV/itv.ttf?updatedAt=1762256769814') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NetflixBebasNeue';
+  src: url('https://ik.imagekit.io/t3aewf67s/fonts/Netflix/Bebas%20Neue.ttf?updatedAt=1762256757233') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'AmazonEmberV2';
+  src: url('https://ik.imagekit.io/t3aewf67s/fonts/Amazon/Amazon%20Ember%20V2.ttf?updatedAt=1762256748081') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PeakyBlinders';
+  src: url('https://ik.imagekit.io/t3aewf67s/fonts/PeakyBlinders/Roman%20Wood%20Type%20JNL.ttf?updatedAt=1762257431771') format('truetype');
+  font-display: swap;
+}
+
 .resume-container {
-  max-width: 1100px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -80,7 +104,7 @@
   display: block;
   margin: 0;
   padding: 0;
-  text-align: left;
+  text-align: center;
 }
 
 .resume-name {
@@ -135,7 +159,7 @@
 
 /* Sections */
 .resume-section {
-  margin-bottom: 4rem;
+  margin-bottom: 1rem;
 }
 
 .section-title {
@@ -144,13 +168,17 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #999;
-  margin: 0 0 2rem 0;
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
+  text-decoration-thickness: 0.5px;
+  text-decoration-color: rgba(153, 153, 153, 0.25);
+  margin: 3rem 0 1rem 0;
 }
 
 /* Bio */
 .resume-bio {
   font-size: 1.1rem;
-  line-height: 1.8;
+  line-height: 1.4;
   color: #333;
   margin: 0;
   font-weight: 300;
@@ -160,7 +188,7 @@
 .experience-list {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 2rem;
 }
 
 .experience-item {
@@ -247,6 +275,24 @@ font-size: 2.5rem;
   font-family: 'Edelsans', 'Rowdies', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
+.experience-project.font-itv {
+  font-family: 'ITVBrand', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.experience-project.font-netflix {
+  font-family: 'NetflixBebasNeue', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.experience-project.font-amazon {
+  font-family: 'AmazonEmberV2', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.experience-project.font-peaky {
+  font-family: 'PeakyBlinders', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  letter-spacing: 0.03em;
+}
+
 /* Prevent custom font overrides inside parentheses */
 .experience-project .no-custom-font {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
@@ -262,8 +308,8 @@ font-size: 2.5rem;
 .experience-description {
   font-size: 0.95rem;
   color: #666;
-  margin: 0.5rem 0 0 0;
-  line-height: 1.6;
+  margin: 0.0rem 0 0 0;
+  line-height: 1;
   font-weight: 300;
 }
 
@@ -292,19 +338,7 @@ font-size: 2.5rem;
   border-color: #000;
 }
 
-/* Education */
-.education-list {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
 
-.education-item {
-  display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: 2rem;
-  align-items: start;
-}
 
 .education-year {
   font-size: 0.9rem;
@@ -320,10 +354,10 @@ font-size: 2.5rem;
 }
 
 .education-qualification {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 400;
   margin: 0;
-  line-height: 1.3;
+  line-height: 1;
 }
 
 .education-institution {
@@ -381,7 +415,7 @@ font-size: 2.5rem;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
 .qualification-item {
@@ -389,7 +423,7 @@ font-size: 2.5rem;
   color: #333;
   padding-left: 1.5rem;
   position: relative;
-  line-height: 1.6;
+  line-height: 1.4;
   font-weight: 300;
 }
 
@@ -407,7 +441,7 @@ font-size: 2.5rem;
   }
 
   .resume-container {
-    max-width: 92vw;
+    max-width: 900px;
   }
 
   .experience-header {
@@ -426,7 +460,7 @@ font-size: 2.5rem;
 
 @media (min-width: 1600px) {
   .resume-container {
-    max-width: 85vw;
+    max-width: 900px;
   }
 
   .experience-header {

@@ -220,7 +220,7 @@ const MenuToGrid = ({ galleries }) => {
     })
     .addLabel('start', 0)
     .to(cover, {
-      duration: 0.7,
+      duration: 0.6,
       ease: 'power4.inOut',
       height: window.innerHeight,
       top: 0
