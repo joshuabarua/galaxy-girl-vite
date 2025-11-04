@@ -305,6 +305,12 @@ const MenuToGrid = ({ galleries }) => {
         opacity: 1,
         stagger: -0.035
       }, 'start')
+      // subtle nudge without clipping: pad the title wrapper
+      .to(row.DOM.titleWrap, {
+        duration: 0.2,
+        ease: 'power2.out',
+        paddingLeft: 6
+      }, 'start')
       .set(row.DOM.title, {transformOrigin: '0% 50%'}, 'start')
       .to(row.DOM.title, {
         duration: 0.2,
@@ -339,6 +345,12 @@ const MenuToGrid = ({ galleries }) => {
         ease: 'power4.in',
         opacity: 0,
         scale: 0.8
+      }, 'start')
+      // revert padding nudge on leave
+      .to(row.DOM.titleWrap, {
+        duration: 0.2,
+        ease: 'power2.out',
+        paddingLeft: 0
       }, 'start')
       .to(row.DOM.title, {
         duration: 0.2,

@@ -179,10 +179,6 @@ body.loading {
   white-space: nowrap;
 }
 
-.cell__title--switch {
-  font-family: 'ZaiOlivettiLettera22';
-}
-
 .cell__title {
   display: grid;
   grid-template-rows: 1fr 1fr;

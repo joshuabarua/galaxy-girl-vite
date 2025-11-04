@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import { useGrained } from '../../hooks/useGrained';
 import { useFadeUpStagger } from '../../hooks/useFadeUpStagger';
 import './css/contactMinimal.css';
@@ -22,16 +23,32 @@ const ContactMinimal = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Add your email service integration here (EmailJS, etc.)
-    console.log('Form submitted:', formData);
-    
-    setStatus('Message sent successfully!');
-    setFormData({ name: '', email: '', message: '' });
-    
-    setTimeout(() => setStatus(''), 3000);
+
+    try {
+      setStatus('Sending...');
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC;
+
+      const params = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: 'Website enquiry',
+        message: formData.message,
+        to_name: 'Galaxy Girl Website',
+      };
+
+      await emailjs.send(serviceId, templateId, params, publicKey);
+      setStatus('Message sent successfully!');
+      setFormData({ name: '', email: '', message: '' });
+      setTimeout(() => setStatus(''), 3000);
+    } catch (err) {
+      console.error('Email send failed:', err);
+      setStatus('Failed to send. Please try again.');
+      setTimeout(() => setStatus(''), 4000);
+    }
   };
 
   // Apply grain to white background
@@ -53,40 +70,26 @@ const ContactMinimal = () => {
           <p className="contact-subtitle">Let's work together</p>
         </header>
 
+        {/* Social icons directly under header */}
+        <div className="header-social fade-up-item">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Instagram">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" strokeWidth="2"/>
+              <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="2"/>
+              <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
+            </svg>
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="LinkedIn">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="2"/>
+              <rect x="7" y="10" width="2" height="7" fill="currentColor"/>
+              <circle cx="8" cy="7" r="1" fill="currentColor"/>
+              <path d="M13 17v-4a3 3 0 0 1 6 0v4h-2v-4a1 1 0 1 0-2 0v4h-2z" fill="currentColor"/>
+            </svg>
+          </a>
+        </div>
+
         <div className="contact-content">
-          {/* Contact Info */}
-          <div className="contact-info fade-up-item">
-            <div className="info-item">
-              <span className="info-label">Email</span>
-              <a href="mailto:emma@example.com" className="info-value">
-                emma@example.com
-              </a>
-            </div>
-            
-            <div className="info-item">
-              <span className="info-label">Phone</span>
-              <a href="tel:+441234567890" className="info-value">
-                +44 123 456 7890
-              </a>
-            </div>
-
-            <div className="info-item">
-              <span className="info-label">Location</span>
-              <span className="info-value">London, UK</span>
-            </div>
-
-            <div className="info-item">
-              <span className="info-label">Social</span>
-              <div className="social-links">
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-link">
-                  Instagram
-                </a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-link">
-                  LinkedIn
-                </a>
-              </div>
-            </div>
-          </div>
 
           {/* Contact Form */}
           <form className="contact-form fade-up-item" onSubmit={handleSubmit}>

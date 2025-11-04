@@ -37,10 +37,11 @@
 
 /* Content */
 .contact-content {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: 6rem;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
 }
 
 /* Contact Info */
@@ -96,10 +97,22 @@ a.info-value:hover {
 }
 
 /* Contact Form */
+.header-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: -2rem;
+  margin-bottom: 1.5rem;
+}
+
 .contact-form {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
 }
 
 .form-group {
@@ -156,6 +169,7 @@ a.info-value:hover {
   cursor: pointer;
   transition: all 0.3s ease;
   font-family: inherit;
+  align-self: center;
 }
 
 .form-submit:hover {
