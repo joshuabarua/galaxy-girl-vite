@@ -11,8 +11,9 @@
   --color-text-alt: #000;
   --image-gap: 0.8vw;
   --image-gap-large: 1.5vw;
-  --img-size: 6vw;
-  --img-size-large: 7vw;
+  /* Cap image sizes to avoid oversized cells on ultra-wide viewports */
+  --img-size: clamp(110px, 6vw, 220px);
+  --img-size-large: clamp(180px, 18vw, 360px);
 }
 
 .menu-to-grid {
@@ -331,8 +332,8 @@ body.loading {
   color: #fff;
 }
 
-/* Preview Grid */
-.grid {
+/* Preview Grid - scope to component to avoid clobbering Tailwind's .grid */
+.menu-to-grid .grid {
   position: relative;
   display: grid;
   max-width: 1600px; /* allow more columns before wrapping */
@@ -451,7 +452,7 @@ body.oh {
   :root {
     --img-size-large: clamp(220px, 18vw, 360px);
   }
-  .grid {
+  .menu-to-grid .grid {
     grid-template-columns: repeat(2, var(--img-size-large));
     grid-template-rows: repeat(2, var(--img-size-large));
     grid-auto-rows: var(--img-size-large);
@@ -460,13 +461,13 @@ body.oh {
 
 /* Widen grid progressively on larger screens */
 @media (min-width: 1024px) {
-  .grid {
+  .menu-to-grid .grid {
     grid-template-columns: repeat(3, var(--img-size-large));
   }
 }
 
 @media (min-width: 1400px) {
-  .grid {
+  .menu-to-grid .grid {
     grid-template-columns: repeat(4, var(--img-size-large));
   }
 }
@@ -503,7 +504,7 @@ body.oh {
     font-size: 1.75rem;
   }
 
-  .grid {
+  .menu-to-grid .grid {
     grid-template-columns: repeat(2, var(--img-size-large));
     grid-template-rows: repeat(3, var(--img-size-large));
   }
@@ -529,7 +530,7 @@ body.oh {
     font-size: 1.3rem;
   }
 
-  .grid {
+  .menu-to-grid .grid {
     grid-template-columns: repeat(2, var(--img-size-large));
     grid-template-rows: repeat(3, var(--img-size-large));
     grid-gap: 0.5rem;

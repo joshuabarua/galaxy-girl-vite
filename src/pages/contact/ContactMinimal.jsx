@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
 import { useGrained } from '../../hooks/useGrained';
 import { useFadeUpStagger } from '../../hooks/useFadeUpStagger';
 
-/**
- * Minimal Scandinavian-style contact page
- */
 const ContactMinimal = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -50,10 +47,13 @@ const ContactMinimal = () => {
     }
   };
 
-  // Apply grain to white background
   useGrained('contact-minimal-bg');
 
-  // Staggered fade-up animations
+  useEffect(() => {
+    document.documentElement.classList.remove('home-snap');
+    document.body.classList.remove('home-snap');
+  }, []);
+
   useFadeUpStagger('.fade-up-item', {
     delay: 250,
     stagger: 70,
@@ -64,11 +64,11 @@ const ContactMinimal = () => {
   return (
     <div
       id="contact-minimal-bg"
-      className="min-h-screen bg-[#f5f5f5] text-black px-8 py-24 sm:px-6 sm:py-16 overflow-x-hidden overflow-y-auto"
+      className="min-h-[calc(100dvh-64px)] bg-[#f5f5f5] text-black px-8 pt-16 pb-0 sm:px-6 sm:pt-12 overflow-x-hidden overflow-y-auto overscroll-y-none"
     >
       <div className="max-w-[1200px] mx-auto">
-        <header className="fade-up-item text-center mb-16">
-          <h1 className="text-[clamp(3rem,6vw,5rem)] font-light tracking-[-0.02em] leading-none mb-4">
+        <header className="fade-up-item text-center mb-8">
+          <h1 className="text-[clamp(3rem,6vw,5rem)] font-light tracking-[-0.02em] leading-none mb-8">
             Get in Touch
           </h1>
           <p className="text-sm font-normal tracking-[0.2em] uppercase text-[#666] m-0">
@@ -76,8 +76,7 @@ const ContactMinimal = () => {
           </p>
         </header>
 
-        {/* Social icons directly under header */}
-        <div className="fade-up-item flex items-center justify-center gap-4 -mt-8 mb-6">
+        <div className="fade-up-item flex items-center justify-center gap-4 - mb-6">
           <a
             href="https://instagram.com"
             target="_blank"
