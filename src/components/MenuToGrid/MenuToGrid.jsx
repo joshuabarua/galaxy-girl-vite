@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { gsap } from 'gsap';
 import { Flip } from 'gsap/Flip';
 import { preloadImages, preloadFonts } from '../../utils/media';
@@ -6,6 +6,8 @@ import { getImageKitUrl } from '../../utils/imagekit';
 import { useGrained } from '../../hooks/useGrained';
 import { Row } from './Row';
 import Preview from './Preview';
+import RowGrain from './RowGrain';
+import PreviewGrain from './PreviewGrain';
 import './MenuToGrid.css';
 
 gsap.registerPlugin(Flip);
@@ -31,7 +33,7 @@ const MenuToGrid = ({ galleries }) => {
   const prefetchedRef = useRef(new Set());
 
   // Load more from ImageKit via Vercel API for any album
-  const handleLoadMore = async (index, currentCount) => {
+  const handleLoadMore = useCallback(async (index, currentCount) => {
     try {
       const g = galleriesState[index];
       if (!g || !Array.isArray(g.images) || g.images.length === 0) return;
@@ -72,7 +74,7 @@ const MenuToGrid = ({ galleries }) => {
     } catch (e) {
       // swallow fetch errors; UI will still increase visibleCount for any already present items
     }
-  };
+  }, [galleriesState]);
 
   // Apply grain effect to cover
   useGrained('menu-to-grid-cover', {
@@ -80,24 +82,6 @@ const MenuToGrid = ({ galleries }) => {
     grainDensity: 1,
     grainWidth: 1,
     grainHeight: 1
-  });
-
-  // Apply grain to each preview item
-  galleriesState.forEach((_, index) => {
-    useGrained(`preview-item-${index}`, {
-      grainOpacity: 0.09,
-      grainDensity: 1,
-      grainWidth: 1,
-      grainHeight: 1
-    });
-    
-    // Apply grain to each row
-    useGrained(`row-${index}`, {
-      grainOpacity: 0.09,
-      grainDensity: 1,
-      grainWidth: 1,
-      grainHeight: 1
-    });
   });
 
   useEffect(() => {
@@ -148,7 +132,7 @@ const MenuToGrid = ({ galleries }) => {
     setTimeout(() => tryInitialize(), 100);
   };
 
-  const handleRowClick = (index) => {
+  const handleRowClick = useCallback((index) => {
     if (isAnimatingRef.current) return;
     
     // If rows aren't initialized yet, try to initialize them now
@@ -272,9 +256,9 @@ const MenuToGrid = ({ galleries }) => {
       ease: 'power4.inOut',
       opacity: 1
     }, 'start');
-  };
+  }, []);
 
-  const handleMouseEnter = (index) => {
+  const handleMouseEnter = useCallback((index) => {
     // Prefetch once per row so preview has more on open
     try {
       if (!prefetchedRef.current.has(index)) {
@@ -328,9 +312,9 @@ const MenuToGrid = ({ galleries }) => {
         yPercent: 0,
         rotation: 0
       }, 'start+=0.3');
-  };
+  }, [galleriesState, handleLoadMore]);
 
-  const handleMouseLeave = (index) => {
+  const handleMouseLeave = useCallback((index) => {
     if (isOpenRef.current) return;
     
     const row = rowsArrRef.current[index];
@@ -368,7 +352,7 @@ const MenuToGrid = ({ galleries }) => {
         yPercent: 0,
         rotation: 0
       }, 'start+=0.3');
-  };
+  }, []);
 
   const handleCloseClick = () => {
     if (isAnimatingRef.current) return;
@@ -465,10 +449,11 @@ const MenuToGrid = ({ galleries }) => {
         <div className="rows">
           {galleriesState.map((gallery, index) => (
             <div key={index} ref={el => rowRefs.current[index] = el}>
+              <RowGrain id={`row-${index}`} />
               <div id={`row-${index}`} className="row" data-row-index={index} 
-       onClick={() => handleRowClick(index)}
-       onMouseEnter={() => handleMouseEnter(index)}
-       onMouseLeave={() => handleMouseLeave(index)}>
+       onClick={(e) => handleRowClick(Number(e.currentTarget.dataset.rowIndex))}
+       onMouseEnter={(e) => handleMouseEnter(Number(e.currentTarget.dataset.rowIndex))}
+       onMouseLeave={(e) => handleMouseLeave(Number(e.currentTarget.dataset.rowIndex))}>
                 <div className="cell cell--title">
                   <div className="cell__title-wrap">
                     <h3 className="cell__title" style={{ '--title-index': index }}>
@@ -521,6 +506,9 @@ const MenuToGrid = ({ galleries }) => {
             isActive={activeIndex === index}
             onLoadMore={handleLoadMore}
           />
+        ))}
+        {galleriesState.map((_, index) => (
+          <PreviewGrain key={`pg-${index}`} id={`preview-item-${index}`} />
         ))}
       </div>
 

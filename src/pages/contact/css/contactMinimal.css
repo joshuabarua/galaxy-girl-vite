@@ -5,6 +5,7 @@
   background: #f5f5f5;
   color: #000;
   padding: 6rem 2rem 4rem;
+  overflow: visible; /* do not hide or clip overflow on contact page */
 }
 
 .contact-container {
