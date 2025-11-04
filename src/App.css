@@ -106,6 +106,84 @@
 	font-display: swap;
 }
 
+@font-face {
+  font-family: 'BunnyMiltonTwoBold';
+  src: url('https://ik.imagekit.io/t3aewf67s/fonts/BunnyMonro/MiltonTwoBold/Milton_Two_Bold.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BunnyMLBBrewers';
+  src: url('https://ik.imagekit.io/t3aewf67s/fonts/BunnyMonro/MLB-Brewers/MLBBREWE.TTF') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EmpireSansSerifFLF';
+  src: url('https://ik.imagekit.io/t3aewf67s/fonts/Empireoflight/SansSerifFLF-Italic/SansSerifFLF-Italic.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EmpireColombia';
+  src: url('https://ik.imagekit.io/t3aewf67s/fonts/Empireoflight/Colombia1/Colombia-Regular.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'FlorencesansSCOutline';
+  src: url('https://ik.imagekit.io/t3aewf67s/fonts/Franchise/Florencesans-SC-Outline/Florsn39.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'LemonMilk';
+  src: url('https://ik.imagekit.io/t3aewf67s/fonts/Blitz/LEMON-MILK-Regular/LEMONMILK-Regular.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BrusioCondensed';
+  src: url('https://ik.imagekit.io/t3aewf67s/fonts/Allelujah/BrusioCondensed/Brusio_Condensed.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GameOfThrones';
+  src: url('https://ik.imagekit.io/t3aewf67s/fonts/HouseofDrag/Game%20of%20Thrones.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Edelsans';
+  src: url('https://ik.imagekit.io/t3aewf67s/fonts/Witcher/edelsans_regular.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ITVBrand';
+  src: url('https://ik.imagekit.io/t3aewf67s/fonts/ITV/itv.ttf?updatedAt=1762256769814') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NetflixBebasNeue';
+  src: url('https://ik.imagekit.io/t3aewf67s/fonts/Netflix/Bebas%20Neue.ttf?updatedAt=1762256757233') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'AmazonEmberV2';
+  src: url('https://ik.imagekit.io/t3aewf67s/fonts/Amazon/Amazon%20Ember%20V2.ttf?updatedAt=1762256748081') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PeakyBlinders';
+  src: url('https://ik.imagekit.io/t3aewf67s/fonts/PeakyBlinders/Roman%20Wood%20Type%20JNL.ttf?updatedAt=1762257431771') format('truetype');
+  font-display: swap;
+}
+
 * {
 	/* font-family: 'ZaiOlivettiLettera22'; */
 	font-weight: 200;

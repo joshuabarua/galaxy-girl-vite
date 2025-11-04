@@ -208,16 +208,16 @@ const HomeMinimal = () => {
 
 
   return (
-    <div id="home-minimal-bg" className="home-minimal" ref={initOnContainer}>
-      <section className="hero-section" id="hero-logo-container" ref={initHeroSection}>
-        <div className="hero-content">
+    <div id="home-minimal-bg" className="home-minimal min-h-screen bg-[#f5f5f5] text-black overflow-x-hidden w-full" ref={initOnContainer}>
+      <section className="hero-section h-screen flex items-center justify-center flex-col px-8 relative" id="hero-logo-container" ref={initHeroSection}>
+        <div className="hero-content text-center flex flex-col items-center gap-2 max-w-[600px] px-8 mx-auto">
           <h1 className="hero-title" aria-label="EMMA BARUA">
             <span className="hero-title-text" ref={initHeroTitle}>EMMA BARUA</span>
           </h1>
           <p className="hero-subtitle">Makeup Artist</p>
         </div>
-        <div className="scroll-indicator">
-          <span className="scroll-text">Scroll to explore</span>
+        <div className="scroll-indicator flex flex-col items-center justify-center gap-1.5">
+          <span className="scroll-text text-[0.9rem] tracking-[0.2em] uppercase text-[#999] font-normal">Scroll to explore</span>
           <div className="scroll-line"></div>
         </div>
       </section>
