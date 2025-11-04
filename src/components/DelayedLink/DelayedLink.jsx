@@ -28,7 +28,17 @@ const DelayedLink = ({
     if (onClick) onClick(e);
 
     // Trigger delayed navigation
-    delayedNavigate(to);
+    if (to === '/') {
+      // Slightly faster than global defaults for home route
+      delayedNavigate(to, {
+        transition: {
+          fadeToDuration: 120,
+          blackHoldDuration: 20,
+        },
+      });
+    } else {
+      delayedNavigate(to);
+    }
   };
 
   return (

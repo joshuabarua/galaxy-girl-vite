@@ -65,7 +65,7 @@ const ResumeMinimal = () => {
 
   // Staggered fade-up animations
   useFadeUpStagger('.fade-up-item', {
-    delay: 250,
+    delay: 175,
     stagger: 70,
     duration: 600,
     distance: 40
