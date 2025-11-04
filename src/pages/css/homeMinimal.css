@@ -93,21 +93,21 @@
 .scroll-line {
   width: 2px;
   height: 42px;
-  background: #999;
-  opacity: 0.8;
+  background: rgba(153, 153, 153, 0.4);
+  opacity: 0.6;
   border-radius: 2px;
   animation: scrollDrop 1.8s ease-in-out infinite;
 }
 
 @keyframes scrollDrop {
-  0% { transform: translateY(-6px); opacity: 0.4; }
-  50% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(-6px); opacity: 0.4; }
+  0% { transform: translateY(-6px); opacity: 0.25; }
+  50% { transform: translateY(0); opacity: 0.6; }
+  100% { transform: translateY(-6px); opacity: 0.25; }
 }
 
 .gallery-section {
   background: transparent;
-  min-height: 100vh;
+  height: 100vh; /* snap exactly one viewport below */
   padding: 0;
   overflow-x: hidden;
   width: 100%;

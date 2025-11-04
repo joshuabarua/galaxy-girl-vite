@@ -13,10 +13,19 @@ export const useDelayedNavigation = ({
       detail: { to, options } 
     }));
 
+    // Allow per-call overrides (options.transition), else adjust timing per route
+    const override = options.transition || {};
+    const fadeTo = typeof override.fadeToDuration === 'number'
+      ? override.fadeToDuration
+      : (to === '/' ? Math.max(100, fadeToDuration - 80) : fadeToDuration);
+    const hold = typeof override.blackHoldDuration === 'number'
+      ? override.blackHoldDuration
+      : (to === '/' ? Math.max(20, blackHoldDuration - 20) : blackHoldDuration);
+
     // Navigate after fade-to-black + hold completes
     setTimeout(() => {
       navigate(to, options);
-    }, fadeToDuration + blackHoldDuration);
+    }, fadeTo + hold);
   }, [navigate, fadeToDuration, blackHoldDuration]);
 
   return delayedNavigate;
