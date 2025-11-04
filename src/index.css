@@ -32,6 +32,7 @@ body {
 
 #root {
 	min-height: 100vh;
+	overflow-x: hidden;
 }
 
 .app-minimal {
@@ -141,6 +142,7 @@ button:focus-visible {
 		--chart-4: 43 74% 66%;
 		--chart-5: 27 87% 67%;
 		--radius: 0.5rem;
+		--brand: 80 2 90;
 	}
   .dark {
 		--background: 0 0% 3.9%;
@@ -178,3 +180,34 @@ button:focus-visible {
     @apply bg-background text-foreground;
 	}
 }
+
+/* Media elements should not overflow containers */
+img, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Legacy font class preserved for Navbar logo text */
+.font-thoderanNotes {
+  font-family: 'ThoderanNotes', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* Resume project title font mappings */
+.experience-project.font-bunny { font-family: 'BunnyMiltonTwoBold', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+.experience-project.font-bunny .bunny-the { font-family: 'BunnyMLBBrewers', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+.experience-project.font-bunny .bunny-part-2 { font-family: 'BunnyMiltonTwoBold', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+.experience-project.font-bunny .bunny-rest { font-family: 'BunnyMLBBrewers', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+
+.experience-project.font-empire-of-light .empire { font-family: 'EmpireSansSerifFLF', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; text-transform: uppercase; }
+.experience-project.font-empire-of-light .empire-of { font-family: 'EmpireColombia', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; text-transform: lowercase; }
+
+.experience-project.font-franchise { font-family: 'FlorencesansSCOutline', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+.experience-project.font-blitz { font-family: 'LemonMilk', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+.experience-project.font-allelujah { font-family: 'BrusioCondensed', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+.experience-project.font-house-of-dragon { font-family: 'GameOfThrones', Georgia, 'Times New Roman', Times, serif; }
+.experience-project.font-witcher { font-family: 'Edelsans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+.experience-project.font-itv { font-family: 'ITVBrand', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+.experience-project.font-netflix { font-family: 'NetflixBebasNeue', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+.experience-project.font-amazon { font-family: 'AmazonEmberV2', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+.experience-project.font-peaky { font-family: 'PeakyBlinders', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }

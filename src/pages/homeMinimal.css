@@ -1,0 +1,167 @@
+/* Minimal Scandinavian Home Page */
+
+.home-minimal {
+  background: #f5f5f5;
+  color: #000;
+  min-height: 100vh;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+:root {
+  --hero-sub-size: clamp(1.2rem, 3vw, 3rem);
+  --hero-title-size: calc(var(--hero-sub-size) * 2);
+}
+
+.hero-section {
+  display: flex;
+  min-height: 60vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  background: transparent;
+  padding: 2rem;
+  overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  position: relative; 
+}
+
+.hero-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 600px;
+  padding: 0 2rem;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.hero-content.hero-animated {
+  animation: fadeInUp 1.2s ease-out;
+}
+
+.hero-subtitle {
+  font-size: var(--hero-sub-size);
+  font-weight: 300;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #666;
+  white-space: nowrap; 
+  opacity: 0; 
+  transform: translateY(0); 
+}
+
+.hero-title-text {
+  display: inline-block;
+  font-family: 'ThoderanNotes';
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  font-size: var(--hero-title-size); 
+  white-space: nowrap;
+  overflow: visible; 
+  border-right: none; 
+  width: auto; 
+  animation: none; 
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 3rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  opacity: 0; 
+  z-index: 2; 
+}
+
+.scroll-text {
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #999;
+  font-weight: 400;
+}
+
+.scroll-line {
+  width: 2px;
+  height: 42px;
+  background: rgba(153, 153, 153, 0.4);
+  opacity: 0.6;
+  border-radius: 2px;
+  animation: scrollDrop 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollDrop {
+  0% { transform: translateY(-6px); opacity: 0.25; }
+  50% { transform: translateY(0); opacity: 0.6; }
+  100% { transform: translateY(-6px); opacity: 0.25; }
+}
+
+.gallery-section {
+  background: transparent;
+  height: 100vh; /* snap exactly one viewport below */
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+html.home-snap, body.home-snap {
+  scroll-snap-type: y mandatory;
+  overscroll-behavior-y: contain;
+  scroll-behavior: smooth;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scrollPulse {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(10px);
+    opacity: 0.5;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 1rem;
+  }
+
+  .hero-subtitle {
+    letter-spacing: 0.2em;
+  }
+
+  .scroll-indicator {
+    bottom: 2rem;
+  }
+}
