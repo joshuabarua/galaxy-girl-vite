@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import MenuToGrid from '../components/MenuToGrid/MenuToGrid';
 import { imagekitGalleries } from './portfolio/data/imagekitGalleryData';
 import { useGrained } from '../hooks/useGrained';
-import './css/homeMinimal.css';
+import './homeMinimal.css';
 
 const HomeMinimal = () => {
   const navigate = useNavigate();
@@ -23,7 +23,6 @@ const HomeMinimal = () => {
     if (typeof window !== 'undefined') {
       requestAnimationFrame(() => window.scrollTo(0, 0));
     }
-    // Enable scroll snapping for this page
     try {
       document.documentElement.classList.add('home-snap');
       document.body.classList.add('home-snap');
@@ -68,7 +67,6 @@ const HomeMinimal = () => {
         }
       };
       const onResize = () => compute();
-      // Touch support
       let touchStartY = 0;
       let touchLastY = 0;
       const onTouchStart = (e) => {
@@ -81,8 +79,8 @@ const HomeMinimal = () => {
         touchLastY = e.touches[0].clientY;
       };
       const onTouchEnd = (e) => {
-        const dy = touchStartY - touchLastY; // positive = swipe up
-        if (Math.abs(dy) < 10) return; // ignore tiny moves
+        const dy = touchStartY - touchLastY;
+        if (Math.abs(dy) < 10) return;
         if (animating) return;
         const y = window.scrollY || window.pageYOffset || 0;
         let target = y;
@@ -199,7 +197,6 @@ const HomeMinimal = () => {
       delay: startDelay,
     });
 
-    // Start these earlier than title completion and stagger them
     const subtitleDelay = startDelay + 1;
     const scrollDelay = subtitleDelay + 1;
     gsap.to('.hero-subtitle', { opacity: 1, y: 8, duration: 0.6, ease: 'power2.out', delay: subtitleDelay });

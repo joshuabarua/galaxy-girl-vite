@@ -1,12 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import resumeData from './resumeData.json';
 import { useGrained } from '../../hooks/useGrained';
 import { useFadeUpStagger } from '../../hooks/useFadeUpStagger';
 
-/**
- * Minimal Scandinavian-style Resume/CV
- * Easy to update via resumeData.json
- */
+
 const ResumeMinimal = () => {
   const getProjectFontClass = (title) => {
     if (!title) return '';
@@ -55,14 +52,16 @@ const ResumeMinimal = () => {
       );
     }
 
-    // Default rendering without special parentheses handling
     return title;
   };
 
-  // Apply grain to white background
   useGrained('resume-minimal-bg');
 
-  // Staggered fade-up animations
+  useEffect(() => {
+    document.documentElement.classList.remove('home-snap');
+    document.body.classList.remove('home-snap');
+  }, []);
+
   useFadeUpStagger('.fade-up-item', {
     delay: 175,
     stagger: 70,
@@ -72,16 +71,27 @@ const ResumeMinimal = () => {
 
   const cvUrl = (import.meta?.env?.VITE_CV_URL) || resumeData?.cvUrl || '';
 
+  const containerRef = useRef(null);
+  const [canScroll, setCanScroll] = useState(false);
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const check = () => setCanScroll(el.scrollHeight > el.clientHeight + 1);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
   return (
-    <div id="resume-minimal-bg" className="min-h-screen bg-[#f5f5f5] text-black px-8 py-16 sm:px-6 overflow-x-hidden overflow-y-auto">
-      <div className="max-w-[900px] mx-auto">
+    <div id="resume-minimal-bg" ref={containerRef} className={`min-h-[calc(100dvh-64px)] bg-[#f5f5f5] text-black px-6 pt-10 pb-0 sm:px-5 sm:pt-8 overflow-x-hidden ${canScroll ? 'overflow-y-auto overscroll-y-none' : 'overflow-y-hidden'}`}>
+      <div className="max-w-[760px] mx-auto">
         {/* Header */}
         <header className="fade-up-item mb-0 pb-4 border-b border-brand/10 text-center">
           <div>
-            <h1 className="text-[clamp(3rem,4vw,5rem)] font-light tracking-[-0.02em] leading-none m-0">
+            {/* <h1 className="text-[clamp(3rem,4vw,5rem)] font-light tracking-[-0.02em] leading-none m-0">
               {resumeData.name}
-            </h1>
-            <p className="text-sm font-normal tracking-[0.2em] uppercase text-[#666] m-0">
+            </h1> */}
+            <p className="text-2xl font-normal tracking-[0.2em] uppercase text-[#666] m-0">
               {resumeData.title}
             </p>
             {resumeData.subtitle && (
@@ -110,7 +120,7 @@ const ResumeMinimal = () => {
         </header>
 
         {/* Contact */}
-        <section className="fade-up-item my-4">
+        <section className="fade-up-item mt-4 mb-0">
           <div className="flex flex-wrap gap-6 text-[0.95rem] justify-center items-center text-center">
             {resumeData.contact.location && (
               <span className="text-[#666]">{resumeData.contact.location}</span>
@@ -123,27 +133,27 @@ const ResumeMinimal = () => {
 
         {/* Bio */}
         {resumeData.bio && (
-          <section className="fade-up-item my-3">
+          <section className="fade-up-item mt-3 mb-0">
             <p className="text-[1.1rem] leading-snug text-[#333] m-0 font-light">{resumeData.bio}</p>
           </section>
         )}
 
         {/* Experience */}
         {resumeData.experience && resumeData.experience.length > 0 && (
-          <section className="my-3 fade-up-item">
-            <h2 className="text-xs font-normal tracking-[0.2em] uppercase text-[#999] underline decoration-brand/20 underline-offset-2 [text-decoration-thickness:0.5px] mt-8 mb-3">
+          <section className="mt-2.5 mb-0 fade-up-item">
+            <h2 className="text-xs font-normal tracking-[0.2em] uppercase text-[#999] underline decoration-brand/20 underline-offset-2 [text-decoration-thickness:0.5px] mt-6 mb-2">
               Experience
             </h2>
             <div className="flex flex-col gap-5">
               {resumeData.experience.map((item, index) => (
                 <div key={index}>
-                  <div className="grid grid-cols-[80px_1fr] gap-6 items-start lg:grid-cols-[200px_1fr] lg:gap-10">
-                    <span className="text-sm text-[#999] pt-1">{item.year}</span>
-                    <div className="flex flex-col gap-2">
-                      <h3 className={`text-[1.3rem] font-normal m-0 leading-snug experience-project ${getProjectFontClass(item.project)}`}>
+                  <div className="grid auto-rows-auto grid-cols-[64px_1fr] gap-x-6 gap-y-4 items-start lg:grid-cols-[200px_1fr] lg:gap-x-6 lg:gap-y-3">
+                    <span className="text-md text-[#999] pt-1">{item.year}</span>
+                    <div className="flex flex-col gap-1">
+                      <h3 className={`text-[1.5rem] font-normal m-0 leading-tight experience-project ${getProjectFontClass(item.project)}`}>
                         {renderProjectTitle(item.project)}
                       </h3>
-                      <p className="text-[0.95rem] text-[#666] m-0 font-light">{item.role}</p>
+                      <p className="text-[0.95rem] text-[#666] m-0 leading-tight font-light">{item.role}</p>
                       {item.description && (
                         <p className="text-[0.95rem] text-[#666] m-0 leading-tight font-light">{item.description}</p>
                       )}
@@ -155,22 +165,21 @@ const ResumeMinimal = () => {
           </section>
         )}
 
-        {/* Ongoing Projects */}
         {resumeData.ongoing && resumeData.ongoing.length > 0 && (
-          <section className="my-3 fade-up-item">
-            <h2 className="text-xs font-normal tracking-[0.2em] uppercase text-[#999] underline decoration-brand/20 underline-offset-2 [text-decoration-thickness:0.5px] mt-8 mb-3">
+          <section className="mt-2.5 mb-0 fade-up-item">
+            <h2 className="text-xs font-normal tracking-[0.2em] uppercase text-[#999] underline decoration-brand/20 underline-offset-2 [text-decoration-thickness:0.5px] mt-6 mb-2">
               Ongoing Work
             </h2>
             <div className="flex flex-col gap-5">
               {resumeData.ongoing.map((item, index) => (
                 <div key={index}>
-                  <div className="grid grid-cols-[80px_1fr] gap-6 items-start lg:grid-cols-[200px_1fr] lg:gap-10">
-                    <span className="text-sm text-[#999] pt-1">{item.period}</span>
-                    <div className="flex flex-col gap-2">
-                      <h3 className={`text-[1.3rem] font-normal m-0 leading-snug experience-project ${getProjectFontClass(item.project)}`}>
+                  <div className="grid auto-rows-auto grid-cols-[64px_1fr] gap-x-4 gap-y-2 items-start lg:grid-cols-[160px_1fr] lg:gap-x-6 lg:gap-y-3">
+                    <span className="text-xs text-[#999] pt-1">{item.period}</span>
+                    <div className="flex flex-col gap-1">
+                      <h3 className={`text-[1.2rem] font-normal m-0 leading-tight experience-project ${getProjectFontClass(item.project)}`}>
                         {renderProjectTitle(item.project)}
                       </h3>
-                      <p className="text-[0.95rem] text-[#666] m-0 font-light">{item.role}</p>
+                      <p className="text-[0.95rem] text-[#666] m-0 leading-tight font-light">{item.role}</p>
                       {item.description && (
                         <p className="text-[0.95rem] text-[#666] m-0 leading-tight font-light">{item.description}</p>
                       )}
@@ -184,11 +193,11 @@ const ResumeMinimal = () => {
 
         {/* Qualifications */}
         {resumeData.qualifications && resumeData.qualifications.length > 0 && (
-          <section className="my-3">
-            <h2 className="text-xs font-normal tracking-[0.2em] uppercase text-[#999] underline decoration-brand/20 underline-offset-2 [text-decoration-thickness:0.5px] mt-8 mb-3">
+          <section className="mt-2.5 mb-0">
+            <h2 className="text-xs font-normal tracking-[0.2em] uppercase text-[#999] underline decoration-brand/20 underline-offset-2 [text-decoration-thickness:0.5px] mt-6 mb-2">
               Qualifications and Training
             </h2>
-            <ul className="list-disc pl-6 m-0 flex flex-col gap-2">
+            <ul className="list-disc pl-6 m-0 flex flex-col gap-1.5">
               {resumeData.qualifications.map((qual, index) => (
                 <li key={index} className="text-[0.95rem] text-[#333] leading-relaxed font-light">{qual}</li>
               ))}
@@ -198,8 +207,8 @@ const ResumeMinimal = () => {
 
         {/* Transferrable Skills */}
         {resumeData.transferrableSkills && (
-          <section className="my-3">
-            <h2 className="text-xs font-normal tracking-[0.2em] uppercase text-[#999] underline decoration-brand/20 underline-offset-2 [text-decoration-thickness:0.5px] mt-8 mb-3">
+          <section className="mt-2.5 mb-0">
+            <h2 className="text-xs font-normal tracking-[0.2em] uppercase text-[#999] underline decoration-brand/20 underline-offset-2 [text-decoration-thickness:0.5px] mt-6 mb-2">
               Transferrable Skills
             </h2>
             <p className="text-[1.1rem] leading-snug text-[#333] m-0 font-light">{resumeData.transferrableSkills}</p>
