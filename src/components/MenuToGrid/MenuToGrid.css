@@ -1,4 +1,3 @@
-
 /* CSS Variables */
 :root {
   --color-text: #131313;
@@ -13,7 +12,7 @@
   --image-gap: 0.8vw;
   --image-gap-large: 1.5vw;
   --img-size: 6vw;
-  --img-size-large: 8vw;
+  --img-size-large: 7vw;
 }
 
 .menu-to-grid {
@@ -292,7 +291,8 @@ body.loading {
 .preview__item-title {
   font-family: 'ZaiRoyalVogueTypewriter';
   font-weight: 700;
-  font-size: clamp(1.563rem, 6vw, 3.815rem);
+  font-size: clamp(1.4rem, 5vw, 3.25rem);
+  margin-bottom: 2rem;
 }
 
 .preview__item-content {
@@ -453,7 +453,7 @@ body.oh {
 /* Double image size from tablet up while fitting within container */
 @media (min-width: 768px) {
   :root {
-    --img-size-large: clamp(260px, 20vw, 420px);
+    --img-size-large: clamp(220px, 18vw, 360px);
   }
   .grid {
     grid-template-columns: repeat(2, var(--img-size-large));
@@ -504,7 +504,7 @@ body.oh {
   }
 
   .preview__item-title {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
 
   .grid {

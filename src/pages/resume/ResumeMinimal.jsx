@@ -19,6 +19,10 @@ const ResumeMinimal = () => {
     if (t.includes('witcher')) return 'font-witcher';
     if (t.includes('empire of light')) return 'font-empire-of-light';
     if (t.includes('allelujah')) return 'font-allelujah';
+    if (t.includes('netflix')) return 'font-netflix';
+    if (t.includes('amazon')) return 'font-amazon';
+    if (t.includes('itv')) return 'font-itv';
+    if (t.includes('peaky')) return 'font-peaky';
     return '';
   };
 

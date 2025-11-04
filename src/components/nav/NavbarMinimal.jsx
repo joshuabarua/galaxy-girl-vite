@@ -4,10 +4,6 @@ import DelayedLink from '../DelayedLink/DelayedLink';
 import { useGrained } from '../../hooks/useGrained';
 import './navbarMinimal.css';
 
-/**
- * Minimal Scandinavian-style navbar
- * Simple, clean, black and white
- */
 const NavbarMinimal = () => {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
@@ -24,7 +20,6 @@ const NavbarMinimal = () => {
   const isActive = (path) => location.pathname === path;
   const onHome = location.pathname === '/';
 
-  // Apply grain to navbar when scrolled
   useGrained('navbar-minimal-grain');
 
   return (
