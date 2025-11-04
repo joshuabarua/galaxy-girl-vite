@@ -7,7 +7,7 @@
   --padding-sides: 1rem;
   --padding-row: 0.75rem;
   --color-row-border: #f0f0f0;
-  --color-bg-row-hover: #d5d5d5;
+  --color-bg-row-hover: #ececec; /* solid; opacity controlled on hover */
   --color-text-alt: #000;
   --image-gap: 0.8vw;
   --image-gap-large: 1.5vw;
@@ -99,14 +99,14 @@ body.loading {
   position: absolute;
   inset: 0;
   background-color: var(--color-bg-row-hover);
-  opacity: 0;
+  opacity: 0; /* hidden until hover */
   transition: opacity 0.3s ease-out;
   pointer-events: none;
   z-index: -1;
 }
 
 .row:hover::before {
-  opacity: 1;
+  opacity: 0.6; /* slightly darker than before */
 }
 
 .row--current {

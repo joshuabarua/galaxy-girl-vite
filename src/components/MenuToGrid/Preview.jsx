@@ -80,4 +80,4 @@ const Preview = forwardRef(({ data, index, isActive, onLoadMore }, ref) => {
 
 Preview.displayName = 'Preview';
 
-export default Preview;
+export default React.memo(Preview);
