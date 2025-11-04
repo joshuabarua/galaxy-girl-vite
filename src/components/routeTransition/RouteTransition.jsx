@@ -52,6 +52,10 @@ const RouteTransition = ({ children, fadeToDuration = 200, blackHoldDuration = 5
     }
     isDelayedNav.current = false;
 
+    const fadeToEff = fadeToDuration;
+    const holdEff = blackHoldDuration;
+    const fadeFromEff = fadeFromDuration;
+
     // Swap content after cover completes + hold duration (stay grey)
     const t1 = setTimeout(() => {
       setContentKey(location.key);
@@ -59,13 +63,22 @@ const RouteTransition = ({ children, fadeToDuration = 200, blackHoldDuration = 5
       const t2 = setTimeout(() => {
         setShowOverlay(false);
         try { window.dispatchEvent(new CustomEvent('route-transition-in-complete')); } catch {}
-      }, fadeFromDuration);
+      }, fadeFromEff);
       timeoutRef.current = t2;
-    }, fadeToDuration + blackHoldDuration);
+    }, fadeToEff + holdEff);
 
     timeoutRef.current = t1;
+
+    // Watchdog: ensure overlay doesn't stay stuck beyond total planned duration
+    const maxTotal = fadeToEff + holdEff + fadeFromEff + 150; // small buffer
+    const watchdog = setTimeout(() => {
+      setShowOverlay(false);
+      try { window.dispatchEvent(new CustomEvent('route-transition-in-complete')); } catch {}
+    }, Math.max(250, maxTotal));
+
     return () => {
       clearTimeout(t1);
+      clearTimeout(watchdog);
     };
   }, [location.key, fadeToDuration, blackHoldDuration, fadeFromDuration]);
 
