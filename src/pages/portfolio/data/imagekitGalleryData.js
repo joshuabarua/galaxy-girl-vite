@@ -1,8 +1,3 @@
-/**
- * Gallery data structure for ImageKit-hosted images
- * Use imagekitPath including file extension, e.g. "beautyEditorial/0.jpg"
- */
-
 function makeSeries(folder, count, startId, width, height, altPrefix, captionPrefix) {
   const images = [];
   for (let i = 1; i <= count; i++) {

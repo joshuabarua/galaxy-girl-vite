@@ -3,7 +3,6 @@
   min-height: 100%;
 }
 
-/* Overlay container - holds both rows */
 .route-transition-overlay {
   position: fixed;
   top: 0;
@@ -19,12 +18,10 @@
   overflow: hidden;
 }
 
-/* Hide overlay during MenuToGrid transitions so the cover panel is visible */
 body.oh .route-transition-overlay {
   display: none !important;
 }
 
-/* Individual overlay rows (top and bottom half) */
 .overlay-row {
   position: relative;
   background: #2a2a2a;
@@ -35,33 +32,27 @@ body.oh .route-transition-overlay {
   z-index: 9999;
 }
 
-/* Top row scales from top */
 .overlay-row--top {
   transform-origin: 50% 0%;
 }
 
-/* Bottom row scales from bottom */
 .overlay-row--bottom {
   transform-origin: 50% 100%;
 }
 
-/* Covering: rows scale to full height (cover screen) */
 .overlay-row.covering {
   transform: scaleY(1);
 }
 
-/* Revealing: rows scale to 0 (reveal content) */
 .overlay-row.revealing {
   transform: scaleY(0);
 }
 
-/* Reset: instant positioning without animation */
 .overlay-row.reset {
   transition: none;
   transform: scaleY(0);
 }
 
-/* Grain layer within each row */
 .route-transition-grain {
   position: absolute;
   inset: 0;
@@ -70,7 +61,6 @@ body.oh .route-transition-overlay {
   background: transparent;
 }
 
-/* Grain pseudo-element styling */
 #route-transition-grain-top::before,
 #route-transition-grain-bottom::before {
   opacity: 1 !important;

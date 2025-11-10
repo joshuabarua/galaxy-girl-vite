@@ -16,7 +16,6 @@
 	--nav-h: 64px;
 }
 
-/* Smooth scrolling and prevent bounce/overscroll on all pages */
 html {
 	scroll-behavior: smooth;
 	overscroll-behavior: contain;
@@ -36,7 +35,6 @@ body {
 	overflow-x: hidden;
 	background: #fff;
 	color: #000;
-	/* position: relative; */
 	-webkit-overflow-scrolling: touch;
 	scrollbar-gutter: stable both-edges;
 }
@@ -51,7 +49,6 @@ body {
 	min-height: 100%;
 	height: 100%;
 	overflow-x: hidden;
-	/* position: relative; */
 }
 
 .app-minimal {
@@ -59,7 +56,6 @@ body {
 	background: #fff;
 }
 
-/* Remove old body-container and content classes */
 .body-container,
 .content {
 	display: block;
@@ -204,7 +200,6 @@ button:focus-visible {
 	}
 }
 
-/* Media elements should not overflow containers */
 img,
 video,
 canvas,
@@ -214,13 +209,11 @@ svg {
 	display: block;
 }
 
-/* Legacy font class preserved for Navbar logo text */
 .font-thoderanNotes {
 	font-family: "ThoderanNotes", ui-sans-serif, system-ui, -apple-system,
 		Segoe UI, Roboto, Arial, sans-serif;
 }
 
-/* Resume project title font mappings */
 .experience-project.font-bunny {
 	font-family: "BunnyMiltonTwoBold", system-ui, -apple-system, Segoe UI, Roboto,
 		Arial, sans-serif;

@@ -107,7 +107,6 @@ const ContactMinimal = () => {
         </div>
 
         <div className="flex flex-col items-center justify-center gap-10">
-          {/* Contact Form */}
           <form
             className="fade-up-item w-full max-w-[560px] mx-auto flex flex-col gap-8"
             onSubmit={handleSubmit}
