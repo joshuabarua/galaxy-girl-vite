@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import DelayedLink from "../DelayedLink/DelayedLink";
-import { useGrained } from "../../hooks/useGrained";
 
 const NavbarMinimal = () => {
 	const location = useLocation();
@@ -27,8 +26,16 @@ const NavbarMinimal = () => {
 
 	return (
 		<>
-			<nav className={navBase}>
-				<div id="" className="relative w-full h-full">
+			<nav className={`${navBase} isolate`}>
+				<div className="relative w-full h-full">
+					<span
+						aria-hidden="true"
+						className="pointer-events-none absolute inset-0 h-[200%] rounded-[4px] bg-[hsla(0,0%,100%,0.1)] backdrop-blur-[6px] [mask-image:linear-gradient(to_bottom,black_0,black_50%,transparent_50%)] -z-10"
+					/>
+					<span
+						aria-hidden="true"
+						className="pointer-events-none absolute inset-0 h-full translate-y-full bg-[hsla(0,0%,100%,0.1)] backdrop-blur-[16px] backdrop-brightness-125 [mask-image:linear-gradient(to_bottom,black_0,black_0.5px,transparent_0.5px)] -z-10"
+					/>
 					<div className={container}>
 						<DelayedLink to="/" className={logoLink} id="navbar-logo-slot">
 							<span className={logoText}>Emma Barua</span>
