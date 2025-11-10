@@ -1,9 +1,5 @@
 import { useEffect } from 'react';
 
-/**
- * Hook to apply staggered fade-up animations to elements
- * Based on Codrops cover transition article
- */
 export const useFadeUpStagger = (selector = '.fade-up-item', options = {}) => {
   useEffect(() => {
     const {
@@ -17,14 +13,12 @@ export const useFadeUpStagger = (selector = '.fade-up-item', options = {}) => {
     
     if (elements.length === 0) return;
 
-    // Set initial state
     elements.forEach((el) => {
       el.style.opacity = '0';
       el.style.transform = `translateY(${distance}px)`;
       el.style.transition = `opacity ${duration}ms cubic-bezier(0.65, 0, 0.35, 1), transform ${duration}ms cubic-bezier(0.65, 0, 0.35, 1)`;
     });
 
-    // Trigger animations with stagger
     const timer = setTimeout(() => {
       elements.forEach((el, index) => {
         setTimeout(() => {

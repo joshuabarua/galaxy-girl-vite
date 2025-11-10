@@ -2,10 +2,6 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDelayedNavigation } from '../../hooks/useDelayedNavigation';
 
-/**
- * Link component that delays navigation with fade transition
- * Drop-in replacement for React Router's Link
- */
 const DelayedLink = ({ 
   to, 
   className, 
@@ -18,18 +14,13 @@ const DelayedLink = ({
 
   const handleClick = (e) => {
     e.preventDefault();
-    
-    // Don't navigate if already on this page
     if (location.pathname === to) {
       return;
     }
 
-    // Call custom onClick if provided
     if (onClick) onClick(e);
 
-    // Trigger delayed navigation
     if (to === '/') {
-      // Slightly faster than global defaults for home route
       delayedNavigate(to, {
         transition: {
           fadeToDuration: 120,

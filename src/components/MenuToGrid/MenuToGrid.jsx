@@ -12,9 +12,6 @@ import './MenuToGrid.css';
 
 gsap.registerPlugin(Flip);
 
-/**
- * MenuToGrid - Exact Codrops implementation
- */
 const MenuToGrid = ({ galleries }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [galleriesState, setGalleriesState] = useState(Array.isArray(galleries) ? galleries : []);
@@ -24,7 +21,6 @@ const MenuToGrid = ({ galleries }) => {
   const rowRefs = useRef([]);
   const previewRefs = useRef([]);
   
-  // State management
   const isOpenRef = useRef(false);
   const isAnimatingRef = useRef(false);
   const currentRowRef = useRef(-1);
@@ -32,7 +28,6 @@ const MenuToGrid = ({ galleries }) => {
   const mouseenterTimelineRef = useRef(null);
   const prefetchedRef = useRef(new Set());
 
-  // Load more from ImageKit via Vercel API for any album
   const handleLoadMore = useCallback(async (index, currentCount) => {
     try {
       const g = galleriesState[index];
@@ -42,7 +37,7 @@ const MenuToGrid = ({ galleries }) => {
       if (!folderSlug) return;
       const folder = `/${folderSlug}`;
       const limit = 20;
-      const skip = currentCount; // we've already shown currentCount images beyond the 5 thumbs
+      const skip = currentCount;
       const params = new URLSearchParams({ folder, limit: String(limit), skip: String(skip) });
       const resp = await fetch(`/api/images?${params.toString()}`);
       if (!resp.ok) return;
@@ -72,11 +67,9 @@ const MenuToGrid = ({ galleries }) => {
         return next;
       });
     } catch (e) {
-      // swallow fetch errors; UI will still increase visibleCount for any already present items
     }
   }, [galleriesState]);
 
-  // Apply grain effect to cover
   useGrained('menu-to-grid-cover', {
     grainOpacity: 0.09,
     grainDensity: 1,
@@ -85,10 +78,7 @@ const MenuToGrid = ({ galleries }) => {
   });
 
   useEffect(() => {
-    // Initialize immediately for hover animations
     initializeMenuToGrid();
-    
-    // Preload images and fonts
     Promise.all([
       preloadImages('.cell__img-inner'),
       preloadFonts('gdf6msi')
@@ -101,7 +91,6 @@ const MenuToGrid = ({ galleries }) => {
 
   const initializeMenuToGrid = () => {
     const tryInitialize = (attempts = 0) => {
-      // Check if all refs are ready
       const allRefsReady = rowRefs.current.length > 0 && 
                           previewRefs.current.length > 0 &&
                           rowRefs.current.every(ref => ref !== null) &&
@@ -113,8 +102,6 @@ const MenuToGrid = ({ galleries }) => {
       }
       
       const rowsArr = [];
-      
-      // Create Row instances using refs
       rowRefs.current.forEach((rowEl, position) => {
         const previewRef = previewRefs.current[position];
         
@@ -134,8 +121,6 @@ const MenuToGrid = ({ galleries }) => {
 
   const handleRowClick = useCallback((index) => {
     if (isAnimatingRef.current) return;
-    
-    // If rows aren't initialized yet, try to initialize them now
     if (!rowsArrRef.current || rowsArrRef.current.length === 0) {
       initializeMenuToGrid();
       setTimeout(() => handleRowClick(index), 300);
@@ -174,9 +159,8 @@ const MenuToGrid = ({ galleries }) => {
         row.previewItem.DOM.el.classList.add('preview__item--current');
 
         gsap.set(row.previewItem.DOM.images, {opacity: 0});
-        
         gsap.set(cover, {
-          height: row.DOM.el.offsetHeight - 1, // minus border width
+          height: row.DOM.el.offsetHeight - 1,
           top: row.DOM.el.getBoundingClientRect()['top'],
           opacity: 1,
           position: 'fixed',
@@ -259,10 +243,9 @@ const MenuToGrid = ({ galleries }) => {
   }, []);
 
   const handleMouseEnter = useCallback((index) => {
-    // Prefetch once per row so preview has more on open
     try {
       if (!prefetchedRef.current.has(index)) {
-        const currentCount = (galleriesState[index]?.images?.length || 0) - 5; // beyond thumbnails
+        const currentCount = (galleriesState[index]?.images?.length || 0) - 5;
         handleLoadMore(index, Math.max(0, currentCount));
         prefetchedRef.current.add(index);
       }
@@ -289,7 +272,6 @@ const MenuToGrid = ({ galleries }) => {
         opacity: 1,
         stagger: -0.035
       }, 'start')
-      // subtle nudge without clipping: pad the title wrapper
       .to(row.DOM.titleWrap, {
         duration: 0.2,
         ease: 'power2.out',
@@ -330,7 +312,6 @@ const MenuToGrid = ({ galleries }) => {
         opacity: 0,
         scale: 0.8
       }, 'start')
-      // revert padding nudge on leave
       .to(row.DOM.titleWrap, {
         duration: 0.2,
         ease: 'power2.out',
@@ -363,7 +344,6 @@ const MenuToGrid = ({ galleries }) => {
     const row = rowsArrRef.current[currentRow];
     if (!row) return;
     
-    // Build safe target lists for GSAP (avoid nulls / undefined)
     const previewTitleClose = row.previewItem?.DOM?.title || null;
     const rowImagesClose = Array.isArray(row.DOM.images) ? row.DOM.images.filter(Boolean) : [];
     const previewImagesClose = Array.from(row.previewItem?.DOM?.images || []);

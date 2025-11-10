@@ -1,10 +1,5 @@
 import { useEffect } from 'react';
 
-/**
- * Hook to apply grained.js effect to an element
- * @param {string} elementId - ID of the element to apply grain to
- * @param {object} options - Grained options
- */
 export const useGrained = (elementId, options = {}) => {
   useEffect(() => {
     if (typeof window === 'undefined' || !window.grained) {
@@ -26,12 +21,10 @@ export const useGrained = (elementId, options = {}) => {
 
     const finalOptions = { ...defaultOptions, ...options };
 
-    // Global registry to prevent duplicate initializations per elementId
     const registry = (window.__grainedRegistry = window.__grainedRegistry || {});
     const selector = `#${elementId}`;
     const optionsKey = JSON.stringify(finalOptions);
 
-    // Bail early if already applied with same options
     const existing = registry[elementId];
     if (existing && existing.optionsKey === optionsKey && existing.applied) {
       return () => {};
@@ -41,12 +34,11 @@ export const useGrained = (elementId, options = {}) => {
     const apply = () => {
       const entry = registry[elementId];
       if (entry && entry.optionsKey === optionsKey && entry.applied) {
-        return; // already applied with same options
+        return;
       }
       try {
         window.grained(selector, finalOptions);
         registry[elementId] = { applied: true, optionsKey };
-        // Counters
         window.__grainedCalls = (window.__grainedCalls || 0) + 1;
         const set = (window.__grainedTargets = window.__grainedTargets || new Set());
         set.add(elementId);
@@ -64,7 +56,6 @@ export const useGrained = (elementId, options = {}) => {
     const init = () => {
       const element = document.getElementById(elementId);
       if (!element) return;
-      // Lazy init when visible
       if ('IntersectionObserver' in window) {
         observer = new IntersectionObserver((entries) => {
           for (const entry of entries) {
@@ -81,7 +72,6 @@ export const useGrained = (elementId, options = {}) => {
       }
     };
 
-    // Small delay or idle callback to ensure element is rendered
     let timer;
     const schedule = () => {
       if ('requestIdleCallback' in window) {
