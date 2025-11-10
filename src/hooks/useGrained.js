@@ -2,8 +2,7 @@ import { useEffect } from 'react';
 
 export const useGrained = (elementId, options = {}) => {
   useEffect(() => {
-    if (typeof window === 'undefined' || !window.grained) {
-      console.warn('Grained.js not loaded');
+    if (typeof window === 'undefined') {
       return;
     }
 
@@ -13,13 +12,26 @@ export const useGrained = (elementId, options = {}) => {
       patternHeight: 100,
       grainOpacity: 0.09,
       grainDensity: 1,
-      grainWidth: 1,
-      grainHeight: 1,
+      grainWidth: 0.7,
+      grainHeight: 0.7,
       grainChaos: 0.5,
-      grainSpeed: 10
+      grainSpeed: 10,
+      bubbles: true
     };
 
-    const finalOptions = { ...defaultOptions, ...options };
+    const { disable, ...restOptions } = options;
+    const disabled = disable || import.meta.env.VITE_DISABLE_GRAINED === 'true' || Boolean(window.__DISABLE_GRAINED);
+
+    if (disabled) {
+      return;
+    }
+
+    if (!window.grained) {
+      console.warn('Grained.js not loaded');
+      return;
+    }
+
+    const finalOptions = { ...defaultOptions, ...restOptions };
 
     const registry = (window.__grainedRegistry = window.__grainedRegistry || {});
     const selector = `#${elementId}`;
@@ -27,7 +39,7 @@ export const useGrained = (elementId, options = {}) => {
 
     const existing = registry[elementId];
     if (existing && existing.optionsKey === optionsKey && existing.applied) {
-      return () => {};
+      return () => { };
     }
 
     let observer;
@@ -61,7 +73,7 @@ export const useGrained = (elementId, options = {}) => {
           for (const entry of entries) {
             if (entry.isIntersecting) {
               apply();
-              try { observer.disconnect(); } catch {}
+              try { observer.disconnect(); } catch { }
               break;
             }
           }
@@ -84,10 +96,10 @@ export const useGrained = (elementId, options = {}) => {
 
     return () => {
       if (observer) {
-        try { observer.disconnect(); } catch {}
+        try { observer.disconnect(); } catch { }
       }
       if (timer) {
-        try { window.cancelIdleCallback ? window.cancelIdleCallback(timer) : clearTimeout(timer); } catch {}
+        try { window.cancelIdleCallback ? window.cancelIdleCallback(timer) : clearTimeout(timer); } catch { }
       }
     };
   }, [elementId, JSON.stringify(options)]);
