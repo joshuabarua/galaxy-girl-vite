@@ -3,11 +3,8 @@ import { gsap } from 'gsap';
 import { Flip } from 'gsap/Flip';
 import { preloadImages, preloadFonts } from '../../utils/media';
 import { getImageKitUrl } from '../../utils/imagekit';
-import { useGrained } from '../../hooks/useGrained';
 import { Row } from './Row';
 import Preview from './Preview';
-import RowGrain from './RowGrain';
-import PreviewGrain from './PreviewGrain';
 import './MenuToGrid.css';
 
 gsap.registerPlugin(Flip);
@@ -69,13 +66,6 @@ const MenuToGrid = ({ galleries }) => {
     } catch (e) {
     }
   }, [galleriesState]);
-
-  useGrained('menu-to-grid-cover', {
-    grainOpacity: 0.09,
-    grainDensity: 1,
-    grainWidth: 1,
-    grainHeight: 1
-  });
 
   useEffect(() => {
     initializeMenuToGrid();
@@ -429,7 +419,6 @@ const MenuToGrid = ({ galleries }) => {
         <div className="rows">
           {galleriesState.map((gallery, index) => (
             <div key={index} ref={el => rowRefs.current[index] = el}>
-              <RowGrain id={`row-${index}`} />
               <div id={`row-${index}`} className="row" data-row-index={index} 
        onClick={(e) => handleRowClick(Number(e.currentTarget.dataset.rowIndex))}
        onMouseEnter={(e) => handleMouseEnter(Number(e.currentTarget.dataset.rowIndex))}
@@ -486,9 +475,6 @@ const MenuToGrid = ({ galleries }) => {
             isActive={activeIndex === index}
             onLoadMore={handleLoadMore}
           />
-        ))}
-        {galleriesState.map((_, index) => (
-          <PreviewGrain key={`pg-${index}`} id={`preview-item-${index}`} />
         ))}
       </div>
 

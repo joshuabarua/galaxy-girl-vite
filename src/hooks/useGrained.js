@@ -1,78 +1,72 @@
 import { useEffect } from 'react';
+import { applyGrain } from '../utils/grained';
 
 export const useGrained = (elementId, options = {}) => {
   useEffect(() => {
-    if (typeof window === 'undefined') {
-      return;
-    }
-
-    const defaultOptions = {
+    const defaults = {
       animate: true,
       patternWidth: 100,
       patternHeight: 100,
       grainOpacity: 0.09,
       grainDensity: 1,
-      grainWidth: 0.7,
-      grainHeight: 0.7,
+      grainWidth: 0.9,
+      grainHeight: 0.9,
       grainChaos: 0.5,
       grainSpeed: 10,
       bubbles: true
     };
 
-    const { disable, ...restOptions } = options;
-    const disabled = disable || import.meta.env.VITE_DISABLE_GRAINED === 'true' || Boolean(window.__DISABLE_GRAINED);
-
-    if (disabled) {
-      return;
-    }
-
-    if (!window.grained) {
-      console.warn('Grained.js not loaded');
-      return;
-    }
-
-    const finalOptions = { ...defaultOptions, ...restOptions };
-
-    const registry = (window.__grainedRegistry = window.__grainedRegistry || {});
-    const selector = `#${elementId}`;
-    const optionsKey = JSON.stringify(finalOptions);
-
-    const existing = registry[elementId];
-    if (existing && existing.optionsKey === optionsKey && existing.applied) {
+    const { disable, ...rest } = options;
+    if (disable) {
       return () => { };
     }
 
-    let observer;
+    if (typeof window === 'undefined') {
+      return () => { };
+    }
+
+    const disabledEnv = import.meta.env.VITE_DISABLE_GRAINED === 'true' || Boolean(window.__DISABLE_GRAINED);
+    if (disabledEnv) {
+      return () => { };
+    }
+
+    const finalOptions = { ...defaults, ...rest };
+    const registry = (window.__grainedRegistry = window.__grainedRegistry || {});
+    const key = JSON.stringify(finalOptions);
+
+    const existing = registry[elementId];
+    if (existing && existing.optionsKey === key && existing.applied) {
+      return () => { };
+    }
+
     const apply = () => {
+      const element = document.getElementById(elementId);
+      if (!element) {
+        return () => { };
+      }
+
       const entry = registry[elementId];
-      if (entry && entry.optionsKey === optionsKey && entry.applied) {
-        return;
+      if (entry && entry.optionsKey === key && entry.applied) {
+        return entry.cleanup || (() => { });
       }
-      try {
-        window.grained(selector, finalOptions);
-        registry[elementId] = { applied: true, optionsKey };
-        window.__grainedCalls = (window.__grainedCalls || 0) + 1;
-        const set = (window.__grainedTargets = window.__grainedTargets || new Set());
-        set.add(elementId);
-        if (!window.getGrainedCounts) {
-          window.getGrainedCounts = () => ({
-            calls: window.__grainedCalls || 0,
-            targets: Array.from(window.__grainedTargets || [])
-          });
-        }
-      } catch (e) {
-        console.error('Grained error:', e);
-      }
+
+      const cleanup = applyGrain(element, finalOptions);
+      registry[elementId] = { applied: true, optionsKey: key, cleanup };
+      return cleanup;
     };
+
+    let observer;
+    let cleanupFn = () => { };
 
     const init = () => {
       const element = document.getElementById(elementId);
       if (!element) return;
+
       if ('IntersectionObserver' in window) {
         observer = new IntersectionObserver((entries) => {
           for (const entry of entries) {
             if (entry.isIntersecting) {
-              apply();
+              cleanupFn = apply();
               try { observer.disconnect(); } catch { }
               break;
             }
@@ -80,27 +74,27 @@ export const useGrained = (elementId, options = {}) => {
         }, { root: null, rootMargin: '15%', threshold: 0 });
         observer.observe(element);
       } else {
-        apply();
+        cleanupFn = apply();
       }
     };
 
     let timer;
-    const schedule = () => {
-      if ('requestIdleCallback' in window) {
-        timer = window.requestIdleCallback(init, { timeout: 200 });
-      } else {
-        timer = setTimeout(init, 20);
-      }
-    };
-    schedule();
+    if (typeof window.requestIdleCallback === 'function') {
+      timer = window.requestIdleCallback(init, { timeout: 200 });
+    } else {
+      timer = window.setTimeout(init, 20);
+    }
 
     return () => {
       if (observer) {
         try { observer.disconnect(); } catch { }
       }
       if (timer) {
-        try { window.cancelIdleCallback ? window.cancelIdleCallback(timer) : clearTimeout(timer); } catch { }
+        try {
+          window.cancelIdleCallback ? window.cancelIdleCallback(timer) : clearTimeout(timer);
+        } catch { }
       }
+      cleanupFn();
     };
   }, [elementId, JSON.stringify(options)]);
 };
