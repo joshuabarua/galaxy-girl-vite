@@ -42,7 +42,7 @@ export const useGrained = (elementId, options = {}) => {
     const apply = () => {
       const element = document.getElementById(elementId);
       if (!element) {
-        return () => { };
+        return () => {};
       }
 
       const entry = registry[elementId];
@@ -95,6 +95,11 @@ export const useGrained = (elementId, options = {}) => {
         } catch { }
       }
       cleanupFn();
+      const entry = registry[elementId];
+      if (entry) {
+        entry.applied = false;
+        entry.cleanup = undefined;
+      }
     };
   }, [elementId, JSON.stringify(options)]);
 };
