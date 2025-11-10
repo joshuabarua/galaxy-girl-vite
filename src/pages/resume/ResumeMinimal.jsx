@@ -72,18 +72,9 @@ const ResumeMinimal = () => {
   const cvUrl = (import.meta?.env?.VITE_CV_URL) || resumeData?.cvUrl || '';
 
   const containerRef = useRef(null);
-  const [canScroll, setCanScroll] = useState(false);
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const check = () => setCanScroll(el.scrollHeight > el.clientHeight + 1);
-    check();
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
-  }, []);
 
   return (
-    <div id="resume-minimal-bg" ref={containerRef} className={`min-h-[calc(100dvh-64px)] bg-[#f5f5f5] text-black px-6 pt-10 pb-0 sm:px-5 sm:pt-8 overflow-x-hidden ${canScroll ? 'overflow-y-auto overscroll-y-none' : 'overflow-y-hidden'}`}>
+    <div id="resume-minimal-bg" ref={containerRef} className="min-h-screen bg-[#f5f5f5] text-black px-6 pt-10 pb-16 sm:px-5 sm:pt-8 sm:pb-16 overflow-x-hidden">
       <div className="max-w-[760px] mx-auto">
         {/* Header */}
         <header className="fade-up-item mb-0 pb-4 border-b border-brand/10 text-center">
