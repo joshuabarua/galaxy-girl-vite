@@ -1,12 +1,3 @@
-/**
- * Generic media preload utilities (no provider dependency)
- */
-
-/**
- * Preload images matching a selector
- * @param {string} selector - CSS selector for images to preload
- * @returns {Promise<void>}
- */
 export const preloadImages = (selector = 'img') => {
   return new Promise((resolve) => {
     const images = [...document.querySelectorAll(selector)];
@@ -36,10 +27,6 @@ export const preloadImages = (selector = 'img') => {
   });
 };
 
-/**
- * Preload fonts
- * @returns {Promise<FontFaceSet>}
- */
 export const preloadFonts = () => {
   return document.fonts.ready;
 };

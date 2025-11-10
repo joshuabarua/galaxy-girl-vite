@@ -25,7 +25,6 @@ const ResumeMinimal = () => {
   const renderProjectTitle = (title) => {
     if (!title) return null;
     const t = title.toUpperCase();
-    // Two-face: THE DEATH OF BUNNY MONRO (base font for THE and OF BUNNY MONRO; alternate for DEATH)
     if (t.includes('DEATH') && t.includes('BUNNY')) {
       const partThe = 'THE ';
       const partDeath = 'DEATH';
@@ -38,7 +37,6 @@ const ResumeMinimal = () => {
         </>
       );
     }
-    // Two-face: Empire of Light -> 'of' is lowercase and alternate font
     if (t.includes('EMPIRE OF LIGHT')) {
       const partEmpire = 'Empire ';
       const partOf = 'of';
@@ -76,12 +74,8 @@ const ResumeMinimal = () => {
   return (
     <div id="resume-minimal-bg" ref={containerRef} className="min-h-screen bg-[#f5f5f5] text-black px-6 pt-10 pb-16 sm:px-5 sm:pt-8 sm:pb-16 overflow-x-hidden">
       <div className="max-w-[760px] mx-auto">
-        {/* Header */}
         <header className="fade-up-item mb-0 pb-4 border-b border-brand/10 text-center">
           <div>
-            {/* <h1 className="text-[clamp(3rem,4vw,5rem)] font-light tracking-[-0.02em] leading-none m-0">
-              {resumeData.name}
-            </h1> */}
             <p className="text-2xl font-normal tracking-[0.2em] uppercase text-[#666] m-0">
               {resumeData.title}
             </p>
@@ -110,7 +104,6 @@ const ResumeMinimal = () => {
           </div>
         </header>
 
-        {/* Contact */}
         <section className="fade-up-item mt-4 mb-0">
           <div className="flex flex-wrap gap-6 text-[0.95rem] justify-center items-center text-center">
             {resumeData.contact.location && (
@@ -122,14 +115,12 @@ const ResumeMinimal = () => {
           </div>
         </section>
 
-        {/* Bio */}
         {resumeData.bio && (
           <section className="fade-up-item mt-3 mb-0">
             <p className="text-[1.1rem] leading-snug text-[#333] m-0 font-light">{resumeData.bio}</p>
           </section>
         )}
 
-        {/* Experience */}
         {resumeData.experience && resumeData.experience.length > 0 && (
           <section className="mt-2.5 mb-0 fade-up-item">
             <h2 className="text-xs font-normal tracking-[0.2em] uppercase text-[#999] underline decoration-brand/20 underline-offset-2 [text-decoration-thickness:0.5px] mt-6 mb-2">
@@ -182,7 +173,6 @@ const ResumeMinimal = () => {
           </section>
         )}
 
-        {/* Qualifications */}
         {resumeData.qualifications && resumeData.qualifications.length > 0 && (
           <section className="mt-2.5 mb-0">
             <h2 className="text-xs font-normal tracking-[0.2em] uppercase text-[#999] underline decoration-brand/20 underline-offset-2 [text-decoration-thickness:0.5px] mt-6 mb-2">
@@ -196,7 +186,6 @@ const ResumeMinimal = () => {
           </section>
         )}
 
-        {/* Transferrable Skills */}
         {resumeData.transferrableSkills && (
           <section className="mt-2.5 mb-0">
             <h2 className="text-xs font-normal tracking-[0.2em] uppercase text-[#999] underline decoration-brand/20 underline-offset-2 [text-decoration-thickness:0.5px] mt-6 mb-2">
