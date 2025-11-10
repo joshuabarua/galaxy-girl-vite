@@ -76,7 +76,7 @@ const ResumeMinimal = () => {
 			ref={containerRef}
 			className="min-h-screen bg-[#f5f5f5] text-black overflow-x-hidden">
 			<div className="w-[90vw] max-w-[900px] mx-auto pt-[10vh] mb-[10vh]">
-				<header className="fade-up-item mb-0 pb-4 border-b border-brand/10 text-center">
+				<header className="fade-up-item pb-4 border-b border-brand/10 text-center">
 					<div>
 						<p className="text-2xl font-normal tracking-[0.2em] uppercase text-[#666] m-0">
 							{resumeData.title}
