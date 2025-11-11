@@ -11,6 +11,8 @@ const RouteTransition = ({
 	const [showOverlay, setShowOverlay] = useState(true);
 	const [resetOverlay, setResetOverlay] = useState(false);
 	const [contentKey, setContentKey] = useState(location.key);
+	const [isShrinking, setIsShrinking] = useState(true);
+	const [bodyHasOverlayBlock, setBodyHasOverlayBlock] = useState(false);
 	const timeoutRef = useRef();
 	const prevLocationRef = useRef(location.key);
 	const isDelayedNav = useRef(false);
@@ -18,6 +20,7 @@ const RouteTransition = ({
 	useEffect(() => {
 		timeoutRef.current = setTimeout(() => {
 			setShowOverlay(false);
+			setIsShrinking(false);
 			try {
 				window.dispatchEvent(new CustomEvent("route-transition-in-complete"));
 			} catch {}
@@ -26,11 +29,25 @@ const RouteTransition = ({
 	}, [fadeFromDuration]);
 
 	useEffect(() => {
+		if (typeof document === "undefined" || typeof MutationObserver === "undefined") {
+			return;
+		}
+		const update = () => {
+			setBodyHasOverlayBlock(document.body.classList.contains("oh"));
+		};
+		update();
+		const observer = new MutationObserver(update);
+		observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+		return () => observer.disconnect();
+	}, []);
+
+	useEffect(() => {
 		const handler = () => {
 			isDelayedNav.current = true;
 			window.scrollTo(0, 0);
 			setResetOverlay(true);
 			setShowOverlay(true);
+			setIsShrinking(true);
 			requestAnimationFrame(() => {
 				setResetOverlay(false);
 			});
@@ -49,6 +66,7 @@ const RouteTransition = ({
 		if (!isDelayedNav.current) {
 			setResetOverlay(true);
 			setShowOverlay(true);
+			setIsShrinking(true);
 			requestAnimationFrame(() => {
 				setResetOverlay(false);
 			});
@@ -64,6 +82,7 @@ const RouteTransition = ({
 			window.scrollTo(0, 0);
 			const t2 = setTimeout(() => {
 				setShowOverlay(false);
+				setIsShrinking(false);
 				window.scrollTo(0, 0);
 				try {
 					window.dispatchEvent(new CustomEvent("route-transition-in-complete"));
@@ -88,19 +107,42 @@ const RouteTransition = ({
 		};
 	}, [location.key, fadeToDuration, blackHoldDuration, fadeFromDuration]);
 
+	const overlayClasses = [
+		"fixed inset-0 grid grid-cols-1 grid-rows-2 pointer-events-none overflow-hidden z-[2000000]",
+	];
+
+	if (bodyHasOverlayBlock) {
+		overlayClasses.push("hidden");
+	}
+
+	const topRowClasses = [
+		"relative bg-[#2a2a2a] overflow-hidden will-change-[transform] transform origin-top transition-transform duration-[150ms] ease-[cubic-bezier(0.65,0,0.35,1)] z-[9999]",
+	];
+
+	const bottomRowClasses = [
+		"relative bg-[#2a2a2a] overflow-hidden will-change-[transform] transform origin-bottom transition-transform duration-[150ms] ease-[cubic-bezier(0.65,0,0.35,1)] z-[9999]",
+	];
+
+	if (resetOverlay) {
+		topRowClasses.push("transition-none", "scale-y-0");
+		bottomRowClasses.push("transition-none", "scale-y-0");
+	} else {
+		topRowClasses.push(showOverlay ? "scale-y-100" : "scale-y-0");
+		bottomRowClasses.push(showOverlay ? "scale-y-100" : "scale-y-0");
+	}
+
+	const contentClasses = [
+		"relative z-0 transform origin-center transition-transform duration-[250ms] ease-[cubic-bezier(0.65,0,0.35,1)]",
+		isShrinking ? "scale-[0.94]" : "scale-100",
+	];
+
 	return (
-		<div className="route-transition-container">
-			<div className="route-transition-overlay">
-				<div
-					className={`overlay-row overlay-row--top ${
-						showOverlay ? "covering" : "revealing"
-					} ${resetOverlay ? "reset" : ""}`}></div>
-				<div
-					className={`overlay-row overlay-row--bottom ${
-						showOverlay ? "covering" : "revealing"
-					} ${resetOverlay ? "reset" : ""}`}></div>
+		<div className="relative min-h-full">
+			<div className={overlayClasses.join(" ")}>
+				<div className={topRowClasses.join(" ")} />
+				<div className={bottomRowClasses.join(" ")} />
 			</div>
-			<div key={contentKey} className="route-transition-content">
+			<div key={contentKey} className={contentClasses.join(" ")}>
 				{children}
 			</div>
 		</div>
