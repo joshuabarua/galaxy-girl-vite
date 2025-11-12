@@ -64,8 +64,8 @@ const ContactMinimal = () => {
 	return (
 		<div
 			id="contact-minimal-bg"
-			className="min-h-screen bg-[#f5f5f5] text-black flex flex-col justify-center items-center overflow-x-hidden">
-			<div className="max-w-[1200px] w-[90VW] mx-auto">
+			className="min-h-screen bg-[#f5f5f5] text-black flex flex-col items-center overflow-x-hidden">
+			<div className="max-w-[1200px] w-[90VW] mx-auto page-shell">
 				<header className="fade-up-item text-center mb-8">
 					<h1 className="text-[clamp(3rem,6vw,5rem)] font-light tracking-[-0.02em] leading-none mb-8">
 						Get in Touch

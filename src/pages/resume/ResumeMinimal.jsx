@@ -76,7 +76,7 @@ const ResumeMinimal = () => {
 			id="resume-minimal-bg"
 			ref={containerRef}
 			className="min-h-screen bg-[#f5f5f5] text-black overflow-x-hidden">
-			<div className="w-[90vw] max-w-[900px] mx-auto pt-[10vh] mb-[10vh]">
+			<div className="w-[90vw] max-w-[900px] mx-auto page-shell">
 				<header className="relative fade-up-item pb-4 border-b border-brand/10 text-center">
 					{cvUrl && (
 						<a
@@ -163,7 +163,7 @@ const ResumeMinimal = () => {
 													</span>
 													<div className="flex flex-col gap-1">
 														<h3
-															className={`text-[1.4rem] font-normal m-0 leading-tight experience-project ${getProjectFontClass(
+															className={`text-[1.15rem] lg:text-[1.4rem] font-normal m-0 leading-tight experience-project ${getProjectFontClass(
 																item?.project
 															)}`}>
 															{renderProjectTitle(item?.project)}

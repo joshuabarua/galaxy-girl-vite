@@ -116,11 +116,11 @@ const RouteTransition = ({
 	}
 
 	const topRowClasses = [
-		"relative bg-[#2a2a2a] overflow-hidden will-change-[transform] transform origin-top transition-transform duration-[150ms] ease-[cubic-bezier(0.65,0,0.35,1)] z-[9999]",
+		"relative bg-[#2a2a2a] overflow-hidden will-change-[transform] transform origin-top transition-transform duration-150ms ease-friction z-[9999]",
 	];
 
 	const bottomRowClasses = [
-		"relative bg-[#2a2a2a] overflow-hidden will-change-[transform] transform origin-bottom transition-transform duration-[150ms] ease-[cubic-bezier(0.65,0,0.35,1)] z-[9999]",
+		"relative bg-[#2a2a2a] overflow-hidden will-change-[transform] transform origin-bottom transition-transform duration-150ms ease-friction z-[9999]",
 	];
 
 	if (resetOverlay) {
@@ -132,7 +132,7 @@ const RouteTransition = ({
 	}
 
 	const contentClasses = [
-		"relative z-0 transform origin-center transition-transform duration-[250ms] ease-[cubic-bezier(0.65,0,0.35,1)]",
+		"relative z-0 transform origin-center transition-transform duration-250ms ease-friction",
 		isShrinking ? "scale-[0.94]" : "scale-100",
 	];
 
