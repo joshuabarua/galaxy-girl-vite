@@ -66,7 +66,8 @@ const ResumeMinimal = () => {
 		distance: 40,
 	});
 
-	const cvUrl = import.meta?.env?.VITE_CV_URL || resumeData?.cvUrl || "";
+	const localCvUrl = new URL("../../assets/Resume.pdf", import.meta.url).href;
+	const cvUrl = import.meta?.env?.VITE_CV_URL || resumeData?.cvUrl || localCvUrl;
 
 	const containerRef = useRef(null);
 
@@ -76,7 +77,42 @@ const ResumeMinimal = () => {
 			ref={containerRef}
 			className="min-h-screen bg-[#f5f5f5] text-black overflow-x-hidden">
 			<div className="w-[90vw] max-w-[900px] mx-auto pt-[10vh] mb-[10vh]">
-				<header className="fade-up-item pb-4 border-b border-brand/10 text-center">
+				<header className="relative fade-up-item pb-4 border-b border-brand/10 text-center">
+					{cvUrl && (
+						<a
+							className="absolute top-0 right-0 inline-flex items-center justify-center w-11 h-11 rounded-full border border-brand/20 text-black transition-colors duration-200 hover:bg-black hover:text-white"
+							href={cvUrl}
+							target="_blank"
+							rel="noopener noreferrer"
+							download="Emma-Barua-CV.pdf"
+							aria-label="Download CV"
+							title="Download CV">
+							<svg
+								width="20"
+								height="20"
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								rel="aria-hidden"
+								className="shrink-0">
+								<path
+									d="M12 3v10m0 0 4-4m-4 4-4-4"
+									stroke="currentColor"
+									strokeWidth="2"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								/>
+								<path
+									d="M4 15v3a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-3"
+									stroke="currentColor"
+									strokeWidth="2"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								/>
+							</svg>
+							<span className="sr-only">Download CV</span>
+						</a>
+					)}
 					<div>
 						<p className="text-2xl font-normal tracking-[0.2em] uppercase text-[#666] m-0">
 							{resumeData.title}
@@ -86,40 +122,6 @@ const ResumeMinimal = () => {
 								{resumeData.subtitle}
 							</p>
 						)}
-						{cvUrl ? (
-							<div className="mt-3 flex justify-center">
-								<a
-									className="inline-flex items-center gap-2 text-black no-underline border border-brand/15 px-3 py-2 rounded text-[0.9rem]"
-									href={cvUrl}
-									target="_blank"
-									rel="noopener noreferrer"
-									aria-label="Download CV"
-									title="Download CV">
-									<svg
-										width="20"
-										height="20"
-										viewBox="0 0 24 24"
-										fill="none"
-										xmlns="http://www.w3.org/2000/svg"
-										aria-hidden="true">
-										<path
-											d="M12 3v10m0 0 4-4m-4 4-4-4"
-											stroke="currentColor"
-											strokeWidth="2"
-											strokeLinecap="round"
-											strokeLinejoin="round"
-										/>
-										<path
-											d="M4 15v3a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-3"
-											stroke="currentColor"
-											strokeWidth="2"
-											strokeLinecap="round"
-											strokeLinejoin="round"
-										/>
-									</svg>
-								</a>
-							</div>
-						) : null}
 					</div>
 				</header>
 
@@ -142,48 +144,49 @@ const ResumeMinimal = () => {
 					</section>
 				)}
 
-				{resumeData.experienceGroups && resumeData.experienceGroups.length > 0 && (
-					<div className="flex flex-col">
-						{resumeData.experienceGroups.map((group, groupIndex) => (
-							<section
-								key={group?.title || groupIndex}
-								className="mt-2.5 mb-0 fade-up-item">
-								<h2 className="text-xs font-normal tracking-[0.2em] uppercase text-[#999] underline decoration-brand/20 underline-offset-2 [text-decoration-thickness:0.5px] mt-6 mb-2">
-									{group?.title}
-								</h2>
-								<div className="flex flex-col gap-5">
-									{group?.items?.map((item, itemIndex) => (
-										<div key={`${groupIndex}-${itemIndex}`}>
-											<div className="grid auto-rows-auto grid-cols-[92px_1fr] gap-x-6 gap-y-4 items-start lg:grid-cols-[220px_1fr] lg:gap-x-8 lg:gap-y-3">
-												<span className="text-sm text-[#999] uppercase tracking-[0.15em] pt-1">
-													{item?.period}
-												</span>
-												<div className="flex flex-col gap-1">
-													<h3
-														className={`text-[1.4rem] font-normal m-0 leading-tight experience-project ${getProjectFontClass(
-															item?.project
-														)}`}>
-														{renderProjectTitle(item?.project)}
-													</h3>
-													{item?.role && (
-														<p className="text-[0.95rem] text-[#666] m-0 leading-tight font-light">
-															{item.role}
-														</p>
-													)}
-													{item?.collaborator && (
-														<p className="text-[0.95rem] text-[#666] m-0 leading-tight font-light">
-															{item.collaborator}
-														</p>
-													)}
+				{resumeData.experienceGroups &&
+					resumeData.experienceGroups.length > 0 && (
+						<div className="flex flex-col">
+							{resumeData.experienceGroups.map((group, groupIndex) => (
+								<section
+									key={group?.title || groupIndex}
+									className="mt-2.5 mb-0 fade-up-item">
+									<h2 className="text-xs font-normal tracking-[0.2em] uppercase text-[#999] underline decoration-brand/20 underline-offset-2 [text-decoration-thickness:0.5px] mt-6 mb-2">
+										{group?.title}
+									</h2>
+									<div className="flex flex-col gap-5">
+										{group?.items?.map((item, itemIndex) => (
+											<div key={`${groupIndex}-${itemIndex}`}>
+												<div className="grid auto-rows-auto grid-cols-[92px_1fr] gap-x-6 gap-y-4 items-start lg:grid-cols-[220px_1fr] lg:gap-x-8 lg:gap-y-3">
+													<span className="text-sm text-[#999] uppercase tracking-[0.15em] pt-1">
+														{item?.period}
+													</span>
+													<div className="flex flex-col gap-1">
+														<h3
+															className={`text-[1.4rem] font-normal m-0 leading-tight experience-project ${getProjectFontClass(
+																item?.project
+															)}`}>
+															{renderProjectTitle(item?.project)}
+														</h3>
+														{item?.role && (
+															<p className="text-[0.95rem] text-[#666] m-0 leading-tight font-light">
+																{item.role}
+															</p>
+														)}
+														{item?.collaborator && (
+															<p className="text-[0.95rem] text-[#666] m-0 leading-tight font-light">
+																{item.collaborator}
+															</p>
+														)}
+													</div>
 												</div>
 											</div>
-										</div>
-									))}
-								</div>
-							</section>
-						))}
-					</div>
-				)}
+										))}
+									</div>
+								</section>
+							))}
+						</div>
+					)}
 
 				{resumeData.qualifications && resumeData.qualifications.length > 0 && (
 					<section className="mt-2.5 mb-0">
