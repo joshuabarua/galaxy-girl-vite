@@ -1,212 +1,273 @@
 {
   "name": "Emma Barua",
-  "title": "Makeup Junior",
-  "subtitle": "Screen Skills Film Trainee Alumni 2021",
+  "title": "Makeup Junior · BAFTA Scholar 2025",
+  "subtitle": "ScreenSkills Film Trainee Alumni 2021",
   "contact": {
     "location": "London | Brighton | Reading",
-    "license": "Full UK Driving License"
+    "license": "Full UK Driving License",
+    "phone": "07449 203 870",
+    "email": "emma@thegalaxygirl.co.uk",
+    "instagram": "@emmathegalaxygirlmua",
+    "website": "www.thegalaxygirl.co.uk"
   },
-  "bio": "An aspiring makeup artist junior, passionate about creating magic in the world of film and television, excited to enhance my skills and use my craft to aid in the storytelling process. Looking to move into the world of SFX makeup.",
-  "experience": [
+  "bio": "A makeup artist junior, passionate about creating magic in the world of film and television, excited to enhance my skills and use my craft to aid in the storytelling process. Looking to move into the world of SFX makeup but more than happy to get stuck in where I am needed. I've also recently become a Look Good Feel Better volunteer, helping those fighting cancer to feel good about themselves using the power of makeup. I've also been accepted as BAFTA scholar for 2025/26.",
+  "experienceGroups": [
     {
-      "year": "2024",
-      "project": "The Death of Bunny Monroe",
-      "role": "Makeup Junior",
-      "description": "Tara Mcdonald - Crowd/Main team Daily"
+      "title": "Films / TV / Short Films",
+      "items": [
+        {
+          "project": "Horrible Science 2",
+          "period": "August 2025 - September 2025",
+          "role": "Makeup Junior - Crowd Daily",
+          "collaborator": "Lisa Halstead"
+        },
+        {
+          "project": "House of Dragon Season 3",
+          "period": "August 2025 - Present",
+          "role": "Makeup Junior - Crowd Daily",
+          "collaborator": "Robb Crafer"
+        },
+        {
+          "project": "Love Triangle",
+          "period": "June 2025 - August 2025",
+          "role": "Makeup Designer",
+          "collaborator": "Emma Barua"
+        },
+        {
+          "project": "MobLand",
+          "period": "November 2024 - March 2025",
+          "role": "Makeup Junior - Crowd Daily",
+          "collaborator": "Hafasa Gate"
+        },
+        {
+          "project": "Out Of The Dust",
+          "period": "October 2024 - November 2024",
+          "role": "Makeup Junior - Crowd Daily",
+          "collaborator": "Sylvia Atkins"
+        },
+        {
+          "project": "Pressure",
+          "period": "September 2024 - October 2024",
+          "role": "Makeup Junior - Crowd Daily",
+          "collaborator": "Charmaine Fuller"
+        },
+        {
+          "project": "No Loose Ends (Short)",
+          "period": "September 2024",
+          "role": "Makeup Designer",
+          "collaborator": "Matthew Grant"
+        },
+        {
+          "project": "The Death of Bunny Munroe",
+          "period": "July 2024 - August 2024",
+          "role": "Makeup Junior - Crowd/Main Daily",
+          "collaborator": "Tara Mcdonald"
+        },
+        {
+          "project": "The Franchise",
+          "period": "February 2024 - April 2024",
+          "role": "Makeup Junior - Main Team",
+          "collaborator": "Naomi Donne"
+        },
+        {
+          "project": "The Blitz (Reshoots)",
+          "period": "November 2023",
+          "role": "Makeup Trainee - Main Team",
+          "collaborator": "Naomi Donne"
+        },
+        {
+          "project": "House of Dragon Season 2",
+          "period": "August 2023",
+          "role": "Makeup Trainee - Crowd Daily",
+          "collaborator": "Sara Kramer"
+        },
+        {
+          "project": "The Franchise (Pilot)",
+          "period": "June 2023",
+          "role": "Makeup Trainee - Main Team",
+          "collaborator": "Naomi Donne"
+        },
+        {
+          "project": "The Friend (Short)",
+          "period": "April 2023",
+          "role": "Makeup Designer",
+          "collaborator": "Nanni Mann"
+        },
+        {
+          "project": "The Blitz",
+          "period": "November 2022 - March 2023",
+          "role": "Makeup Trainee - Main Team",
+          "collaborator": "Naomi Donne"
+        },
+        {
+          "project": "The Witcher Season 3",
+          "period": "August 2022 - September 2022",
+          "role": "Makeup Trainee - Crowd Daily",
+          "collaborator": "Katherine Warren"
+        },
+        {
+          "project": "Bilby",
+          "period": "July 2022",
+          "role": "Makeup Artist Daily",
+          "collaborator": "Stacey Fitzgerald"
+        },
+        {
+          "project": "Empire of Light",
+          "period": "February 2022 - May 2022",
+          "role": "Makeup Trainee - Main Team",
+          "collaborator": "Naomi Donne"
+        },
+        {
+          "project": "Allelujah!",
+          "period": "October 2021 - December 2021",
+          "role": "Makeup Trainee - Main Team",
+          "collaborator": "Naomi Donne"
+        },
+        {
+          "project": "Argylle",
+          "period": "September 2021",
+          "role": "Makeup Trainee - Crowd Daily",
+          "collaborator": "Madelin Mierzwaik"
+        },
+        {
+          "project": "The Puppet Master: Hunting the Ultimate Conman",
+          "period": "April 2021",
+          "role": "Makeup Trainee Daily",
+          "collaborator": "Jo Barass Short"
+        },
+        {
+          "project": "Perfect 10",
+          "period": "August 2018",
+          "role": "Makeup Artist Daily",
+          "collaborator": "Diandra Ferreira"
+        },
+        {
+          "project": "The Time Machine (Short)",
+          "period": "May 2018",
+          "role": "Makeup Designer",
+          "collaborator": "Matthew Grant"
+        },
+        {
+          "project": "Roses (Short)",
+          "period": "May 2018",
+          "role": "Makeup Designer",
+          "collaborator": "Elizabeth Samways"
+        },
+        {
+          "project": "Under Glass (Short)",
+          "period": "September 2017",
+          "role": "Makeup Artist",
+          "collaborator": "James Hart"
+        }
+      ]
     },
     {
-      "year": "2024",
-      "project": "The Franchise",
-      "role": "Makeup Junior",
-      "description": "Naomi Donne - Main Team"
+      "title": "Music Videos / Commercial / Live TV / VR",
+      "items": [
+        {
+          "project": "Aimate Music Video",
+          "period": "November 2023",
+          "role": "Makeup Artist",
+          "collaborator": "Emma Barua"
+        },
+        {
+          "project": "Genesis Elijah Music Video",
+          "period": "October 2023",
+          "role": "Makeup Artist",
+          "collaborator": "Cara Laurice Topping"
+        },
+        {
+          "project": "ITV's Goodwood Revival",
+          "period": "September 2019",
+          "role": "Makeup Artist",
+          "collaborator": "Aurora Media Worldwide"
+        },
+        {
+          "project": "Amazon Web Services",
+          "period": "June 2019",
+          "role": "Makeup Artist",
+          "collaborator": "Baerclaw Productions"
+        },
+        {
+          "project": "Medical VR (Dimension Studios)",
+          "period": "January 2018",
+          "role": "SFX Makeup Assistant",
+          "collaborator": "Jon Moore (Millenium FX)"
+        },
+        {
+          "project": "Horror VR (Dimension Studios)",
+          "period": "December 2017",
+          "role": "SFX Makeup Assistant",
+          "collaborator": "Jon Moore (Millenium FX)"
+        },
+        {
+          "project": "Jacob's Mini Cheddars Advert",
+          "period": "April 2017",
+          "role": "Makeup Trainee",
+          "collaborator": "Carol Hart"
+        },
+        {
+          "project": "The Roar App (Social Media Campaign)",
+          "period": "October 2016",
+          "role": "Makeup Artist",
+          "collaborator": "The Noise Next Door Comedy Troupe"
+        }
+      ]
     },
     {
-      "year": "2023",
-      "project": "Blitz (reshoots)",
-      "role": "Main Team, hair & makeup trainee",
-      "description": "Naomi Donne - Makeup Designer"
-    },
-    {
-      "year": "2023",
-      "project": "Aimate music video",
-      "role": "Makeup Designer",
-      "description": "Emma Barua - Makeup Designer"
-    },
-    {
-      "year": "2023",
-      "project": "Genesis Elijah music video",
-      "role": "Makeup Artist Assistant",
-      "description": "Cara Laurice Topping - Makeup Designer"
-    },
-    {
-      "year": "2023",
-      "project": "House of Dragon",
-      "role": "Crowd Makeup Artist, trainee daily (3 weeks)",
-      "description": "Sara Kramer - Crowd Supervisor"
-    },
-    {
-      "year": "2023",
-      "project": "The Franchise (pilot)",
-      "role": "Main Team, hair & makeup trainee",
-      "description": "Naomi Donne - Makeup Designer"
-    },
-    {
-      "year": "2023",
-      "project": "The Friend (short)",
-      "role": "Makeup Designer",
-      "description": "Nanni Mann - Director"
-    },
-    {
-      "year": "2023",
-      "project": "Blitz",
-      "role": "Main Team, hair & makeup trainee",
-      "description": "Naomi Donne - Makeup Designer"
-    },
-    {
-      "year": "2022",
-      "project": "The Witcher (Season 3)",
-      "role": "Crowd Makeup Artist, trainee daily (7 Weeks)",
-      "description": "Katherine Warren - Crowd Supervisor"
-    },
-    {
-      "year": "2022",
-      "project": "Bilby",
-      "role": "Makeup Artist daily",
-      "description": "Naomi Donne - Makeup Designer"
-    },
-    {
-      "year": "2022",
-      "project": "Empire of Light",
-      "role": "Main Team, hair & makeup trainee",
-      "description": "Naomi Donne - Makeup Designer"
-    },
-    {
-      "year": "2021",
-      "project": "Allelujah!",
-      "role": "Main Team, hair & makeup trainee",
-      "description": "Naomi Donne - Makeup Designer"
-    },
-    {
-      "year": "2021",
-      "project": "Tartan",
-      "role": "Crowd Makeup Artist, trainee daily",
-      "description": "Madelin Mierzwaik - Crowd Supervisor"
-    },
-    {
-      "year": "2021",
-      "project": "Netflix (6-part docudrama)",
-      "role": "Crowd Makeup Artist, trainee daily",
-      "description": "Jo Barass-Short - Makeup Designer, Raw TV"
-    },
-    {
-      "year": "2019",
-      "project": "ITV's Goodwood Revival",
-      "role": "Makeup Artist - Period makeup for Zoe Hardman",
-      "description": "Aurora Media Worldwide - for live & recorded segments"
-    },
-    {
-      "year": "2019",
-      "project": "Amazon Web Services",
-      "role": "Makeup Artist",
-      "description": "Elizabeth Samways - Production Coordinator, Baerclaw Productions"
-    },
-    {
-      "year": "2018",
-      "project": "Perfect 10 (BBC iFeatures film)",
-      "role": "Crowd Makeup Artist, daily",
-      "description": "Diandra Ferreira - Makeup Designer"
-    },
-    {
-      "year": "2018",
-      "project": "The Time Machine (short)",
-      "role": "Makeup Artist - SFX",
-      "description": "Matthew Grant - Director"
-    },
-    {
-      "year": "2018",
-      "project": "Roses (short)",
-      "role": "Makeup Artist - Beauty & Casualty",
-      "description": "Elizabeth Samways - Production Coordinator"
-    },
-    {
-      "year": "2018",
-      "project": "Medical Virtual Reality at Dimension Studios",
-      "role": "Makeup artist assistant - SFX",
-      "description": "Jon Moore - Makeup Designer"
-    },
-    {
-      "year": "2018",
-      "project": "Peaky Blinders Charity Fashion Show",
-      "role": "Makeup Artist",
-      "description": "Stephanie Prior - Host"
-    },
-    {
-      "year": "2018",
-      "project": "ILS ltd SFX Workshop",
-      "role": "Makeup Artist – SFX casualty makeup tutoring",
-      "description": "International Location Safety - NGO training program"
-    },
-    {
-      "year": "2017",
-      "project": "Under Glass (short)",
-      "role": "Crowd Makeup Artist - Men's makeup",
-      "description": "James Hart - Director"
-    },
-    {
-      "year": "2017",
-      "project": "Horror Video Game at Dimension Studios",
-      "role": "Makeup artist assistant - SFX",
-      "description": "Jon Moore - Makeup Designer"
-    },
-    {
-      "year": "2017",
-      "project": "Jacob's Mini Cheddars Advert",
-      "role": "Makeup Trainee",
-      "description": "Carol Hart - Makeup Designer"
-    },
-    {
-      "year": "2017",
-      "project": "Brighton University Fashion Show b19/b20",
-      "role": "Makeup Artist",
-      "description": "Brighton University students"
-    },
-    {
-      "year": "2016",
-      "project": "The Roar App",
-      "role": "Makeup Artist - Men's Makeup",
-      "description": "The Noise Next Door - Comedy Troupe, social media campaign"
-    },
-    {
-      "year": "2016",
-      "project": "Alcina (local theatre production)",
-      "role": "Makeup Artist - Face & body paint",
-      "description": "Joe Paxton - Director"
-    }
-  ],
-  "ongoing": [
-    {
-      "project": "Betty Lou Vintage",
-      "role": "Makeup Artist - Vintage Themed Weddings & Hen Parties",
-      "description": "Elizabeth Samways & Emily Dauris - Owners",
-      "period": "Jun 2017 - Present"
-    },
-    {
-      "project": "Boudoir & Creative Photoshoots",
-      "role": "Makeup Artist - Boudoir photoshoots, creative hair & makeup for editorial",
-      "description": "Susan Grace Hinman - Owner & Photographer",
-      "period": "May 2017 - May 2021"
+      "title": "Theatre / Workshops / Beauty / Fashion",
+      "items": [
+        {
+          "project": "Boudoir and Creative Photoshoots",
+          "period": "May 2017 - 2021",
+          "role": "Makeup Artist",
+          "collaborator": "Susan Grace Hinman Photography"
+        },
+        {
+          "project": "Betty Lou Vintage",
+          "period": "June 2017 - 2020",
+          "role": "Makeup Artist",
+          "collaborator": "Elizabeth Samways"
+        },
+        {
+          "project": "ILS Ltd SFX Workshops",
+          "period": "October 2018",
+          "role": "Makeup Artist",
+          "collaborator": "ILS Ltd"
+        },
+        {
+          "project": "Peaky Blinders Charity Fashion Show",
+          "period": "May 2018",
+          "role": "Makeup Artist",
+          "collaborator": "Stephanie Prior"
+        },
+        {
+          "project": "Brighton University Undergraduate Fashion Show b19/20",
+          "period": "May 2017",
+          "role": "Makeup Artist",
+          "collaborator": "Brighton University"
+        },
+        {
+          "project": "Alcina - Brighton Uni Theatre Production",
+          "period": "November 2016",
+          "role": "Makeup Artist",
+          "collaborator": "Joe Paxton - Director"
+        }
+      ]
     }
   ],
   "qualifications": [
-    "Extended Level 3 Theatrical hair and Media Makeup",
+    "Extended Level 3 Theatrical hair and media makeup",
+    "Further Prosthetics - Iver Academy",
     "Level 2 Barbering",
     "MOISO 3 day Afro hair skills course - Iver Academy",
-    "Diploma in Gel Polish – accredited by the Guild of Beauty Therapists",
-    "3 Intensive Days Flat mould and SFX training",
-    "Screenskills training - Production safety Passport: Safe management of productions",
+    "Diploma in Gel Polish - accredited by the Guild of Beauty Therapists",
+    "3 intensive Days Flat mould and SFX training",
+    "Kryolan Casualty effects and Camouflage workshop",
+    "Screenskills - Production safety Passport: Safe management of productions",
     "Tackling Harassment and Bullying at work",
     "Coronavirus basic awareness on production training",
-    "Barbicide Certification and Barbicide Covid-19 Certification"
+    "Barbicide Certification"
   ],
   "transferrableSkills": "Working in hospitality has allowed me to effectively manage my time during short turn arounds, promptly resolving issues and anticipating needs while delivering a fast, friendly service. It's also taught me to make great tea and coffee! I have training in hygiene, health and safety and customer service. I've managed opening and closing duties including reconciliation of the cash drawer, so I have cash handling skills, as well as overseeing and prioritising daily tasks and handling stock control."
 }
