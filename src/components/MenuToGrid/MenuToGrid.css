@@ -4,12 +4,12 @@
   --color-link: #000;
   --color-link-hover: #131313;
   --padding-sides: 1rem;
-  --padding-row: 0.75rem;
-  --color-row-border: rgba(var(--brand), 0.1);
-  --color-bg-row-hover: rgba(var(--brand), 0.06);
+  --padding-row: 0.45rem;
+  --color-row-border: rgba(var(--brand), 0.08);
+  --color-bg-row-hover: rgba(var(--brand), 0.04);
   --color-text-alt: #000;
-  --image-gap: 0.8vw;
-  --image-gap-large: 1.5vw;
+  --image-gap: 0.55vw;
+  --image-gap-large: 1.1vw;
   --img-size: clamp(110px, 6vw, 220px);
   --img-size-large: clamp(180px, 18vw, 360px);
 }
@@ -82,7 +82,7 @@ body.loading {
   cursor: pointer;
   grid-template-rows: var(--img-size);
   grid-template-columns: auto 1fr;
-  grid-column-gap: 5vw;
+  grid-column-gap: 3.5vw;
   align-items: center;
   padding: var(--padding-row) var(--padding-sides);
   border-top: 1px solid var(--color-row-border);

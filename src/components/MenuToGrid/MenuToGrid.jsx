@@ -9,7 +9,7 @@ import './MenuToGrid.css';
 
 gsap.registerPlugin(Flip);
 
-const MenuToGrid = ({ galleries }) => {
+const MenuToGrid = ({ galleries, className = "", contentClassName = "", style }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [galleriesState, setGalleriesState] = useState(Array.isArray(galleries) ? galleries : []);
   const [activeIndex, setActiveIndex] = useState(-1);
@@ -409,13 +409,19 @@ const MenuToGrid = ({ galleries }) => {
     }, 'start+=0.4');
   };
 
+  const containerClasses = ['menu-to-grid'];
+  if (className) containerClasses.push(className);
+
+  const contentClasses = ['content'];
+  if (contentClassName) contentClasses.push(contentClassName);
+
   return (
-    <div className="menu-to-grid">
+    <div className={containerClasses.join(' ')} style={style}>
       {isLoading && (
         <div className="loading"></div>
       )}
       
-      <div className="content">
+      <div className={contentClasses.join(' ')}>
         <div className="rows">
           {galleriesState.map((gallery, index) => (
             <div key={index} ref={el => rowRefs.current[index] = el}>

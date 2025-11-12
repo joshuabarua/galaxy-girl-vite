@@ -100,7 +100,11 @@ const HomeMinimal = () => {
 				</section>
 
 				<section className="gallery-section">
-					<MenuToGrid galleries={imagekitGalleries} />
+					<MenuToGrid
+						galleries={imagekitGalleries}
+						className="page-shell"
+						contentClassName="gallery-content"
+					/>
 				</section>
 			</div>
 		</div>
