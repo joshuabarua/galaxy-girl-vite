@@ -45,14 +45,14 @@ const NavbarMinimal = () => {
 							<DelayedLink
 								to="/"
 								className={`${linkBase} ${isActive("/") ? linkActive : ""}`}>
-								Work
+								Portfolio
 							</DelayedLink>
 							<DelayedLink
 								to="/resume"
 								className={`${linkBase} ${
 									isActive("/resume") ? linkActive : ""
 								}`}>
-								CV
+								Resume
 							</DelayedLink>
 							<DelayedLink
 								to="/contact"

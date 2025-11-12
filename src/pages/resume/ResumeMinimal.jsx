@@ -142,74 +142,47 @@ const ResumeMinimal = () => {
 					</section>
 				)}
 
-				{resumeData.experience && resumeData.experience.length > 0 && (
-					<section className="mt-2.5 mb-0 fade-up-item">
-						<h2 className="text-xs font-normal tracking-[0.2em] uppercase text-[#999] underline decoration-brand/20 underline-offset-2 [text-decoration-thickness:0.5px] mt-6 mb-2">
-							Experience
-						</h2>
-						<div className="flex flex-col gap-5">
-							{resumeData.experience.map((item, index) => (
-								<div key={index}>
-									<div className="grid auto-rows-auto grid-cols-[64px_1fr] gap-x-6 gap-y-4 items-start lg:grid-cols-[200px_1fr] lg:gap-x-6 lg:gap-y-3">
-										<span className="text-md text-[#999] pt-1">
-											{item.year}
-										</span>
-										<div className="flex flex-col gap-1">
-											<h3
-												className={`text-[1.5rem] font-normal m-0 leading-tight experience-project ${getProjectFontClass(
-													item.project
-												)}`}>
-												{renderProjectTitle(item.project)}
-											</h3>
-											<p className="text-[0.95rem] text-[#666] m-0 leading-tight font-light">
-												{item.role}
-											</p>
-											{item.description && (
-												<p className="text-[0.95rem] text-[#666] m-0 leading-tight font-light">
-													{item.description}
-												</p>
-											)}
+				{resumeData.experienceGroups && resumeData.experienceGroups.length > 0 && (
+					<div className="flex flex-col">
+						{resumeData.experienceGroups.map((group, groupIndex) => (
+							<section
+								key={group?.title || groupIndex}
+								className="mt-2.5 mb-0 fade-up-item">
+								<h2 className="text-xs font-normal tracking-[0.2em] uppercase text-[#999] underline decoration-brand/20 underline-offset-2 [text-decoration-thickness:0.5px] mt-6 mb-2">
+									{group?.title}
+								</h2>
+								<div className="flex flex-col gap-5">
+									{group?.items?.map((item, itemIndex) => (
+										<div key={`${groupIndex}-${itemIndex}`}>
+											<div className="grid auto-rows-auto grid-cols-[92px_1fr] gap-x-6 gap-y-4 items-start lg:grid-cols-[220px_1fr] lg:gap-x-8 lg:gap-y-3">
+												<span className="text-sm text-[#999] uppercase tracking-[0.15em] pt-1">
+													{item?.period}
+												</span>
+												<div className="flex flex-col gap-1">
+													<h3
+														className={`text-[1.4rem] font-normal m-0 leading-tight experience-project ${getProjectFontClass(
+															item?.project
+														)}`}>
+														{renderProjectTitle(item?.project)}
+													</h3>
+													{item?.role && (
+														<p className="text-[0.95rem] text-[#666] m-0 leading-tight font-light">
+															{item.role}
+														</p>
+													)}
+													{item?.collaborator && (
+														<p className="text-[0.95rem] text-[#666] m-0 leading-tight font-light">
+															{item.collaborator}
+														</p>
+													)}
+												</div>
+											</div>
 										</div>
-									</div>
+									))}
 								</div>
-							))}
-						</div>
-					</section>
-				)}
-
-				{resumeData.ongoing && resumeData.ongoing.length > 0 && (
-					<section className="mt-2.5 mb-0 fade-up-item">
-						<h2 className="text-xs font-normal tracking-[0.2em] uppercase text-[#999] underline decoration-brand/20 underline-offset-2 [text-decoration-thickness:0.5px] mt-6 mb-2">
-							Ongoing Work
-						</h2>
-						<div className="flex flex-col gap-5">
-							{resumeData.ongoing.map((item, index) => (
-								<div key={index}>
-									<div className="grid auto-rows-auto grid-cols-[64px_1fr] gap-x-4 gap-y-2 items-start lg:grid-cols-[160px_1fr] lg:gap-x-6 lg:gap-y-3">
-										<span className="text-xs text-[#999] pt-1">
-											{item.period}
-										</span>
-										<div className="flex flex-col gap-1">
-											<h3
-												className={`text-[1.2rem] font-normal m-0 leading-tight experience-project ${getProjectFontClass(
-													item.project
-												)}`}>
-												{renderProjectTitle(item.project)}
-											</h3>
-											<p className="text-[0.95rem] text-[#666] m-0 leading-tight font-light">
-												{item.role}
-											</p>
-											{item.description && (
-												<p className="text-[0.95rem] text-[#666] m-0 leading-tight font-light">
-													{item.description}
-												</p>
-											)}
-										</div>
-									</div>
-								</div>
-							))}
-						</div>
-					</section>
+							</section>
+						))}
+					</div>
 				)}
 
 				{resumeData.qualifications && resumeData.qualifications.length > 0 && (
