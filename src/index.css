@@ -56,6 +56,11 @@ body {
 	background: #fff;
 }
 
+.page-shell {
+	padding-top: calc(80px + var(--nav-h));
+	margin-bottom: 80px;
+}
+
 .body-container,
 .content {
 	display: block;
@@ -200,6 +205,18 @@ button:focus-visible {
 	}
 }
 
+@layer utilities {
+	.duration-150ms {
+		transition-duration: 150ms;
+	}
+	.duration-250ms {
+		transition-duration: 250ms;
+	}
+	.ease-friction {
+		transition-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+	}
+}
+
 img,
 video,
 canvas,
@@ -235,11 +252,13 @@ svg {
 	font-family: "EmpireSansSerifFLF", system-ui, -apple-system, Segoe UI, Roboto,
 		Arial, sans-serif;
 	text-transform: uppercase;
+	font-size: 28px;
 }
 .experience-project.font-empire-of-light .empire-of {
 	font-family: "EmpireColombia", system-ui, -apple-system, Segoe UI, Roboto,
 		Arial, sans-serif;
 	text-transform: lowercase;
+	font-size: 28px;
 }
 
 .experience-project.font-franchise {
@@ -253,6 +272,7 @@ svg {
 .experience-project.font-allelujah {
 	font-family: "BrusioCondensed", system-ui, -apple-system, Segoe UI, Roboto,
 		Arial, sans-serif;
+	font-size: 34px;
 }
 .experience-project.font-house-of-dragon {
 	font-family: "GameOfThrones", Georgia, "Times New Roman", Times, serif;
