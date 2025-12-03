@@ -61,103 +61,71 @@ const ContactMinimal = () => {
 		distance: 40,
 	});
 
-	return (
-		<div
-			id="contact-minimal-bg"
-			className="min-h-screen bg-[#f5f5f5] text-black flex flex-col items-center overflow-x-hidden">
-			<div className="max-w-[1200px] w-[90VW] mx-auto page-shell">
-				<header className="fade-up-item text-center mb-8">
-					<h1 className="text-[clamp(3rem,6vw,5rem)] font-light tracking-[-0.02em] leading-none mb-8">
-						Get in Touch
-					</h1>
-					<p className="text-sm font-normal tracking-[0.2em] uppercase text-[#666] m-0">
-						Let's work together
-					</p>
-				</header>
+  return (
+    <div
+      id="contact-minimal-bg"
+      className="min-h-[calc(100dvh-64px)] bg-[#f5f5f5] text-black px-4 sm:px-6 lg:px-10 2xl:px-16 3xl:px-24 4k:px-32 pt-16 sm:pt-12 lg:pt-20 pb-0 overflow-x-hidden overflow-y-auto overscroll-y-none"
+    >
+      <div className="mx-auto w-full max-w-[960px] md:max-w-[1100px] xl:max-w-[1200px] 2xl:max-w-[1400px] 3xl:max-w-[1600px] 4k:max-w-[1800px]">
+        <header className="fade-up-item text-center mb-8">
+          <h1 className="text-[clamp(3rem,6vw,5rem)] font-light tracking-[-0.02em] leading-none mb-8">
+            Get in Touch
+          </h1>
+          <p className="text-sm font-normal tracking-[0.2em] uppercase text-[#666] m-0">
+            Let's work together
+          </p>
+        </header>
 
-				<div className="fade-up-item flex items-center justify-center gap-4 - mb-6">
-					<a
-						href="https://instagram.com"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="text-black no-underline font-light transition-opacity duration-300 w-fit hover:opacity-60"
-						aria-label="Instagram">
-						<svg
-							width="22"
-							height="22"
-							viewBox="0 0 24 24"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg">
-							<rect
-								x="2"
-								y="2"
-								width="20"
-								height="20"
-								rx="5"
-								stroke="currentColor"
-								strokeWidth="2"
-							/>
-							<circle
-								cx="12"
-								cy="12"
-								r="4"
-								stroke="currentColor"
-								strokeWidth="2"
-							/>
-							<circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" />
-						</svg>
-					</a>
-					<a
-						href="https://linkedin.com"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="text-black no-underline font-light transition-opacity duration-300 w-fit hover:opacity-60"
-						aria-label="LinkedIn">
-						<svg
-							width="22"
-							height="22"
-							viewBox="0 0 24 24"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg">
-							<rect
-								x="3"
-								y="3"
-								width="18"
-								height="18"
-								rx="2"
-								stroke="currentColor"
-								strokeWidth="2"
-							/>
-							<rect x="7" y="10" width="2" height="7" fill="currentColor" />
-							<circle cx="8" cy="7" r="1" fill="currentColor" />
-							<path
-								d="M13 17v-4a3 3 0 0 1 6 0v4h-2v-4a1 1 0 1 0-2 0v4h-2z"
-								fill="currentColor"
-							/>
-						</svg>
-					</a>
-				</div>
+        <div className="fade-up-item flex items-center justify-center gap-4 - mb-6">
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-black no-underline font-light transition-opacity duration-300 w-fit hover:opacity-60"
+            aria-label="Instagram"
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" strokeWidth="2"/>
+              <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="2"/>
+              <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
+            </svg>
+          </a>
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-black no-underline font-light transition-opacity duration-300 w-fit hover:opacity-60"
+            aria-label="LinkedIn"
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="2"/>
+              <rect x="7" y="10" width="2" height="7" fill="currentColor"/>
+              <circle cx="8" cy="7" r="1" fill="currentColor"/>
+              <path d="M13 17v-4a3 3 0 0 1 6 0v4h-2v-4a1 1 0 1 0-2 0v4h-2z" fill="currentColor"/>
+            </svg>
+          </a>
+        </div>
 
-				<div className="flex flex-col items-center justify-center gap-10">
-					<form
-						className="fade-up-item w-full max-w-[560px] mx-auto flex flex-col gap-8"
-						onSubmit={handleSubmit}>
-						<div className="flex flex-col gap-3">
-							<label
-								htmlFor="name"
-								className="text-xs font-normal tracking-[0.2em] uppercase text-[#999]">
-								Name
-							</label>
-							<input
-								type="text"
-								id="name"
-								name="name"
-								value={formData.name}
-								onChange={handleChange}
-								required
-								className="w-full p-4 text-base font-light text-black bg-[#fafafa] border border-brand/15 outline-none focus:border-brand"
-							/>
-						</div>
+        <div className="flex flex-col items-center justify-center gap-10">
+          {/* Contact Form */}
+          <form
+            className="fade-up-item w-full max-w-[560px] mx-auto flex flex-col gap-8"
+            onSubmit={handleSubmit}
+          >
+            <div className="flex flex-col gap-3">
+              <label htmlFor="name" className="text-xs font-normal tracking-[0.2em] uppercase text-[#999]">
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                className="w-full p-4 text-base font-light text-black bg-[#fafafa] border border-brand/15 outline-none focus:border-brand"
+              />
+            </div>
 
 						<div className="flex flex-col gap-3">
 							<label
