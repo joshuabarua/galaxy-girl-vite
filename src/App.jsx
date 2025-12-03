@@ -1,5 +1,4 @@
 import {HashRouter as Router, Routes, Route} from 'react-router-dom';
-import './App.css';
 import HomeMinimal from './pages/HomeMinimal';
 import ResumeMinimal from './pages/resume/ResumeMinimal';
 import ContactMinimal from './pages/contact/ContactMinimal';

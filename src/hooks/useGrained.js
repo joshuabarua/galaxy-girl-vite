@@ -1,9 +1,22 @@
-import { useEffect } from 'react';
 import { applyGrain } from '../utils/grained';
+import { useEffect } from 'react';
 
+/**
+ * Hook to apply grained.js effect to an element
+ * @param {string} elementId 
+ * @param {object} options 
+ */
 export const useGrained = (elementId, options = {}) => {
   useEffect(() => {
-    const defaults = {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    if (!window.grained) {
+      console.warn('Grained.js not loaded');
+    }
+
+    const baseOptions = {
       animate: true,
       patternWidth: 100,
       patternHeight: 100,
@@ -16,27 +29,26 @@ export const useGrained = (elementId, options = {}) => {
       bubbles: true
     };
 
-    const { disable, ...rest } = options;
-    if (disable) {
-      return () => { };
-    }
+    const isHighRes = window.innerWidth >= 1440;
+    const defaultOptions = isHighRes
+      ? {
+          ...baseOptions,
+          patternWidth: 80,
+          patternHeight: 80,
+          grainDensity: 1.4,
+          grainOpacity: 0.11
+        }
+      : baseOptions;
 
-    if (typeof window === 'undefined') {
-      return () => { };
-    }
+    const finalOptions = { ...defaultOptions, ...options };
 
-    const disabledEnv = import.meta.env.VITE_DISABLE_GRAINED === 'true' || Boolean(window.__DISABLE_GRAINED);
-    if (disabledEnv) {
-      return () => { };
-    }
-
-    const finalOptions = { ...defaults, ...rest };
     const registry = (window.__grainedRegistry = window.__grainedRegistry || {});
-    const key = JSON.stringify(finalOptions);
+    const selector = `#${elementId}`;
+    const optionsKey = JSON.stringify(finalOptions);
 
     const existing = registry[elementId];
-    if (existing && existing.optionsKey === key && existing.applied) {
-      return () => { };
+    if (existing && existing.optionsKey === optionsKey && existing.applied) {
+      return () => {};
     }
 
     const apply = () => {
@@ -46,12 +58,27 @@ export const useGrained = (elementId, options = {}) => {
       }
 
       const entry = registry[elementId];
-      if (entry && entry.optionsKey === key && entry.applied) {
-        return entry.cleanup || (() => { });
+      if (entry && entry.optionsKey === optionsKey && entry.applied) {
+        return;
+      }
+      try {
+        window.grained(selector, finalOptions);
+        registry[elementId] = { applied: true, optionsKey };
+        window.__grainedCalls = (window.__grainedCalls || 0) + 1;
+        const set = (window.__grainedTargets = window.__grainedTargets || new Set());
+        set.add(elementId);
+        if (!window.getGrainedCounts) {
+          window.getGrainedCounts = () => ({
+            calls: window.__grainedCalls || 0,
+            targets: Array.from(window.__grainedTargets || [])
+          });
+        }
+      } catch (e) {
+        console.error('Grained error:', e);
       }
 
       const cleanup = applyGrain(element, finalOptions);
-      registry[elementId] = { applied: true, optionsKey: key, cleanup };
+      registry[elementId] = { applied: true, optionsKey, cleanup };
       return cleanup;
     };
 
@@ -61,7 +88,6 @@ export const useGrained = (elementId, options = {}) => {
     const init = () => {
       const element = document.getElementById(elementId);
       if (!element) return;
-
       if ('IntersectionObserver' in window) {
         observer = new IntersectionObserver((entries) => {
           for (const entry of entries) {

@@ -6,6 +6,10 @@ export default {
     content: ['./src/**/*.{html,js,jsx}', './src/**/*.{html,jsx}'],
 	theme: {
     	extend: {
+    		screens: {
+    			'3xl': '1920px',
+    			'4k': '3840px',
+    		},
     		borderRadius: {
     			lg: 'var(--radius)',
     			md: 'calc(var(--radius) - 2px)',
