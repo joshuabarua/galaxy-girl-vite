@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { useNavigate } from "react-router-dom";
 import MenuToGrid from "../components/MenuToGrid/MenuToGrid";
+import SplatterEffect from "../components/SplatterEffect/SplatterEffect";
 import { imagekitGalleries } from "./portfolio/data/imagekitGalleryData";
 import { useGrained } from "../hooks/useGrained";
 import "./homeMinimal.css";
@@ -89,7 +90,8 @@ const HomeMinimal = () => {
 					className="hero-section flex items-center justify-center flex-col px-8 relative"
 					id="hero-logo-container"
 					ref={initHeroSection}>
-					<div className="hero-content text-center flex flex-col items-center gap-2 max-w-[600px] px-8 mx-auto">
+					<SplatterEffect enabled={true} />
+					<div className="hero-content text-center flex flex-col items-center gap-2 max-w-[600px] px-8 mx-auto relative z-10">
 						<h1 className="hero-title" aria-label="EMMA BARUA">
 							<span className="hero-title-text" ref={initHeroTitle}>
 								EMMA BARUA
