@@ -7,7 +7,9 @@ export default {
 	theme: {
     	extend: {
     		screens: {
+    			'2xl': '1440px',
     			'3xl': '1920px',
+    			'4xl': '2560px',
     			'4k': '3840px',
     		},
     		borderRadius: {

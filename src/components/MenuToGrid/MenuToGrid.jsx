@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { gsap } from 'gsap';
 import { Flip } from 'gsap/Flip';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import { preloadImages, preloadFonts } from '../../utils/media';
 import { getImageKitUrl } from '../../utils/imagekit';
 import { Row } from './Row';
 import Preview from './Preview';
 import './MenuToGrid.css';
 
-gsap.registerPlugin(Flip);
+gsap.registerPlugin(Flip, ScrollToPlugin);
 
 const MenuToGrid = ({ galleries, className = "", contentClassName = "", style }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -145,8 +146,12 @@ const MenuToGrid = ({ galleries, className = "", contentClassName = "", style })
     gsap.timeline({
       onStart: () => {
         body.classList.add('oh');
+        document.documentElement.classList.add('oh');
         row.DOM.el.classList.add('row--current');
         row.previewItem.DOM.el.classList.add('preview__item--current');
+        // Scroll preview to top using GSAP
+        row.previewItem.DOM.el.scrollTop = 0;
+        gsap.to(row.previewItem.DOM.el, { duration: 0, scrollTo: { y: 0, autoKill: false } });
 
         gsap.set(row.previewItem.DOM.images, {opacity: 0});
         gsap.set(cover, {
@@ -366,6 +371,7 @@ const MenuToGrid = ({ galleries, className = "", contentClassName = "", style })
         row.DOM.el.classList.remove('row--current');
         row.previewItem.DOM.el.classList.remove('preview__item--current');
         body.classList.remove('oh');
+        document.documentElement.classList.remove('oh');
         isAnimatingRef.current = false;
         setActiveIndex(-1);
       }
@@ -411,6 +417,7 @@ const MenuToGrid = ({ galleries, className = "", contentClassName = "", style })
 
   const containerClasses = ['menu-to-grid'];
   if (className) containerClasses.push(className);
+  if (activeIndex >= 0) containerClasses.push('menu-open');
 
   const contentClasses = ['content'];
   if (contentClassName) contentClasses.push(contentClassName);
@@ -480,6 +487,7 @@ const MenuToGrid = ({ galleries, className = "", contentClassName = "", style })
             index={index}
             isActive={activeIndex === index}
             onLoadMore={handleLoadMore}
+            onClose={handleCloseClick}
           />
         ))}
       </div>

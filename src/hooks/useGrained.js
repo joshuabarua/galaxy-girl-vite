@@ -12,10 +12,6 @@ export const useGrained = (elementId, options = {}) => {
       return;
     }
 
-    if (!window.grained) {
-      console.warn('Grained.js not loaded');
-    }
-
     const baseOptions = {
       animate: true,
       patternWidth: 100,
@@ -42,90 +38,28 @@ export const useGrained = (elementId, options = {}) => {
 
     const finalOptions = { ...defaultOptions, ...options };
 
-    const registry = (window.__grainedRegistry = window.__grainedRegistry || {});
-    const selector = `#${elementId}`;
-    const optionsKey = JSON.stringify(finalOptions);
-
-    const existing = registry[elementId];
-    if (existing && existing.optionsKey === optionsKey && existing.applied) {
-      return () => {};
-    }
+    let cleanup = () => {};
 
     const apply = () => {
-      const element = document.getElementById(elementId);
-      if (!element) {
-        return () => {};
-      }
+      const el = document.getElementById(elementId);
+      if (!el) return;
 
-      const entry = registry[elementId];
-      if (entry && entry.optionsKey === optionsKey && entry.applied) {
+      // Check if overlay already exists - don't re-apply
+      const existingOverlay = el.querySelector('[data-grained-overlay-id]');
+      if (existingOverlay) {
         return;
       }
-      try {
-        window.grained(selector, finalOptions);
-        registry[elementId] = { applied: true, optionsKey };
-        window.__grainedCalls = (window.__grainedCalls || 0) + 1;
-        const set = (window.__grainedTargets = window.__grainedTargets || new Set());
-        set.add(elementId);
-        if (!window.getGrainedCounts) {
-          window.getGrainedCounts = () => ({
-            calls: window.__grainedCalls || 0,
-            targets: Array.from(window.__grainedTargets || [])
-          });
-        }
-      } catch (e) {
-        console.error('Grained error:', e);
-      }
-
-      const cleanup = applyGrain(element, finalOptions);
-      registry[elementId] = { applied: true, optionsKey, cleanup };
-      return cleanup;
+      
+      cleanup = applyGrain(el, finalOptions);
     };
 
-    let observer;
-    let cleanupFn = () => { };
-
-    const init = () => {
-      const element = document.getElementById(elementId);
-      if (!element) return;
-      if ('IntersectionObserver' in window) {
-        observer = new IntersectionObserver((entries) => {
-          for (const entry of entries) {
-            if (entry.isIntersecting) {
-              cleanupFn = apply();
-              try { observer.disconnect(); } catch { }
-              break;
-            }
-          }
-        }, { root: null, rootMargin: '15%', threshold: 0 });
-        observer.observe(element);
-      } else {
-        cleanupFn = apply();
-      }
-    };
-
-    let timer;
-    if (typeof window.requestIdleCallback === 'function') {
-      timer = window.requestIdleCallback(init, { timeout: 200 });
-    } else {
-      timer = window.setTimeout(init, 20);
-    }
+    // Small delay to ensure element is mounted
+    const timer = setTimeout(apply, 50);
 
     return () => {
-      if (observer) {
-        try { observer.disconnect(); } catch { }
-      }
-      if (timer) {
-        try {
-          window.cancelIdleCallback ? window.cancelIdleCallback(timer) : clearTimeout(timer);
-        } catch { }
-      }
-      cleanupFn();
-      const entry = registry[elementId];
-      if (entry) {
-        entry.applied = false;
-        entry.cleanup = undefined;
-      }
+      clearTimeout(timer);
+      // Cleanup grain when component unmounts
+      cleanup();
     };
   }, [elementId, JSON.stringify(options)]);
 };

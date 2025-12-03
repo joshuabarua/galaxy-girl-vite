@@ -210,7 +210,6 @@ html {
 	overscroll-behavior-y: none;
 	height: 100%;
 	width: 100%;
-	scrollbar-gutter: stable both-edges;
 }
 
 body {
@@ -224,7 +223,28 @@ body {
 	background: #fff;
 	color: #000;
 	-webkit-overflow-scrolling: touch;
-	scrollbar-gutter: stable both-edges;
+}
+
+/* Hide scrollbars but keep scroll functionality */
+html,
+body,
+#root,
+.app-minimal,
+.home-minimal,
+.preview__item--current {
+	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none; /* IE/Edge */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+#root::-webkit-scrollbar,
+.app-minimal::-webkit-scrollbar,
+.home-minimal::-webkit-scrollbar,
+.preview__item--current::-webkit-scrollbar {
+	display: none; /* Chrome, Safari, Opera */
+	width: 0;
+	height: 0;
 }
 
 * {
@@ -245,8 +265,67 @@ body {
 }
 
 .page-shell {
-	padding-top: calc(80px + var(--nav-h));
-	margin-bottom: 80px;
+	padding-top: calc(20px + var(--nav-h));
+	margin-bottom: 40px;
+}
+
+/* Utility class for content that needs navbar clearance */
+.navbar-offset {
+	padding-top: var(--nav-h, 64px);
+}
+
+.navbar-margin {
+	margin-top: var(--nav-h, 64px);
+}
+
+/* Route transition text scaling - only affects text elements */
+.route-transition-wrapper.is-shrinking h1,
+.route-transition-wrapper.is-shrinking h2,
+.route-transition-wrapper.is-shrinking h3,
+.route-transition-wrapper.is-shrinking h4,
+.route-transition-wrapper.is-shrinking h5,
+.route-transition-wrapper.is-shrinking h6,
+.route-transition-wrapper.is-shrinking p,
+.route-transition-wrapper.is-shrinking span,
+.route-transition-wrapper.is-shrinking a,
+.route-transition-wrapper.is-shrinking label,
+.route-transition-wrapper.is-shrinking button {
+	transform: scale(0.92) translateY(12px);
+	opacity: 0.6;
+	transition: transform 250ms cubic-bezier(0.65, 0, 0.35, 1), opacity 250ms ease;
+}
+
+/* Entrance animation - scale up from below */
+.route-transition-wrapper.is-entering h1,
+.route-transition-wrapper.is-entering h2,
+.route-transition-wrapper.is-entering h3,
+.route-transition-wrapper.is-entering h4,
+.route-transition-wrapper.is-entering h5,
+.route-transition-wrapper.is-entering h6,
+.route-transition-wrapper.is-entering p,
+.route-transition-wrapper.is-entering span,
+.route-transition-wrapper.is-entering a,
+.route-transition-wrapper.is-entering label,
+.route-transition-wrapper.is-entering button {
+	transform: scale(1) translateY(0);
+	opacity: 1;
+	transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1), opacity 300ms ease;
+}
+
+/* Default state */
+.route-transition-wrapper:not(.is-shrinking):not(.is-entering) h1,
+.route-transition-wrapper:not(.is-shrinking):not(.is-entering) h2,
+.route-transition-wrapper:not(.is-shrinking):not(.is-entering) h3,
+.route-transition-wrapper:not(.is-shrinking):not(.is-entering) h4,
+.route-transition-wrapper:not(.is-shrinking):not(.is-entering) h5,
+.route-transition-wrapper:not(.is-shrinking):not(.is-entering) h6,
+.route-transition-wrapper:not(.is-shrinking):not(.is-entering) p,
+.route-transition-wrapper:not(.is-shrinking):not(.is-entering) span,
+.route-transition-wrapper:not(.is-shrinking):not(.is-entering) a,
+.route-transition-wrapper:not(.is-shrinking):not(.is-entering) label,
+.route-transition-wrapper:not(.is-shrinking):not(.is-entering) button {
+	transform: scale(1) translateY(0);
+	opacity: 1;
 }
 
 .body-container,
@@ -474,4 +553,74 @@ svg {
 .experience-project.font-peaky {
 	font-family: "PeakyBlinders", system-ui, -apple-system, Segoe UI, Roboto,
 		Arial, sans-serif;
+}
+
+/* ========================================
+   Responsive Scaling for Large Screens
+   ======================================== */
+
+/* 1440p (2K) and up - slight scale increase */
+@media (min-width: 1440px) {
+	:root {
+		--scale-factor: 1.05;
+		--nav-h: 72px;
+	}
+
+	html {
+		font-size: 17px;
+	}
+}
+
+/* 1920p (Full HD+) and up */
+@media (min-width: 1920px) {
+	:root {
+		--scale-factor: 1.15;
+		--nav-h: 80px;
+	}
+
+	html {
+		font-size: 18px;
+	}
+
+	.page-shell {
+		padding-top: calc(100px + var(--nav-h));
+	}
+}
+
+/* 2560p (QHD/1440p ultrawide) and up */
+@media (min-width: 2560px) {
+	:root {
+		--scale-factor: 1.25;
+		--nav-h: 88px;
+	}
+
+	html {
+		font-size: 20px;
+	}
+
+	.page-shell {
+		padding-top: calc(120px + var(--nav-h));
+	}
+}
+
+/* 4K (3840px) and up */
+@media (min-width: 3840px) {
+	:root {
+		--scale-factor: 1.5;
+		--nav-h: 112px;
+	}
+
+	html {
+		font-size: 24px;
+	}
+
+	.page-shell {
+		padding-top: calc(160px + var(--nav-h));
+		margin-bottom: 120px;
+	}
+
+	button {
+		padding: 1em 2em;
+		font-size: 1.2em;
+	}
 }
