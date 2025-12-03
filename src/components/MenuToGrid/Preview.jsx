@@ -1,7 +1,7 @@
-import React, { forwardRef, useRef, useImperativeHandle, useState, useEffect } from 'react';
+import React, { forwardRef, useRef, useImperativeHandle, useState, useEffect, useCallback } from 'react';
 import { getImageKitUrl } from '../../utils/imagekit';
 
-const Preview = forwardRef(({ data, index, isActive, onLoadMore }, ref) => {
+const Preview = forwardRef(({ data, index, isActive, onLoadMore, onClose }, ref) => {
   const previewRef = useRef(null);
   const gridRef = useRef(null);
   const titleRef = useRef(null);
@@ -13,6 +13,18 @@ const Preview = forwardRef(({ data, index, isActive, onLoadMore }, ref) => {
       setVisibleCount(initial);
     }
   }, [isActive]);
+
+  // Handle click outside images to close
+  const handleBackgroundClick = useCallback((e) => {
+    // Check if click is on an image or the load more button
+    const isImage = e.target.closest('.preview__item-img') || 
+                    e.target.closest('.cell__img') ||
+                    e.target.closest('.preview__load-more');
+    
+    if (!isImage && onClose) {
+      onClose();
+    }
+  }, [onClose]);
 
   useImperativeHandle(ref, () => ({
     DOM: {
@@ -31,6 +43,7 @@ const Preview = forwardRef(({ data, index, isActive, onLoadMore }, ref) => {
       id={`preview-item-${index}`}
       className={`preview__item ${isActive ? 'preview__item--current' : ''}`}
       data-preview-index={index}
+      onClick={isActive ? handleBackgroundClick : undefined}
     >
       <div className="preview__item-content">
         <div className="preview__item-header">

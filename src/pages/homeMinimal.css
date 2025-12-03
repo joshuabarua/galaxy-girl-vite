@@ -13,15 +13,16 @@
 
 .hero-section {
 	display: flex;
-	min-height: 60vh;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	height: 100vh;
+	height: calc(100vh - var(--nav-h, 64px));
+	min-height: 400px;
 	background: transparent;
-	padding: 2rem;
 	overflow: hidden;
 	position: relative;
+	z-index: 1;
+	margin-top: var(--nav-h, 64px);
 }
 
 .hero-content {
@@ -116,6 +117,12 @@
 
 .home-minimal {
 	scroll-snap-type: y proximity;
+}
+
+/* Override page-shell padding for home page */
+.home-minimal .page-shell {
+	padding-top: 0;
+	margin-bottom: 0;
 }
 
 .hero-section,

@@ -1,15 +1,76 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import DelayedLink from "../DelayedLink/DelayedLink";
 
 const NavbarMinimal = () => {
 	const location = useLocation();
+	const [isVisible, setIsVisible] = useState(true);
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const hideTimeoutRef = useRef(null);
+	const lastScrollY = useRef(0);
+
+	const showNavbar = useCallback(() => {
+		setIsVisible(true);
+		if (hideTimeoutRef.current) {
+			clearTimeout(hideTimeoutRef.current);
+		}
+		hideTimeoutRef.current = setTimeout(() => {
+			setIsVisible(false);
+		}, 2500);
+	}, []);
+
+	// Watch for body.oh class (menu open state)
+	useEffect(() => {
+		const checkMenuOpen = () => {
+			setIsMenuOpen(document.body.classList.contains('oh'));
+		};
+		
+		checkMenuOpen();
+		const observer = new MutationObserver(checkMenuOpen);
+		observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+		
+		return () => observer.disconnect();
+	}, []);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			const currentScrollY = window.scrollY;
+			// Show navbar when scrolling up or near top
+			if (currentScrollY < lastScrollY.current || currentScrollY < 100) {
+				showNavbar();
+			}
+			lastScrollY.current = currentScrollY;
+		};
+
+		const handleInteraction = () => {
+			showNavbar();
+		};
+
+		window.addEventListener("scroll", handleScroll, { passive: true });
+		window.addEventListener("mousemove", handleInteraction, { passive: true });
+		window.addEventListener("touchstart", handleInteraction, { passive: true });
+		window.addEventListener("click", handleInteraction, { passive: true });
+
+		// Initial show then hide
+		showNavbar();
+
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+			window.removeEventListener("mousemove", handleInteraction);
+			window.removeEventListener("touchstart", handleInteraction);
+			window.removeEventListener("click", handleInteraction);
+			if (hideTimeoutRef.current) {
+				clearTimeout(hideTimeoutRef.current);
+			}
+		};
+	}, [showNavbar]);
 
 	const isActive = (path) => location.pathname === path;
 	const onHome = location.pathname === "/";
 
 	const navBase =
-		"fixed top-0 left-0 right-0 z-[1000000] bg-transparent border-b border-double border-brand/10 transition-transform duration-300";
+		"fixed top-0 left-0 right-0 z-[1000000] bg-transparent border-b border-double border-brand/10 transition-all duration-300";
+	const navHidden = "-translate-y-full opacity-0";
 	const navScrolled = "bg-white/90 backdrop-blur border-b-[#e0e0e0]";
 
 	const container =
@@ -24,9 +85,12 @@ const NavbarMinimal = () => {
 		"relative text-[1rem] sm:text-[1.1rem] md:text-[1.2rem] font-normal tracking-wider text-[#666] no-underline transition-colors duration-300 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-px after:w-0 after:bg-black after:transition-all hover:text-black hover:after:w-full";
 	const linkActive = "text-black after:w-full";
 
+	// Hide navbar when menu is open or when not visible
+	const shouldHide = isMenuOpen || !isVisible;
+
 	return (
 		<>
-			<nav className={`${navBase} isolate`}>
+			<nav className={`${navBase} ${shouldHide ? navHidden : ""} isolate`}>
 				<div className="relative w-full h-full">
 					<span
 						aria-hidden="true"

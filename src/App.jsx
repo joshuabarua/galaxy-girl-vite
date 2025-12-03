@@ -5,11 +5,13 @@ import ContactMinimal from './pages/contact/ContactMinimal';
 import NavbarMinimal from './components/nav/NavbarMinimal';
 import NotFound from './pages/NotFound';
 import RouteTransition from './components/routeTransition/RouteTransition';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
 	return (
 		<Router>
 			<>
+				<ScrollToTop />
 				<NavbarMinimal />
 				<RouteTransition>
 					<div className="app-minimal">

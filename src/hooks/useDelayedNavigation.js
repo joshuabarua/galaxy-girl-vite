@@ -1,5 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { useCallback } from 'react';
+import { gsap } from 'gsap';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+
+gsap.registerPlugin(ScrollToPlugin);
 
 export const useDelayedNavigation = ({ 
   fadeToDuration = 200, 
@@ -8,6 +12,9 @@ export const useDelayedNavigation = ({
   const navigate = useNavigate();
 
   const delayedNavigate = useCallback((to, options = {}) => {
+    // Immediately scroll to top before transition starts
+    gsap.to(window, { duration: 0, scrollTo: { y: 0, autoKill: false } });
+    
     window.dispatchEvent(new CustomEvent('delayed-navigation-start', { 
       detail: { to, options } 
     }));
@@ -21,6 +28,8 @@ export const useDelayedNavigation = ({
       : blackHoldDuration;
 
     setTimeout(() => {
+      // Scroll to top again right before navigation
+      gsap.to(window, { duration: 0, scrollTo: { y: 0, autoKill: false } });
       navigate(to, options);
     }, fadeTo + hold);
   }, [navigate, fadeToDuration, blackHoldDuration]);
