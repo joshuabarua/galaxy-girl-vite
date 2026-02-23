@@ -1,0 +1,3 @@
+Complete terms in LICENSE.txt
+
+Replace this placeholder with the full legal license terms for the frontend-design skill.

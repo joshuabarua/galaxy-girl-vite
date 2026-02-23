@@ -4,10 +4,12 @@ import DelayedLink from "../DelayedLink/DelayedLink";
 
 const NavbarMinimal = () => {
 	const location = useLocation();
+	const onHome = location.pathname === "/";
 	const [isVisible, setIsVisible] = useState(true);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const hideTimeoutRef = useRef(null);
 	const lastScrollY = useRef(0);
+	const autoHideDelay = onHome ? 5600 : 4000;
 
 	const showNavbar = useCallback(() => {
 		setIsVisible(true);
@@ -16,8 +18,8 @@ const NavbarMinimal = () => {
 		}
 		hideTimeoutRef.current = setTimeout(() => {
 			setIsVisible(false);
-		}, 2500);
-	}, []);
+		}, autoHideDelay);
+	}, [autoHideDelay]);
 
 	// Watch for body.oh class (menu open state)
 	useEffect(() => {
@@ -66,12 +68,9 @@ const NavbarMinimal = () => {
 	}, [showNavbar]);
 
 	const isActive = (path) => location.pathname === path;
-	const onHome = location.pathname === "/";
-
 	const navBase =
 		"fixed top-0 left-0 right-0 z-[1000000] bg-transparent border-b border-double border-brand/10 transition-all duration-300";
 	const navHidden = "-translate-y-full opacity-0";
-	const navScrolled = "bg-white/90 backdrop-blur border-b-[#e0e0e0]";
 
 	const container =
 		"max-w-[1400px] mx-auto px-4 py-3 sm:py-4 flex justify-between items-center";

@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { useParams, Link, useLocation } from "react-router-dom";
 import { gsap } from "gsap";
 import { Flip } from "gsap/Flip";
-import { imagekitGalleries } from "./data/imagekitGalleryData";
+import { imagekitGalleries, spotlightGallery } from "./data/imagekitGalleryData";
 import { getImageKitUrl } from "../../utils/imagekit";
 import { slugify } from "../../utils/slugify";
 
@@ -14,7 +14,11 @@ const PortfolioDetail = () => {
 	const gridRef = useRef(null);
 	const hasAnimated = useRef(false);
 
-	const gallery = imagekitGalleries.find(
+	const allGalleries = spotlightGallery
+		? [...imagekitGalleries, spotlightGallery]
+		: imagekitGalleries;
+
+	const gallery = allGalleries.find(
 		(g) => (g.slug || slugify(g.name)) === slug
 	);
 

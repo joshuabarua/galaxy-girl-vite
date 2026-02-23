@@ -25,6 +25,72 @@ const resolvePreviewUrl = (image) => {
 
 const combineClasses = (...classes) => classes.filter(Boolean).join(" ");
 
+const getFolderFromPath = (imagekitPath = "") => {
+	if (!imagekitPath) return "";
+	const [folder] = imagekitPath.split("/");
+	return folder || "";
+};
+
+const probeImageExists = (path) =>
+	new Promise((resolve) => {
+		const img = new Image();
+		let settled = false;
+		const finalize = (exists) => {
+			if (settled) return;
+			settled = true;
+			img.onload = null;
+			img.onerror = null;
+			resolve(exists);
+		};
+
+		const timeoutId = window.setTimeout(() => finalize(false), 2200);
+		img.onload = () => {
+			window.clearTimeout(timeoutId);
+			finalize(true);
+		};
+		img.onerror = () => {
+			window.clearTimeout(timeoutId);
+			finalize(false);
+		};
+
+		img.src = getImageKitUrl(path, { width: 32, height: 32, quality: 40 });
+	});
+
+const countFolderImages = async (folder, maxImages = 180) => {
+	if (!folder) return 0;
+
+	const existsAt = async (index) => {
+		for (const ext of ["jpg", "png"]) {
+			if (await probeImageExists(`${folder}/${index}.${ext}`)) {
+				return true;
+			}
+		}
+		return false;
+	};
+	const hasFirst = await existsAt(1);
+	if (!hasFirst) return 0;
+
+	let low = 1;
+	let high = 2;
+
+	while (high <= maxImages && (await existsAt(high))) {
+		low = high;
+		high *= 2;
+	}
+
+	high = Math.min(high, maxImages + 1);
+	while (low + 1 < high) {
+		const mid = Math.floor((low + high) / 2);
+		if (await existsAt(mid)) {
+			low = mid;
+		} else {
+			high = mid;
+		}
+	}
+
+	return low;
+};
+
 const MenuToGrid = ({
 	galleries = [],
 	className = "",
@@ -42,10 +108,13 @@ const MenuToGrid = ({
 	const [previewVisible, setPreviewVisible] = useState(false);
 	const [activeGalleryIndex, setActiveGalleryIndex] = useState(-1);
 	const [revealedRows, setRevealedRows] = useState(() => new Set());
+	const [centeredRowIndex, setCenteredRowIndex] = useState(-1);
+	const [livePhotoCounts, setLivePhotoCounts] = useState({});
 
 	const rowRefs = useRef([]);
 	const rowsArrRef = useRef([]);
 	const previewRefs = useRef([]);
+	const coverRef = useRef(null);
 
 	useEffect(() => {
 		initializeMenuToGrid();
@@ -54,6 +123,39 @@ const MenuToGrid = ({
 
 	useEffect(() => {
 		setRevealedRows(new Set());
+		setCenteredRowIndex(-1);
+	}, [items]);
+
+	useEffect(() => {
+		let cancelled = false;
+
+		const resolveCounts = async () => {
+			const nextCounts = {};
+
+			for (const gallery of items) {
+				const images = Array.isArray(gallery?.images) ? gallery.images : [];
+				const firstImagePath = images.find((image) => image?.imagekitPath)?.imagekitPath;
+				const folder = getFolderFromPath(firstImagePath);
+
+				if (!folder) {
+					nextCounts[gallery.slug] = images.length;
+					continue;
+				}
+
+				const counted = await countFolderImages(folder);
+				nextCounts[gallery.slug] = counted || images.length;
+
+				if (cancelled) return;
+			}
+
+			if (!cancelled) setLivePhotoCounts(nextCounts);
+		};
+
+		resolveCounts();
+
+		return () => {
+			cancelled = true;
+		};
 	}, [items]);
 
 	useEffect(() => {
@@ -86,6 +188,69 @@ const MenuToGrid = ({
 		});
 
 		return () => observer.disconnect();
+	}, [items]);
+
+	useEffect(() => {
+		if (!items.length) return undefined;
+
+		const intersectingRows = new Map();
+
+		const pickCenterRow = () => {
+			if (!intersectingRows.size) {
+				setCenteredRowIndex(-1);
+				return;
+			}
+
+			const viewportCenter = window.innerHeight / 2;
+			let nearestIndex = -1;
+			let nearestDistance = Number.POSITIVE_INFINITY;
+
+			intersectingRows.forEach((rowEl, index) => {
+				const rect = rowEl.getBoundingClientRect();
+				const rowCenter = rect.top + rect.height / 2;
+				const distance = Math.abs(viewportCenter - rowCenter);
+				if (distance < nearestDistance) {
+					nearestDistance = distance;
+					nearestIndex = index;
+				}
+			});
+
+			setCenteredRowIndex(nearestIndex);
+		};
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					const index = Number(entry.target.getAttribute("data-row-index"));
+					if (Number.isNaN(index)) return;
+					if (entry.isIntersecting) {
+						intersectingRows.set(index, entry.target);
+					} else {
+						intersectingRows.delete(index);
+					}
+				});
+				pickCenterRow();
+			},
+			{
+				root: null,
+				threshold: [0, 0.2, 0.4, 0.6, 0.8, 1],
+				rootMargin: "-38% 0px -38% 0px",
+			},
+		);
+
+		rowRefs.current.forEach((rowEl) => {
+			if (rowEl) observer.observe(rowEl);
+		});
+
+		const onScroll = () => pickCenterRow();
+		window.addEventListener("scroll", onScroll, { passive: true });
+		window.addEventListener("resize", onScroll);
+
+		return () => {
+			observer.disconnect();
+			window.removeEventListener("scroll", onScroll);
+			window.removeEventListener("resize", onScroll);
+		};
 	}, [items]);
 
 	const initializeMenuToGrid = () => {
@@ -135,11 +300,31 @@ const MenuToGrid = ({
 		setPreviewVisible(true);
 		document.body.classList.add("oh");
 
+		const rowRect = row.DOM.el.getBoundingClientRect();
+		const coverEl = coverRef.current;
+		if (coverEl) {
+			gsap.killTweensOf(coverEl);
+			gsap.set(coverEl, {
+				top: rowRect.top,
+				height: rowRect.height,
+				opacity: 1,
+				pointerEvents: "auto",
+			});
+			gsap.to(coverEl, {
+				duration: 0.72,
+				ease: "power3.inOut",
+				top: 0,
+				height: window.innerHeight,
+			});
+		}
+
 		const rowImages = row.DOM.images;
 		const previewGridImages = preview.DOM.images.slice(0, 5);
 		const state = Flip.getState(rowImages);
 
-		document.querySelector(".preview")?.classList.add("preview--active");
+		window.setTimeout(() => {
+			document.querySelector(".preview")?.classList.add("preview--active");
+		}, 180);
 
 		previewGridImages.forEach((pImg, i) => {
 			if (rowImages[i]) {
@@ -188,6 +373,18 @@ const MenuToGrid = ({
 		document
 			.querySelector(".preview__close")
 			?.classList.add("preview__close--show");
+
+		if (coverEl) {
+			gsap.to(coverEl, {
+				duration: 0.35,
+				delay: 0.8,
+				ease: "power2.out",
+				opacity: 0,
+				onComplete: () => {
+					gsap.set(coverEl, { height: 0, pointerEvents: "none" });
+				},
+			});
+		}
 	};
 
 	const handleClose = () => {
@@ -195,6 +392,8 @@ const MenuToGrid = ({
 		const row = rowsArrRef.current[activeGalleryIndex];
 		const preview = previewRefs.current[activeGalleryIndex];
 		if (!row || !preview) return;
+		const coverEl = coverRef.current;
+		const rowRect = row.DOM.el.getBoundingClientRect();
 
 		document.body.classList.remove("oh");
 		document
@@ -209,6 +408,25 @@ const MenuToGrid = ({
 		gsap.set(rowImages, { opacity: 1 });
 
 		document.querySelector(".preview")?.classList.remove("preview--active");
+
+		if (coverEl) {
+			gsap.killTweensOf(coverEl);
+			gsap.set(coverEl, {
+				top: 0,
+				height: window.innerHeight,
+				opacity: 1,
+				pointerEvents: "auto",
+			});
+			gsap.to(coverEl, {
+				duration: 0.72,
+				ease: "power3.inOut",
+				top: rowRect.top,
+				height: rowRect.height,
+				onComplete: () => {
+					gsap.set(coverEl, { height: 0, opacity: 0, pointerEvents: "none" });
+				},
+			});
+		}
 
 		setTimeout(() => {
 			setPreviewVisible(false);
@@ -231,13 +449,15 @@ const MenuToGrid = ({
 			<div className={combineClasses("rows", contentClassName)}>
 				{items.map((gallery, index) => {
 					const images = Array.isArray(gallery.images) ? gallery.images : [];
-					const imageCountLabel = `${images.length} ${images.length === 1 ? "photo" : "photos"}`;
+					const imageCount = livePhotoCounts[gallery.slug] ?? images.length;
+					const imageCountLabel = `${imageCount} ${imageCount === 1 ? "photo" : "photos"}`;
 					return (
 						<div
 							key={gallery.slug}
 							className={combineClasses(
 								"row",
 								revealedRows.has(index) && "row--revealed",
+								centeredRowIndex === index && "row--centered",
 							)}
 							data-row-index={index}
 							ref={(el) => (rowRefs.current[index] = el)}
@@ -311,7 +531,6 @@ const MenuToGrid = ({
 								</span>
 							</div>
 							<div className="cell cell--action" aria-hidden="true">
-								<span className="cell__action-text">Open album</span>
 								<svg
 									className="cell__action-arrow"
 									width="24"
@@ -332,6 +551,8 @@ const MenuToGrid = ({
 					);
 				})}
 			</div>
+
+			<div className="cover" ref={coverRef} aria-hidden="true" />
 
 			<div className="preview">
 				<button

@@ -52,7 +52,16 @@ const ResumeMinimal = () => {
 		return title;
 	};
 
-	useGrained("resume-minimal-bg");
+	useGrained("resume-minimal-bg", {
+		grainOpacity: 0.055,
+		grainDensity: 1.7,
+		grainWidth: 0.95,
+		grainHeight: 0.95,
+		grainChaos: 1.8,
+		grainSpeed: 5,
+		animate: true,
+		bubbles: false,
+	});
 
 	useEffect(() => {
 		document.documentElement.classList.remove("home-snap");

@@ -84,7 +84,7 @@ body.loading {
 	position: relative;
 	cursor: pointer;
 	grid-template-rows: var(--img-size);
-	grid-template-columns: auto 1fr auto;
+	grid-template-columns: minmax(0, 1fr) auto auto;
 	grid-column-gap: 3.5vw;
 	align-items: center;
 	padding: var(--padding-row) var(--padding-sides);
@@ -92,8 +92,8 @@ body.loading {
 	transition:
 		background-color 0.3s ease-out,
 		border-color 0.3s ease-out,
-		transform 0.35s ease,
-		box-shadow 0.35s ease;
+		transform 0.45s cubic-bezier(0.22, 0.68, 0.2, 1),
+		filter 0.35s ease;
 }
 
 .row::before {
@@ -104,20 +104,50 @@ body.loading {
 	opacity: 0;
 	transition: opacity 0.3s ease-out;
 	pointer-events: none;
-	z-index: -1;
+	z-index: 0;
+}
+
+.row::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background-image: radial-gradient(rgba(19, 19, 19, 0.2) 0.45px, transparent 0.6px);
+	background-size: 3px 3px;
+	opacity: 0.05;
+	mix-blend-mode: multiply;
+	pointer-events: none;
+	z-index: 0;
 }
 
 .row:hover::before,
 .row:focus-visible::before,
 .row--revealed::before {
-	opacity: 0.6;
+	opacity: 0.45;
 }
 
 .row:hover,
 .row:focus-visible,
 .row--revealed {
-	transform: translateY(-2px);
-	box-shadow: 0 14px 32px -28px rgba(0, 0, 0, 0.65);
+	transform: translateY(-1px);
+}
+
+.row--centered {
+	transform: translateY(-3px) scale(1.015);
+	filter: saturate(1.05) contrast(1.02);
+}
+
+.row--centered::before {
+	opacity: 0.38;
+	background: linear-gradient(
+		90deg,
+		rgba(0, 0, 0, 0.008),
+		rgba(0, 0, 0, 0.028) 52%,
+		rgba(0, 0, 0, 0.008)
+	);
+}
+
+.row--centered::after {
+	opacity: 0.08;
 }
 
 .row:focus-visible {
@@ -138,6 +168,12 @@ body.loading {
 
 .cell {
 	position: relative;
+	z-index: 1;
+}
+
+.cell--title {
+	min-width: 0;
+	overflow: hidden;
 }
 
 .cell--image {
@@ -154,6 +190,12 @@ body.loading {
 	grid-auto-flow: column;
 	grid-gap: var(--image-gap);
 	justify-content: end;
+	align-items: center;
+	transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.cell__img-wrap .cell__img + .cell__img {
+	margin-left: clamp(-1.8rem, -1.3vw, -0.7rem);
 }
 
 .cell__img {
@@ -163,7 +205,11 @@ body.loading {
 	grid-template-columns: 100%;
 	grid-template-rows: auto auto;
 	will-change: transform, opacity;
-	opacity: 1;
+	opacity: 0;
+	transform: translateY(10px) scale(0.96);
+	transition:
+		opacity 0.4s ease,
+		transform 0.45s cubic-bezier(0.22, 0.7, 0.16, 1);
 	border-radius: 6px;
 	overflow: hidden;
 }
@@ -180,8 +226,8 @@ body.loading {
 .cell--action {
 	display: flex;
 	align-items: center;
-	gap: 0.75rem;
-	padding-left: 1rem;
+	justify-content: flex-end;
+	padding-left: 0.3rem;
 	opacity: 1;
 	transform: translateX(0);
 	transition:
@@ -209,26 +255,72 @@ body.loading {
 	pointer-events: auto;
 }
 
-.cell__action-text {
-	font-family: "ZaiRoyalVogueTypewriter";
-	font-size: 1.25rem;
-	text-transform: uppercase;
-	letter-spacing: 0.1em;
-	color: #888;
-	white-space: nowrap;
-	transition: color 0.3s ease;
+.row--revealed .cell__img,
+.row:focus-visible .cell__img {
+	opacity: 1;
+	transform: translateY(0) scale(1);
+}
+
+.row--centered .cell__img-wrap,
+.row:hover .cell__img-wrap,
+.row:focus-visible .cell__img-wrap {
+	transform: translateX(-0.15rem);
+}
+
+.row--centered .cell__img,
+.row:hover .cell__img,
+.row:focus-visible .cell__img {
+	filter: saturate(1.03) contrast(1.02);
+}
+
+.row--centered .cell__img:first-child,
+.row:hover .cell__img:first-child,
+.row:focus-visible .cell__img:first-child {
+	transform: translateY(-2px) scale(1.08);
+	z-index: 2;
+}
+
+.row--centered .cell__img-wrap .cell__img + .cell__img,
+.row:hover .cell__img-wrap .cell__img + .cell__img,
+.row:focus-visible .cell__img-wrap .cell__img + .cell__img {
+	margin-left: clamp(-1.2rem, -0.8vw, -0.45rem);
+}
+
+.row--revealed .cell__img:nth-child(1),
+.row:focus-visible .cell__img:nth-child(1) {
+	transition-delay: 0.03s;
+}
+
+.row--revealed .cell__img:nth-child(2),
+.row:focus-visible .cell__img:nth-child(2) {
+	transition-delay: 0.08s;
+}
+
+.row--revealed .cell__img:nth-child(3),
+.row:focus-visible .cell__img:nth-child(3) {
+	transition-delay: 0.13s;
+}
+
+.row--revealed .cell__img:nth-child(4),
+.row:focus-visible .cell__img:nth-child(4) {
+	transition-delay: 0.18s;
+}
+
+.row--revealed .cell__img:nth-child(5),
+.row:focus-visible .cell__img:nth-child(5) {
+	transition-delay: 0.23s;
 }
 
 .cell__action-arrow {
-	color: #888;
+	color: rgba(19, 19, 19, 0.66);
+	width: 1.45rem;
+	height: 1.45rem;
 	transition:
 		transform 0.3s ease,
 		color 0.3s ease;
 }
 
-.row:hover .cell__action-text,
 .row:hover .cell__action-arrow,
-.row:focus-visible .cell__action-text,
 .row:focus-visible .cell__action-arrow {
 	color: var(--color-text);
 }
@@ -248,8 +340,9 @@ body.loading {
 .cell__title-wrap {
 	position: relative;
 	overflow: hidden;
-	min-height: clamp(3rem, 5.2vw, 4.2rem);
-	height: clamp(3rem, 5.2vw, 4.2rem);
+	min-height: clamp(3.4rem, 5.8vw, 5rem);
+	height: auto;
+	padding: 0.1rem 0;
 }
 
 .cell__title,
@@ -259,7 +352,7 @@ body.loading {
 	position: relative;
 	line-height: 1.1;
 	font-family: "ZaiRoyalVogueTypewriter";
-	white-space: nowrap;
+	white-space: normal;
 }
 
 .cell__title {
@@ -277,17 +370,18 @@ body.loading {
 
 .cell__title-inner--base {
 	grid-row: 1;
-	font-size: 2.4rem;
+	font-size: clamp(1.45rem, 2.2vw, 2.4rem);
 	font-family: "ZaiOlivettiLettera22";
+	letter-spacing: 0.02em;
 	line-height: 1;
-	top: 12px;
+	top: 6px;
 }
 
 .cell__title-inner--alt {
 	grid-row: 2;
 	font-family: "ZaiRoyalVogueTypewriter";
 	letter-spacing: -0.25em;
-	font-size: 1.6rem;
+	font-size: clamp(1.05rem, 1.4vw, 1.6rem);
 	line-height: 0;
 	bottom: 12px;
 	visibility: hidden;
@@ -307,7 +401,7 @@ body.loading {
 	height: 0;
 	opacity: 0;
 	pointer-events: none;
-	z-index: 150;
+	z-index: 4000001;
 	position: fixed;
 	left: 0;
 	top: 0;
@@ -388,9 +482,11 @@ body.loading {
 }
 
 .preview__item-title {
-	font-family: "ZaiRoyalVogueTypewriter";
+	font-family: "ZaiOlivettiLettera22";
 	font-weight: 700;
-	font-size: clamp(1.4rem, 5vw, 3.25rem);
+	font-size: clamp(1.5rem, 5vw, 3.5rem);
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
 	margin-bottom: 2rem;
 }
 
@@ -790,10 +886,10 @@ html.oh {
 }
 
 .preview__item-title {
-	font-family: var(--font-title);
+	font-family: "ZaiOlivettiLettera22";
 	font-size: clamp(2rem, 5vw, 4rem);
-	font-weight: 300;
-	letter-spacing: 0.05em;
+	font-weight: 700;
+	letter-spacing: 0.04em;
 	text-transform: uppercase;
 }
 

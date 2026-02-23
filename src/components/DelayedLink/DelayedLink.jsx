@@ -14,6 +14,7 @@ const DelayedLink = ({
 
   const handleClick = (e) => {
     e.preventDefault();
+
     if (location.pathname === to) {
       return;
     }
@@ -34,7 +35,7 @@ const DelayedLink = ({
 
   return (
     <a 
-      href={to} 
+      href={`#${to}`} 
       className={className}
       onClick={handleClick}
       {...props}

@@ -6,7 +6,38 @@ import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 gsap.registerPlugin(ScrollToPlugin);
 
 const scrollToTop = () => {
-	gsap.to(window, { duration: 0, scrollTo: { y: 0, autoKill: false } });
+	const docEl = document.documentElement;
+	const body = document.body;
+	const scrollingEl = document.scrollingElement || docEl;
+	const prevDocBehavior = docEl.style.scrollBehavior;
+	const prevBodyBehavior = body.style.scrollBehavior;
+
+	docEl.style.scrollBehavior = "auto";
+	body.style.scrollBehavior = "auto";
+
+	window.scrollTo(0, 0);
+	scrollingEl.scrollTop = 0;
+	docEl.scrollTop = 0;
+	body.scrollTop = 0;
+
+	const containers = [
+		document.getElementById("root"),
+		document.querySelector(".app-minimal"),
+		document.querySelector(".route-transition-wrapper"),
+		document.querySelector(".route-transition-wrapper > .relative.z-0.min-h-full"),
+		document.querySelector("main"),
+	];
+
+	containers.forEach((node) => {
+		if (!node) return;
+		node.scrollTop = 0;
+		node.scrollLeft = 0;
+	});
+
+	gsap.set(window, { scrollTo: { y: 0, autoKill: false } });
+
+	docEl.style.scrollBehavior = prevDocBehavior;
+	body.style.scrollBehavior = prevBodyBehavior;
 };
 
 const RouteTransition = ({
@@ -18,6 +49,7 @@ const RouteTransition = ({
 	const location = useLocation();
 	const [showOverlay, setShowOverlay] = useState(true);
 	const [resetOverlay, setResetOverlay] = useState(false);
+	const [instantCover, setInstantCover] = useState(false);
 	const [contentKey, setContentKey] = useState(location.key);
 	const [isShrinking, setIsShrinking] = useState(true);
 	const [isEntering, setIsEntering] = useState(false);
@@ -63,16 +95,34 @@ const RouteTransition = ({
 			// Start shrinking/fade out immediately
 			setIsShrinking(true);
 			setIsEntering(false);
-			setResetOverlay(true);
+			setInstantCover(true);
 			setShowOverlay(true);
-			requestAnimationFrame(() => {
-				setResetOverlay(false);
-			});
+			window.setTimeout(() => setInstantCover(false), 180);
 		};
 		window.addEventListener("delayed-navigation-start", handler);
 		return () =>
 			window.removeEventListener("delayed-navigation-start", handler);
 	}, []);
+
+	useEffect(() => {
+		if (!showOverlay) return undefined;
+
+		let rafId = 0;
+		let startTimeoutId = 0;
+		const forceTopLoop = () => {
+			scrollToTop();
+			rafId = window.requestAnimationFrame(forceTopLoop);
+		};
+
+		startTimeoutId = window.setTimeout(() => {
+			rafId = window.requestAnimationFrame(forceTopLoop);
+		}, 180);
+
+		return () => {
+			window.clearTimeout(startTimeoutId);
+			if (rafId) window.cancelAnimationFrame(rafId);
+		};
+	}, [showOverlay, location.key]);
 
 	// Handle actual route change
 	useEffect(() => {
@@ -151,7 +201,10 @@ const RouteTransition = ({
 		"relative bg-[#2a2a2a] overflow-hidden will-change-[transform] transform origin-bottom transition-transform duration-150ms ease-friction z-[9999]",
 	];
 
-	if (resetOverlay) {
+	if (instantCover && showOverlay) {
+		topRowClasses.push("transition-none", "scale-y-100");
+		bottomRowClasses.push("transition-none", "scale-y-100");
+	} else if (resetOverlay) {
 		topRowClasses.push("transition-none", "scale-y-0");
 		bottomRowClasses.push("transition-none", "scale-y-0");
 	} else {

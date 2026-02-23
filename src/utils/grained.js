@@ -27,6 +27,18 @@ const DEFAULT_OPTIONS = {
 
 const KEYFRAME_STYLE_ID = "grained-keyframes";
 let idCounter = 0;
+const PATTERN_CACHE = new Map();
+
+function getPatternCacheKey(options) {
+  return [
+    options.patternWidth,
+    options.patternHeight,
+    options.grainOpacity,
+    options.grainDensity,
+    options.grainWidth,
+    options.grainHeight
+  ].join("|");
+}
 
 function ensureElementId(element) {
   if (element.id && element.id.trim().length > 0) {
@@ -50,6 +62,11 @@ function ensureRelativePosition(element) {
 }
 
 function generatePattern(options, doc) {
+  const cacheKey = getPatternCacheKey(options);
+  if (PATTERN_CACHE.has(cacheKey)) {
+    return PATTERN_CACHE.get(cacheKey);
+  }
+
   const canvas = doc.createElement("canvas");
   canvas.width = options.patternWidth;
   canvas.height = options.patternHeight;
@@ -62,8 +79,9 @@ function generatePattern(options, doc) {
       ctx.fillRect(x, y, options.grainWidth, options.grainHeight);
     }
   }
-
-  return canvas.toDataURL("image/png");
+  const dataUrl = canvas.toDataURL("image/png");
+  PATTERN_CACHE.set(cacheKey, dataUrl);
+  return dataUrl;
 }
 
 function buildKeyframes(doc) {
@@ -125,18 +143,21 @@ export function applyGrain(target, options = {}) {
   overlay.style.inset = "0";
   overlay.style.pointerEvents = "none";
   overlay.style.overflow = "hidden";
+  overlay.style.contain = "paint";
   overlay.style.zIndex = finalOptions.zIndex != null ? String(finalOptions.zIndex) : "0";
 
   const noise = doc.createElement("div");
   noise.style.position = "absolute";
-  noise.style.top = "-100%";
-  noise.style.left = "-100%";
-  noise.style.width = "300%";
-  noise.style.height = "300%";
+  noise.style.top = "-60%";
+  noise.style.left = "-60%";
+  noise.style.width = "220%";
+  noise.style.height = "220%";
   noise.style.backgroundImage = `url(${pattern})`;
   noise.style.backgroundRepeat = "repeat";
   noise.style.backgroundSize = `${finalOptions.patternWidth}px ${finalOptions.patternHeight}px`;
   noise.style.willChange = "transform";
+  noise.style.transform = "translate3d(0,0,0)";
+  noise.style.backfaceVisibility = "hidden";
   noise.style.opacity = "1";
 
   if (finalOptions.animate) {
