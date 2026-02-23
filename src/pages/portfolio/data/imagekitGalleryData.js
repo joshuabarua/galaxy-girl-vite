@@ -24,7 +24,7 @@ function markSpotlight(images, spotlightIndexes = []) {
 export const imagekitGalleries = [
   {
     id: 1,
-    name: "Beauty and Editorial",
+    name: "Beauty & Editorial",
     images: markSpotlight(
       makeSeries("beautyEditorial", 12, 1000, 1600, 2400, "Beauty Editorial Photo", ""),
       []
@@ -84,7 +84,7 @@ export const imagekitGalleries = [
   },
   {
     id: 10,
-    name: "Film / TV",
+    name: "Film & TV",
     images: markSpotlight(
       makeSeries("filmtv", 12, 10000, 1600, 2400, "Film & TV", ""),
       []

@@ -14,7 +14,7 @@ import "./homeMinimal.css";
 const craftFocusAreas = ["Editorial", "Film", "TV", "SFX", "Bridal"];
 
 const featuredDescriptions = {
-	"Beauty and Editorial":
+	"Beauty & Editorial":
 		"Polished skin stories, expressive texture, and camera-first detail for editorial direction.",
 	SFX: "Creature texture, surreal finishes, and character-built transformations crafted for the lens.",
 	Theatrical:

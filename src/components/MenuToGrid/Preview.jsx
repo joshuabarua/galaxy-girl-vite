@@ -1,7 +1,7 @@
 import React, { forwardRef, useRef, useImperativeHandle, useState, useEffect, useCallback } from 'react';
 import { getImageKitUrl } from '../../utils/imagekit';
 
-const Preview = forwardRef(({ data, index, isActive, onLoadMore, onClose }, ref) => {
+const Preview = forwardRef(({ data, index, isActive, onLoadMore, onClose, previewCount = 4 }, ref) => {
   const previewRef = useRef(null);
   const gridRef = useRef(null);
   const titleRef = useRef(null);
@@ -52,7 +52,7 @@ const Preview = forwardRef(({ data, index, isActive, onLoadMore, onClose }, ref)
           </h2>
         </div>
         <div ref={gridRef} className="preview__item-grid grid">
-          {data.images.slice(5, visibleCount).map((img, idx) => {
+          {data.images.slice(previewCount, visibleCount).map((img, idx) => {
             const url = img.src
               || (img.imagekitPath ? getImageKitUrl(img.imagekitPath, { width: 600, height: 600 }) : null)
               || '';
@@ -61,7 +61,7 @@ const Preview = forwardRef(({ data, index, isActive, onLoadMore, onClose }, ref)
                 key={idx}
                 className="preview__item-img"
                 data-img-index={idx}
-                data-flip-id={`${data.slug}-img-${idx}`}
+                data-flip-id={`${data.slug}-img-${idx + previewCount}`}
               >
                 <div
                   className="preview__item-img-inner"

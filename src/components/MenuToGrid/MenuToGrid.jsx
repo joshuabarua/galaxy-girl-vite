@@ -24,6 +24,7 @@ const resolvePreviewUrl = (image) => {
 };
 
 const combineClasses = (...classes) => classes.filter(Boolean).join(" ");
+const ROW_PREVIEW_COUNT = 4;
 
 const getFolderFromPath = (imagekitPath = "") => {
 	if (!imagekitPath) return "";
@@ -319,7 +320,7 @@ const MenuToGrid = ({
 		}
 
 		const rowImages = row.DOM.images;
-		const previewGridImages = preview.DOM.images.slice(0, 5);
+		const previewGridImages = preview.DOM.images.slice(0, ROW_PREVIEW_COUNT);
 		const state = Flip.getState(rowImages);
 
 		window.setTimeout(() => {
@@ -346,7 +347,7 @@ const MenuToGrid = ({
 					row.DOM.imagesWrap.appendChild(rImg);
 					gsap.set(rImg, { opacity: 0 });
 				});
-				const remainingPreviewImages = preview.DOM.images.slice(5);
+				const remainingPreviewImages = preview.DOM.images.slice(ROW_PREVIEW_COUNT);
 				if (remainingPreviewImages.length) {
 					gsap.fromTo(
 						remainingPreviewImages,
@@ -401,7 +402,7 @@ const MenuToGrid = ({
 			?.classList.remove("preview__close--show");
 
 		const rowImages = row.DOM.images;
-		const remainingPreviewImages = preview.DOM.images.slice(5);
+		const remainingPreviewImages = preview.DOM.images.slice(ROW_PREVIEW_COUNT);
 		if (remainingPreviewImages.length) {
 			gsap.to(remainingPreviewImages, { opacity: 0, duration: 0.3 });
 		}
@@ -501,7 +502,7 @@ const MenuToGrid = ({
 							</div>
 							<div className="cell cell--image">
 								<div className="cell__img-wrap">
-									{images.slice(0, 5).map((image, idx) => {
+								{images.slice(0, ROW_PREVIEW_COUNT).map((image, idx) => {
 										const previewUrl = resolvePreviewUrl(image);
 										return (
 											<div
@@ -569,6 +570,7 @@ const MenuToGrid = ({
 								...gallery,
 								images: Array.isArray(gallery.images) ? gallery.images : [],
 							}}
+							previewCount={ROW_PREVIEW_COUNT}
 							index={index}
 							isActive={activeGalleryIndex === index}
 							ref={(el) => (previewRefs.current[index] = el)}
