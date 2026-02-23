@@ -41,6 +41,7 @@ const MenuToGrid = ({
 
 	const [previewVisible, setPreviewVisible] = useState(false);
 	const [activeGalleryIndex, setActiveGalleryIndex] = useState(-1);
+	const [revealedRows, setRevealedRows] = useState(() => new Set());
 
 	const rowRefs = useRef([]);
 	const rowsArrRef = useRef([]);
@@ -49,6 +50,42 @@ const MenuToGrid = ({
 	useEffect(() => {
 		initializeMenuToGrid();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [items]);
+
+	useEffect(() => {
+		setRevealedRows(new Set());
+	}, [items]);
+
+	useEffect(() => {
+		if (!items.length) return undefined;
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				setRevealedRows((prev) => {
+					const next = new Set(prev);
+					let didChange = false;
+
+					entries.forEach((entry) => {
+						if (!entry.isIntersecting) return;
+						const index = Number(entry.target.getAttribute("data-row-index"));
+						if (!Number.isNaN(index) && !next.has(index)) {
+							next.add(index);
+							didChange = true;
+						}
+						observer.unobserve(entry.target);
+					});
+
+					return didChange ? next : prev;
+				});
+			},
+			{ threshold: 0.4, rootMargin: "0px 0px -8% 0px" },
+		);
+
+		rowRefs.current.forEach((rowEl) => {
+			if (rowEl) observer.observe(rowEl);
+		});
+
+		return () => observer.disconnect();
 	}, [items]);
 
 	const initializeMenuToGrid = () => {
@@ -194,20 +231,34 @@ const MenuToGrid = ({
 			<div className={combineClasses("rows", contentClassName)}>
 				{items.map((gallery, index) => {
 					const images = Array.isArray(gallery.images) ? gallery.images : [];
+					const imageCountLabel = `${images.length} ${images.length === 1 ? "photo" : "photos"}`;
 					return (
 						<div
 							key={gallery.slug}
-							className="row"
+							className={combineClasses(
+								"row",
+								revealedRows.has(index) && "row--revealed",
+							)}
 							data-row-index={index}
 							ref={(el) => (rowRefs.current[index] = el)}
 							role="button"
 							tabIndex={0}
-							aria-label={`View ${gallery?.name ?? "portfolio"} gallery`}
+							aria-label={`Open ${gallery?.name ?? "portfolio"} album, ${imageCountLabel}`}
 							onClick={(e) => handleRowClick(e, gallery, index)}
 							onKeyDown={(e) => {
 								if (e.key === "Enter" || e.key === " ")
 									handleRowClick(e, gallery, index);
 							}}
+							onFocus={() => {
+								setRevealedRows((prev) => {
+									if (prev.has(index)) return prev;
+									const next = new Set(prev);
+									next.add(index);
+									return next;
+								});
+								handleMouseEnter(index);
+							}}
+							onBlur={() => handleMouseLeave(index)}
 							onMouseEnter={() => handleMouseEnter(index)}
 							onMouseLeave={() => handleMouseLeave(index)}
 							style={{
@@ -255,9 +306,12 @@ const MenuToGrid = ({
 										);
 									})}
 								</div>
+								<span className="cell__meta-count" aria-hidden="true">
+									{imageCountLabel}
+								</span>
 							</div>
 							<div className="cell cell--action" aria-hidden="true">
-								<span className="cell__action-text">View Gallery</span>
+								<span className="cell__action-text">Open album</span>
 								<svg
 									className="cell__action-arrow"
 									width="24"

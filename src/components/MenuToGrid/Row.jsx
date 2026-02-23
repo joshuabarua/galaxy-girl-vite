@@ -18,26 +18,19 @@ export class Row {
   }
 
   hoverIn() {
-    gsap.killTweensOf([this.DOM.images, this.DOM.title, this.DOM.actionBtn]);
+    gsap.killTweensOf([this.DOM.title, this.DOM.actionBtn]);
 
     this.mouseenterTimeline = gsap.timeline()
       .addLabel('start', 0)
-      .to(this.DOM.images, {
-        duration: 0.25,
-        ease: 'power4.out',
-        startAt: {
-          scale: 0.8,
-          xPercent: 20
-        },
-        scale: 1,
-        xPercent: 0,
-        opacity: 1,
-        stagger: -0.035
-      }, 'start')
       .to(this.DOM.titleWrap, {
         duration: 0.2,
         ease: 'power2.out',
         paddingLeft: 6
+      }, 'start')
+      .to(this.DOM.actionBtn, {
+        duration: 0.25,
+        ease: 'power2.out',
+        x: 4
       }, 'start')
       .set(this.DOM.title, { transformOrigin: '0% 50%' }, 'start')
       .to(this.DOM.title, {
@@ -59,20 +52,19 @@ export class Row {
   }
 
   hoverOut() {
-    gsap.killTweensOf([this.DOM.images, this.DOM.title, this.DOM.actionBtn]);
+    gsap.killTweensOf([this.DOM.title, this.DOM.actionBtn]);
 
     gsap.timeline()
       .addLabel('start')
-      .to(this.DOM.images, {
-        duration: 0.25,
-        ease: 'power4.in',
-        opacity: 0,
-        scale: 0.8
-      }, 'start')
       .to(this.DOM.titleWrap, {
         duration: 0.2,
         ease: 'power2.out',
         paddingLeft: 0
+      }, 'start')
+      .to(this.DOM.actionBtn, {
+        duration: 0.2,
+        ease: 'power2.out',
+        x: 0
       }, 'start')
       .to(this.DOM.title, {
         duration: 0.2,
