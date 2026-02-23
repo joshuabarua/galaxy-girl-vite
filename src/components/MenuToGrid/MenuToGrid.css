@@ -83,8 +83,8 @@ body.loading {
 	display: grid;
 	position: relative;
 	cursor: pointer;
-	grid-template-rows: var(--img-size);
-	grid-template-columns: minmax(0, 1fr) auto;
+	grid-template-columns: auto auto auto;
+	justify-content: center;
 	grid-column-gap: clamp(0.8rem, 2.1vw, 2.2rem);
 	align-items: center;
 	padding: var(--padding-row) var(--padding-sides);
@@ -175,6 +175,7 @@ body.loading {
 	min-width: 0;
 	overflow: hidden;
 	z-index: 2;
+	grid-column: 1;
 }
 
 .cell--image {
@@ -184,7 +185,7 @@ body.loading {
 	justify-content: center;
 	margin-left: 0;
 	width: min(34vw, 390px);
-	grid-column: 1 / -1;
+	grid-column: 2;
 	justify-self: center;
 	position: relative;
 }
@@ -204,7 +205,7 @@ body.loading {
 }
 
 .cell__img-wrap .cell__img + .cell__img {
-	margin-left: clamp(-1.95rem, -1.45vw, -0.9rem);
+	margin-left: clamp(-3rem, -2.2vw, -1.6rem);
 }
 
 .cell__img {
@@ -225,22 +226,22 @@ body.loading {
 }
 
 .cell__img:nth-child(1) {
-	--card-tilt: -3deg;
+	--card-tilt: -0.8deg;
 	z-index: 4;
 }
 
 .cell__img:nth-child(2) {
-	--card-tilt: -1deg;
+	--card-tilt: -0.25deg;
 	z-index: 3;
 }
 
 .cell__img:nth-child(3) {
-	--card-tilt: 1deg;
+	--card-tilt: 0.25deg;
 	z-index: 2;
 }
 
 .cell__img:nth-child(4) {
-	--card-tilt: 3deg;
+	--card-tilt: 0.8deg;
 	z-index: 1;
 }
 
@@ -296,9 +297,10 @@ body.loading {
 .cell--action {
 	display: flex;
 	align-items: center;
-	justify-content: flex-end;
+	justify-content: center;
 	padding-left: 0.3rem;
 	z-index: 2;
+	grid-column: 3;
 	opacity: 1;
 	transform: translateX(0);
 	transition:
@@ -363,7 +365,7 @@ body.loading {
 .row--centered .cell__img-wrap .cell__img + .cell__img,
 .row:hover .cell__img-wrap .cell__img + .cell__img,
 .row:focus-visible .cell__img-wrap .cell__img + .cell__img {
-	margin-left: clamp(-2.45rem, -1.75vw, -1.1rem);
+	margin-left: clamp(-3.6rem, -2.6vw, -1.9rem);
 }
 
 .row--centered .cell__img:nth-child(1),
@@ -1267,7 +1269,7 @@ html.oh {
 		padding-left: 0;
 		margin-top: 0;
 		justify-content: flex-end;
-		grid-column: 1 / -1;
+		grid-column: 3;
 		pointer-events: auto;
 	}
 
@@ -1283,7 +1285,7 @@ html.oh {
 		gap: 0.6rem;
 		width: 100%;
 		max-width: 100%;
-		grid-column: 1 / -1;
+		grid-column: 2;
 	}
 
 	.cell__meta-count {
