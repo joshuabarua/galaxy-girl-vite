@@ -1,44 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { gsap } from "gsap";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-
-gsap.registerPlugin(ScrollToPlugin);
-
-const scrollToTop = () => {
-	const docEl = document.documentElement;
-	const body = document.body;
-	const scrollingEl = document.scrollingElement || docEl;
-	const prevDocBehavior = docEl.style.scrollBehavior;
-	const prevBodyBehavior = body.style.scrollBehavior;
-
-	docEl.style.scrollBehavior = "auto";
-	body.style.scrollBehavior = "auto";
-
-	window.scrollTo(0, 0);
-	scrollingEl.scrollTop = 0;
-	docEl.scrollTop = 0;
-	body.scrollTop = 0;
-
-	const containers = [
-		document.getElementById("root"),
-		document.querySelector(".app-minimal"),
-		document.querySelector(".route-transition-wrapper"),
-		document.querySelector(".route-transition-wrapper > .relative.z-0.min-h-full"),
-		document.querySelector("main"),
-	];
-
-	containers.forEach((node) => {
-		if (!node) return;
-		node.scrollTop = 0;
-		node.scrollLeft = 0;
-	});
-
-	gsap.set(window, { scrollTo: { y: 0, autoKill: false } });
-
-	docEl.style.scrollBehavior = prevDocBehavior;
-	body.style.scrollBehavior = prevBodyBehavior;
-};
+import { forceScrollTop } from "../../utils/forceScrollTop";
 
 const RouteTransition = ({
 	children,
@@ -110,7 +72,7 @@ const RouteTransition = ({
 		let rafId = 0;
 		let startTimeoutId = 0;
 		const forceTopLoop = () => {
-			scrollToTop();
+			forceScrollTop();
 			rafId = window.requestAnimationFrame(forceTopLoop);
 		};
 
@@ -147,17 +109,17 @@ const RouteTransition = ({
 
 		// Wait for fade-out to complete, then swap content
 		const t1 = setTimeout(() => {
-			scrollToTop();
+			forceScrollTop();
 			setContentKey(location.key);
 			
 			// Wait a frame for content to render, then start fade-in
 			requestAnimationFrame(() => {
-				scrollToTop();
+				forceScrollTop();
 				const t2 = setTimeout(() => {
 					setShowOverlay(false);
 					setIsShrinking(false);
 					setIsEntering(true);
-					scrollToTop();
+					forceScrollTop();
 					setTimeout(() => setIsEntering(false), fadeFromEff);
 					try {
 						window.dispatchEvent(new CustomEvent("route-transition-in-complete"));

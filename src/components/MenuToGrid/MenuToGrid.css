@@ -85,7 +85,7 @@ body.loading {
 	cursor: pointer;
 	grid-template-rows: var(--img-size);
 	grid-template-columns: minmax(0, 1fr) auto auto;
-	grid-column-gap: 3.5vw;
+	grid-column-gap: clamp(0.8rem, 2.1vw, 2.2rem);
 	align-items: center;
 	padding: var(--padding-row) var(--padding-sides);
 	border-top: 1px solid var(--color-row-border);
@@ -182,6 +182,7 @@ body.loading {
 	gap: clamp(0.7rem, 1vw, 1.2rem);
 	justify-content: end;
 	margin-left: auto;
+	max-width: min(44vw, 560px);
 }
 
 .cell__img-wrap {
@@ -341,7 +342,7 @@ body.loading {
 	position: relative;
 	overflow: hidden;
 	min-height: clamp(3.4rem, 5.8vw, 5rem);
-	height: auto;
+	height: clamp(3.4rem, 5.8vw, 5rem);
 	padding: 0.1rem 0;
 }
 
@@ -361,16 +362,22 @@ body.loading {
 	opacity: 1;
 	transform: translateY(0);
 	height: 100%;
+	white-space: nowrap;
+	overflow: hidden;
 }
 
 .cell__title-inner {
 	display: block;
 	position: relative;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+max-width: 100%;
 }
 
 .cell__title-inner--base {
 	grid-row: 1;
-	font-size: clamp(1.45rem, 2.2vw, 2.4rem);
+	font-size: clamp(1.25rem, 1.82vw, 2rem);
 	font-family: "ZaiOlivettiLettera22";
 	letter-spacing: 0.02em;
 	line-height: 1;
@@ -380,10 +387,10 @@ body.loading {
 .cell__title-inner--alt {
 	grid-row: 2;
 	font-family: "ZaiRoyalVogueTypewriter";
-	letter-spacing: -0.25em;
+	letter-spacing: -0.04em;
 	font-size: clamp(1.05rem, 1.4vw, 1.6rem);
-	line-height: 0;
-	bottom: 12px;
+	line-height: 1;
+	bottom: 3px;
 	visibility: hidden;
 }
 
