@@ -205,6 +205,7 @@ body.loading {
 }
 
 .cell__img {
+	--card-tilt: 0deg;
 	width: var(--img-size);
 	display: grid;
 	position: relative;
@@ -212,12 +213,32 @@ body.loading {
 	grid-template-rows: auto auto;
 	will-change: transform, opacity;
 	opacity: 0;
-	transform: translateY(10px) scale(0.96);
+	transform: translateY(10px) scale(0.96) rotate(var(--card-tilt));
 	transition:
 		opacity 0.4s ease,
 		transform 0.45s cubic-bezier(0.22, 0.7, 0.16, 1);
 	border-radius: 6px;
 	overflow: hidden;
+}
+
+.cell__img:nth-child(1) {
+	--card-tilt: -3deg;
+	z-index: 4;
+}
+
+.cell__img:nth-child(2) {
+	--card-tilt: -1deg;
+	z-index: 3;
+}
+
+.cell__img:nth-child(3) {
+	--card-tilt: 1deg;
+	z-index: 2;
+}
+
+.cell__img:nth-child(4) {
+	--card-tilt: 3deg;
+	z-index: 1;
 }
 
 .cell__img:last-child::after {
@@ -241,6 +262,32 @@ body.loading {
 	text-transform: uppercase;
 	white-space: nowrap;
 	color: rgba(19, 19, 19, 0.75);
+}
+
+.cell__meta-loading {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.42rem;
+}
+
+.cell__meta-spinner {
+	width: 0.82rem;
+	height: 0.82rem;
+	border-radius: 999px;
+	border: 1.5px solid rgba(19, 19, 19, 0.24);
+	border-top-color: rgba(19, 19, 19, 0.78);
+	animation: menu-count-spin 0.75s linear infinite;
+}
+
+.cell__meta-loading-text {
+	font-size: 0.78em;
+	letter-spacing: 0.11em;
+}
+
+@keyframes menu-count-spin {
+	to {
+		transform: rotate(360deg);
+	}
 }
 
 .cell--action {
@@ -281,7 +328,7 @@ body.loading {
 .row:hover .cell__img,
 .row:focus-visible .cell__img {
 	opacity: 1;
-	transform: translateY(0) scale(1);
+	transform: translateY(0) scale(1) rotate(var(--card-tilt));
 }
 
 .row--centered .cell__img:last-child::after,
@@ -293,7 +340,7 @@ body.loading {
 .row--centered .cell__img-wrap,
 .row:hover .cell__img-wrap,
 .row:focus-visible .cell__img-wrap {
-	transform: translateX(-0.15rem);
+	transform: translateX(0);
 }
 
 .row--centered .cell__img,
@@ -305,38 +352,38 @@ body.loading {
 .row--centered .cell__img:first-child,
 .row:hover .cell__img:first-child,
 .row:focus-visible .cell__img:first-child {
-	transform: translateY(-2px) scale(1.08);
+	transform: translateY(-2px) scale(1.08) rotate(var(--card-tilt));
 	z-index: 2;
 }
 
 .row--centered .cell__img-wrap .cell__img + .cell__img,
 .row:hover .cell__img-wrap .cell__img + .cell__img,
 .row:focus-visible .cell__img-wrap .cell__img + .cell__img {
-	margin-left: clamp(-0.65rem, -0.5vw, -0.3rem);
+	margin-left: clamp(-1.05rem, -0.75vw, -0.45rem);
 }
 
 .row--centered .cell__img:nth-child(1),
 .row:hover .cell__img:nth-child(1),
 .row:focus-visible .cell__img:nth-child(1) {
-	transition-delay: 0.03s;
+	transition-delay: 0.02s;
 }
 
 .row--centered .cell__img:nth-child(2),
 .row:hover .cell__img:nth-child(2),
 .row:focus-visible .cell__img:nth-child(2) {
-	transition-delay: 0.08s;
+	transition-delay: 0.09s;
 }
 
 .row--centered .cell__img:nth-child(3),
 .row:hover .cell__img:nth-child(3),
 .row:focus-visible .cell__img:nth-child(3) {
-	transition-delay: 0.13s;
+	transition-delay: 0.16s;
 }
 
 .row--centered .cell__img:nth-child(4),
 .row:hover .cell__img:nth-child(4),
 .row:focus-visible .cell__img:nth-child(4) {
-	transition-delay: 0.18s;
+	transition-delay: 0.23s;
 }
 
 .cell__action-arrow {

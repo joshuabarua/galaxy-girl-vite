@@ -111,6 +111,7 @@ const MenuToGrid = ({
 	const [revealedRows, setRevealedRows] = useState(() => new Set());
 	const [centeredRowIndex, setCenteredRowIndex] = useState(-1);
 	const [livePhotoCounts, setLivePhotoCounts] = useState({});
+	const [countLoading, setCountLoading] = useState({});
 
 	const rowRefs = useRef([]);
 	const rowsArrRef = useRef([]);
@@ -132,6 +133,15 @@ const MenuToGrid = ({
 
 		const resolveCounts = async () => {
 			const nextCounts = {};
+			const loadingState = {};
+
+			items.forEach((gallery) => {
+				const images = Array.isArray(gallery?.images) ? gallery.images : [];
+				const firstImagePath = images.find((image) => image?.imagekitPath)?.imagekitPath;
+				loadingState[gallery.slug] = Boolean(getFolderFromPath(firstImagePath));
+			});
+
+			setCountLoading(loadingState);
 
 			for (const gallery of items) {
 				const images = Array.isArray(gallery?.images) ? gallery.images : [];
@@ -140,6 +150,9 @@ const MenuToGrid = ({
 
 				if (!folder) {
 					nextCounts[gallery.slug] = images.length;
+					if (!cancelled) {
+						setCountLoading((prev) => ({ ...prev, [gallery.slug]: false }));
+					}
 					continue;
 				}
 
@@ -147,6 +160,7 @@ const MenuToGrid = ({
 				nextCounts[gallery.slug] = counted || images.length;
 
 				if (cancelled) return;
+				setCountLoading((prev) => ({ ...prev, [gallery.slug]: false }));
 			}
 
 			if (!cancelled) setLivePhotoCounts(nextCounts);
@@ -451,6 +465,7 @@ const MenuToGrid = ({
 				{items.map((gallery, index) => {
 					const images = Array.isArray(gallery.images) ? gallery.images : [];
 					const imageCount = livePhotoCounts[gallery.slug] ?? images.length;
+					const isCountLoading = Boolean(countLoading[gallery.slug]);
 					const imageCountLabel = `${imageCount} ${imageCount === 1 ? "photo" : "photos"}`;
 					return (
 						<div
@@ -502,7 +517,7 @@ const MenuToGrid = ({
 							</div>
 							<div className="cell cell--image">
 								<div className="cell__img-wrap">
-								{images.slice(0, ROW_PREVIEW_COUNT).map((image, idx) => {
+									{images.slice(0, ROW_PREVIEW_COUNT).map((image, idx) => {
 										const previewUrl = resolvePreviewUrl(image);
 										return (
 											<div
@@ -528,7 +543,14 @@ const MenuToGrid = ({
 									})}
 								</div>
 								<span className="cell__meta-count" aria-hidden="true">
-									{imageCountLabel}
+									{isCountLoading ? (
+										<span className="cell__meta-loading" aria-label="Loading photo count">
+											<span className="cell__meta-spinner" />
+											<span className="cell__meta-loading-text">Loading</span>
+										</span>
+									) : (
+										imageCountLabel
+									)}
 								</span>
 							</div>
 							<div className="cell cell--action" aria-hidden="true">
