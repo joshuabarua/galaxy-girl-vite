@@ -180,23 +180,14 @@ body.loading {
 	display: flex;
 	align-items: center;
 	gap: clamp(0.7rem, 1vw, 1.2rem);
-	justify-content: end;
-	margin-left: auto;
-	max-width: min(44vw, 560px);
+	justify-content: center;
+	margin-left: 0;
+	max-width: min(40vw, 500px);
 	position: relative;
 }
 
 .cell--image::after {
-	content: "";
-	position: absolute;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	width: clamp(24px, 3.2vw, 42px);
-	background: linear-gradient(to left, rgba(245, 243, 240, 0.92), rgba(245, 243, 240, 0));
-	pointer-events: none;
-	opacity: 0;
-	transition: opacity 0.35s ease;
+	content: none;
 }
 
 .cell__img-wrap {
@@ -210,7 +201,7 @@ body.loading {
 }
 
 .cell__img-wrap .cell__img + .cell__img {
-	margin-left: clamp(-1.8rem, -1.3vw, -0.7rem);
+	margin-left: clamp(-0.8rem, -0.6vw, -0.35rem);
 }
 
 .cell__img {
@@ -227,6 +218,20 @@ body.loading {
 		transform 0.45s cubic-bezier(0.22, 0.7, 0.16, 1);
 	border-radius: 6px;
 	overflow: hidden;
+}
+
+.cell__img:last-child::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		to right,
+		rgba(245, 243, 240, 0) 45%,
+		rgba(245, 243, 240, 0.72) 100%
+	);
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.35s ease;
 }
 
 .cell__meta-count {
@@ -279,9 +284,9 @@ body.loading {
 	transform: translateY(0) scale(1);
 }
 
-.row--centered .cell--image::after,
-.row:hover .cell--image::after,
-.row:focus-visible .cell--image::after {
+.row--centered .cell__img:last-child::after,
+.row:hover .cell__img:last-child::after,
+.row:focus-visible .cell__img:last-child::after {
 	opacity: 1;
 }
 
@@ -307,7 +312,7 @@ body.loading {
 .row--centered .cell__img-wrap .cell__img + .cell__img,
 .row:hover .cell__img-wrap .cell__img + .cell__img,
 .row:focus-visible .cell__img-wrap .cell__img + .cell__img {
-	margin-left: clamp(-1.2rem, -0.8vw, -0.45rem);
+	margin-left: clamp(-0.65rem, -0.5vw, -0.3rem);
 }
 
 .row--centered .cell__img:nth-child(1),
@@ -332,12 +337,6 @@ body.loading {
 .row:hover .cell__img:nth-child(4),
 .row:focus-visible .cell__img:nth-child(4) {
 	transition-delay: 0.18s;
-}
-
-.row--centered .cell__img:nth-child(5),
-.row:hover .cell__img:nth-child(5),
-.row:focus-visible .cell__img:nth-child(5) {
-	transition-delay: 0.23s;
 }
 
 .cell__action-arrow {
