@@ -1,6 +1,6 @@
 import React from 'react';
+import { gsap } from 'gsap';
 import { getImageKitUrl } from '../../utils/imagekit';
-
 
 export class Row {
   constructor(rowEl, previewItem) {
@@ -9,17 +9,94 @@ export class Row {
       images: [...rowEl.querySelectorAll('.cell__img')],
       title: rowEl.querySelector('.cell__title'),
       titleWrap: rowEl.querySelector('.cell__title-wrap'),
-      imagesWrap: rowEl.querySelector('.cell__img-wrap')
+      imagesWrap: rowEl.querySelector('.cell__img-wrap'),
+      actionBtn: rowEl.querySelector('.cell--action')
     };
-    
+
     this.previewItem = previewItem;
+    this.mouseenterTimeline = null;
+  }
+
+  hoverIn() {
+    gsap.killTweensOf([this.DOM.images, this.DOM.title, this.DOM.actionBtn]);
+
+    this.mouseenterTimeline = gsap.timeline()
+      .addLabel('start', 0)
+      .to(this.DOM.images, {
+        duration: 0.25,
+        ease: 'power4.out',
+        startAt: {
+          scale: 0.8,
+          xPercent: 20
+        },
+        scale: 1,
+        xPercent: 0,
+        opacity: 1,
+        stagger: -0.035
+      }, 'start')
+      .to(this.DOM.titleWrap, {
+        duration: 0.2,
+        ease: 'power2.out',
+        paddingLeft: 6
+      }, 'start')
+      .set(this.DOM.title, { transformOrigin: '0% 50%' }, 'start')
+      .to(this.DOM.title, {
+        duration: 0.2,
+        ease: 'power2.in',
+        yPercent: -50,
+        onComplete: () => this.DOM.titleWrap.classList.add('cell__title--switch')
+      }, 'start')
+      .to(this.DOM.title, {
+        duration: 0.35,
+        ease: 'power4.out',
+        startAt: {
+          yPercent: 50,
+          rotation: 5
+        },
+        yPercent: 0,
+        rotation: 0
+      }, 'start+=0.3');
+  }
+
+  hoverOut() {
+    gsap.killTweensOf([this.DOM.images, this.DOM.title, this.DOM.actionBtn]);
+
+    gsap.timeline()
+      .addLabel('start')
+      .to(this.DOM.images, {
+        duration: 0.25,
+        ease: 'power4.in',
+        opacity: 0,
+        scale: 0.8
+      }, 'start')
+      .to(this.DOM.titleWrap, {
+        duration: 0.2,
+        ease: 'power2.out',
+        paddingLeft: 0
+      }, 'start')
+      .to(this.DOM.title, {
+        duration: 0.2,
+        ease: 'power2.in',
+        yPercent: -50,
+        onComplete: () => this.DOM.titleWrap.classList.remove('cell__title--switch')
+      }, 'start')
+      .to(this.DOM.title, {
+        duration: 0.35,
+        ease: 'power4.out',
+        startAt: {
+          yPercent: 50,
+          rotation: 5
+        },
+        yPercent: 0,
+        rotation: 0
+      }, 'start+=0.3');
   }
 }
 
 
 const RowComponent = ({ data, index, onClick, isOpen }) => {
   return (
-    <div 
+    <div
       className="row"
       data-row-index={index}
       onClick={onClick}
@@ -42,18 +119,18 @@ const RowComponent = ({ data, index, onClick, isOpen }) => {
                 || img.src
                 || '';
               return (
-                <div 
-                  key={idx} 
+                <div
+                  key={idx}
                   className="cell__img"
                   data-img-index={idx}
-                  style={{ 
+                  style={{
                     backgroundImage: url ? `url(${url})` : undefined,
                     '--img-index': idx
                   }}
                 >
-                  <div 
+                  <div
                     className="cell__img-inner"
-                    style={{ 
+                    style={{
                       backgroundImage: url ? `url(${url})` : undefined,
                     }}
                   />
@@ -62,6 +139,15 @@ const RowComponent = ({ data, index, onClick, isOpen }) => {
             })}
           </div>
         </div>
+      </div>
+      <div className="cell cell--action" aria-hidden="true">
+        <span className="cell__action-text">View Gallery</span>
+        <svg
+          className="cell__action-arrow"
+          width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
       </div>
     </div>
   );

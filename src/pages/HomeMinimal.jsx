@@ -11,14 +11,18 @@ import "./homeMinimal.css";
 const HomeMinimal = () => {
 	const navigate = useNavigate();
 
-	useGrained("home-minimal-bg");
+	useGrained("home-minimal-bg", {
+		grainOpacity: 0.04,
+		bubbles: false,
+		grainDensity: 1.5
+	});
 
 	const initOnContainer = (node) => {
 		if (!node) {
 			try {
 				document.documentElement.classList.remove("home-snap");
 				document.body.classList.remove("home-snap");
-			} catch {}
+			} catch { }
 			return;
 		}
 		if (typeof window !== "undefined") {
@@ -27,10 +31,10 @@ const HomeMinimal = () => {
 		try {
 			document.documentElement.classList.remove("home-snap");
 			document.body.classList.remove("home-snap");
-		} catch {}
+		} catch { }
 	};
 
-	const initHeroSection = () => {};
+	const initHeroSection = () => { };
 
 	const initHeroTitle = (el) => {
 		if (!el || el.dataset.gsapped) return;

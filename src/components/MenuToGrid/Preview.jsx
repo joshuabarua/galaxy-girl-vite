@@ -38,7 +38,7 @@ const Preview = forwardRef(({ data, index, isActive, onLoadMore, onClose }, ref)
   }), []);
 
   return (
-    <div 
+    <div
       ref={previewRef}
       id={`preview-item-${index}`}
       className={`preview__item ${isActive ? 'preview__item--current' : ''}`}
@@ -57,14 +57,15 @@ const Preview = forwardRef(({ data, index, isActive, onLoadMore, onClose }, ref)
               || (img.imagekitPath ? getImageKitUrl(img.imagekitPath, { width: 600, height: 600 }) : null)
               || '';
             return (
-              <div 
-                key={idx} 
+              <div
+                key={idx}
                 className="preview__item-img"
                 data-img-index={idx}
+                data-flip-id={`${data.slug}-img-${idx}`}
               >
-                <div 
+                <div
                   className="preview__item-img-inner"
-                  style={{ 
+                  style={{
                     backgroundImage: url ? `url(${url})` : undefined,
                   }}
                 />
@@ -78,7 +79,7 @@ const Preview = forwardRef(({ data, index, isActive, onLoadMore, onClose }, ref)
             className="preview__load-more"
             onClick={async () => {
               if (typeof onLoadMore === 'function') {
-                try { await onLoadMore(index, visibleCount); } catch {}
+                try { await onLoadMore(index, visibleCount); } catch { }
               }
               setVisibleCount(prev => prev + 24);
             }}

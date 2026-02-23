@@ -2,6 +2,7 @@ import {HashRouter as Router, Routes, Route} from 'react-router-dom';
 import HomeMinimal from './pages/HomeMinimal';
 import ResumeMinimal from './pages/resume/ResumeMinimal';
 import ContactMinimal from './pages/contact/ContactMinimal';
+import PortfolioDetail from './pages/portfolio/PortfolioDetail';
 import NavbarMinimal from './components/nav/NavbarMinimal';
 import NotFound from './pages/NotFound';
 import RouteTransition from './components/routeTransition/RouteTransition';
@@ -17,6 +18,7 @@ function App() {
 					<div className="app-minimal">
 						<Routes>
 							<Route path="/" element={<HomeMinimal />} />
+							<Route path="/portfolio/:slug" element={<PortfolioDetail />} />
 							<Route path="/resume" element={<ResumeMinimal />} />
 							<Route path="/contact" element={<ContactMinimal />} />
 							<Route path="*" element={<NotFound />} />

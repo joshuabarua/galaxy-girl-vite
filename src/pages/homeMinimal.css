@@ -13,6 +13,7 @@
 
 .hero-section {
 	display: flex;
+
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
@@ -42,23 +43,42 @@
 	font-weight: 300;
 	letter-spacing: 0.35em;
 	text-transform: uppercase;
-	color: #666;
+	color: #444;
+	margin-right: -0.35em;
+	/* counter letter spacing for true center */
 	white-space: nowrap;
 	opacity: 0;
 	transform: translateY(0);
+	transition: color 0.3s ease, letter-spacing 0.3s ease;
+}
+
+.hero-content:hover .hero-subtitle {
+	color: #111;
+	letter-spacing: 0.4em;
+	margin-right: -0.4em;
 }
 
 .hero-title-text {
 	display: inline-block;
-	font-family: "ThoderanNotes";
+	font-family: "ThoderanNotes", serif;
 	font-weight: 700;
 	letter-spacing: 0.15em;
+	margin-right: -0.15em;
+	/* counter letter spacing for true center */
 	font-size: var(--hero-title-size);
 	white-space: nowrap;
 	overflow: visible;
 	border-right: none;
 	width: auto;
 	animation: none;
+	text-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+	/* subtle elevation */
+	transition: text-shadow 0.4s ease, transform 0.4s ease;
+}
+
+.hero-title-text:hover {
+	text-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+	transform: scale(1.02);
 }
 
 .scroll-indicator {
@@ -97,10 +117,12 @@
 		transform: translateY(-6px);
 		opacity: 0.25;
 	}
+
 	50% {
 		transform: translateY(0);
 		opacity: 0.6;
 	}
+
 	100% {
 		transform: translateY(-6px);
 		opacity: 0.25;
@@ -135,6 +157,7 @@
 		opacity: 0;
 		transform: translateY(30px);
 	}
+
 	to {
 		opacity: 1;
 		transform: translateY(0);
@@ -145,17 +168,20 @@
 	from {
 		opacity: 0;
 	}
+
 	to {
 		opacity: 1;
 	}
 }
 
 @keyframes scrollPulse {
+
 	0%,
 	100% {
 		transform: translateY(0);
 		opacity: 1;
 	}
+
 	50% {
 		transform: translateY(10px);
 		opacity: 0.5;
@@ -169,7 +195,8 @@
 
 	.hero-subtitle {
 		letter-spacing: 0.16em;
-		white-space: normal;
+		margin-right: -0.16em;
+		white-space: nowrap;
 	}
 
 	.scroll-indicator {
@@ -180,19 +207,24 @@
 		display: block;
 		font-size: clamp(1.9rem, 8.4vw, 2.6rem);
 		letter-spacing: 0.08em;
-		white-space: normal;
+		margin-right: -0.08em;
+		white-space: nowrap;
 	}
 }
 
 @media (max-width: 390px) {
 	.hero-title-text {
-		font-size: clamp(1.7rem, 8.2vw, 2.2rem);
+		font-size: clamp(1rem, 7.5vw, 1.8rem);
 		letter-spacing: 0.06em;
+		margin-right: -0.06em;
 	}
+
 	.hero-subtitle {
-		font-size: 1rem;
+		font-size: 0.9rem;
 		letter-spacing: 0.12em;
+		margin-right: -0.12em;
 	}
+
 	.scroll-indicator {
 		bottom: 1.25rem;
 	}

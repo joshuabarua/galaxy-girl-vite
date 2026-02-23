@@ -112,81 +112,81 @@
 }
 
 @font-face {
-  font-family: 'BunnyMiltonTwoBold';
-  src: url('https://ik.imagekit.io/t3aewf67s/fonts/BunnyMonro/MiltonTwoBold/Milton_Two_Bold.otf') format('opentype');
-  font-display: swap;
+	font-family: 'BunnyMiltonTwoBold';
+	src: url('https://ik.imagekit.io/t3aewf67s/fonts/BunnyMonro/MiltonTwoBold/Milton_Two_Bold.otf') format('opentype');
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'BunnyMLBBrewers';
-  src: url('https://ik.imagekit.io/t3aewf67s/fonts/BunnyMonro/MLB-Brewers/MLBBREWE.TTF') format('truetype');
-  font-display: swap;
+	font-family: 'BunnyMLBBrewers';
+	src: url('https://ik.imagekit.io/t3aewf67s/fonts/BunnyMonro/MLB-Brewers/MLBBREWE.TTF') format('truetype');
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'EmpireSansSerifFLF';
-  src: url('https://ik.imagekit.io/t3aewf67s/fonts/Empireoflight/SansSerifFLF-Italic/SansSerifFLF-Italic.otf') format('opentype');
-  font-display: swap;
+	font-family: 'EmpireSansSerifFLF';
+	src: url('https://ik.imagekit.io/t3aewf67s/fonts/Empireoflight/SansSerifFLF-Italic/SansSerifFLF-Italic.otf') format('opentype');
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'EmpireColombia';
-  src: url('https://ik.imagekit.io/t3aewf67s/fonts/Empireoflight/Colombia1/Colombia-Regular.ttf') format('truetype');
-  font-display: swap;
+	font-family: 'EmpireColombia';
+	src: url('https://ik.imagekit.io/t3aewf67s/fonts/Empireoflight/Colombia1/Colombia-Regular.ttf') format('truetype');
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'FlorencesansSCOutline';
-  src: url('https://ik.imagekit.io/t3aewf67s/fonts/Franchise/Florencesans-SC-Outline/Florsn39.ttf') format('truetype');
-  font-display: swap;
+	font-family: 'FlorencesansSCOutline';
+	src: url('https://ik.imagekit.io/t3aewf67s/fonts/Franchise/Florencesans-SC-Outline/Florsn39.ttf') format('truetype');
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'LemonMilk';
-  src: url('https://ik.imagekit.io/t3aewf67s/fonts/Blitz/LEMON-MILK-Regular/LEMONMILK-Regular.otf') format('opentype');
-  font-display: swap;
+	font-family: 'LemonMilk';
+	src: url('https://ik.imagekit.io/t3aewf67s/fonts/Blitz/LEMON-MILK-Regular/LEMONMILK-Regular.otf') format('opentype');
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'BrusioCondensed';
-  src: url('https://ik.imagekit.io/t3aewf67s/fonts/Allelujah/BrusioCondensed/Brusio_Condensed.ttf') format('truetype');
-  font-display: swap;
+	font-family: 'BrusioCondensed';
+	src: url('https://ik.imagekit.io/t3aewf67s/fonts/Allelujah/BrusioCondensed/Brusio_Condensed.ttf') format('truetype');
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'GameOfThrones';
-  src: url('https://ik.imagekit.io/t3aewf67s/fonts/HouseofDrag/Game%20of%20Thrones.ttf') format('truetype');
-  font-display: swap;
+	font-family: 'GameOfThrones';
+	src: url('https://ik.imagekit.io/t3aewf67s/fonts/HouseofDrag/Game%20of%20Thrones.ttf') format('truetype');
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'Edelsans';
-  src: url('https://ik.imagekit.io/t3aewf67s/fonts/Witcher/edelsans_regular.otf') format('opentype');
-  font-display: swap;
+	font-family: 'Edelsans';
+	src: url('https://ik.imagekit.io/t3aewf67s/fonts/Witcher/edelsans_regular.otf') format('opentype');
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'ITVBrand';
-  src: url('https://ik.imagekit.io/t3aewf67s/fonts/ITV/itv.ttf?updatedAt=1762256769814') format('truetype');
-  font-display: swap;
+	font-family: 'ITVBrand';
+	src: url('https://ik.imagekit.io/t3aewf67s/fonts/ITV/itv.ttf?updatedAt=1762256769814') format('truetype');
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'NetflixBebasNeue';
-  src: url('https://ik.imagekit.io/t3aewf67s/fonts/Netflix/Bebas%20Neue.ttf?updatedAt=1762256757233') format('truetype');
-  font-display: swap;
+	font-family: 'NetflixBebasNeue';
+	src: url('https://ik.imagekit.io/t3aewf67s/fonts/Netflix/Bebas%20Neue.ttf?updatedAt=1762256757233') format('truetype');
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'AmazonEmberV2';
-  src: url('https://ik.imagekit.io/t3aewf67s/fonts/Amazon/Amazon%20Ember%20V2.ttf?updatedAt=1762256748081') format('truetype');
-  font-display: swap;
+	font-family: 'AmazonEmberV2';
+	src: url('https://ik.imagekit.io/t3aewf67s/fonts/Amazon/Amazon%20Ember%20V2.ttf?updatedAt=1762256748081') format('truetype');
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'PeakyBlinders';
-  src: url('https://ik.imagekit.io/t3aewf67s/fonts/PeakyBlinders/Roman%20Wood%20Type%20JNL.ttf?updatedAt=1762257431771') format('truetype');
-  font-display: swap;
+	font-family: 'PeakyBlinders';
+	src: url('https://ik.imagekit.io/t3aewf67s/fonts/PeakyBlinders/Roman%20Wood%20Type%20JNL.ttf?updatedAt=1762257431771') format('truetype');
+	font-display: swap;
 }
 
 
@@ -232,8 +232,10 @@ body,
 .app-minimal,
 .home-minimal,
 .preview__item--current {
-	scrollbar-width: none; /* Firefox */
-	-ms-overflow-style: none; /* IE/Edge */
+	scrollbar-width: none;
+	/* Firefox */
+	-ms-overflow-style: none;
+	/* IE/Edge */
 }
 
 html::-webkit-scrollbar,
@@ -242,7 +244,8 @@ body::-webkit-scrollbar,
 .app-minimal::-webkit-scrollbar,
 .home-minimal::-webkit-scrollbar,
 .preview__item--current::-webkit-scrollbar {
-	display: none; /* Chrome, Safari, Opera */
+	display: none;
+	/* Chrome, Safari, Opera */
 	width: 0;
 	height: 0;
 }
@@ -382,11 +385,9 @@ button:focus-visible {
 	right: 0;
 	bottom: 0;
 	height: 5%;
-	background: linear-gradient(
-		to bottom,
-		rgba(255, 255, 255, 0),
-		rgba(255, 255, 255, 0.223)
-	);
+	background: linear-gradient(to bottom,
+			rgba(255, 255, 255, 0),
+			rgba(255, 255, 255, 0.223));
 	pointer-events: none;
 	z-index: 100;
 }
@@ -435,6 +436,7 @@ button:focus-visible {
 		--radius: 0.5rem;
 		--brand: 80 2 90;
 	}
+
 	.dark {
 		--background: 0 0% 3.9%;
 		--foreground: 0 0% 98%;
@@ -467,6 +469,7 @@ button:focus-visible {
 	* {
 		@apply border-border;
 	}
+
 	body {
 		@apply bg-background text-foreground;
 	}
@@ -476,9 +479,11 @@ button:focus-visible {
 	.duration-150ms {
 		transition-duration: 150ms;
 	}
+
 	.duration-250ms {
 		transition-duration: 250ms;
 	}
+
 	.ease-friction {
 		transition-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
 	}
@@ -498,12 +503,22 @@ svg {
 		Segoe UI, Roboto, Arial, sans-serif;
 }
 
-
 /* Resume project title font mappings */
-.experience-project.font-bunny { font-family: 'BunnyMiltonTwoBold', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
-.experience-project.font-bunny .bunny-the { font-family: 'BunnyMLBBrewers', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
-.experience-project.font-bunny .bunny-part-2 { font-family: 'BunnyMiltonTwoBold', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
-.experience-project.font-bunny .bunny-rest { font-family: 'BunnyMLBBrewers', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+.experience-project.font-bunny {
+	font-family: 'BunnyMiltonTwoBold', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.experience-project.font-bunny .bunny-the {
+	font-family: 'BunnyMLBBrewers', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.experience-project.font-bunny .bunny-part-2 {
+	font-family: 'BunnyMiltonTwoBold', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.experience-project.font-bunny .bunny-rest {
+	font-family: 'BunnyMLBBrewers', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
 
 .experience-project.font-empire-of-light .empire {
 	font-family: "EmpireSansSerifFLF", system-ui, -apple-system, Segoe UI, Roboto,
@@ -511,6 +526,7 @@ svg {
 	text-transform: uppercase;
 	font-size: 28px;
 }
+
 .experience-project.font-empire-of-light .empire-of {
 	font-family: "EmpireColombia", system-ui, -apple-system, Segoe UI, Roboto,
 		Arial, sans-serif;
@@ -522,34 +538,42 @@ svg {
 	font-family: "FlorencesansSCOutline", system-ui, -apple-system, Segoe UI,
 		Roboto, Arial, sans-serif;
 }
+
 .experience-project.font-blitz {
 	font-family: "LemonMilk", system-ui, -apple-system, Segoe UI, Roboto, Arial,
 		sans-serif;
 }
+
 .experience-project.font-allelujah {
 	font-family: "BrusioCondensed", system-ui, -apple-system, Segoe UI, Roboto,
 		Arial, sans-serif;
 	font-size: 34px;
 }
+
 .experience-project.font-house-of-dragon {
 	font-family: "GameOfThrones", Georgia, "Times New Roman", Times, serif;
 }
+
 .experience-project.font-witcher {
 	font-family: "Edelsans", system-ui, -apple-system, Segoe UI, Roboto, Arial,
 		sans-serif;
 }
+
 .experience-project.font-itv {
 	font-family: "ITVBrand", system-ui, -apple-system, Segoe UI, Roboto, Arial,
 		sans-serif;
 }
+
 .experience-project.font-netflix {
 	font-family: "NetflixBebasNeue", system-ui, -apple-system, Segoe UI, Roboto,
 		Arial, sans-serif;
 }
+
 .experience-project.font-amazon {
 	font-family: "AmazonEmberV2", system-ui, -apple-system, Segoe UI, Roboto,
 		Arial, sans-serif;
 }
+
 .experience-project.font-peaky {
 	font-family: "PeakyBlinders", system-ui, -apple-system, Segoe UI, Roboto,
 		Arial, sans-serif;
