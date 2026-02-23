@@ -256,16 +256,16 @@ body.loading {
 }
 
 .cover {
-	background: #fff;
+	background: var(--color-bg-row-hover);
 	width: 100%;
 	height: 0;
 	opacity: 0;
 	pointer-events: none;
-	z-index: 8000;
+	z-index: 150;
 	position: fixed;
 	left: 0;
 	top: 0;
-	will-change: height, top, opacity;
+	will-change: height, top;
 }
 
 .preview {
@@ -275,30 +275,42 @@ body.loading {
 	top: 0;
 	left: 0;
 	pointer-events: none;
-	z-index: 9000;
-	background: transparent;
+	z-index: 3000000;
+	background: #f5f3f0;
 	display: grid;
 	align-items: center;
 	justify-items: center;
+	overflow: hidden;
+	opacity: 0;
+	visibility: hidden;
+	transition:
+		opacity 0.3s ease,
+		visibility 0s linear 0.3s;
+}
+
+.preview--active {
+	pointer-events: auto;
+	background: #f5f3f0;
+	opacity: 1;
+	visibility: visible;
+	transition: opacity 0.3s ease;
 }
 
 .preview__close {
-	position: fixed;
-	top: 84px;
-	right: 1.5rem;
+	position: absolute;
+	top: 0;
+	right: 0;
 	font-size: 2rem;
 	font-weight: 400;
 	line-height: 1;
-	padding: 0.75rem 1rem;
+	padding: 2rem;
 	cursor: pointer;
 	opacity: 0;
 	font-family: "ZaiRoyalVogueTypewriter";
 	transition: opacity 0.3s ease;
 	pointer-events: none;
-	z-index: 10000;
-	background: rgba(255, 255, 255, 0.9);
-	border-radius: 4px;
-	backdrop-filter: blur(4px);
+	color: #111;
+	z-index: 2;
 }
 
 .preview__close--show {
@@ -306,8 +318,138 @@ body.loading {
 	opacity: 1;
 }
 
+.preview__item {
+	width: 100%;
+	height: 0;
+	opacity: 0;
+	background: transparent;
+	overflow: hidden;
+}
+
+.preview__item--current {
+	pointer-events: auto;
+	height: 100dvh;
+	opacity: 1;
+	background: #fff;
+	overflow-y: auto;
+	overflow-x: hidden;
+	-webkit-overflow-scrolling: touch;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	overscroll-behavior: contain;
+}
+
+.preview__item-title {
+	font-family: "ZaiRoyalVogueTypewriter";
+	font-weight: 700;
+	font-size: clamp(1.4rem, 5vw, 3.25rem);
+	margin-bottom: 2rem;
+}
+
+.preview__item-content {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: calc(3rem + env(safe-area-inset-top, 0px)) 2rem 4rem;
+	max-width: 1400px;
+	margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+	.preview__item-content {
+		padding-top: calc(4rem + env(safe-area-inset-top, 0px));
+	}
+}
+
+.preview__item-title-inner {
+	display: block;
+}
+
+.preview__load-more {
+	margin: 2rem auto 4rem;
+	padding: 0.6rem 1rem;
+	border: 1px solid #000;
+	background: #fff;
+	color: #000;
+	cursor: pointer;
+	font-family: "ZaiRoyalVogueTypewriter";
+	font-size: 1rem;
+	border-radius: 4px;
+	transition:
+		background 0.2s ease,
+		color 0.2s ease;
+}
+
+.preview__load-more:hover {
+	background: #000;
+	color: #fff;
+}
+
+.menu-to-grid .grid {
+	position: relative;
+	display: grid;
+	max-width: 1600px;
+	width: 100%;
+	grid-gap: var(--image-gap-large);
+	justify-content: center;
+	justify-items: center;
+	--img-size: var(--img-size-large);
+	grid-template-columns: repeat(4, var(--img-size));
+	grid-template-rows: repeat(2, var(--img-size));
+	grid-auto-rows: var(--img-size);
+}
+
+.grid .cell__img {
+	width: var(--img-size-large);
+}
+
+.preview__item-grid .cell__img {
+	width: var(--img-size-large);
+	height: auto;
+	aspect-ratio: 1 / 1;
+	opacity: 1;
+	transform: none;
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+.preview__item-grid .cell__img .cell__img-inner {
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position: center;
+}
+
+.preview__item-img {
+	position: relative;
+	aspect-ratio: 1;
+	overflow: hidden;
+	opacity: 0;
+	transform: scale(0);
+}
+
+.preview__item-img-inner {
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position: center;
+	background-clip: padding-box;
+	transition: transform 0.3s ease;
+	border-radius: 2px;
+	overflow: hidden;
+}
+
+.preview__item-img:hover .preview__item-img-inner {
+	transform: scale(1.5);
+}
+
 .preview__close-button {
 	background: transparent;
+	border: 1px solid #000;
 	color: #000;
 	padding: 0.25rem 0.75rem;
 	cursor: pointer;
@@ -470,6 +612,212 @@ html.oh {
 .preview__load-more:hover {
 	background: #000;
 	color: #fff;
+}
+
+@media screen and (min-width: 61em) {
+	:root {
+		--padding-sides: 4rem;
+		--padding-row: 2rem;
+	}
+}
+
+@media (min-width: 768px) {
+	:root {
+		--img-size-large: clamp(220px, 18vw, 360px);
+	}
+
+	.menu-to-grid .grid {
+		grid-template-columns: repeat(2, var(--img-size-large));
+		grid-template-rows: repeat(2, var(--img-size-large));
+		grid-auto-rows: var(--img-size-large);
+	}
+}
+
+/* Widen grid progressively on larger screens */
+@media (min-width: 1024px) {
+	.menu-to-grid .grid {
+		grid-template-columns: repeat(3, var(--img-size-large));
+	}
+}
+
+@media (min-width: 1400px) {
+	.menu-to-grid .grid {
+		grid-template-columns: repeat(4, var(--img-size-large));
+	}
+}
+
+/* ------------------------------------------------------------- 
+   PREVIEW OVERLAY (Codrops Menu to Grid Style)
+   ------------------------------------------------------------- */
+.oh {
+	overflow: hidden;
+}
+
+.preview {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	pointer-events: none;
+	z-index: 200;
+	background: var(--color-bg);
+	opacity: 0;
+	transition: opacity 0.4s ease;
+}
+
+.preview--active {
+	pointer-events: auto;
+	opacity: 1;
+}
+
+.preview__close {
+	position: absolute;
+	top: 1.5rem;
+	right: 1.5rem;
+	width: 3rem;
+	height: 3rem;
+	border: 1px solid var(--color-text);
+	border-radius: 50%;
+	background: transparent;
+	color: var(--color-text);
+	cursor: pointer;
+	z-index: 500;
+	opacity: 0;
+	transform: scale(0.8);
+	transition:
+		opacity 0.3s ease,
+		transform 0.3s ease,
+		background-color 0.3s ease,
+		color 0.3s ease;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.preview__close:hover {
+	background: var(--color-text);
+	color: var(--color-bg);
+}
+
+.preview__close--show {
+	opacity: 1;
+	transform: scale(1);
+}
+
+.preview__close-button {
+	font-size: 1.5rem;
+	line-height: 1;
+	transform: translateY(-2px);
+}
+
+.preview__inner {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+.preview__item {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	pointer-events: none;
+	overflow-y: auto;
+	padding: 5rem 2rem 2rem;
+}
+
+.preview__item--current {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.preview__item-content {
+	max-width: 1400px;
+	margin: 0 auto;
+}
+
+.preview__item-header {
+	margin-bottom: 3rem;
+}
+
+.preview__item-title {
+	font-family: var(--font-title);
+	font-size: clamp(2rem, 5vw, 4rem);
+	font-weight: 300;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+/* 
+ * The destination grid in the preview overlay 
+ * (We style this as a masonry/CSS grid just like PortfolioDetail)
+ */
+.preview__item-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+	grid-auto-rows: minmax(300px, auto);
+	gap: 20px;
+	align-items: start;
+	padding-bottom: 4rem;
+}
+
+.preview__item-img {
+	border-radius: 8px;
+	overflow: hidden;
+	position: relative;
+	background-color: #e5e7eb;
+	/* gray-200 */
+	aspect-ratio: 3/4;
+	/* default aspect */
+	transition:
+		transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+		box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Stagger heights slightly for a masonry feel within the basic CSS grid */
+.preview__item-img:nth-child(even) {
+	aspect-ratio: 4/5;
+}
+
+.preview__item-img:nth-child(3n) {
+	aspect-ratio: 1/1;
+}
+
+.preview__item-img:hover {
+	transform: translateY(-4px) scale(1.02);
+	box-shadow:
+		0 10px 25px -5px rgba(0, 0, 0, 0.1),
+		0 8px 10px -6px rgba(0, 0, 0, 0.1);
+	z-index: 10;
+}
+
+.preview__item-img-inner {
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position: center;
+	display: block;
+	transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.preview__item-img:hover .preview__item-img-inner {
+	transform: scale(1.05);
+}
+
+/* GSAP Flip class for images natively moving from row to grid */
+.flipping {
+	z-index: 1000 !important;
+	border-radius: 8px !important;
+}
+
+@media screen and (min-width: 53em) {
+	:root {
+		--padding-sides: 4rem;
+		--padding-row: 2rem;
+	}
 }
 
 @media screen and (min-width: 61em) {
