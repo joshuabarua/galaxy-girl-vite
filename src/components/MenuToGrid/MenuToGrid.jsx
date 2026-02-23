@@ -32,6 +32,53 @@ const getFolderFromPath = (imagekitPath = "") => {
 	return folder || "";
 };
 
+const getExtensionFromPath = (imagekitPath = "") => {
+	const ext = imagekitPath.split(".").pop();
+	if (!ext || ext.includes("/")) return "jpg";
+	return ext.toLowerCase();
+};
+
+const getSequenceIndexFromPath = (imagekitPath = "") => {
+	const filename = imagekitPath.split("/").pop() || "";
+	const numericPart = filename.split(".")[0];
+	const parsed = Number(numericPart);
+	return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
+};
+
+const buildImagesForCount = (images, count) => {
+	if (!Array.isArray(images) || !images.length) return [];
+	if (!Number.isFinite(count) || count <= images.length) return images;
+
+	const firstPath = images.find((img) => img?.imagekitPath)?.imagekitPath || "";
+	const folder = getFolderFromPath(firstPath);
+	if (!folder) return images;
+
+	const ext = getExtensionFromPath(firstPath);
+	const existingByIndex = new Map();
+
+	images.forEach((img) => {
+		const index = getSequenceIndexFromPath(img?.imagekitPath || "");
+		if (index !== null) existingByIndex.set(index, img);
+	});
+
+	const merged = [];
+	for (let i = 1; i <= count; i += 1) {
+		if (existingByIndex.has(i)) {
+			merged.push(existingByIndex.get(i));
+			continue;
+		}
+
+		merged.push({
+			id: `${folder}-${i}`,
+			imagekitPath: `${folder}/${i}.${ext}`,
+			alt: `${folder} ${i}`,
+			caption: "",
+		});
+	}
+
+	return merged;
+};
+
 const probeImageExists = (path) =>
 	new Promise((resolve) => {
 		const img = new Image();
@@ -157,7 +204,7 @@ const MenuToGrid = ({
 				}
 
 				const counted = await countFolderImages(folder);
-				nextCounts[gallery.slug] = counted || images.length;
+				nextCounts[gallery.slug] = counted;
 
 				if (cancelled) return;
 				setCountLoading((prev) => ({ ...prev, [gallery.slug]: false }));
@@ -464,9 +511,20 @@ const MenuToGrid = ({
 			<div className={combineClasses("rows", contentClassName)}>
 				{items.map((gallery, index) => {
 					const images = Array.isArray(gallery.images) ? gallery.images : [];
-					const imageCount = livePhotoCounts[gallery.slug] ?? images.length;
+					const hasResolvedCount = Object.prototype.hasOwnProperty.call(
+						livePhotoCounts,
+						gallery.slug,
+					);
+					const imageCount = hasResolvedCount ? livePhotoCounts[gallery.slug] : null;
 					const isCountLoading = Boolean(countLoading[gallery.slug]);
-					const imageCountLabel = `${imageCount} ${imageCount === 1 ? "photo" : "photos"}`;
+					const imagesForRow = buildImagesForCount(
+						images,
+						imageCount ?? images.length,
+					);
+					const imageCountLabel =
+						imageCount === null
+							? ""
+							: `${imageCount} ${imageCount === 1 ? "photo" : "photos"}`;
 					return (
 						<div
 							key={gallery.slug}
@@ -517,7 +575,7 @@ const MenuToGrid = ({
 							</div>
 							<div className="cell cell--image">
 								<div className="cell__img-wrap">
-									{images.slice(0, ROW_PREVIEW_COUNT).map((image, idx) => {
+									{imagesForRow.slice(0, ROW_PREVIEW_COUNT).map((image, idx) => {
 										const previewUrl = resolvePreviewUrl(image);
 										return (
 											<div
@@ -543,7 +601,7 @@ const MenuToGrid = ({
 									})}
 								</div>
 								<span className="cell__meta-count" aria-hidden="true">
-									{isCountLoading ? (
+									{isCountLoading || imageCount === null ? (
 										<span className="cell__meta-loading" aria-label="Loading photo count">
 											<span className="cell__meta-spinner" />
 											<span className="cell__meta-loading-text">Loading</span>
@@ -590,7 +648,10 @@ const MenuToGrid = ({
 							key={`preview-${gallery.slug}`}
 							data={{
 								...gallery,
-								images: Array.isArray(gallery.images) ? gallery.images : [],
+								images: buildImagesForCount(
+									Array.isArray(gallery.images) ? gallery.images : [],
+									livePhotoCounts[gallery.slug],
+								),
 							}}
 							previewCount={ROW_PREVIEW_COUNT}
 							index={index}
