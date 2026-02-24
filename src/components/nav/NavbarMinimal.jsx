@@ -9,6 +9,7 @@ const NavbarMinimal = () => {
 	const [isVisible, setIsVisible] = useState(!onHome);
 	const [homeNavReady, setHomeNavReady] = useState(!onHome);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	const [isHeroInView, setIsHeroInView] = useState(false);
 	const hideTimeoutRef = useRef(null);
 	const homeRevealTimeoutRef = useRef(null);
@@ -122,6 +123,21 @@ const NavbarMinimal = () => {
 	}, [onHome, autoHideDelay]);
 
 	useEffect(() => {
+		setIsMobileMenuOpen(false);
+	}, [location.pathname]);
+
+	useEffect(() => {
+		const handleResize = () => {
+			if (window.innerWidth >= 768) {
+				setIsMobileMenuOpen(false);
+			}
+		};
+
+		window.addEventListener("resize", handleResize);
+		return () => window.removeEventListener("resize", handleResize);
+	}, []);
+
+	useEffect(() => {
 		const handleScroll = () => {
 			if (onHome && !homeNavReady) return;
 			const currentScrollY = window.scrollY;
@@ -173,6 +189,8 @@ const NavbarMinimal = () => {
 	const linkBase =
 		"relative inline-flex items-center text-[0.9rem] sm:text-[0.98rem] md:text-[1.06rem] leading-none font-normal tracking-wider text-[#4a4a4a] no-underline transition-colors duration-300 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-px after:w-0 after:bg-black after:transition-all hover:text-black hover:after:w-full";
 	const linkActive = "text-black font-medium";
+	const mobileLinkBase =
+		"inline-flex items-center text-[0.95rem] leading-none font-normal tracking-[0.06em] text-[#3f3f3f] no-underline";
 	const navLinkStyle = {
 		fontFamily: '"ZaiRoyalVogueTypewriter", serif',
 		letterSpacing: "0.06em",
@@ -212,16 +230,18 @@ const NavbarMinimal = () => {
 								shouldHideLogo
 									? "left-1/2 -translate-x-1/2"
 									: "right-4 sm:right-6 lg:right-8 translate-x-0"
-							}`}>
+							} hidden md:flex`}>
 							<DelayedLink
 								to="/"
 								style={navLinkStyle}
+								onClick={() => setIsMobileMenuOpen(false)}
 								className={`${linkBase} ${isActive("/") ? linkActive : ""}`}>
 								Portfolio
 							</DelayedLink>
 							<DelayedLink
 								to="/resume"
 								style={navLinkStyle}
+								onClick={() => setIsMobileMenuOpen(false)}
 								className={`${linkBase} ${
 									isActive("/resume") ? linkActive : ""
 								}`}>
@@ -230,9 +250,49 @@ const NavbarMinimal = () => {
 							<DelayedLink
 								to="/contact"
 								style={navLinkStyle}
+								onClick={() => setIsMobileMenuOpen(false)}
 								className={`${linkBase} ${
 									isActive("/contact") ? linkActive : ""
 								}`}>
+								Contact
+							</DelayedLink>
+						</div>
+
+						<button
+							type="button"
+							className="ml-auto md:hidden inline-flex items-center justify-center rounded-full border border-black/15 bg-white/70 px-3 py-1.5 text-[0.8rem] tracking-[0.08em] uppercase text-black"
+							style={navLinkStyle}
+							onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+							aria-expanded={isMobileMenuOpen}
+							aria-label="Toggle navigation menu">
+							{isMobileMenuOpen ? "Close" : "Menu"}
+						</button>
+					</div>
+
+					<div
+						className={`md:hidden overflow-hidden transition-all duration-300 ease-out ${
+							isMobileMenuOpen ? "max-h-56 opacity-100" : "max-h-0 opacity-0"
+						}`}>
+						<div className="px-4 pb-3 pt-1 flex flex-col gap-2 border-t border-black/10 bg-white/72 backdrop-blur-sm">
+							<DelayedLink
+								to="/"
+								style={navLinkStyle}
+								onClick={() => setIsMobileMenuOpen(false)}
+								className={`${mobileLinkBase} ${isActive("/") ? "text-black font-medium" : ""}`}>
+								Portfolio
+							</DelayedLink>
+							<DelayedLink
+								to="/resume"
+								style={navLinkStyle}
+								onClick={() => setIsMobileMenuOpen(false)}
+								className={`${mobileLinkBase} ${isActive("/resume") ? "text-black font-medium" : ""}`}>
+								Resume
+							</DelayedLink>
+							<DelayedLink
+								to="/contact"
+								style={navLinkStyle}
+								onClick={() => setIsMobileMenuOpen(false)}
+								className={`${mobileLinkBase} ${isActive("/contact") ? "text-black font-medium" : ""}`}>
 								Contact
 							</DelayedLink>
 						</div>
