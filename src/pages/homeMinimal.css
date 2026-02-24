@@ -683,6 +683,37 @@ html:has(.home-minimal) {
 }
 
 @media (max-width: 768px) {
+	.home-minimal .page-shell {
+		position: relative;
+	}
+
+	.hero-section,
+	.home-footer-cta {
+		position: sticky;
+		left: 0;
+		width: 100%;
+	}
+
+	.hero-section {
+		top: 0;
+		z-index: 0;
+	}
+
+	.home-footer-cta {
+		bottom: 0;
+		z-index: 0;
+		margin-top: 0;
+		margin-bottom: 0;
+		padding-bottom: calc(1.4rem + env(safe-area-inset-bottom, 0px));
+	}
+
+	.gallery-section {
+		position: relative;
+		z-index: 2;
+		background: #fff;
+		padding-bottom: max(7rem, env(safe-area-inset-bottom, 0px));
+	}
+
 	.hero-section {
 		padding: 1rem;
 	}
