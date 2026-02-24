@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import MenuToGrid from "../components/MenuToGrid/MenuToGrid";
 import { imagekitGalleries } from "./portfolio/data/imagekitGalleryData";
+import { UI_TUNING } from "../config/uiTuning";
+import DelayedLink from "../components/DelayedLink/DelayedLink";
 import "./homeMinimal.css";
 
 const HomeMinimal = () => {
@@ -42,6 +43,10 @@ const HomeMinimal = () => {
 		<div
 			id="home-minimal-bg"
 			className="home-minimal min-h-screen bg-[#f5f5f5] text-black overflow-x-hidden w-full"
+			style={{
+				"--hero-copy-delay-base": `${UI_TUNING.home.heroCopyDelaySec}s`,
+				"--hero-copy-stagger": `${UI_TUNING.home.heroCopyStaggerSec}s`,
+			}}
 			ref={initOnContainer}>
 			<div className="page-shell">
 				<section
@@ -83,6 +88,15 @@ const HomeMinimal = () => {
 					</div>
 				</section>
 
+				<div className="hero-divider" aria-hidden="true">
+					<svg
+						className="hero-divider__wave"
+						viewBox="0 0 1200 120"
+						preserveAspectRatio="none">
+						<path d="M0,62 C120,18 220,102 338,62 C456,22 548,102 662,62 C776,22 878,102 1002,62 C1098,31 1150,54 1200,62" />
+					</svg>
+				</div>
+
 				<section className="gallery-section">
 					<MenuToGrid
 						galleries={imagekitGalleries}
@@ -94,9 +108,12 @@ const HomeMinimal = () => {
 				<footer className="home-footer-cta">
 					<p className="home-footer-cta__eyebrow">Planning a shoot?</p>
 					<h2 className="home-footer-cta__title">Lets plan something together.</h2>
-					<Link className="home-footer-cta__button" to="/contact">
+					<DelayedLink
+						className="home-footer-cta__button"
+						to="/contact"
+						transition={{ fadeToDuration: 360, blackHoldDuration: 180 }}>
 						Start a booking
-					</Link>
+					</DelayedLink>
 				</footer>
 			</div>
 		</div>

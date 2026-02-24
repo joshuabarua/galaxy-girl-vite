@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import DelayedLink from "../DelayedLink/DelayedLink";
+import { UI_TUNING } from "../../config/uiTuning";
 
 const NavbarMinimal = () => {
 	const location = useLocation();
@@ -11,8 +12,10 @@ const NavbarMinimal = () => {
 	const hideTimeoutRef = useRef(null);
 	const homeRevealTimeoutRef = useRef(null);
 	const lastScrollY = useRef(0);
-	const autoHideDelay = onHome ? 5600 : 4000;
-	const HERO_NAV_REVEAL_DELAY_MS = 9000;
+	const autoHideDelay = onHome
+		? UI_TUNING.home.navAutoHideDelayMs
+		: UI_TUNING.navbar.defaultAutoHideDelayMs;
+	const HERO_NAV_REVEAL_DELAY_MS = UI_TUNING.home.navRevealDelayMs;
 
 	const showNavbar = useCallback(() => {
 		if (onHome && !homeNavReady) return;
@@ -111,15 +114,15 @@ const NavbarMinimal = () => {
 	const navHidden = "-translate-y-full opacity-0";
 
 	const container =
-		"max-w-[1400px] mx-auto px-4 py-3 sm:py-4 flex justify-between items-center";
+		"max-w-[1400px] mx-auto px-4 py-2 sm:py-2.5 flex justify-between items-center";
 
 	const logoLink =
 		"font-normal tracking-wider text-black no-underline transition-opacity duration-300 relative hover:opacity-60";
 	const logoText =
-		"opacity-100 visible text-xl sm:text-2xl font-[400] transition-opacity duration-200 uppercase tracking-[0.08em]";
+		"opacity-100 visible inline-flex items-center text-lg sm:text-xl leading-none font-[400] transition-opacity duration-200 uppercase tracking-[0.08em]";
 
 	const linkBase =
-		"relative text-[1rem] sm:text-[1.1rem] md:text-[1.2rem] font-normal tracking-wider text-[#4a4a4a] no-underline transition-colors duration-300 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-px after:w-0 after:bg-black after:transition-all hover:text-black hover:after:w-full";
+		"relative inline-flex items-center text-[0.9rem] sm:text-[0.98rem] md:text-[1.06rem] leading-none font-normal tracking-wider text-[#4a4a4a] no-underline transition-colors duration-300 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-px after:w-0 after:bg-black after:transition-all hover:text-black hover:after:w-full";
 	const linkActive = "text-black after:w-full";
 
 	// Hide navbar when menu is open or when not visible

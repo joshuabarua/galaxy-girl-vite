@@ -9,6 +9,7 @@ import NotFound from './pages/NotFound';
 import RouteTransition from './components/routeTransition/RouteTransition';
 import ScrollToTop from './components/ScrollToTop';
 import { useGrained } from './hooks/useGrained';
+import { UI_TUNING } from './config/uiTuning';
 
 function RouteScrollGuard() {
 	const location = useLocation();
@@ -41,15 +42,15 @@ function RouteScrollGuard() {
 
 function App() {
 	useGrained('global-grain-overlay', {
-		grainOpacity: 0.07,
-		grainDensity: 1.2,
-		grainWidth: 0.95,
-		grainHeight: 0.95,
-		grainChaos: 14,
-		grainSpeed: 16,
-		animate: true,
-		bubbles: false,
-		zIndex: 1,
+		grainOpacity: UI_TUNING.grain.opacity,
+		grainDensity: UI_TUNING.grain.density,
+		grainWidth: UI_TUNING.grain.width,
+		grainHeight: UI_TUNING.grain.height,
+		grainChaos: UI_TUNING.grain.chaos,
+		grainSpeed: UI_TUNING.grain.speed,
+		animate: UI_TUNING.grain.animate,
+		bubbles: UI_TUNING.grain.bubbles,
+		zIndex: UI_TUNING.grain.zIndex,
 	});
 
 	return (

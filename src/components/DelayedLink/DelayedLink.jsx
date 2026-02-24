@@ -1,11 +1,13 @@
 import React, { useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDelayedNavigation } from '../../hooks/useDelayedNavigation';
+import { UI_TUNING } from '../../config/uiTuning';
 
 const DelayedLink = ({ 
   to, 
   className, 
   children, 
+  transition,
   onClick,
   ...props 
 }) => {
@@ -44,13 +46,13 @@ const DelayedLink = ({
     if (to === '/') {
       delayedNavigate(to, {
         ...baseOptions,
-        transition: {
-          fadeToDuration: 120,
-          blackHoldDuration: 20,
-        },
+        transition: transition || UI_TUNING.navigation.homeReturnTransition,
       });
     } else {
-      delayedNavigate(to, baseOptions);
+      delayedNavigate(to, {
+        ...baseOptions,
+        ...(transition ? { transition } : {}),
+      });
     }
 
     startedTransitionRef.current = false;
