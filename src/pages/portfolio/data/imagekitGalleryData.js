@@ -111,16 +111,14 @@ const spotlightImages = imagekitGalleries.flatMap((gallery) =>
     })),
 );
 
-export const heroImage = imagekitGalleries
-  .flatMap((gallery) => (Array.isArray(gallery.images) ? gallery.images : []))
-  .find((image) => hasImageTag(image, "hero")) || null;
+
 
 export const spotlightGallery = spotlightImages.length
   ? {
-      id: "spotlight",
-      name: "Spotlight",
-      slug: "spotlight",
-      description: "A cross-collection edit of signature looks curated by Emma.",
-      images: spotlightImages,
-    }
+    id: "spotlight",
+    name: "Spotlight",
+    slug: "spotlight",
+    description: "A cross-collection edit of signature looks curated by Emma.",
+    images: spotlightImages,
+  }
   : null;

@@ -3,10 +3,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Link } from "react-router-dom";
 import MenuToGrid from "../components/MenuToGrid/MenuToGrid";
-import {
-	imagekitGalleries,
-	heroImage as taggedHeroImage,
-} from "./portfolio/data/imagekitGalleryData";
+import { imagekitGalleries } from "./portfolio/data/imagekitGalleryData";
 import { useGrained } from "../hooks/useGrained";
 import { getImageKitUrl } from "../utils/imagekit";
 import "./homeMinimal.css";
@@ -19,13 +16,11 @@ const HomeMinimal = () => {
 	const heroSectionRef = React.useRef(null);
 	const heroMediaRef = React.useRef(null);
 	const heroMediaImageRef = React.useRef(null);
+	const heroContentRef = React.useRef(null);
 
-	const heroImage = taggedHeroImage || imagekitGalleries?.[0]?.images?.[0] || null;
-	const heroImageUrl = heroImage?.imagekitPath
-		? getImageKitUrl(heroImage.imagekitPath, { width: 1800, height: 1200 })
-		: heroImage?.src || "";
+	const heroImageUrl = "https://ik.imagekit.io/t3aewf67s/hero/13_1600.jpg";
 
-	useGrained("home-minimal-bg", {
+	useGrained("grain-overlay", {
 		grainOpacity: 0.055,
 		bubbles: false,
 		grainDensity: 1.7,
@@ -35,31 +30,26 @@ const HomeMinimal = () => {
 	});
 
 	React.useEffect(() => {
-		if (!heroMediaRef.current || !heroSectionRef.current) return undefined;
+		if (!heroMediaRef.current || !heroSectionRef.current || !heroContentRef.current) return undefined;
 
+		const sectionEl = heroSectionRef.current;
 		const mediaEl = heroMediaRef.current;
 		const mediaImageEl = heroMediaImageRef.current;
-		const sectionEl = heroSectionRef.current;
-		let introTween;
+		const contentEl = heroContentRef.current;
 
 		const ctx = gsap.context(() => {
-			gsap.set(mediaEl, { scale: 1.52, yPercent: -2, transformOrigin: "50% 42%" });
-			if (mediaImageEl) {
-				gsap.set(mediaImageEl, { filter: "grayscale(88%) contrast(1.06) saturate(0.82)" });
-			}
-
-			introTween = gsap.to(mediaEl, {
-				scale: 1.34,
-				duration: 1.35,
-				ease: "power2.out",
+			// Set initial state
+			gsap.set(mediaImageEl, {
+				scale: 1.3,
+				filter: "grayscale(88%) contrast(1.06) saturate(0.82)"
 			});
 
-			const heroTimeline = gsap.timeline({
+			const tl = gsap.timeline({
 				scrollTrigger: {
 					trigger: sectionEl,
 					start: "top top",
-					end: "+=120%",
-					scrub: 1,
+					end: "+=70%",
+					scrub: true,
 					pin: true,
 					pinSpacing: true,
 					anticipatePin: 1,
@@ -67,30 +57,20 @@ const HomeMinimal = () => {
 				},
 			});
 
-			heroTimeline.to(
-				mediaEl,
-				{
-					scale: 1.02,
-					yPercent: 1,
-					ease: "none",
-				},
-				0,
-			);
+			tl.to(mediaImageEl, {
+				scale: 1,
+				filter: "grayscale(0%) contrast(1.02) saturate(1)",
+				ease: "none",
+			}, 0);
 
-			if (mediaImageEl) {
-				heroTimeline.to(
-					mediaImageEl,
-					{
-						filter: "grayscale(0%) contrast(1.02) saturate(1)",
-						ease: "none",
-					},
-					0,
-				);
-			}
+			tl.to(contentEl, {
+				opacity: 1,
+				y: 0,
+				ease: "none"
+			}, 0);
 		}, sectionEl);
 
 		return () => {
-			if (introTween) introTween.kill();
 			ctx.revert();
 		};
 	}, [heroImageUrl]);
@@ -100,7 +80,7 @@ const HomeMinimal = () => {
 			try {
 				document.documentElement.classList.remove("home-snap");
 				document.body.classList.remove("home-snap");
-			} catch {}
+			} catch { }
 			return;
 		}
 		if (typeof window !== "undefined") {
@@ -109,66 +89,20 @@ const HomeMinimal = () => {
 		try {
 			document.documentElement.classList.remove("home-snap");
 			document.body.classList.remove("home-snap");
-		} catch {}
+		} catch { }
 	};
 
 	const initHeroSection = (node) => {
 		heroSectionRef.current = node;
 	};
 
-	const initHeroTitle = (el) => {
-		if (!el || el.dataset.gsapped) return;
-		el.dataset.gsapped = "1";
-		const originalText = el.textContent || "";
-		const frag = document.createDocumentFragment();
-		const chars = [];
-		for (let i = 0; i < originalText.length; i++) {
-			const ch = originalText[i];
-			const span = document.createElement("span");
-			span.className = "hero-char";
-			span.textContent = ch;
-			span.style.opacity = "0";
-			frag.appendChild(span);
-			chars.push(span);
-		}
-		el.textContent = "";
-		el.appendChild(frag);
-
-		const perChar = 2;
-		const stagger = 0.1;
-		const startDelay = 0.4;
-
-		gsap.to(chars, {
-			opacity: 1,
-			duration: perChar,
-			stagger,
-			ease: "none",
-			delay: startDelay,
-		});
-
-		const subtitleDelay = startDelay + 1;
-		const scrollDelay = subtitleDelay + 1;
-		gsap.to(".hero-subtitle", {
-			opacity: 1,
-			y: 8,
-			duration: 0.6,
-			ease: "power2.out",
-			delay: subtitleDelay,
-		});
-		gsap.to(".scroll-indicator", {
-			opacity: 1,
-			y: 6,
-			duration: 0.6,
-			ease: "power2.out",
-			delay: scrollDelay,
-		});
-	};
 
 	return (
 		<div
 			id="home-minimal-bg"
 			className="home-minimal min-h-screen bg-[#f5f5f5] text-black overflow-x-hidden w-full"
 			ref={initOnContainer}>
+			<div id="grain-overlay" className="fixed inset-0 pointer-events-none z-10" aria-hidden="true" />
 			<div className="page-shell">
 				<section
 					className="hero-section flex items-center justify-center flex-col px-8 relative"
@@ -189,9 +123,9 @@ const HomeMinimal = () => {
 						<span className="hero-atmosphere__blob hero-atmosphere__blob--primary" />
 						<span className="hero-atmosphere__blob hero-atmosphere__blob--secondary" />
 					</div>
-					<div className="hero-content text-center flex flex-col items-center gap-2 max-w-[600px] px-8 mx-auto relative z-10">
+					<div className="hero-content text-center flex flex-col items-center gap-2 max-w-[600px] px-8 mx-auto relative z-10" ref={heroContentRef}>
 						<h1 className="hero-title" aria-label="EMMA BARUA">
-							<span className="hero-title-text" ref={initHeroTitle}>
+							<span className="hero-title-text">
 								EMMA BARUA
 							</span>
 						</h1>
