@@ -2,6 +2,10 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import DelayedLink from "../DelayedLink/DelayedLink";
 import { UI_TUNING } from "../../config/uiTuning";
+import { gsap } from "gsap";
+import { Flip } from "gsap/Flip";
+
+gsap.registerPlugin(Flip);
 
 const NavbarMinimal = () => {
 	const location = useLocation();
@@ -13,10 +17,12 @@ const NavbarMinimal = () => {
 	const hideTimeoutRef = useRef(null);
 	const homeRevealTimeoutRef = useRef(null);
 	const lastScrollY = useRef(0);
+	const linksRef = useRef(null);
 	const autoHideDelay = onHome
 		? UI_TUNING.home.navAutoHideDelayMs
 		: UI_TUNING.navbar.defaultAutoHideDelayMs;
 	const HERO_NAV_REVEAL_DELAY_MS = UI_TUNING.home.navRevealDelayMs;
+	const [linksPosition, setLinksPosition] = useState(onHome ? "center" : "right");
 
 	const showNavbar = useCallback(() => {
 		if (onHome && !homeNavReady) return;
@@ -140,7 +146,7 @@ const NavbarMinimal = () => {
 	const navHidden = "-translate-y-full opacity-0";
 
 	const container =
-		"max-w-[1400px] mx-auto px-4 py-2 sm:py-2.5 flex justify-between items-center";
+		"relative max-w-[1400px] mx-auto px-4 py-2 sm:py-2.5 flex items-center";
 
 	const logoLink =
 		"font-normal tracking-wider text-black no-underline transition-opacity duration-300 relative hover:opacity-60";
@@ -154,6 +160,23 @@ const NavbarMinimal = () => {
 	// Hide navbar when menu is open or when not visible
 	const shouldHide = isMenuOpen || !isVisible;
 	const shouldHideLogo = onHome && isHeroInView;
+
+	useEffect(() => {
+		const desiredPosition = shouldHideLogo ? "center" : "right";
+		if (!linksRef.current || linksPosition === desiredPosition) return;
+
+		const state = Flip.getState(linksRef.current);
+		setLinksPosition(desiredPosition);
+
+		requestAnimationFrame(() => {
+			if (!linksRef.current) return;
+			Flip.from(state, {
+				duration: 0.42,
+				ease: "power2.inOut",
+				absolute: true,
+			});
+		});
+	}, [shouldHideLogo, linksPosition]);
 
 	return (
 		<>
@@ -180,7 +203,13 @@ const NavbarMinimal = () => {
 							</span>
 						</DelayedLink>
 
-						<div className="flex items-center gap-5 sm:gap-8">
+						<div
+							ref={linksRef}
+							className={`absolute flex items-center gap-5 sm:gap-8 transition-[left,right,transform] duration-300 ease-out ${
+								linksPosition === "center"
+									? "left-1/2 -translate-x-1/2"
+									: "right-4 sm:right-6 lg:right-8 translate-x-0"
+							}`}>
 							<DelayedLink
 								to="/"
 								className={`${linkBase} ${isActive("/") ? linkActive : ""}`}>
