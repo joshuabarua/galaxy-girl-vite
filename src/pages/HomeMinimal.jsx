@@ -6,86 +6,24 @@ import MenuToGrid from "../components/MenuToGrid/MenuToGrid";
 import {
 	imagekitGalleries,
 	heroImage as taggedHeroImage,
-	spotlightGallery,
 } from "./portfolio/data/imagekitGalleryData";
 import { useGrained } from "../hooks/useGrained";
 import { getImageKitUrl } from "../utils/imagekit";
-import { slugify } from "../utils/slugify";
 import "./homeMinimal.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const craftFocusAreas = ["Editorial", "Film", "TV", "SFX", "Bridal"];
 
-const featuredDescriptions = {
-	"Beauty & Editorial":
-		"Polished skin stories, expressive texture, and camera-first detail for editorial direction.",
-	SFX: "Creature texture, surreal finishes, and character-built transformations crafted for the lens.",
-	Theatrical:
-		"Stage-tested looks with readable contrast and dramatic detail from front row to close-up.",
-	Wedding:
-		"Long-wear bridal artistry focused on softness, elegance, and flash-friendly finish.",
-};
-
 const HomeMinimal = () => {
-	const featuredCardRef = React.useRef(null);
 	const heroSectionRef = React.useRef(null);
 	const heroMediaRef = React.useRef(null);
+	const heroMediaImageRef = React.useRef(null);
 
-	const featuredGallery = spotlightGallery;
-
-	const featuredImages = Array.isArray(featuredGallery?.images)
-		? featuredGallery.images
-		: [];
-	const featuredCoverImage = featuredImages[0];
-	const featuredPreviewImages = featuredImages.slice(1, 6);
-	const featuredImageUrl = featuredCoverImage?.imagekitPath
-		? getImageKitUrl(featuredCoverImage.imagekitPath, { width: 1080, height: 900 })
-		: featuredCoverImage?.src || "";
-	const heroImage =
-		taggedHeroImage || featuredCoverImage || imagekitGalleries?.[0]?.images?.[0] || null;
+	const heroImage = taggedHeroImage || imagekitGalleries?.[0]?.images?.[0] || null;
 	const heroImageUrl = heroImage?.imagekitPath
 		? getImageKitUrl(heroImage.imagekitPath, { width: 1800, height: 1200 })
 		: heroImage?.src || "";
-	const featuredSlug = featuredGallery
-		? featuredGallery.slug || slugify(featuredGallery.name || "featured-gallery")
-		: "";
-	const featuredDescription =
-		featuredGallery?.description ||
-		featuredDescriptions[featuredGallery?.name] ||
-		"A curated album showcasing polished looks, technical range, and camera-ready artistry.";
-
-	const getFeaturedThumbUrl = React.useCallback(
-		(image) => {
-			if (!image) return "";
-			if (image.imagekitPath) {
-				return getImageKitUrl(image.imagekitPath, {
-					width: 360,
-					height: 360,
-					crop: "faces",
-				});
-			}
-			return image.src || "";
-		},
-		[],
-	);
-
-	const handleFeaturedMouseMove = React.useCallback((event) => {
-		const card = featuredCardRef.current;
-		if (!card) return;
-		const bounds = card.getBoundingClientRect();
-		const x = ((event.clientX - bounds.left) / bounds.width) * 100;
-		const y = ((event.clientY - bounds.top) / bounds.height) * 100;
-		card.style.setProperty("--pointer-x", `${Math.max(0, Math.min(100, x))}%`);
-		card.style.setProperty("--pointer-y", `${Math.max(0, Math.min(100, y))}%`);
-	}, []);
-
-	const resetFeaturedPointer = React.useCallback(() => {
-		const card = featuredCardRef.current;
-		if (!card) return;
-		card.style.setProperty("--pointer-x", "70%");
-		card.style.setProperty("--pointer-y", "26%");
-	}, []);
 
 	useGrained("home-minimal-bg", {
 		grainOpacity: 0.055,
@@ -100,35 +38,59 @@ const HomeMinimal = () => {
 		if (!heroMediaRef.current || !heroSectionRef.current) return undefined;
 
 		const mediaEl = heroMediaRef.current;
+		const mediaImageEl = heroMediaImageRef.current;
 		const sectionEl = heroSectionRef.current;
-		let slowZoom;
+		let introTween;
 
 		const ctx = gsap.context(() => {
-			gsap.set(mediaEl, { scale: 1.18, yPercent: -1, transformOrigin: "50% 42%" });
-			slowZoom = gsap.to(mediaEl, {
-				scale: 1.12,
-				duration: 18,
-				ease: "none",
+			gsap.set(mediaEl, { scale: 1.52, yPercent: -2, transformOrigin: "50% 42%" });
+			if (mediaImageEl) {
+				gsap.set(mediaImageEl, { filter: "grayscale(88%) contrast(1.06) saturate(0.82)" });
+			}
+
+			introTween = gsap.to(mediaEl, {
+				scale: 1.34,
+				duration: 1.35,
+				ease: "power2.out",
 			});
 
-			gsap.to(mediaEl, {
-				scale: 1,
-				yPercent: 2,
-				ease: "none",
+			const heroTimeline = gsap.timeline({
 				scrollTrigger: {
 					trigger: sectionEl,
 					start: "top top",
-					end: "bottom top",
-					scrub: 0.85,
-					onUpdate: () => {
-						if (slowZoom) slowZoom.progress(1);
-					},
+					end: "+=120%",
+					scrub: 1,
+					pin: true,
+					pinSpacing: true,
+					anticipatePin: 1,
+					invalidateOnRefresh: true,
 				},
 			});
+
+			heroTimeline.to(
+				mediaEl,
+				{
+					scale: 1.02,
+					yPercent: 1,
+					ease: "none",
+				},
+				0,
+			);
+
+			if (mediaImageEl) {
+				heroTimeline.to(
+					mediaImageEl,
+					{
+						filter: "grayscale(0%) contrast(1.02) saturate(1)",
+						ease: "none",
+					},
+					0,
+				);
+			}
 		}, sectionEl);
 
 		return () => {
-			if (slowZoom) slowZoom.kill();
+			if (introTween) introTween.kill();
 			ctx.revert();
 		};
 	}, [heroImageUrl]);
@@ -217,6 +179,7 @@ const HomeMinimal = () => {
 							<div className="hero-gallery hero-gallery--one" ref={heroMediaRef}>
 								<div
 									className="hero-gallery__item"
+									ref={heroMediaImageRef}
 									style={{ backgroundImage: `url(${heroImageUrl})` }}
 								/>
 							</div>
@@ -250,58 +213,6 @@ const HomeMinimal = () => {
 						))}
 					</div>
 				</section>
-
-				{featuredGallery && (
-					<section className="featured-section" aria-label="Featured album">
-						<Link
-							ref={featuredCardRef}
-							className="featured-card"
-							to={`/portfolio/${featuredSlug}`}
-							onMouseMove={handleFeaturedMouseMove}
-							onMouseLeave={resetFeaturedPointer}
-							onBlur={resetFeaturedPointer}
-							aria-label={`Open featured album ${featuredGallery.name}`}>
-							<div className="featured-card__image-wrap">
-								{featuredImageUrl && (
-									<img
-										src={featuredImageUrl}
-										alt={featuredCoverImage?.alt || featuredGallery.name}
-										className="featured-card__image"
-										loading="lazy"
-									/>
-								)}
-								<div className="featured-card__veil" aria-hidden="true" />
-								{featuredPreviewImages.length > 0 && (
-									<div className="featured-card__thumb-rail" aria-hidden="true">
-										{featuredPreviewImages.map((image, index) => {
-											const thumbUrl = getFeaturedThumbUrl(image);
-											if (!thumbUrl) return null;
-											return (
-												<span
-													className="featured-card__thumb"
-													key={image.id || `${image.imagekitPath || "thumb"}-${index}`}>
-													<img
-														src={thumbUrl}
-														alt=""
-														loading="lazy"
-													/>
-												</span>
-											);
-										})}
-									</div>
-								)}
-							</div>
-							<div className="featured-card__content">
-								<p className="featured-card__kicker">Featured Album</p>
-								<h2 className="featured-card__title">{featuredGallery.name}</h2>
-								<p className="featured-card__description">{featuredDescription}</p>
-								<div className="featured-card__meta" aria-hidden="true">
-									<span>{featuredImages.length} photos</span>
-								</div>
-							</div>
-						</Link>
-					</section>
-				)}
 
 				<section className="gallery-section">
 					<MenuToGrid
