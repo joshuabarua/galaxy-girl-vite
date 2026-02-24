@@ -64,13 +64,13 @@ html:has(.home-minimal) {
 
 @keyframes heroZoom {
 	0% {
-		transform: scale(2.62) rotate(-7.5deg);
-		filter: brightness(0.82) saturate(0.4) contrast(1.08);
+		transform: scale(2.62) rotate(12deg);
+		filter: brightness(0.8) saturate(0.08) grayscale(0.72) contrast(1.06);
 	}
 
 	100% {
 		transform: scale(1) rotate(0deg);
-		filter: brightness(0.88) saturate(1) contrast(1);
+		filter: brightness(0.9) saturate(1) grayscale(0) contrast(1);
 	}
 }
 
