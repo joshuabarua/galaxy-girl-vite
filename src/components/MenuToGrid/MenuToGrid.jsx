@@ -33,6 +33,7 @@ const MenuToGrid = ({
 
 	const [previewVisible, setPreviewVisible] = useState(false);
 	const [activeGalleryIndex, setActiveGalleryIndex] = useState(-1);
+	const scrollLockYRef = useRef(0);
 
 	const rowRefs = useRef([]);
 	const rowsArrRef = useRef([]);
@@ -40,9 +41,33 @@ const MenuToGrid = ({
 	const centeredRowIndex = useCenteredRowIndex(items, rowRefs);
 	const { livePhotoCounts, countLoading } = useLivePhotoCounts(items);
 
+	const lockPageScroll = () => {
+		if (typeof window === "undefined") return;
+		scrollLockYRef.current = window.scrollY || window.pageYOffset || 0;
+		document.documentElement.classList.add("oh");
+		document.body.classList.add("oh");
+		document.body.style.position = "fixed";
+		document.body.style.top = `-${scrollLockYRef.current}px`;
+		document.body.style.left = "0";
+		document.body.style.right = "0";
+		document.body.style.width = "100%";
+	};
+
+	const unlockPageScroll = () => {
+		if (typeof window === "undefined") return;
+		document.documentElement.classList.remove("oh");
+		document.body.classList.remove("oh");
+		document.body.style.position = "";
+		document.body.style.top = "";
+		document.body.style.left = "";
+		document.body.style.right = "";
+		document.body.style.width = "";
+		window.scrollTo(0, scrollLockYRef.current || 0);
+	};
+
 	useEffect(() => {
 		return () => {
-			document.body.classList.remove("oh");
+			unlockPageScroll();
 			document.querySelector(".preview")?.classList.remove("preview--active");
 			document.querySelector(".preview__close")?.classList.remove("preview__close--show");
 		};
@@ -116,7 +141,7 @@ const MenuToGrid = ({
 		setActiveGalleryIndex(index);
 		setPreviewVisible(true);
 
-		document.body.classList.add("oh");
+		lockPageScroll();
 		const previewOverlay = document.querySelector(".preview");
 		if (previewOverlay) {
 			gsap.killTweensOf(previewOverlay);
@@ -162,7 +187,7 @@ const MenuToGrid = ({
 
 		gsap.timeline({
 			onComplete: () => {
-				document.body.classList.remove("oh");
+				unlockPageScroll();
 				if (previewOverlay) {
 					previewOverlay.classList.remove("preview--active");
 					gsap.set(previewOverlay, { clearProps: "opacity" });
