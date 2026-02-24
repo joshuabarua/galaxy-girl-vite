@@ -9,7 +9,8 @@ export const resolvePreviewUrl = (image) => {
 		return getImageKitUrl(image.imagekitPath, {
 			width: 320,
 			height: 320,
-			crop: "faces",
+			crop: "force",
+			focus: "auto",
 		});
 	}
 	return image.src || "";

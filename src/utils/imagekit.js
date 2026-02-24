@@ -1,10 +1,11 @@
 const URL_ENDPOINT = import.meta.env.VITE_IMAGEKIT_URL_ENDPOINT;
 
-function buildTransform({ width, height, crop = 'maintain_ratio', quality = 'auto', format = 'auto' } = {}) {
+function buildTransform({ width, height, crop = 'maintain_ratio', focus, quality = 'auto', format = 'auto' } = {}) {
   const parts = [];
   if (width) parts.push(`w-${width}`);
   if (height) parts.push(`h-${height}`);
   if (crop) parts.push(`c-${crop}`);
+  if (focus) parts.push(`fo-${focus}`);
   if (quality) parts.push(`q-${quality}`);
   if (format) parts.push(`f-${format}`);
   return parts.length ? `tr=${parts.join(',')}` : '';

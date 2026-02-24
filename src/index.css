@@ -373,12 +373,13 @@ button {
 }
 
 button:hover {
-	border-color: #646cff;
+	border-color: rgba(var(--brand), 0.62);
 }
 
 button:focus,
 button:focus-visible {
-	outline: 4px auto -webkit-focus-ring-color;
+	outline: 2px solid rgba(var(--brand), 0.7);
+	outline-offset: 2px;
 }
 
 .flexRow {
