@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import emailjs from "@emailjs/browser";
-import { useGrained } from "../../hooks/useGrained";
 import { useFadeUpStagger } from "../../hooks/useFadeUpStagger";
 
 const RATE_LIMIT_STORAGE_KEY = "contact-rate-limit-v1";
@@ -178,20 +177,17 @@ const ContactMinimal = () => {
 		}
 	};
 
-	useGrained("contact-minimal-bg", {
-		grainOpacity: 0.055,
-		grainDensity: 1.7,
-		grainWidth: 0.95,
-		grainHeight: 0.95,
-		grainChaos: 1.8,
-		grainSpeed: 5,
-		animate: true,
-		bubbles: false,
-	});
-
 	useEffect(() => {
 		document.documentElement.classList.remove("home-snap");
 		document.body.classList.remove("home-snap");
+		document.documentElement.classList.remove("oh");
+		document.body.classList.remove("oh");
+		document.body.style.overflowY = "auto";
+		document.body.style.overflowX = "hidden";
+		return () => {
+			document.body.style.overflowY = "";
+			document.body.style.overflowX = "";
+		};
 	}, []);
 
 	useFadeUpStagger(".fade-up-item", {

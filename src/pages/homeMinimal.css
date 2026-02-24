@@ -12,22 +12,22 @@ body:has(.home-minimal) {
 	overflow-y: auto !important;
 	overflow-x: hidden !important;
 	height: auto !important;
+	overscroll-behavior-y: auto !important;
 }
 
 html:has(.home-minimal) {
 	overflow-y: auto !important;
 	height: auto !important;
+	overscroll-behavior-y: auto !important;
 }
 
 :root {
-	--hero-sub-size: clamp(1.2rem, 3vw, 3rem);
-	--hero-title-size: calc(var(--hero-sub-size) * 2);
-}
-
-#grain-overlay>canvas {
-	z-index: 10 !important;
-	pointer-events: none;
-	opacity: 1 !important;
+	--hero-sub-size: clamp(1.2rem, 2vw, 6rem);
+	--hero-title-size: calc(var(--hero-sub-size) * 3);
+	--hero-title-color: #f6efe3;
+	--hero-subtitle-color: #f3ddbc;
+	--hero-meta-color: #efe3cf;
+	--hero-accent-color: #d8b58f;
 }
 
 .hero-section {
@@ -90,7 +90,7 @@ html:has(.home-minimal) {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	gap: 0.6rem;
+	gap: 2rem;
 	max-width: 700px;
 	padding: 0 2rem;
 	box-sizing: border-box;
@@ -111,6 +111,8 @@ html:has(.home-minimal) {
 .hero-disciplines {
 	display: flex;
 	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
 	gap: 0.75rem;
 	opacity: 0;
 	animation: heroFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
@@ -118,14 +120,19 @@ html:has(.home-minimal) {
 	font-size: clamp(0.7rem, 1.2vw, 0.95rem);
 	letter-spacing: 0.25em;
 	text-transform: uppercase;
-	color: rgba(255, 255, 255, 0.85);
-	text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
-	margin-top: 0.3rem;
+	color: var(--hero-meta-color);
+	text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+	position: absolute;
+	left: 50%;
+	bottom: clamp(1rem, 4.5vh, 2.6rem);
+	transform: translateX(-50%);
+	width: min(92vw, 980px);
+	z-index: 11;
 }
 
 .hero-disciplines__dot {
 	font-size: 1.2em;
-	color: #999;
+	color: var(--hero-accent-color);
 	animation: heroPulse 2s ease-in-out infinite;
 }
 
@@ -195,16 +202,16 @@ html:has(.home-minimal) {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 0.85rem;
+	gap: 20rem;
 	justify-content: center;
 }
 
 .hero-subtitle-prefix {
-	color: rgba(255, 255, 255, 0.9);
+	color: var(--hero-subtitle-color);
 	font-family: "ZaiRoyalVogueTypewriter";
 	font-size: clamp(1.12rem, 2vw, 1.65rem);
 	letter-spacing: 0.17em;
-	text-shadow: 0 1px 10px rgba(0, 0, 0, 0.45);
+	text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
 }
 
 .hero-craft-band {
@@ -240,9 +247,10 @@ html:has(.home-minimal) {
 
 .hero-title-text {
 	display: inline-block;
-	font-family: "ThoderanNotes", serif;
+	font-family: "ZaiRoyalVogueTypewriter";
 	font-weight: 700;
-	letter-spacing: 0.15em;
+	color: var(--hero-title-color);
+	letter-spacing: 0.07em;
 	margin-right: -0.15em;
 	/* counter letter spacing for true center */
 	font-size: var(--hero-title-size);
@@ -251,7 +259,9 @@ html:has(.home-minimal) {
 	border-right: none;
 	width: auto;
 	animation: none;
-	text-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+	text-shadow:
+		0 3px 10px rgba(0, 0, 0, 0.35),
+		0 12px 26px rgba(0, 0, 0, 0.28);
 	/* subtle elevation */
 	transition:
 		text-shadow 0.4s ease,
@@ -612,6 +622,13 @@ html:has(.home-minimal) {
 		letter-spacing: 0.13em;
 		font-size: clamp(0.95rem, 4vw, 1.2rem);
 		gap: 0.42rem;
+	}
+
+	.hero-disciplines {
+		bottom: clamp(0.8rem, 3.5vh, 1.8rem);
+		width: min(96vw, 760px);
+		letter-spacing: 0.18em;
+		gap: 0.5rem;
 	}
 
 	.hero-subtitle-prefix {

@@ -49,6 +49,16 @@ const RouteTransition = ({
 		return () => observer.disconnect();
 	}, []);
 
+	// Defensive cleanup on every route change so scroll never stays locked
+	useEffect(() => {
+		document.body.classList.remove("oh");
+		document.documentElement.classList.remove("oh");
+		document.body.style.overflowY = "";
+		document.body.style.overflowX = "";
+		document.querySelector(".preview")?.classList.remove("preview--active");
+		document.querySelector(".preview__close")?.classList.remove("preview__close--show");
+	}, [location.key]);
+
 	// Handle delayed navigation start event
 	useEffect(() => {
 		const handler = (e) => {
@@ -69,20 +79,16 @@ const RouteTransition = ({
 	useEffect(() => {
 		if (!showOverlay) return undefined;
 
-		let rafId = 0;
-		let startTimeoutId = 0;
-		const forceTopLoop = () => {
+		const t1 = window.setTimeout(() => {
 			forceScrollTop();
-			rafId = window.requestAnimationFrame(forceTopLoop);
-		};
-
-		startTimeoutId = window.setTimeout(() => {
-			rafId = window.requestAnimationFrame(forceTopLoop);
-		}, 180);
+		}, 0);
+		const t2 = window.setTimeout(() => {
+			forceScrollTop();
+		}, 140);
 
 		return () => {
-			window.clearTimeout(startTimeoutId);
-			if (rafId) window.cancelAnimationFrame(rafId);
+			window.clearTimeout(t1);
+			window.clearTimeout(t2);
 		};
 	}, [showOverlay, location.key]);
 
@@ -148,8 +154,10 @@ const RouteTransition = ({
 	}, [location.key, fadeToDuration, blackHoldDuration, fadeFromDuration]);
 
 	const overlayClasses = [
-		"fixed inset-0 grid grid-cols-1 grid-rows-2 pointer-events-none overflow-hidden z-[2000000]",
+		"fixed inset-0 grid grid-cols-1 grid-rows-2 pointer-events-none overflow-hidden z-[2000000] bg-[#2a2a2a] transition-opacity duration-150 ease-linear",
 	];
+
+	overlayClasses.push(showOverlay || resetOverlay || instantCover ? "opacity-100" : "opacity-0");
 
 	if (bodyHasOverlayBlock) {
 		overlayClasses.push("hidden");

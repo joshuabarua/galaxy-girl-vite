@@ -148,10 +148,10 @@ export function applyGrain(target, options = {}) {
 
   const noise = doc.createElement("div");
   noise.style.position = "absolute";
-  noise.style.top = "-60%";
-  noise.style.left = "-60%";
-  noise.style.width = "220%";
-  noise.style.height = "220%";
+  noise.style.top = "-170%";
+  noise.style.left = "-170%";
+  noise.style.width = "440%";
+  noise.style.height = "440%";
   noise.style.backgroundImage = `url(${pattern})`;
   noise.style.backgroundRepeat = "repeat";
   noise.style.backgroundSize = `${finalOptions.patternWidth}px ${finalOptions.patternHeight}px`;

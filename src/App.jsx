@@ -1,4 +1,5 @@
-import {HashRouter as Router, Routes, Route} from 'react-router-dom';
+import { useEffect } from 'react';
+import {HashRouter as Router, Routes, Route, useLocation} from 'react-router-dom';
 import HomeMinimal from './pages/HomeMinimal';
 import ResumeMinimal from './pages/resume/ResumeMinimal';
 import ContactMinimal from './pages/contact/ContactMinimal';
@@ -7,11 +8,55 @@ import NavbarMinimal from './components/nav/NavbarMinimal';
 import NotFound from './pages/NotFound';
 import RouteTransition from './components/routeTransition/RouteTransition';
 import ScrollToTop from './components/ScrollToTop';
+import { useGrained } from './hooks/useGrained';
+
+function RouteScrollGuard() {
+	const location = useLocation();
+
+	useEffect(() => {
+		const unlock = () => {
+			document.body.classList.remove('oh');
+			document.documentElement.classList.remove('oh');
+			document.body.style.overflowY = 'auto';
+			document.body.style.overflowX = 'hidden';
+			document.body.style.height = 'auto';
+			document.documentElement.style.overflowY = 'auto';
+			document.documentElement.style.overflowX = 'hidden';
+			document.documentElement.style.height = 'auto';
+			document.querySelector('.preview')?.classList.remove('preview--active');
+			document.querySelector('.preview__close')?.classList.remove('preview__close--show');
+		};
+
+		unlock();
+		const t1 = window.setTimeout(unlock, 120);
+		const t2 = window.setTimeout(unlock, 500);
+		return () => {
+			window.clearTimeout(t1);
+			window.clearTimeout(t2);
+		};
+	}, [location.pathname, location.search, location.hash]);
+
+	return null;
+}
 
 function App() {
+	useGrained('global-grain-overlay', {
+		grainOpacity: 0.1375,
+		grainDensity: 1.3,
+		grainWidth: 0.95,
+		grainHeight: 0.95,
+		grainChaos: 14,
+		grainSpeed: 16,
+		animate: true,
+		bubbles: false,
+		zIndex: 1,
+	});
+
 	return (
 		<Router>
 			<>
+				<RouteScrollGuard />
+				<div id="global-grain-overlay" className="fixed inset-0 pointer-events-none z-20" aria-hidden="true" />
 				<ScrollToTop />
 				<NavbarMinimal />
 				<RouteTransition>

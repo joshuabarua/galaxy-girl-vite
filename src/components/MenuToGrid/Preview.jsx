@@ -51,7 +51,7 @@ const Preview = forwardRef(({ data, index, isActive, onLoadMore, onClose, previe
             <span className="preview__item-title-inner">{data.name}</span>
           </h2>
         </div>
-        <div ref={gridRef} className="preview__item-grid grid">
+		<div ref={gridRef} className="preview__item-grid">
           {data.images.slice(0, visibleCount).map((img, idx) => {
             const url = img.src
               || (img.imagekitPath ? getImageKitUrl(img.imagekitPath, { width: 600, height: 600 }) : null)

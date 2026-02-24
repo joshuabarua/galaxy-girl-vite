@@ -2,20 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import MenuToGrid from "../components/MenuToGrid/MenuToGrid";
 import { imagekitGalleries } from "./portfolio/data/imagekitGalleryData";
-import { useGrained } from "../hooks/useGrained";
 import "./homeMinimal.css";
 
 const HomeMinimal = () => {
 	const heroImageUrl = "https://ik.imagekit.io/t3aewf67s/hero/13_1600.jpg";
-
-	useGrained("grain-overlay", {
-		grainOpacity: 0.055,
-		bubbles: false,
-		grainDensity: 1.7,
-		grainChaos: 1.8,
-		grainSpeed: 5,
-		animate: true,
-	});
 
 	const initOnContainer = (node) => {
 		if (!node) {
@@ -34,12 +24,25 @@ const HomeMinimal = () => {
 		} catch { }
 	};
 
+	// Ensure body scrollability when HomeMinimal is active
+	React.useEffect(() => {
+		document.body.classList.remove("oh");
+		document.documentElement.classList.remove("oh");
+		document.body.style.overflowY = 'auto';
+		document.body.style.overflowX = 'hidden';
+		return () => {
+			document.body.classList.remove("oh");
+			document.documentElement.classList.remove("oh");
+			document.body.style.overflowY = '';
+			document.body.style.overflowX = '';
+		};
+	}, []);
+
 	return (
 		<div
 			id="home-minimal-bg"
 			className="home-minimal min-h-screen bg-[#f5f5f5] text-black overflow-x-hidden w-full"
 			ref={initOnContainer}>
-			<div id="grain-overlay" className="fixed inset-0 pointer-events-none z-10" aria-hidden="true" />
 			<div className="page-shell">
 				<section
 					className="hero-section"
@@ -65,13 +68,18 @@ const HomeMinimal = () => {
 						<div className="hero-subtitle" aria-label="Makeup artist">
 							<span className="hero-subtitle-prefix">Makeup Artist</span>
 						</div>
-						<div className="hero-disciplines" aria-label="Specialties">
-							<span>FILM</span>
-							<span className="hero-disciplines__dot">·</span>
-							<span>TV</span>
-							<span className="hero-disciplines__dot">·</span>
-							<span>EDITORIAL</span>
-						</div>
+					</div>
+					<div className="hero-disciplines" aria-label="Specialties">
+						<span>FILM</span>
+						<span className="hero-disciplines__dot">·</span>
+						<span>TV</span>
+						<span className="hero-disciplines__dot">·</span>
+						<span>EDITORIAL</span>
+						<span className="hero-disciplines__dot">·</span>
+						<span>BEAUTY</span>
+						<span className="hero-disciplines__dot">·</span>
+						<span>FASHION</span>
+					
 					</div>
 				</section>
 

@@ -5,7 +5,7 @@ import DelayedLink from "../DelayedLink/DelayedLink";
 const NavbarMinimal = () => {
 	const location = useLocation();
 	const onHome = location.pathname === "/";
-	const [isVisible, setIsVisible] = useState(true);
+	const [isVisible, setIsVisible] = useState(!onHome);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const hideTimeoutRef = useRef(null);
 	const lastScrollY = useRef(0);
@@ -53,8 +53,11 @@ const NavbarMinimal = () => {
 		window.addEventListener("touchstart", handleInteraction, { passive: true });
 		window.addEventListener("click", handleInteraction, { passive: true });
 
-		// Initial show then hide
-		showNavbar();
+		if (onHome) {
+			setIsVisible(false);
+		} else {
+			showNavbar();
+		}
 
 		return () => {
 			window.removeEventListener("scroll", handleScroll);
@@ -65,11 +68,11 @@ const NavbarMinimal = () => {
 				clearTimeout(hideTimeoutRef.current);
 			}
 		};
-	}, [showNavbar]);
+	}, [showNavbar, onHome]);
 
 	const isActive = (path) => location.pathname === path;
 	const navBase =
-		"fixed top-0 left-0 right-0 z-[1000000] bg-transparent border-b border-double border-brand/10 transition-all duration-300";
+		"fixed top-0 left-0 right-0 z-[1000000] bg-transparent border-b border-double border-white/45 shadow-[0_10px_28px_rgba(255,255,255,0.2)] transition-all duration-300";
 	const navHidden = "-translate-y-full opacity-0";
 
 	const container =
@@ -81,7 +84,7 @@ const NavbarMinimal = () => {
 		"opacity-100 visible text-xl sm:text-2xl font-[400] transition-opacity duration-200 font-thoderanNotes";
 
 	const linkBase =
-		"relative text-[1rem] sm:text-[1.1rem] md:text-[1.2rem] font-normal tracking-wider text-[#666] no-underline transition-colors duration-300 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-px after:w-0 after:bg-black after:transition-all hover:text-black hover:after:w-full";
+		"relative text-[1rem] sm:text-[1.1rem] md:text-[1.2rem] font-normal tracking-wider text-[#4a4a4a] no-underline transition-colors duration-300 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-px after:w-0 after:bg-black after:transition-all hover:text-black hover:after:w-full";
 	const linkActive = "text-black after:w-full";
 
 	// Hide navbar when menu is open or when not visible
@@ -93,11 +96,11 @@ const NavbarMinimal = () => {
 				<div className="relative w-full h-full">
 					<span
 						aria-hidden="true"
-						className="pointer-events-none absolute inset-0 h-[200%] rounded-[4px] bg-[hsla(0,0%,100%,0.1)] backdrop-blur-[6px] [mask-image:linear-gradient(to_bottom,black_0,black_50%,transparent_50%)] -z-10"
+						className="pointer-events-none absolute inset-0 h-[200%] rounded-[4px] bg-[hsla(0,0%,100%,0.34)] backdrop-blur-[10px] [mask-image:linear-gradient(to_bottom,black_0,black_50%,transparent_50%)] -z-10"
 					/>
 					<span
 						aria-hidden="true"
-						className="pointer-events-none absolute inset-0 h-full translate-y-full bg-[hsla(0,0%,100%,0.1)] backdrop-blur-[16px] backdrop-brightness-125 [mask-image:linear-gradient(to_bottom,black_0,black_0.5px,transparent_0.5px)] -z-10"
+						className="pointer-events-none absolute inset-0 h-full translate-y-full bg-[hsla(0,0%,100%,0.26)] backdrop-blur-[18px] backdrop-brightness-125 [mask-image:linear-gradient(to_bottom,black_0,black_0.5px,transparent_0.5px)] -z-10"
 					/>
 					<div className={container}>
 						<DelayedLink to="/" className={logoLink} id="navbar-logo-slot">
