@@ -2,10 +2,6 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import DelayedLink from "../DelayedLink/DelayedLink";
 import { UI_TUNING } from "../../config/uiTuning";
-import { gsap } from "gsap";
-import { Flip } from "gsap/Flip";
-
-gsap.registerPlugin(Flip);
 
 const NavbarMinimal = () => {
 	const location = useLocation();
@@ -17,12 +13,10 @@ const NavbarMinimal = () => {
 	const hideTimeoutRef = useRef(null);
 	const homeRevealTimeoutRef = useRef(null);
 	const lastScrollY = useRef(0);
-	const linksRef = useRef(null);
 	const autoHideDelay = onHome
 		? UI_TUNING.home.navAutoHideDelayMs
 		: UI_TUNING.navbar.defaultAutoHideDelayMs;
 	const HERO_NAV_REVEAL_DELAY_MS = UI_TUNING.home.navRevealDelayMs;
-	const [linksPosition, setLinksPosition] = useState(onHome ? "center" : "right");
 
 	const showNavbar = useCallback(() => {
 		if (onHome && !homeNavReady) return;
@@ -156,27 +150,14 @@ const NavbarMinimal = () => {
 	const linkBase =
 		"relative inline-flex items-center text-[0.9rem] sm:text-[0.98rem] md:text-[1.06rem] leading-none font-normal tracking-wider text-[#4a4a4a] no-underline transition-colors duration-300 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-px after:w-0 after:bg-black after:transition-all hover:text-black hover:after:w-full";
 	const linkActive = "text-black after:w-full";
+	const navLinkStyle = {
+		fontFamily: '"ZaiRoyalVogueTypewriter", serif',
+		letterSpacing: "0.06em",
+	};
 
 	// Hide navbar when menu is open or when not visible
 	const shouldHide = isMenuOpen || !isVisible;
 	const shouldHideLogo = onHome && isHeroInView;
-
-	useEffect(() => {
-		const desiredPosition = shouldHideLogo ? "center" : "right";
-		if (!linksRef.current || linksPosition === desiredPosition) return;
-
-		const state = Flip.getState(linksRef.current);
-		setLinksPosition(desiredPosition);
-
-		requestAnimationFrame(() => {
-			if (!linksRef.current) return;
-			Flip.from(state, {
-				duration: 0.42,
-				ease: "power2.inOut",
-				absolute: true,
-			});
-		});
-	}, [shouldHideLogo, linksPosition]);
 
 	return (
 		<>
@@ -204,19 +185,20 @@ const NavbarMinimal = () => {
 						</DelayedLink>
 
 						<div
-							ref={linksRef}
-							className={`absolute flex items-center gap-5 sm:gap-8 transition-[left,right,transform] duration-300 ease-out ${
-								linksPosition === "center"
+							className={`absolute flex items-center gap-5 sm:gap-8 transition-[left,right,transform,opacity] duration-500 ease-out ${
+								shouldHideLogo
 									? "left-1/2 -translate-x-1/2"
 									: "right-4 sm:right-6 lg:right-8 translate-x-0"
 							}`}>
 							<DelayedLink
 								to="/"
+								style={navLinkStyle}
 								className={`${linkBase} ${isActive("/") ? linkActive : ""}`}>
 								Portfolio
 							</DelayedLink>
 							<DelayedLink
 								to="/resume"
+								style={navLinkStyle}
 								className={`${linkBase} ${
 									isActive("/resume") ? linkActive : ""
 								}`}>
@@ -224,6 +206,7 @@ const NavbarMinimal = () => {
 							</DelayedLink>
 							<DelayedLink
 								to="/contact"
+								style={navLinkStyle}
 								className={`${linkBase} ${
 									isActive("/contact") ? linkActive : ""
 								}`}>
