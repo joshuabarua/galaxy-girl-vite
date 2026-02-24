@@ -41,8 +41,8 @@ function RouteScrollGuard() {
 
 function App() {
 	useGrained('global-grain-overlay', {
-		grainOpacity: 0.1375,
-		grainDensity: 1.3,
+		grainOpacity: 0.07,
+		grainDensity: 1.2,
 		grainWidth: 0.95,
 		grainHeight: 0.95,
 		grainChaos: 14,

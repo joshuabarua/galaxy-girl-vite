@@ -317,7 +317,8 @@ const MenuToGrid = ({
 					className="preview__close"
 					aria-label="Close preview"
 					onClick={handleClose}>
-					<span className="preview__close-button">×</span>
+					<span className="preview__close-button" aria-hidden="true">↩</span>
+					<span className="preview__close-label">Back to galleries</span>
 				</button>
 				<div className="preview__inner">
 					{items.map((gallery, index) => (
@@ -333,6 +334,7 @@ const MenuToGrid = ({
 							previewCount={ROW_PREVIEW_COUNT}
 							index={index}
 							isActive={activeGalleryIndex === index}
+							onClose={handleClose}
 							ref={(el) => (previewRefs.current[index] = el)}
 						/>
 					))}

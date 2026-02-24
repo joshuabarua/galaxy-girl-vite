@@ -188,6 +188,24 @@
 	font-display: swap;
 }
 
+@font-face {
+	font-family: "BlovedRegular";
+	src: url("https://ik.imagekit.io/t3aewf67s/fonts/bloved-font/BlovedRegular.ttf") format("truetype");
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "CsblairstampRegular";
+	src: url("https://ik.imagekit.io/t3aewf67s/fonts/cs-blair-stamp-font/CsblairstampRegular.otf") format("opentype");
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "MalgivaDemoRegular";
+	src: url("https://ik.imagekit.io/t3aewf67s/fonts/malgiva-font/MalgivaDemoRegular.ttf") format("truetype");
+	font-display: swap;
+}
+
 :root {
 	line-height: 1.6;
 	font-weight: 300;

@@ -119,7 +119,9 @@ const ResumeMinimal = () => {
 						</a>
 					)}
 					<div>
-						<p className="text-2xl font-normal tracking-[0.2em] uppercase text-[#666] m-0">
+						<p
+							className="text-2xl font-normal tracking-[0.1em] text-[#666] m-0 uppercase"
+							style={{ fontFamily: '"MalgivaDemoRegular", "BlovedRegular", "ZaiRoyalVogueTypewriter", serif', textTransform: 'uppercase' }}>
 							{resumeData.title}
 						</p>
 						{resumeData.subtitle && (

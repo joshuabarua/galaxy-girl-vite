@@ -206,7 +206,7 @@ const ContactMinimal = () => {
 				<header className="fade-up-item text-center mb-8">
 					<h1
 						className="text-[clamp(3.1rem,6.2vw,5.2rem)] font-normal tracking-[0.06em] leading-[0.88] mb-6 uppercase"
-						style={{ fontFamily: '"EmpireColombia", "ZaiOlivettiLettera22", serif' }}>
+						style={{ fontFamily: '"MalgivaDemoRegular", "BlovedRegular", "EmpireColombia", "ZaiOlivettiLettera22", serif' }}>
 						Get in Touch
 					</h1>
 					<p className="text-sm font-normal tracking-[0.2em] uppercase text-[#666] m-0">

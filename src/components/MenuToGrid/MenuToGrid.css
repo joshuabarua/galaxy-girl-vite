@@ -287,22 +287,27 @@
 
 .preview__close {
 	position: absolute;
-	top: 1rem;
-	right: 1rem;
-	width: 3rem;
-	height: 3rem;
-	border: 1px solid var(--menu-text);
+	top: 1.05rem;
+	right: 1.05rem;
+	height: 2.8rem;
+	border: 1px solid rgba(19, 19, 19, 0.24);
 	border-radius: 999px;
-	background: transparent;
+	background: rgba(255, 255, 255, 0.68);
+	backdrop-filter: blur(6px);
 	color: var(--menu-text);
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	gap: 0.45rem;
+	padding: 0 1rem 0 0.8rem;
 	cursor: pointer;
 	z-index: 10;
 	opacity: 0;
 	pointer-events: none;
-	transition: opacity 200ms ease;
+	transition:
+		opacity 200ms ease,
+		background-color 220ms ease,
+		transform 220ms ease;
 }
 
 .preview__close--show {
@@ -311,8 +316,20 @@
 }
 
 .preview__close-button {
-	font-size: 1.6rem;
+	font-size: 1.08rem;
 	line-height: 1;
+	transform: translateY(-1px);
+}
+
+.preview__close-label {
+	font-family: "ZaiRoyalVogueTypewriter";
+	font-size: 0.82rem;
+	letter-spacing: 0.07em;
+	text-transform: uppercase;
+}
+
+.preview__close:hover {
+	background: rgba(255, 255, 255, 0.92);
 	transform: translateY(-1px);
 }
 
@@ -445,6 +462,15 @@
 }
 
 @media (max-width: 900px) {
+	.preview__close {
+		height: 2.5rem;
+		padding: 0 0.7rem;
+	}
+
+	.preview__close-label {
+		display: none;
+	}
+
 	.row {
 		grid-template-columns: auto 1fr auto;
 		padding: 1rem var(--menu-padding-sides);

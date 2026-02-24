@@ -28,6 +28,8 @@ html:has(.home-minimal) {
 	--hero-subtitle-color: #f3ddbc;
 	--hero-meta-color: #efe3cf;
 	--hero-accent-color: #d8b58f;
+	--hero-copy-delay-base: 3s;
+	--hero-copy-stagger: 0.45s;
 }
 
 .hero-section {
@@ -100,12 +102,14 @@ html:has(.home-minimal) {
 
 .hero-title {
 	opacity: 0;
-	animation: heroFadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+	animation: heroCopyRise 1.2s cubic-bezier(0.16, 1, 0.3, 1)
+		var(--hero-copy-delay-base) forwards;
 }
 
 .hero-subtitle {
 	opacity: 0;
-	animation: heroFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+	animation: heroCopyRise 1s cubic-bezier(0.16, 1, 0.3, 1)
+		calc(var(--hero-copy-delay-base) + var(--hero-copy-stagger)) forwards;
 }
 
 .hero-disciplines {
@@ -115,7 +119,8 @@ html:has(.home-minimal) {
 	flex-wrap: wrap;
 	gap: 0.75rem;
 	opacity: 0;
-	animation: heroFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
+	animation: heroCopyRiseCenter 1s cubic-bezier(0.16, 1, 0.3, 1)
+		calc(var(--hero-copy-delay-base) + (var(--hero-copy-stagger) * 2)) forwards;
 	font-family: "ZaiRoyalVogueTypewriter", serif;
 	font-size: clamp(0.7rem, 1.2vw, 0.95rem);
 	letter-spacing: 0.25em;
@@ -128,6 +133,20 @@ html:has(.home-minimal) {
 	transform: translateX(-50%);
 	width: min(92vw, 980px);
 	z-index: 11;
+}
+
+/* Keep hero copy hidden until its own delayed animations run,
+   even when route-transition global text rules are active. */
+.route-transition-wrapper.is-shrinking .hero-title,
+.route-transition-wrapper.is-shrinking .hero-subtitle,
+.route-transition-wrapper.is-shrinking .hero-disciplines,
+.route-transition-wrapper.is-entering .hero-title,
+.route-transition-wrapper.is-entering .hero-subtitle,
+.route-transition-wrapper.is-entering .hero-disciplines,
+.route-transition-wrapper:not(.is-shrinking):not(.is-entering) .hero-title,
+.route-transition-wrapper:not(.is-shrinking):not(.is-entering) .hero-subtitle,
+.route-transition-wrapper:not(.is-shrinking):not(.is-entering) .hero-disciplines {
+	opacity: 0;
 }
 
 .hero-disciplines__dot {
@@ -145,6 +164,30 @@ html:has(.home-minimal) {
 	100% {
 		opacity: 1;
 		transform: translateY(0);
+	}
+}
+
+@keyframes heroCopyRise {
+	0% {
+		opacity: 0;
+		transform: translateY(42px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes heroCopyRiseCenter {
+	0% {
+		opacity: 0;
+		transform: translate(-50%, 42px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translate(-50%, 0);
 	}
 }
 
@@ -247,7 +290,7 @@ html:has(.home-minimal) {
 
 .hero-title-text {
 	display: inline-block;
-	font-family: "ZaiRoyalVogueTypewriter";
+	font-family: "MalgivaDemoRegular", "CsblairstampRegular", "BlovedRegular", "ZaiRoyalVogueTypewriter", serif;
 	font-weight: 700;
 	color: var(--hero-title-color);
 	letter-spacing: 0.07em;
@@ -527,7 +570,7 @@ html:has(.home-minimal) {
 }
 
 .home-footer-cta__title {
-	font-family: "ThoderanNotes", serif;
+	font-family: "MalgivaDemoRegular", "ThoderanNotes", serif;
 	font-size: clamp(1.5rem, 4vw, 2.8rem);
 	font-weight: 700;
 	letter-spacing: 0.03em;

@@ -6,12 +6,16 @@ const NavbarMinimal = () => {
 	const location = useLocation();
 	const onHome = location.pathname === "/";
 	const [isVisible, setIsVisible] = useState(!onHome);
+	const [homeNavReady, setHomeNavReady] = useState(!onHome);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const hideTimeoutRef = useRef(null);
+	const homeRevealTimeoutRef = useRef(null);
 	const lastScrollY = useRef(0);
 	const autoHideDelay = onHome ? 5600 : 4000;
+	const HERO_NAV_REVEAL_DELAY_MS = 9000;
 
 	const showNavbar = useCallback(() => {
+		if (onHome && !homeNavReady) return;
 		setIsVisible(true);
 		if (hideTimeoutRef.current) {
 			clearTimeout(hideTimeoutRef.current);
@@ -19,7 +23,7 @@ const NavbarMinimal = () => {
 		hideTimeoutRef.current = setTimeout(() => {
 			setIsVisible(false);
 		}, autoHideDelay);
-	}, [autoHideDelay]);
+	}, [autoHideDelay, homeNavReady, onHome]);
 
 	// Watch for body.oh class (menu open state)
 	useEffect(() => {
@@ -35,7 +39,39 @@ const NavbarMinimal = () => {
 	}, []);
 
 	useEffect(() => {
+		if (homeRevealTimeoutRef.current) {
+			clearTimeout(homeRevealTimeoutRef.current);
+			homeRevealTimeoutRef.current = null;
+		}
+
+		if (onHome) {
+			setHomeNavReady(false);
+			setIsVisible(false);
+			homeRevealTimeoutRef.current = setTimeout(() => {
+				setHomeNavReady(true);
+				setIsVisible(true);
+				if (hideTimeoutRef.current) {
+					clearTimeout(hideTimeoutRef.current);
+				}
+				hideTimeoutRef.current = setTimeout(() => {
+					setIsVisible(false);
+				}, autoHideDelay);
+			}, HERO_NAV_REVEAL_DELAY_MS);
+		} else {
+			setHomeNavReady(true);
+		}
+
+		return () => {
+			if (homeRevealTimeoutRef.current) {
+				clearTimeout(homeRevealTimeoutRef.current);
+				homeRevealTimeoutRef.current = null;
+			}
+		};
+	}, [onHome, autoHideDelay]);
+
+	useEffect(() => {
 		const handleScroll = () => {
+			if (onHome && !homeNavReady) return;
 			const currentScrollY = window.scrollY;
 			// Show navbar when scrolling up or near top
 			if (currentScrollY < lastScrollY.current || currentScrollY < 100) {
@@ -45,6 +81,7 @@ const NavbarMinimal = () => {
 		};
 
 		const handleInteraction = () => {
+			if (onHome && !homeNavReady) return;
 			showNavbar();
 		};
 
@@ -53,9 +90,7 @@ const NavbarMinimal = () => {
 		window.addEventListener("touchstart", handleInteraction, { passive: true });
 		window.addEventListener("click", handleInteraction, { passive: true });
 
-		if (onHome) {
-			setIsVisible(false);
-		} else {
+		if (!onHome) {
 			showNavbar();
 		}
 
@@ -68,7 +103,7 @@ const NavbarMinimal = () => {
 				clearTimeout(hideTimeoutRef.current);
 			}
 		};
-	}, [showNavbar, onHome]);
+	}, [showNavbar, onHome, homeNavReady]);
 
 	const isActive = (path) => location.pathname === path;
 	const navBase =
@@ -81,7 +116,7 @@ const NavbarMinimal = () => {
 	const logoLink =
 		"font-normal tracking-wider text-black no-underline transition-opacity duration-300 relative hover:opacity-60";
 	const logoText =
-		"opacity-100 visible text-xl sm:text-2xl font-[400] transition-opacity duration-200 font-thoderanNotes";
+		"opacity-100 visible text-xl sm:text-2xl font-[400] transition-opacity duration-200 uppercase tracking-[0.08em]";
 
 	const linkBase =
 		"relative text-[1rem] sm:text-[1.1rem] md:text-[1.2rem] font-normal tracking-wider text-[#4a4a4a] no-underline transition-colors duration-300 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-px after:w-0 after:bg-black after:transition-all hover:text-black hover:after:w-full";
@@ -104,7 +139,11 @@ const NavbarMinimal = () => {
 					/>
 					<div className={container}>
 						<DelayedLink to="/" className={logoLink} id="navbar-logo-slot">
-							<span className={logoText}>Emma Barua</span>
+							<span
+								className={logoText}
+								style={{ fontFamily: '"MalgivaDemoRegular", "BlovedRegular", "ZaiRoyalVogueTypewriter", serif' }}>
+								EMMA BARUA
+							</span>
 						</DelayedLink>
 
 						<div className="flex items-center gap-5 sm:gap-8">
