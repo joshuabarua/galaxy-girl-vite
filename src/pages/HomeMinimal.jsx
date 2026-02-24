@@ -7,25 +7,44 @@ import "./homeMinimal.css";
 
 const HomeMinimal = () => {
 	const heroImageUrl = "https://ik.imagekit.io/t3aewf67s/hero/13_1600.jpg";
+	const [isHeroLoaded, setIsHeroLoaded] = React.useState(false);
+	const heroReadyDispatchedRef = React.useRef(false);
+
+	const markHeroReady = React.useCallback(() => {
+		if (typeof window === "undefined") return;
+		if (heroReadyDispatchedRef.current) return;
+		heroReadyDispatchedRef.current = true;
+		window.__homeHeroReady = true;
+		window.dispatchEvent(new CustomEvent("home-hero-ready"));
+	}, []);
 
 	React.useEffect(() => {
 		if (typeof window === "undefined") return;
-
 		if (window.__homeHeroReady) {
-			window.dispatchEvent(new CustomEvent("home-hero-ready"));
+			heroReadyDispatchedRef.current = true;
+			setIsHeroLoaded(true);
 			return;
 		}
 
-		const preload = new Image();
-		const markReady = () => {
-			window.__homeHeroReady = true;
-			window.dispatchEvent(new CustomEvent("home-hero-ready"));
-		};
+		const fallback = window.setTimeout(() => {
+			markHeroReady();
+		}, 4200);
 
-		preload.onload = markReady;
-		preload.onerror = markReady;
-		preload.src = heroImageUrl;
-	}, [heroImageUrl]);
+		return () => {
+			window.clearTimeout(fallback);
+		};
+	}, [markHeroReady]);
+
+	React.useEffect(() => {
+		if (!isHeroLoaded) return;
+		if (typeof window === "undefined") return;
+		const raf1 = window.requestAnimationFrame(() => {
+			window.requestAnimationFrame(() => {
+				markHeroReady();
+			});
+		});
+		return () => window.cancelAnimationFrame(raf1);
+	}, [isHeroLoaded, markHeroReady]);
 
 	const initOnContainer = (node) => {
 		if (!node) {
@@ -73,9 +92,12 @@ const HomeMinimal = () => {
 					id="hero-logo-container">
 					{heroImageUrl && (
 						<div className="hero-gallery-wrap" aria-hidden="true">
-							<div
+							<img
 								className="hero-gallery__item"
-								style={{ backgroundImage: `url(${heroImageUrl})` }}
+								src={heroImageUrl}
+								alt=""
+								onLoad={() => setIsHeroLoaded(true)}
+								onError={() => markHeroReady()}
 							/>
 						</div>
 					)}
