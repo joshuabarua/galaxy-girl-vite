@@ -15,7 +15,10 @@ const RouteTransition = ({
 	const [contentKey, setContentKey] = useState(location.key);
 	const [isShrinking, setIsShrinking] = useState(true);
 	const [isEntering, setIsEntering] = useState(false);
+	const [initialLoadingVisible, setInitialLoadingVisible] = useState(false);
+	const [loadingPercent, setLoadingPercent] = useState(0);
 	const timeoutRef = useRef();
+	const loadingIntervalRef = useRef(null);
 	const prevLocationRef = useRef(location.key);
 	const isDelayedNav = useRef(false);
 	const contentRef = useRef(null);
@@ -24,9 +27,11 @@ const RouteTransition = ({
 	// Initial mount - fade in
 	useEffect(() => {
 		const reveal = () => {
+			setLoadingPercent(100);
 			setShowOverlay(false);
 			setIsShrinking(false);
 			setIsEntering(true);
+			window.setTimeout(() => setInitialLoadingVisible(false), 220);
 			setTimeout(() => setIsEntering(false), fadeFromDuration);
 			try {
 				window.dispatchEvent(new CustomEvent("route-transition-in-complete"));
@@ -38,7 +43,25 @@ const RouteTransition = ({
 		const shouldWaitForHero = isHomeRoute && !isHeroReady;
 
 		if (shouldWaitForHero) {
+			setInitialLoadingVisible(true);
+			setLoadingPercent(0);
+			if (loadingIntervalRef.current) {
+				window.clearInterval(loadingIntervalRef.current);
+			}
+			loadingIntervalRef.current = window.setInterval(() => {
+				setLoadingPercent((prev) => {
+					if (prev >= 96) return prev;
+					const step = prev < 40 ? 3 : prev < 70 ? 2 : 1;
+					return Math.min(96, prev + step);
+				});
+			}, 70);
+
 			const onHeroReady = () => {
+				if (loadingIntervalRef.current) {
+					window.clearInterval(loadingIntervalRef.current);
+					loadingIntervalRef.current = null;
+				}
+				setLoadingPercent(100);
 				timeoutRef.current = setTimeout(reveal, 80);
 			};
 			window.addEventListener("home-hero-ready", onHeroReady, { once: true });
@@ -51,8 +74,14 @@ const RouteTransition = ({
 				window.removeEventListener("home-hero-ready", onHeroReady);
 				clearTimeout(fallback);
 				clearTimeout(timeoutRef.current);
+				if (loadingIntervalRef.current) {
+					window.clearInterval(loadingIntervalRef.current);
+					loadingIntervalRef.current = null;
+				}
 			};
 		}
+
+		setInitialLoadingVisible(false);
 
 		timeoutRef.current = setTimeout(reveal, fadeFromDuration);
 		return () => clearTimeout(timeoutRef.current);
@@ -187,6 +216,20 @@ const RouteTransition = ({
 			<div className={overlayClasses.join(" ")} aria-hidden="true">
 				<div className={topRowClasses.join(" ")} />
 				<div className={bottomRowClasses.join(" ")} />
+				{initialLoadingVisible && showOverlay && (
+					<div className="absolute left-4 bottom-4 sm:left-6 sm:bottom-6 z-[10001] text-[#ececec] pointer-events-none select-none">
+						<div
+							className="text-[0.72rem] sm:text-[0.8rem] tracking-[0.12em] uppercase opacity-85"
+							style={{ fontFamily: '"MalgivaDemoRegular", "BlovedRegular", serif' }}>
+							Loading
+						</div>
+						<div
+							className="text-[1.55rem] sm:text-[1.8rem] leading-none"
+							style={{ fontFamily: '"MalgivaDemoRegular", "BlovedRegular", serif' }}>
+							{loadingPercent}
+						</div>
+					</div>
+				)}
 			</div>
 			<div key={contentKey} className={contentWrapperClasses} ref={contentRef}>
 				{children}
