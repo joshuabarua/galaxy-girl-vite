@@ -46,23 +46,24 @@ const MenuToGrid = ({
 		scrollLockYRef.current = window.scrollY || window.pageYOffset || 0;
 		document.documentElement.classList.add("oh");
 		document.body.classList.add("oh");
-		document.body.style.position = "fixed";
-		document.body.style.top = `-${scrollLockYRef.current}px`;
-		document.body.style.left = "0";
-		document.body.style.right = "0";
-		document.body.style.width = "100%";
+		document.documentElement.style.overflow = "hidden";
+		document.body.style.overflow = "hidden";
+		document.documentElement.style.height = "100vh";
+		document.body.style.height = "100vh";
+		document.documentElement.style.overscrollBehavior = "none";
+		document.body.style.overscrollBehavior = "none";
 	};
 
 	const unlockPageScroll = () => {
 		if (typeof window === "undefined") return;
 		document.documentElement.classList.remove("oh");
 		document.body.classList.remove("oh");
-		document.body.style.position = "";
-		document.body.style.top = "";
-		document.body.style.left = "";
-		document.body.style.right = "";
-		document.body.style.width = "";
-		window.scrollTo(0, scrollLockYRef.current || 0);
+		document.documentElement.style.overflow = "";
+		document.body.style.overflow = "";
+		document.documentElement.style.height = "";
+		document.body.style.height = "";
+		document.documentElement.style.overscrollBehavior = "";
+		document.body.style.overscrollBehavior = "";
 	};
 
 	useEffect(() => {
@@ -143,6 +144,7 @@ const MenuToGrid = ({
 
 		lockPageScroll();
 		const previewOverlay = document.querySelector(".preview");
+		preview.DOM.el?.scrollTo?.(0, 0);
 		if (previewOverlay) {
 			gsap.killTweensOf(previewOverlay);
 			gsap.set(previewOverlay, { opacity: 0 });

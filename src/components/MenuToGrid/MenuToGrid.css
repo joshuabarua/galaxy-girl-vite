@@ -287,7 +287,7 @@
 
 .preview__close {
 	position: absolute;
-	top: 1.05rem;
+	top: calc(1.05rem + env(safe-area-inset-top, 0px));
 	right: 1.05rem;
 	height: 2.8rem;
 	border: 1px solid rgba(19, 19, 19, 0.24);
@@ -471,6 +471,7 @@
 	.preview__close {
 		height: 2.5rem;
 		padding: 0 0.7rem;
+		top: calc(0.75rem + env(safe-area-inset-top, 0px));
 	}
 
 	.preview__close-icon {
@@ -525,7 +526,7 @@
 	}
 
 	.preview__item {
-		padding: 4.75rem 1rem 2rem;
+		padding: calc(4.75rem + env(safe-area-inset-top, 0px)) 1rem calc(2rem + env(safe-area-inset-bottom, 0px));
 	}
 
 	.preview__item-content {
