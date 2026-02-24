@@ -46,6 +46,7 @@ const MenuToGrid = ({
 		scrollLockYRef.current = window.scrollY || window.pageYOffset || 0;
 		document.documentElement.classList.add("oh");
 		document.body.classList.add("oh");
+		document.body.classList.add("gallery-open");
 		document.documentElement.style.overflow = "hidden";
 		document.body.style.overflow = "hidden";
 		document.documentElement.style.height = "100vh";
@@ -58,6 +59,7 @@ const MenuToGrid = ({
 		if (typeof window === "undefined") return;
 		document.documentElement.classList.remove("oh");
 		document.body.classList.remove("oh");
+		document.body.classList.remove("gallery-open");
 		document.documentElement.style.overflow = "";
 		document.body.style.overflow = "";
 		document.documentElement.style.height = "";

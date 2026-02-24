@@ -683,6 +683,13 @@ html:has(.home-minimal) {
 }
 
 @media (max-width: 768px) {
+	body.gallery-open .home-minimal .hero-section,
+	body.gallery-open .home-minimal .home-footer-cta,
+	body.gallery-open .home-minimal .hero-divider {
+		opacity: 0;
+		pointer-events: none;
+	}
+
 	.home-minimal .page-shell {
 		position: relative;
 	}
