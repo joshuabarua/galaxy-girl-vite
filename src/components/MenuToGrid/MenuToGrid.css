@@ -328,6 +328,12 @@
 	text-transform: uppercase;
 }
 
+.preview__close-icon {
+	display: none;
+	font-size: 1.15rem;
+	line-height: 1;
+}
+
 .preview__close:hover {
 	background: rgba(255, 255, 255, 0.92);
 	transform: translateY(-1px);
@@ -465,6 +471,10 @@
 	.preview__close {
 		height: 2.5rem;
 		padding: 0 0.7rem;
+	}
+
+	.preview__close-icon {
+		display: inline-block;
 	}
 
 	.preview__close-label {

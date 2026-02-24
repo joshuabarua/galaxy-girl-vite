@@ -25,14 +25,6 @@ const HomeMinimal = () => {
 			setIsHeroLoaded(true);
 			return;
 		}
-
-		const fallback = window.setTimeout(() => {
-			markHeroReady();
-		}, 4200);
-
-		return () => {
-			window.clearTimeout(fallback);
-		};
 	}, [markHeroReady]);
 
 	React.useEffect(() => {

@@ -9,6 +9,7 @@ const NavbarMinimal = () => {
 	const [isVisible, setIsVisible] = useState(!onHome);
 	const [homeNavReady, setHomeNavReady] = useState(!onHome);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const [isHeroInView, setIsHeroInView] = useState(false);
 	const hideTimeoutRef = useRef(null);
 	const homeRevealTimeoutRef = useRef(null);
 	const lastScrollY = useRef(0);
@@ -40,6 +41,31 @@ const NavbarMinimal = () => {
 		
 		return () => observer.disconnect();
 	}, []);
+
+	// On home, hide nav logo while hero title section is still in view.
+	useEffect(() => {
+		if (!onHome) {
+			setIsHeroInView(false);
+			return;
+		}
+
+		const heroEl = document.getElementById("hero-logo-container");
+		if (!heroEl || typeof IntersectionObserver === "undefined") {
+			setIsHeroInView(false);
+			return;
+		}
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				const [entry] = entries;
+				setIsHeroInView(Boolean(entry?.isIntersecting && entry.intersectionRatio > 0.2));
+			},
+			{ threshold: [0, 0.2, 0.4, 0.6, 0.8] },
+		);
+
+		observer.observe(heroEl);
+		return () => observer.disconnect();
+	}, [onHome]);
 
 	useEffect(() => {
 		if (homeRevealTimeoutRef.current) {
@@ -119,7 +145,7 @@ const NavbarMinimal = () => {
 	const logoLink =
 		"font-normal tracking-wider text-black no-underline transition-opacity duration-300 relative hover:opacity-60";
 	const logoText =
-		"opacity-100 visible inline-flex items-center text-lg sm:text-xl leading-none font-[400] transition-opacity duration-200 uppercase tracking-[0.08em]";
+		"inline-flex items-center text-lg sm:text-xl leading-none font-[400] uppercase tracking-[0.08em] transition-all duration-300 ease-out";
 
 	const linkBase =
 		"relative inline-flex items-center text-[0.9rem] sm:text-[0.98rem] md:text-[1.06rem] leading-none font-normal tracking-wider text-[#4a4a4a] no-underline transition-colors duration-300 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-px after:w-0 after:bg-black after:transition-all hover:text-black hover:after:w-full";
@@ -127,6 +153,7 @@ const NavbarMinimal = () => {
 
 	// Hide navbar when menu is open or when not visible
 	const shouldHide = isMenuOpen || !isVisible;
+	const shouldHideLogo = onHome && isHeroInView;
 
 	return (
 		<>
@@ -143,7 +170,11 @@ const NavbarMinimal = () => {
 					<div className={container}>
 						<DelayedLink to="/" className={logoLink} id="navbar-logo-slot">
 							<span
-								className={logoText}
+								className={`${logoText} ${
+									shouldHideLogo
+										? "opacity-0 -translate-y-1 pointer-events-none"
+										: "opacity-100 translate-y-0"
+								}`}
 								style={{ fontFamily: '"MalgivaDemoRegular", "BlovedRegular", "ZaiRoyalVogueTypewriter", serif' }}>
 								EMMA BARUA
 							</span>
