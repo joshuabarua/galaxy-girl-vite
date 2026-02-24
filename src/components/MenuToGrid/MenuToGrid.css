@@ -83,7 +83,7 @@ body.loading {
 	display: grid;
 	position: relative;
 	cursor: pointer;
-	grid-template-columns: minmax(180px, 30vw) minmax(220px, 36vw) 2.2rem;
+	grid-template-columns: minmax(260px, 38vw) minmax(210px, 30vw) 2.2rem;
 	justify-content: center;
 	grid-column-gap: clamp(1.2rem, 2.8vw, 3rem);
 	align-items: center;
@@ -176,7 +176,7 @@ body.loading {
 	overflow: hidden;
 	z-index: 2;
 	grid-column: 1;
-	max-width: min(30vw, 420px);
+	max-width: min(38vw, 560px);
 	justify-self: end;
 }
 
@@ -482,14 +482,12 @@ body.loading {
 	display: block;
 	position: relative;
 	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-max-width: 100%;
+	max-width: 100%;
 }
 
 .cell__title-inner--base {
 	grid-row: 1;
-	font-size: clamp(1.25rem, 1.82vw, 2rem);
+	font-size: clamp(1.1rem, 1.55vw, 1.7rem);
 	font-family: "ZaiOlivettiLettera22";
 	letter-spacing: 0.02em;
 	line-height: 1;
@@ -499,11 +497,59 @@ max-width: 100%;
 .cell__title-inner--alt {
 	grid-row: 2;
 	font-family: "ZaiRoyalVogueTypewriter";
-	letter-spacing: 0.02em;
-	font-size: clamp(1.05rem, 1.4vw, 1.6rem);
+	letter-spacing: 0.04em;
+	font-size: clamp(0.92rem, 1.15vw, 1.2rem);
 	line-height: 1;
 	bottom: 3px;
 	visibility: hidden;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.row--centered {
+		transform: none;
+		filter: none;
+	}
+
+	.row--centered::before,
+	.row--centered::after {
+		opacity: 0;
+	}
+
+	.row--centered .cell--image,
+	.row--centered .cell--action {
+		opacity: 0;
+		transform: translateY(14px);
+		pointer-events: none;
+	}
+
+	.row--centered .cell__img {
+		opacity: 0;
+		transform: translateY(10px) scale(0.96) rotate(var(--card-tilt));
+	}
+}
+
+@media (orientation: portrait), (hover: none), (pointer: coarse) {
+	.row:hover::before,
+	.row:hover::after {
+		opacity: 0;
+	}
+
+	.row:hover {
+		transform: none;
+		filter: none;
+	}
+
+	.row:hover .cell--image,
+	.row:hover .cell--action {
+		opacity: 0;
+		transform: translateY(14px);
+		pointer-events: none;
+	}
+
+	.row:hover .cell__img {
+		opacity: 0;
+		transform: translateY(10px) scale(0.96) rotate(var(--card-tilt));
+	}
 }
 
 .cell__title--switch .cell__title-inner--alt {
