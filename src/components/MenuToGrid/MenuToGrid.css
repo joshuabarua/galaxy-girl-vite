@@ -83,9 +83,9 @@ body.loading {
 	display: grid;
 	position: relative;
 	cursor: pointer;
-	grid-template-columns: auto auto auto;
+	grid-template-columns: minmax(180px, 30vw) minmax(220px, 36vw) 2.2rem;
 	justify-content: center;
-	grid-column-gap: clamp(0.8rem, 2.1vw, 2.2rem);
+	grid-column-gap: clamp(1.2rem, 2.8vw, 3rem);
 	align-items: center;
 	padding: var(--padding-row) var(--padding-sides);
 	border-top: 1px solid var(--color-row-border);
@@ -176,6 +176,8 @@ body.loading {
 	overflow: hidden;
 	z-index: 2;
 	grid-column: 1;
+	max-width: min(30vw, 420px);
+	justify-self: end;
 }
 
 .cell--image {
@@ -184,7 +186,7 @@ body.loading {
 	gap: clamp(0.7rem, 1vw, 1.2rem);
 	justify-content: center;
 	margin-left: 0;
-	width: min(34vw, 390px);
+	width: min(34vw, 420px);
 	grid-column: 2;
 	justify-self: center;
 	position: relative;
@@ -205,7 +207,19 @@ body.loading {
 }
 
 .cell__img-wrap .cell__img + .cell__img {
-	margin-left: clamp(-3rem, -2.2vw, -1.6rem);
+	margin-left: 0;
+}
+
+.cell__img-wrap .cell__img:nth-child(2) {
+	margin-left: calc(var(--img-size) * -0.6);
+}
+
+.cell__img-wrap .cell__img:nth-child(3) {
+	margin-left: calc(var(--img-size) * -0.7);
+}
+
+.cell__img-wrap .cell__img:nth-child(4) {
+	margin-left: calc(var(--img-size) * -0.8);
 }
 
 .cell__img {
@@ -365,7 +379,25 @@ body.loading {
 .row--centered .cell__img-wrap .cell__img + .cell__img,
 .row:hover .cell__img-wrap .cell__img + .cell__img,
 .row:focus-visible .cell__img-wrap .cell__img + .cell__img {
-	margin-left: clamp(-3.6rem, -2.6vw, -1.9rem);
+	margin-left: 0;
+}
+
+.row--centered .cell__img-wrap .cell__img:nth-child(2),
+.row:hover .cell__img-wrap .cell__img:nth-child(2),
+.row:focus-visible .cell__img-wrap .cell__img:nth-child(2) {
+	margin-left: calc(var(--img-size) * -0.6);
+}
+
+.row--centered .cell__img-wrap .cell__img:nth-child(3),
+.row:hover .cell__img-wrap .cell__img:nth-child(3),
+.row:focus-visible .cell__img-wrap .cell__img:nth-child(3) {
+	margin-left: calc(var(--img-size) * -0.7);
+}
+
+.row--centered .cell__img-wrap .cell__img:nth-child(4),
+.row:hover .cell__img-wrap .cell__img:nth-child(4),
+.row:focus-visible .cell__img-wrap .cell__img:nth-child(4) {
+	margin-left: calc(var(--img-size) * -0.8);
 }
 
 .row--centered .cell__img:nth-child(1),
@@ -467,7 +499,7 @@ max-width: 100%;
 .cell__title-inner--alt {
 	grid-row: 2;
 	font-family: "ZaiRoyalVogueTypewriter";
-	letter-spacing: -0.04em;
+	letter-spacing: 0.02em;
 	font-size: clamp(1.05rem, 1.4vw, 1.6rem);
 	line-height: 1;
 	bottom: 3px;
@@ -659,6 +691,11 @@ max-width: 100%;
 	overflow: hidden;
 	opacity: 0;
 	transform: scale(0);
+}
+
+.preview__item--current .preview__item-img {
+	opacity: 1;
+	transform: scale(1);
 }
 
 .preview__item-img-inner {
