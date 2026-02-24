@@ -138,12 +138,10 @@ body.loading {
 
 .row--centered::before {
 	opacity: 0.38;
-	background: linear-gradient(
-		90deg,
-		rgba(0, 0, 0, 0.008),
-		rgba(0, 0, 0, 0.028) 52%,
-		rgba(0, 0, 0, 0.008)
-	);
+	background: linear-gradient(90deg,
+			rgba(0, 0, 0, 0.008),
+			rgba(0, 0, 0, 0.028) 52%,
+			rgba(0, 0, 0, 0.008));
 }
 
 .row--centered::after {
@@ -207,7 +205,7 @@ body.loading {
 	transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-.cell__img-wrap .cell__img + .cell__img {
+.cell__img-wrap .cell__img+.cell__img {
 	margin-left: 0;
 }
 
@@ -232,10 +230,6 @@ body.loading {
 	grid-template-rows: auto auto;
 	will-change: transform, opacity;
 	opacity: 0;
-	transform: translateY(10px) scale(0.96) rotate(var(--card-tilt));
-	transition:
-		opacity 0.4s ease,
-		transform 0.45s cubic-bezier(0.22, 0.7, 0.16, 1);
 	border-radius: 6px;
 	overflow: hidden;
 }
@@ -264,11 +258,9 @@ body.loading {
 	content: "";
 	position: absolute;
 	inset: 0;
-	background: linear-gradient(
-		to right,
-		rgba(245, 243, 240, 0) 45%,
-		rgba(245, 243, 240, 0.72) 100%
-	);
+	background: linear-gradient(to right,
+			rgba(245, 243, 240, 0) 45%,
+			rgba(245, 243, 240, 0.72) 100%);
 	opacity: 0;
 	pointer-events: none;
 	transition: opacity 0.35s ease;
@@ -323,107 +315,16 @@ body.loading {
 		transform 0.3s ease;
 }
 
+/* GSAP handles all image animation now;
+   containers are always visible, individual .cell__img starts at opacity: 0 */
 .cell--image,
 .cell--action {
-	opacity: 0;
-	transform: translateY(14px);
-	pointer-events: none;
-	transition:
-		opacity 0.45s ease,
-		transform 0.45s cubic-bezier(0.2, 0.65, 0.2, 1),
-		color 0.3s ease;
-}
-
-.row--centered .cell--image,
-.row--centered .cell--action,
-.row:hover .cell--image,
-.row:hover .cell--action,
-.row:focus-visible .cell--image,
-.row:focus-visible .cell--action {
 	opacity: 1;
-	transform: translateY(0);
 	pointer-events: auto;
+	transition: color 0.3s ease;
 }
 
-.row--centered .cell__img,
-.row:hover .cell__img,
-.row:focus-visible .cell__img {
-	opacity: 1;
-	transform: translateY(0) scale(1) rotate(var(--card-tilt));
-}
-
-.row--centered .cell__img:last-child::after,
-.row:hover .cell__img:last-child::after,
-.row:focus-visible .cell__img:last-child::after {
-	opacity: 1;
-}
-
-.row--centered .cell__img-wrap,
-.row:hover .cell__img-wrap,
-.row:focus-visible .cell__img-wrap {
-	transform: translateX(0);
-}
-
-.row--centered .cell__img,
-.row:hover .cell__img,
-.row:focus-visible .cell__img {
-	filter: saturate(1.03) contrast(1.02);
-}
-
-.row--centered .cell__img:first-child,
-.row:hover .cell__img:first-child,
-.row:focus-visible .cell__img:first-child {
-	transform: translateY(-2px) scale(1.08) rotate(var(--card-tilt));
-	z-index: 6;
-}
-
-.row--centered .cell__img-wrap .cell__img + .cell__img,
-.row:hover .cell__img-wrap .cell__img + .cell__img,
-.row:focus-visible .cell__img-wrap .cell__img + .cell__img {
-	margin-left: 0;
-}
-
-.row--centered .cell__img-wrap .cell__img:nth-child(2),
-.row:hover .cell__img-wrap .cell__img:nth-child(2),
-.row:focus-visible .cell__img-wrap .cell__img:nth-child(2) {
-	margin-left: calc(var(--img-size) * -0.6);
-}
-
-.row--centered .cell__img-wrap .cell__img:nth-child(3),
-.row:hover .cell__img-wrap .cell__img:nth-child(3),
-.row:focus-visible .cell__img-wrap .cell__img:nth-child(3) {
-	margin-left: calc(var(--img-size) * -0.7);
-}
-
-.row--centered .cell__img-wrap .cell__img:nth-child(4),
-.row:hover .cell__img-wrap .cell__img:nth-child(4),
-.row:focus-visible .cell__img-wrap .cell__img:nth-child(4) {
-	margin-left: calc(var(--img-size) * -0.8);
-}
-
-.row--centered .cell__img:nth-child(1),
-.row:hover .cell__img:nth-child(1),
-.row:focus-visible .cell__img:nth-child(1) {
-	transition-delay: 0.02s;
-}
-
-.row--centered .cell__img:nth-child(2),
-.row:hover .cell__img:nth-child(2),
-.row:focus-visible .cell__img:nth-child(2) {
-	transition-delay: 0.09s;
-}
-
-.row--centered .cell__img:nth-child(3),
-.row:hover .cell__img:nth-child(3),
-.row:focus-visible .cell__img:nth-child(3) {
-	transition-delay: 0.16s;
-}
-
-.row--centered .cell__img:nth-child(4),
-.row:hover .cell__img:nth-child(4),
-.row:focus-visible .cell__img:nth-child(4) {
-	transition-delay: 0.23s;
-}
+/* Transition-delays removed: GSAP handles staggered animation */
 
 .cell__action-arrow {
 	color: rgba(19, 19, 19, 0.66);
@@ -505,31 +406,15 @@ body.loading {
 	visibility: hidden;
 }
 
-@media (hover: hover) and (pointer: fine) {
-	.row--centered {
-		transform: none;
-		filter: none;
-	}
+/* Desktop hover-capable devices: centered-reveal is kept active so
+   images are visible when a row scrolls into the viewport center.
+   Hover still provides the richer interaction on top. */
 
-	.row--centered::before,
-	.row--centered::after {
-		opacity: 0;
-	}
+/* Touch-only devices: disable hover effects, rely on
+   centered-reveal via IntersectionObserver instead. */
+@media (hover: none),
+(pointer: coarse) {
 
-	.row--centered .cell--image,
-	.row--centered .cell--action {
-		opacity: 0;
-		transform: translateY(14px);
-		pointer-events: none;
-	}
-
-	.row--centered .cell__img {
-		opacity: 0;
-		transform: translateY(10px) scale(0.96) rotate(var(--card-tilt));
-	}
-}
-
-@media (orientation: portrait), (hover: none), (pointer: coarse) {
 	.row:hover::before,
 	.row:hover::after {
 		opacity: 0;
@@ -889,17 +774,14 @@ html.oh {
 	flex-direction: column;
 	align-items: center;
 	justify-content: flex-start;
-	padding: calc(var(--nav-h, 84px) + 2rem + env(safe-area-inset-top, 0px)) 2rem
-		4rem;
+	padding: calc(var(--nav-h, 84px) + 2rem + env(safe-area-inset-top, 0px)) 2rem 4rem;
 	max-width: 1400px;
 	margin: 0 auto;
 }
 
 @media (min-width: 768px) {
 	.preview__item-content {
-		padding-top: calc(
-			var(--nav-h, 84px) + 3rem + env(safe-area-inset-top, 0px)
-		);
+		padding-top: calc(var(--nav-h, 84px) + 3rem + env(safe-area-inset-top, 0px));
 	}
 }
 
@@ -967,6 +849,7 @@ html.oh {
 }
 
 .preview {
+	display: block;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -1048,6 +931,7 @@ html.oh {
 }
 
 .preview__item-content {
+	width: 100%;
 	max-width: 1400px;
 	margin: 0 auto;
 }
@@ -1113,18 +997,36 @@ html.oh {
 	animation: previewGridReveal 0.45s ease both;
 }
 
-.preview__item--current .preview__item-img:nth-child(1) { animation-delay: 0.03s; }
-.preview__item--current .preview__item-img:nth-child(2) { animation-delay: 0.06s; }
-.preview__item--current .preview__item-img:nth-child(3) { animation-delay: 0.09s; }
-.preview__item--current .preview__item-img:nth-child(4) { animation-delay: 0.12s; }
-.preview__item--current .preview__item-img:nth-child(5) { animation-delay: 0.15s; }
-.preview__item--current .preview__item-img:nth-child(6) { animation-delay: 0.18s; }
+.preview__item--current .preview__item-img:nth-child(1) {
+	animation-delay: 0.03s;
+}
+
+.preview__item--current .preview__item-img:nth-child(2) {
+	animation-delay: 0.06s;
+}
+
+.preview__item--current .preview__item-img:nth-child(3) {
+	animation-delay: 0.09s;
+}
+
+.preview__item--current .preview__item-img:nth-child(4) {
+	animation-delay: 0.12s;
+}
+
+.preview__item--current .preview__item-img:nth-child(5) {
+	animation-delay: 0.15s;
+}
+
+.preview__item--current .preview__item-img:nth-child(6) {
+	animation-delay: 0.18s;
+}
 
 @keyframes previewGridReveal {
 	from {
 		opacity: 0;
 		transform: translateY(14px) scale(0.98);
 	}
+
 	to {
 		opacity: 1;
 		transform: translateY(0) scale(1);
@@ -1498,6 +1400,7 @@ html.oh {
 
 .preview__item-img {
 	display: block;
+	width: 100%;
 	opacity: 1 !important;
 	transform: none !important;
 	visibility: visible !important;

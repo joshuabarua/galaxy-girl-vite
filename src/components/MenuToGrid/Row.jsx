@@ -18,70 +18,72 @@ export class Row {
   }
 
   hoverIn() {
-    gsap.killTweensOf([this.DOM.title, this.DOM.actionBtn]);
+    gsap.killTweensOf([this.DOM.images, this.DOM.title, this.DOM.actionBtn]);
 
     this.mouseenterTimeline = gsap.timeline()
       .addLabel('start', 0)
-      .to(this.DOM.titleWrap, {
-        duration: 0.2,
-        ease: 'power2.out',
-        paddingLeft: 6
+      // Codrops-style image reveal: scale + slide in from right, staggered
+      .to(this.DOM.images, {
+        duration: 0.4,
+        ease: 'power3',
+        startAt: {
+          scale: 0.8,
+          xPercent: 20
+        },
+        scale: 1,
+        xPercent: 0,
+        opacity: 1,
+        stagger: -0.035
       }, 'start')
-      .to(this.DOM.actionBtn, {
-        duration: 0.25,
-        ease: 'power2.out',
-        x: 4
-      }, 'start')
+      // Title switch animation
       .set(this.DOM.title, { transformOrigin: '0% 50%' }, 'start')
       .to(this.DOM.title, {
-        duration: 0.2,
-        ease: 'power2.in',
+        duration: 0.1,
+        ease: 'power1.in',
         yPercent: -50,
         onComplete: () => this.DOM.titleWrap.classList.add('cell__title--switch')
       }, 'start')
       .to(this.DOM.title, {
-        duration: 0.35,
-        ease: 'power4.out',
+        duration: 0.5,
+        ease: 'expo',
         startAt: {
           yPercent: 50,
-          rotation: 5
+          rotation: 15
         },
         yPercent: 0,
         rotation: 0
-      }, 'start+=0.3');
+      }, 'start+=0.1');
   }
 
   hoverOut() {
-    gsap.killTweensOf([this.DOM.title, this.DOM.actionBtn]);
+    gsap.killTweensOf([this.DOM.images, this.DOM.title, this.DOM.actionBtn]);
 
     gsap.timeline()
       .addLabel('start')
-      .to(this.DOM.titleWrap, {
-        duration: 0.2,
-        ease: 'power2.out',
-        paddingLeft: 0
+      // Codrops-style image hide: scale down + fade out
+      .to(this.DOM.images, {
+        duration: 0.4,
+        ease: 'power4',
+        opacity: 0,
+        scale: 0.8
       }, 'start')
-      .to(this.DOM.actionBtn, {
-        duration: 0.2,
-        ease: 'power2.out',
-        x: 0
-      }, 'start')
+      // Title switch back
       .to(this.DOM.title, {
-        duration: 0.2,
-        ease: 'power2.in',
+        duration: 0.1,
+        ease: 'power1.in',
         yPercent: -50,
         onComplete: () => this.DOM.titleWrap.classList.remove('cell__title--switch')
       }, 'start')
       .to(this.DOM.title, {
-        duration: 0.35,
-        ease: 'power4.out',
+        duration: 0.5,
+        ease: 'expo',
         startAt: {
           yPercent: 50,
-          rotation: 5
+          rotation: 15
         },
         yPercent: 0,
         rotation: 0
-      }, 'start+=0.3');
+      }, 'start+=0.1');
   }
 }
 

@@ -1,23 +1,11 @@
 import React from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Link } from "react-router-dom";
 import MenuToGrid from "../components/MenuToGrid/MenuToGrid";
 import { imagekitGalleries } from "./portfolio/data/imagekitGalleryData";
 import { useGrained } from "../hooks/useGrained";
-import { getImageKitUrl } from "../utils/imagekit";
 import "./homeMinimal.css";
 
-gsap.registerPlugin(ScrollTrigger);
-
-const craftFocusAreas = ["Editorial", "Film", "TV", "SFX", "Bridal"];
-
 const HomeMinimal = () => {
-	const heroSectionRef = React.useRef(null);
-	const heroMediaRef = React.useRef(null);
-	const heroMediaImageRef = React.useRef(null);
-	const heroContentRef = React.useRef(null);
-
 	const heroImageUrl = "https://ik.imagekit.io/t3aewf67s/hero/13_1600.jpg";
 
 	useGrained("grain-overlay", {
@@ -28,52 +16,6 @@ const HomeMinimal = () => {
 		grainSpeed: 5,
 		animate: true,
 	});
-
-	React.useEffect(() => {
-		if (!heroMediaRef.current || !heroSectionRef.current || !heroContentRef.current) return undefined;
-
-		const sectionEl = heroSectionRef.current;
-		const mediaEl = heroMediaRef.current;
-		const mediaImageEl = heroMediaImageRef.current;
-		const contentEl = heroContentRef.current;
-
-		const ctx = gsap.context(() => {
-			// Set initial state
-			gsap.set(mediaImageEl, {
-				scale: 1.3,
-				filter: "grayscale(88%) contrast(1.06) saturate(0.82)"
-			});
-
-			const tl = gsap.timeline({
-				scrollTrigger: {
-					trigger: sectionEl,
-					start: "top top",
-					end: "+=70%",
-					scrub: true,
-					pin: true,
-					pinSpacing: true,
-					anticipatePin: 1,
-					invalidateOnRefresh: true,
-				},
-			});
-
-			tl.to(mediaImageEl, {
-				scale: 1,
-				filter: "grayscale(0%) contrast(1.02) saturate(1)",
-				ease: "none",
-			}, 0);
-
-			tl.to(contentEl, {
-				opacity: 1,
-				y: 0,
-				ease: "none"
-			}, 0);
-		}, sectionEl);
-
-		return () => {
-			ctx.revert();
-		};
-	}, [heroImageUrl]);
 
 	const initOnContainer = (node) => {
 		if (!node) {
@@ -92,11 +34,6 @@ const HomeMinimal = () => {
 		} catch { }
 	};
 
-	const initHeroSection = (node) => {
-		heroSectionRef.current = node;
-	};
-
-
 	return (
 		<div
 			id="home-minimal-bg"
@@ -105,46 +42,36 @@ const HomeMinimal = () => {
 			<div id="grain-overlay" className="fixed inset-0 pointer-events-none z-10" aria-hidden="true" />
 			<div className="page-shell">
 				<section
-					className="hero-section flex items-center justify-center flex-col px-8 relative"
-					id="hero-logo-container"
-					ref={initHeroSection}>
+					className="hero-section"
+					id="hero-logo-container">
 					{heroImageUrl && (
 						<div className="hero-gallery-wrap" aria-hidden="true">
-							<div className="hero-gallery hero-gallery--one" ref={heroMediaRef}>
-								<div
-									className="hero-gallery__item"
-									ref={heroMediaImageRef}
-									style={{ backgroundImage: `url(${heroImageUrl})` }}
-								/>
-							</div>
+							<div
+								className="hero-gallery__item"
+								style={{ backgroundImage: `url(${heroImageUrl})` }}
+							/>
 						</div>
 					)}
 					<div className="hero-atmosphere" aria-hidden="true">
 						<span className="hero-atmosphere__blob hero-atmosphere__blob--primary" />
 						<span className="hero-atmosphere__blob hero-atmosphere__blob--secondary" />
 					</div>
-					<div className="hero-content text-center flex flex-col items-center gap-2 max-w-[600px] px-8 mx-auto relative z-10" ref={heroContentRef}>
+					<div className="hero-content">
 						<h1 className="hero-title" aria-label="EMMA BARUA">
 							<span className="hero-title-text">
 								EMMA BARUA
 							</span>
 						</h1>
-						<div className="hero-subtitle" aria-label="Makeup artist specialties">
+						<div className="hero-subtitle" aria-label="Makeup artist">
 							<span className="hero-subtitle-prefix">Makeup Artist</span>
 						</div>
-					</div>
-				</section>
-
-				<section className="hero-craft-band" aria-label="Craft focus areas">
-					<div className="hero-craft-inline" aria-hidden="true">
-						{craftFocusAreas.map((focus, index) => (
-							<React.Fragment key={focus}>
-								<span className="hero-craft-item">{focus}</span>
-								{index < craftFocusAreas.length - 1 && (
-									<span className="hero-craft-dot">·</span>
-								)}
-							</React.Fragment>
-						))}
+						<div className="hero-disciplines" aria-label="Specialties">
+							<span>FILM</span>
+							<span className="hero-disciplines__dot">·</span>
+							<span>TV</span>
+							<span className="hero-disciplines__dot">·</span>
+							<span>EDITORIAL</span>
+						</div>
 					</div>
 				</section>
 
@@ -169,3 +96,4 @@ const HomeMinimal = () => {
 };
 
 export default HomeMinimal;
+
