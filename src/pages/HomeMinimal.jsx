@@ -8,6 +8,25 @@ import "./homeMinimal.css";
 const HomeMinimal = () => {
 	const heroImageUrl = "https://ik.imagekit.io/t3aewf67s/hero/13_1600.jpg";
 
+	React.useEffect(() => {
+		if (typeof window === "undefined") return;
+
+		if (window.__homeHeroReady) {
+			window.dispatchEvent(new CustomEvent("home-hero-ready"));
+			return;
+		}
+
+		const preload = new Image();
+		const markReady = () => {
+			window.__homeHeroReady = true;
+			window.dispatchEvent(new CustomEvent("home-hero-ready"));
+		};
+
+		preload.onload = markReady;
+		preload.onerror = markReady;
+		preload.src = heroImageUrl;
+	}, [heroImageUrl]);
+
 	const initOnContainer = (node) => {
 		if (!node) {
 			try {

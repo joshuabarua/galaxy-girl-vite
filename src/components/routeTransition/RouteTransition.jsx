@@ -23,7 +23,7 @@ const RouteTransition = ({
 
 	// Initial mount - fade in
 	useEffect(() => {
-		timeoutRef.current = setTimeout(() => {
+		const reveal = () => {
 			setShowOverlay(false);
 			setIsShrinking(false);
 			setIsEntering(true);
@@ -31,7 +31,30 @@ const RouteTransition = ({
 			try {
 				window.dispatchEvent(new CustomEvent("route-transition-in-complete"));
 			} catch {}
-		}, fadeFromDuration);
+		};
+
+		const isHomeRoute = location.pathname === "/";
+		const isHeroReady = typeof window !== "undefined" && window.__homeHeroReady;
+		const shouldWaitForHero = isHomeRoute && !isHeroReady;
+
+		if (shouldWaitForHero) {
+			const onHeroReady = () => {
+				timeoutRef.current = setTimeout(reveal, 80);
+			};
+			window.addEventListener("home-hero-ready", onHeroReady, { once: true });
+
+			const fallback = setTimeout(() => {
+				timeoutRef.current = setTimeout(reveal, 80);
+			}, 3500);
+
+			return () => {
+				window.removeEventListener("home-hero-ready", onHeroReady);
+				clearTimeout(fallback);
+				clearTimeout(timeoutRef.current);
+			};
+		}
+
+		timeoutRef.current = setTimeout(reveal, fadeFromDuration);
 		return () => clearTimeout(timeoutRef.current);
 	}, [fadeFromDuration]);
 

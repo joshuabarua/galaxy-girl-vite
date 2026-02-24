@@ -317,8 +317,7 @@ const MenuToGrid = ({
 					className="preview__close"
 					aria-label="Close preview"
 					onClick={handleClose}>
-					<span className="preview__close-button" aria-hidden="true">↩</span>
-					<span className="preview__close-label">Back to galleries</span>
+					<span className="preview__close-label">Back</span>
 				</button>
 				<div className="preview__inner">
 					{items.map((gallery, index) => (
