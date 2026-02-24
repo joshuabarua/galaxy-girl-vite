@@ -18,7 +18,6 @@ const RouteTransition = ({
 	const [initialLoadingVisible, setInitialLoadingVisible] = useState(false);
 	const [loadingPercent, setLoadingPercent] = useState(0);
 	const timeoutRef = useRef();
-	const loadingIntervalRef = useRef(null);
 	const prevLocationRef = useRef(location.key);
 	const isDelayedNav = useRef(false);
 	const contentRef = useRef(null);
@@ -45,22 +44,15 @@ const RouteTransition = ({
 		if (shouldWaitForHero) {
 			setInitialLoadingVisible(true);
 			setLoadingPercent(0);
-			if (loadingIntervalRef.current) {
-				window.clearInterval(loadingIntervalRef.current);
-			}
-			loadingIntervalRef.current = window.setInterval(() => {
-				setLoadingPercent((prev) => {
-					if (prev >= 96) return prev;
-					const step = prev < 40 ? 3 : prev < 70 ? 2 : 1;
-					return Math.min(96, prev + step);
-				});
-			}, 70);
+
+			const onHeroProgress = (event) => {
+				const next = Number(event?.detail?.value);
+				if (!Number.isFinite(next)) return;
+				setLoadingPercent((prev) => Math.max(prev, Math.min(100, Math.round(next))));
+			};
+			window.addEventListener("home-hero-progress", onHeroProgress);
 
 			const onHeroReady = () => {
-				if (loadingIntervalRef.current) {
-					window.clearInterval(loadingIntervalRef.current);
-					loadingIntervalRef.current = null;
-				}
 				setLoadingPercent(100);
 				timeoutRef.current = setTimeout(reveal, 80);
 			};
@@ -71,13 +63,10 @@ const RouteTransition = ({
 			}, 3500);
 
 			return () => {
+				window.removeEventListener("home-hero-progress", onHeroProgress);
 				window.removeEventListener("home-hero-ready", onHeroReady);
 				clearTimeout(fallback);
 				clearTimeout(timeoutRef.current);
-				if (loadingIntervalRef.current) {
-					window.clearInterval(loadingIntervalRef.current);
-					loadingIntervalRef.current = null;
-				}
 			};
 		}
 

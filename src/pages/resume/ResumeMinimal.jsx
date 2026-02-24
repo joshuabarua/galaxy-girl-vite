@@ -84,8 +84,9 @@ const ResumeMinimal = () => {
 			<div className="w-[90vw] max-w-[900px] mx-auto page-shell">
 				<header className="relative fade-up-item pb-4 border-b border-brand/10 text-center">
 					{cvUrl && (
-						<a
-							className="absolute top-0 right-0 inline-flex items-center justify-center w-11 h-11 rounded-full border border-brand/20 text-black transition-colors duration-200 hover:bg-black hover:text-white"
+						<div className="flex justify-end mb-2 md:mb-0 md:block">
+							<a
+							className="relative md:absolute md:top-0 md:right-0 z-20 inline-flex items-center justify-center w-11 h-11 rounded-full border border-brand/20 text-black pointer-events-auto transition-colors duration-200 hover:bg-black hover:text-white"
 							href={cvUrl}
 							target="_blank"
 							rel="noopener noreferrer"
@@ -115,8 +116,9 @@ const ResumeMinimal = () => {
 									strokeLinejoin="round"
 								/>
 							</svg>
-							<span className="sr-only">Download CV</span>
-						</a>
+								<span className="sr-only">Download CV</span>
+							</a>
+						</div>
 					)}
 					<div>
 						<p
