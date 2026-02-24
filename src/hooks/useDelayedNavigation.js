@@ -9,10 +9,13 @@ export const useDelayedNavigation = ({
   const navigate = useNavigate();
 
   const delayedNavigate = useCallback((to, options = {}) => {
+    const skipTransitionStart = Boolean(options.skipTransitionStart);
     // Start transition first to avoid visible pre-transition jump.
-    window.dispatchEvent(new CustomEvent('delayed-navigation-start', { 
-      detail: { to, options } 
-    }));
+    if (!skipTransitionStart) {
+      window.dispatchEvent(new CustomEvent('delayed-navigation-start', {
+        detail: { to, options }
+      }));
+    }
 
     const override = options.transition || {};
     const fadeTo = typeof override.fadeToDuration === 'number'
@@ -23,8 +26,6 @@ export const useDelayedNavigation = ({
       : blackHoldDuration;
 
     setTimeout(() => {
-      // Scroll to top again right before navigation
-      forceScrollTop();
       navigate(to, options);
 
       // HashRouter/location transitions can restore old scroll position asynchronously.

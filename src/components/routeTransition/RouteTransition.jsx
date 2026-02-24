@@ -15,7 +15,6 @@ const RouteTransition = ({
 	const [contentKey, setContentKey] = useState(location.key);
 	const [isShrinking, setIsShrinking] = useState(true);
 	const [isEntering, setIsEntering] = useState(false);
-	const [bodyHasOverlayBlock, setBodyHasOverlayBlock] = useState(false);
 	const timeoutRef = useRef();
 	const prevLocationRef = useRef(location.key);
 	const isDelayedNav = useRef(false);
@@ -35,19 +34,6 @@ const RouteTransition = ({
 		}, fadeFromDuration);
 		return () => clearTimeout(timeoutRef.current);
 	}, [fadeFromDuration]);
-
-	useEffect(() => {
-		if (typeof document === "undefined" || typeof MutationObserver === "undefined") {
-			return;
-		}
-		const update = () => {
-			setBodyHasOverlayBlock(document.body.classList.contains("oh"));
-		};
-		update();
-		const observer = new MutationObserver(update);
-		observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
-		return () => observer.disconnect();
-	}, []);
 
 	// Defensive cleanup on every route change so scroll never stays locked
 	useEffect(() => {
@@ -76,21 +62,8 @@ const RouteTransition = ({
 			window.removeEventListener("delayed-navigation-start", handler);
 	}, []);
 
-	useEffect(() => {
-		if (!showOverlay) return undefined;
-
-		const t1 = window.setTimeout(() => {
-			forceScrollTop();
-		}, 0);
-		const t2 = window.setTimeout(() => {
-			forceScrollTop();
-		}, 140);
-
-		return () => {
-			window.clearTimeout(t1);
-			window.clearTimeout(t2);
-		};
-	}, [showOverlay, location.key]);
+	// Avoid forcing scroll-top while the old page is still visible.
+	// Scroll reset is handled after route swap.
 
 	// Handle actual route change
 	useEffect(() => {
@@ -154,14 +127,8 @@ const RouteTransition = ({
 	}, [location.key, fadeToDuration, blackHoldDuration, fadeFromDuration]);
 
 	const overlayClasses = [
-		"fixed inset-0 grid grid-cols-1 grid-rows-2 pointer-events-none overflow-hidden z-[2000000] bg-[#2a2a2a] transition-opacity duration-150 ease-linear",
+		"fixed inset-0 grid grid-cols-1 grid-rows-2 pointer-events-none overflow-hidden z-[2000000]",
 	];
-
-	overlayClasses.push(showOverlay || resetOverlay || instantCover ? "opacity-100" : "opacity-0");
-
-	if (bodyHasOverlayBlock) {
-		overlayClasses.push("hidden");
-	}
 
 	const topRowClasses = [
 		"relative bg-[#2a2a2a] overflow-hidden will-change-[transform] transform origin-top transition-transform duration-150ms ease-friction z-[9999]",
