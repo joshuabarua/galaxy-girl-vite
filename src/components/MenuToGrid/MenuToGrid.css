@@ -137,7 +137,7 @@
 	position: relative;
 	max-width: 100%;
 	font-size: clamp(1.08rem, 1.55vw, 1.7rem);
-	font-family: "ZaiOlivettiLettera22";
+	font-family: "ZaiRoyalVogueTypewriter", serif;
 	letter-spacing: 0.02em;
 	top: 6px;
 }

@@ -49,22 +49,45 @@ const NavbarMinimal = () => {
 			return;
 		}
 
-		const heroEl = document.getElementById("hero-logo-container");
-		if (!heroEl || typeof IntersectionObserver === "undefined") {
+		if (typeof IntersectionObserver === "undefined") {
 			setIsHeroInView(false);
 			return;
 		}
 
-		const observer = new IntersectionObserver(
-			(entries) => {
-				const [entry] = entries;
-				setIsHeroInView(Boolean(entry?.isIntersecting && entry.intersectionRatio > 0.2));
-			},
-			{ threshold: [0, 0.2, 0.4, 0.6, 0.8] },
-		);
+		// Default to hidden on Home until we can reliably observe hero visibility.
+		setIsHeroInView(true);
 
-		observer.observe(heroEl);
-		return () => observer.disconnect();
+		let rafId = 0;
+		let observer = null;
+		let attempts = 0;
+
+		const attachObserver = () => {
+			const heroEl = document.getElementById("hero-logo-container");
+			if (!heroEl) {
+				attempts += 1;
+				if (attempts < 120) {
+					rafId = window.requestAnimationFrame(attachObserver);
+				}
+				return;
+			}
+
+			observer = new IntersectionObserver(
+				(entries) => {
+					const [entry] = entries;
+					setIsHeroInView(Boolean(entry?.isIntersecting && entry.intersectionRatio > 0.2));
+				},
+				{ threshold: [0, 0.2, 0.4, 0.6, 0.8] },
+			);
+
+			observer.observe(heroEl);
+		};
+
+		attachObserver();
+
+		return () => {
+			if (rafId) window.cancelAnimationFrame(rafId);
+			if (observer) observer.disconnect();
+		};
 	}, [onHome]);
 
 	useEffect(() => {
@@ -149,7 +172,7 @@ const NavbarMinimal = () => {
 
 	const linkBase =
 		"relative inline-flex items-center text-[0.9rem] sm:text-[0.98rem] md:text-[1.06rem] leading-none font-normal tracking-wider text-[#4a4a4a] no-underline transition-colors duration-300 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-px after:w-0 after:bg-black after:transition-all hover:text-black hover:after:w-full";
-	const linkActive = "text-black after:w-full";
+	const linkActive = "text-black font-medium";
 	const navLinkStyle = {
 		fontFamily: '"ZaiRoyalVogueTypewriter", serif',
 		letterSpacing: "0.06em",
