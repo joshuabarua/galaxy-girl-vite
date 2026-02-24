@@ -42,3 +42,4 @@ eyeshadow/*
 eyeshadow
 .env.*
 install-state.gz
+.cache/

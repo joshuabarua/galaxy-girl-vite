@@ -5,6 +5,7 @@ import { Flip } from "gsap/Flip";
 import { imagekitGalleries, spotlightGallery } from "./data/imagekitGalleryData";
 import { getImageKitUrl } from "../../utils/imagekit";
 import { slugify } from "../../utils/slugify";
+import { useGrained } from "../../hooks/useGrained";
 
 gsap.registerPlugin(Flip);
 
@@ -21,6 +22,17 @@ const PortfolioDetail = () => {
 	const gallery = allGalleries.find(
 		(g) => (g.slug || slugify(g.name)) === slug
 	);
+
+	useGrained("portfolio-detail-bg", {
+		grainOpacity: 0.055,
+		grainDensity: 1.7,
+		grainWidth: 0.95,
+		grainHeight: 0.95,
+		grainChaos: 1.8,
+		grainSpeed: 5,
+		animate: true,
+		bubbles: false,
+	});
 
 	useEffect(() => {
 		if (!hasAnimated.current && location.state?.fromHome && gridRef.current) {
@@ -108,7 +120,9 @@ const PortfolioDetail = () => {
 
 	if (!gallery) {
 		return (
-			<div className="min-h-screen bg-[#f5f5f5] text-black flex items-center justify-center">
+			<div
+				id="portfolio-detail-bg"
+				className="min-h-screen bg-[#f5f5f5] text-black flex items-center justify-center">
 				<div className="text-center">
 					<h1 className="text-3xl mb-4">Gallery not found</h1>
 					<Link to="/" className="text-brand underline">
@@ -122,7 +136,9 @@ const PortfolioDetail = () => {
 	const images = Array.isArray(gallery.images) ? gallery.images : [];
 
 	return (
-		<div className="min-h-screen bg-[#f5f5f5] text-black overflow-x-hidden">
+		<div
+			id="portfolio-detail-bg"
+			className="min-h-screen bg-[#f5f5f5] text-black overflow-x-hidden">
 			<div className="page-shell w-[90vw] max-w-[1400px] mx-auto">
 				<header className="flex items-center justify-between mb-8">
 					<h1 className="text-3xl font-light tracking-wide">{gallery.name}</h1>

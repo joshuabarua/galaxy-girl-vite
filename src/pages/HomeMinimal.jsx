@@ -1,15 +1,19 @@
 import React from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Link } from "react-router-dom";
 import MenuToGrid from "../components/MenuToGrid/MenuToGrid";
 import {
 	imagekitGalleries,
+	heroImage as taggedHeroImage,
 	spotlightGallery,
 } from "./portfolio/data/imagekitGalleryData";
 import { useGrained } from "../hooks/useGrained";
 import { getImageKitUrl } from "../utils/imagekit";
 import { slugify } from "../utils/slugify";
 import "./homeMinimal.css";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const craftFocusAreas = ["Editorial", "Film", "TV", "SFX", "Bridal"];
 
@@ -25,6 +29,8 @@ const featuredDescriptions = {
 
 const HomeMinimal = () => {
 	const featuredCardRef = React.useRef(null);
+	const heroSectionRef = React.useRef(null);
+	const heroMediaRef = React.useRef(null);
 
 	const featuredGallery = spotlightGallery;
 
@@ -36,6 +42,11 @@ const HomeMinimal = () => {
 	const featuredImageUrl = featuredCoverImage?.imagekitPath
 		? getImageKitUrl(featuredCoverImage.imagekitPath, { width: 1080, height: 900 })
 		: featuredCoverImage?.src || "";
+	const heroImage =
+		taggedHeroImage || featuredCoverImage || imagekitGalleries?.[0]?.images?.[0] || null;
+	const heroImageUrl = heroImage?.imagekitPath
+		? getImageKitUrl(heroImage.imagekitPath, { width: 1800, height: 1200 })
+		: heroImage?.src || "";
 	const featuredSlug = featuredGallery
 		? featuredGallery.slug || slugify(featuredGallery.name || "featured-gallery")
 		: "";
@@ -85,6 +96,43 @@ const HomeMinimal = () => {
 		animate: true,
 	});
 
+	React.useEffect(() => {
+		if (!heroMediaRef.current || !heroSectionRef.current) return undefined;
+
+		const mediaEl = heroMediaRef.current;
+		const sectionEl = heroSectionRef.current;
+		let slowZoom;
+
+		const ctx = gsap.context(() => {
+			gsap.set(mediaEl, { scale: 1.18, yPercent: -1, transformOrigin: "50% 42%" });
+			slowZoom = gsap.to(mediaEl, {
+				scale: 1.12,
+				duration: 18,
+				ease: "none",
+			});
+
+			gsap.to(mediaEl, {
+				scale: 1,
+				yPercent: 2,
+				ease: "none",
+				scrollTrigger: {
+					trigger: sectionEl,
+					start: "top top",
+					end: "bottom top",
+					scrub: 0.85,
+					onUpdate: () => {
+						if (slowZoom) slowZoom.progress(1);
+					},
+				},
+			});
+		}, sectionEl);
+
+		return () => {
+			if (slowZoom) slowZoom.kill();
+			ctx.revert();
+		};
+	}, [heroImageUrl]);
+
 	const initOnContainer = (node) => {
 		if (!node) {
 			try {
@@ -102,7 +150,9 @@ const HomeMinimal = () => {
 		} catch {}
 	};
 
-	const initHeroSection = () => {};
+	const initHeroSection = (node) => {
+		heroSectionRef.current = node;
+	};
 
 	const initHeroTitle = (el) => {
 		if (!el || el.dataset.gsapped) return;
@@ -162,6 +212,16 @@ const HomeMinimal = () => {
 					className="hero-section flex items-center justify-center flex-col px-8 relative"
 					id="hero-logo-container"
 					ref={initHeroSection}>
+					{heroImageUrl && (
+						<div className="hero-gallery-wrap" aria-hidden="true">
+							<div className="hero-gallery hero-gallery--one" ref={heroMediaRef}>
+								<div
+									className="hero-gallery__item"
+									style={{ backgroundImage: `url(${heroImageUrl})` }}
+								/>
+							</div>
+						</div>
+					)}
 					<div className="hero-atmosphere" aria-hidden="true">
 						<span className="hero-atmosphere__blob hero-atmosphere__blob--primary" />
 						<span className="hero-atmosphere__blob hero-atmosphere__blob--secondary" />

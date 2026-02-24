@@ -1,0 +1,1114 @@
+{
+  "generatedAt": "2026-02-24T09:10:31.703Z",
+  "source": "imagekit-sync",
+  "galleries": [
+    {
+      "id": 1,
+      "name": "Beauty & Editorial",
+      "folder": "beautyEditorial",
+      "slug": "beauty-editorial",
+      "images": [
+        {
+          "id": "68f112bc5c7cd75eb8abfcbe",
+          "imagekitPath": "beautyEditorial/1.jpg",
+          "width": 2400,
+          "height": 3600,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 1",
+          "caption": ""
+        },
+        {
+          "id": "68f112bd5c7cd75eb8ac01d5",
+          "imagekitPath": "beautyEditorial/2.jpg",
+          "width": 2400,
+          "height": 3600,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 2",
+          "caption": ""
+        },
+        {
+          "id": "68f112bc5c7cd75eb8abf872",
+          "imagekitPath": "beautyEditorial/3.jpg",
+          "width": 2400,
+          "height": 3600,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 3",
+          "caption": ""
+        },
+        {
+          "id": "68f112ba5c7cd75eb8abe01e",
+          "imagekitPath": "beautyEditorial/4.jpg",
+          "width": 2400,
+          "height": 3600,
+          "tags": [
+            "featured"
+          ],
+          "featured": true,
+          "hero": false,
+          "alt": "Beauty & Editorial 4",
+          "caption": ""
+        },
+        {
+          "id": "68f112bc5c7cd75eb8abf774",
+          "imagekitPath": "beautyEditorial/5.jpg",
+          "width": 2400,
+          "height": 3600,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 5",
+          "caption": ""
+        },
+        {
+          "id": "68f112bb5c7cd75eb8abf466",
+          "imagekitPath": "beautyEditorial/6.jpg",
+          "width": 2400,
+          "height": 3600,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 6",
+          "caption": ""
+        },
+        {
+          "id": "68f112b85c7cd75eb8abd1cb",
+          "imagekitPath": "beautyEditorial/7.jpg",
+          "width": 2400,
+          "height": 3600,
+          "tags": [
+            "featured",
+            "hero"
+          ],
+          "featured": true,
+          "hero": true,
+          "alt": "Beauty & Editorial 7",
+          "caption": ""
+        },
+        {
+          "id": "68f112bc5c7cd75eb8abf6ca",
+          "imagekitPath": "beautyEditorial/8.jpg",
+          "width": 2400,
+          "height": 3600,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 8",
+          "caption": ""
+        },
+        {
+          "id": "68f112bb5c7cd75eb8abf0d6",
+          "imagekitPath": "beautyEditorial/9.jpg",
+          "width": 2400,
+          "height": 3600,
+          "tags": [
+            "featured"
+          ],
+          "featured": true,
+          "hero": false,
+          "alt": "Beauty & Editorial 9",
+          "caption": ""
+        },
+        {
+          "id": "68f112bd5c7cd75eb8ac0154",
+          "imagekitPath": "beautyEditorial/10.jpg",
+          "width": 2400,
+          "height": 3600,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 10",
+          "caption": ""
+        },
+        {
+          "id": "68f112bc5c7cd75eb8abf77e",
+          "imagekitPath": "beautyEditorial/11.jpg",
+          "width": 2400,
+          "height": 3600,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 11",
+          "caption": ""
+        },
+        {
+          "id": "68f112bc5c7cd75eb8abfa9c",
+          "imagekitPath": "beautyEditorial/12.jpg",
+          "width": 2400,
+          "height": 3600,
+          "tags": [
+            "featured"
+          ],
+          "featured": true,
+          "hero": false,
+          "alt": "Beauty & Editorial 12",
+          "caption": ""
+        },
+        {
+          "id": "68f112bc5c7cd75eb8abfa05",
+          "imagekitPath": "beautyEditorial/13.jpg",
+          "width": 2400,
+          "height": 3600,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 13",
+          "caption": ""
+        },
+        {
+          "id": "68f112bc5c7cd75eb8abfbd9",
+          "imagekitPath": "beautyEditorial/14.jpg",
+          "width": 2400,
+          "height": 3600,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 14",
+          "caption": ""
+        },
+        {
+          "id": "68f112c15c7cd75eb8ac1dd2",
+          "imagekitPath": "beautyEditorial/15.jpg",
+          "width": 1600,
+          "height": 2400,
+          "tags": [
+            "featured"
+          ],
+          "featured": true,
+          "hero": false,
+          "alt": "Beauty & Editorial 15",
+          "caption": ""
+        },
+        {
+          "id": "68f112b65c7cd75eb8abc403",
+          "imagekitPath": "beautyEditorial/16.jpg",
+          "width": 750,
+          "height": 923,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 16",
+          "caption": ""
+        },
+        {
+          "id": "68f112bf5c7cd75eb8ac122b",
+          "imagekitPath": "beautyEditorial/17.jpg",
+          "width": 2400,
+          "height": 3600,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 17",
+          "caption": ""
+        },
+        {
+          "id": "68f112be5c7cd75eb8ac0abb",
+          "imagekitPath": "beautyEditorial/18.jpg",
+          "width": 2400,
+          "height": 3600,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 18",
+          "caption": ""
+        },
+        {
+          "id": "68f112bb5c7cd75eb8abea9a",
+          "imagekitPath": "beautyEditorial/19.jpg",
+          "width": 2400,
+          "height": 3600,
+          "tags": [
+            "featured"
+          ],
+          "featured": true,
+          "hero": false,
+          "alt": "Beauty & Editorial 19",
+          "caption": ""
+        },
+        {
+          "id": "68f112bf5c7cd75eb8ac0ece",
+          "imagekitPath": "beautyEditorial/20.jpg",
+          "width": 2400,
+          "height": 3600,
+          "tags": [
+            "featured"
+          ],
+          "featured": true,
+          "hero": false,
+          "alt": "Beauty & Editorial 20",
+          "caption": ""
+        },
+        {
+          "id": "68f112bc5c7cd75eb8abf641",
+          "imagekitPath": "beautyEditorial/21.jpg",
+          "width": 2400,
+          "height": 3600,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 21",
+          "caption": ""
+        },
+        {
+          "id": "68f112bc5c7cd75eb8abf970",
+          "imagekitPath": "beautyEditorial/22.jpg",
+          "width": 2400,
+          "height": 3600,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 22",
+          "caption": ""
+        },
+        {
+          "id": "68f112bf5c7cd75eb8ac1224",
+          "imagekitPath": "beautyEditorial/23.jpg",
+          "width": 2435,
+          "height": 3600,
+          "tags": [
+            "featured"
+          ],
+          "featured": true,
+          "hero": false,
+          "alt": "Beauty & Editorial 23",
+          "caption": ""
+        },
+        {
+          "id": "68f112b45c7cd75eb8abb853",
+          "imagekitPath": "beautyEditorial/24.jpg",
+          "width": 533,
+          "height": 800,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 24",
+          "caption": ""
+        },
+        {
+          "id": "68f112bb5c7cd75eb8abed75",
+          "imagekitPath": "beautyEditorial/25.jpg",
+          "width": 3744,
+          "height": 5616,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 25",
+          "caption": ""
+        },
+        {
+          "id": "68f112bb5c7cd75eb8abeb19",
+          "imagekitPath": "beautyEditorial/26.jpg",
+          "width": 2828,
+          "height": 4498,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 26",
+          "caption": ""
+        },
+        {
+          "id": "68f112b45c7cd75eb8abb77d",
+          "imagekitPath": "beautyEditorial/27.jpg",
+          "width": 576,
+          "height": 640,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 27",
+          "caption": ""
+        },
+        {
+          "id": "68f112ba5c7cd75eb8abdff2",
+          "imagekitPath": "beautyEditorial/28.jpg",
+          "width": 3600,
+          "height": 2400,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 28",
+          "caption": ""
+        },
+        {
+          "id": "68f112b85c7cd75eb8abcd4a",
+          "imagekitPath": "beautyEditorial/29.jpg",
+          "width": 2400,
+          "height": 3600,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 29",
+          "caption": ""
+        },
+        {
+          "id": "68f112ba5c7cd75eb8abe069",
+          "imagekitPath": "beautyEditorial/30.jpg",
+          "width": 3600,
+          "height": 2400,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 30",
+          "caption": ""
+        },
+        {
+          "id": "68f112c25c7cd75eb8ac2014",
+          "imagekitPath": "beautyEditorial/31.jpg",
+          "width": 2400,
+          "height": 3600,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 31",
+          "caption": ""
+        },
+        {
+          "id": "68f112c15c7cd75eb8ac1ec9",
+          "imagekitPath": "beautyEditorial/32.jpg",
+          "width": 3024,
+          "height": 4032,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 32",
+          "caption": ""
+        },
+        {
+          "id": "68f112b95c7cd75eb8abd91b",
+          "imagekitPath": "beautyEditorial/33.jpg",
+          "width": 1250,
+          "height": 1870,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 33",
+          "caption": ""
+        },
+        {
+          "id": "68f112bd5c7cd75eb8ac038f",
+          "imagekitPath": "beautyEditorial/34.jpg",
+          "width": 2383,
+          "height": 3554,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 34",
+          "caption": ""
+        },
+        {
+          "id": "68f112bb5c7cd75eb8abebd5",
+          "imagekitPath": "beautyEditorial/35.jpg",
+          "width": 1376,
+          "height": 1600,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 35",
+          "caption": ""
+        },
+        {
+          "id": "68f112bc5c7cd75eb8abfcc0",
+          "imagekitPath": "beautyEditorial/36.jpg",
+          "width": 1467,
+          "height": 1873,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 36",
+          "caption": ""
+        },
+        {
+          "id": "68f112b75c7cd75eb8abcb95",
+          "imagekitPath": "beautyEditorial/37.jpg",
+          "width": 1536,
+          "height": 2048,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 37",
+          "caption": ""
+        },
+        {
+          "id": "68f112be5c7cd75eb8ac089d",
+          "imagekitPath": "beautyEditorial/38.jpg",
+          "width": 2035,
+          "height": 2714,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 38",
+          "caption": ""
+        },
+        {
+          "id": "68f112be5c7cd75eb8ac0cc4",
+          "imagekitPath": "beautyEditorial/39.jpg",
+          "width": 2036,
+          "height": 2714,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 39",
+          "caption": ""
+        },
+        {
+          "id": "68f112b35c7cd75eb8abb645",
+          "imagekitPath": "beautyEditorial/40.jpg",
+          "width": 1200,
+          "height": 1600,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 40",
+          "caption": ""
+        },
+        {
+          "id": "68f112b95c7cd75eb8abd8f7",
+          "imagekitPath": "beautyEditorial/41.jpg",
+          "width": 1931,
+          "height": 1203,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 41",
+          "caption": ""
+        },
+        {
+          "id": "68f112b95c7cd75eb8abd868",
+          "imagekitPath": "beautyEditorial/42.jpg",
+          "width": 1660,
+          "height": 1768,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 42",
+          "caption": ""
+        },
+        {
+          "id": "68f112b45c7cd75eb8abba89",
+          "imagekitPath": "beautyEditorial/43.PNG",
+          "width": 576,
+          "height": 726,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Beauty & Editorial 43",
+          "caption": ""
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "SFX",
+      "folder": "SFX",
+      "slug": "sfx",
+      "images": [
+        {
+          "id": "68f113655c7cd75eb8b10fc2",
+          "imagekitPath": "SFX/1.jpg",
+          "width": 1000,
+          "height": 665,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "SFX 1",
+          "caption": ""
+        },
+        {
+          "id": "68f113665c7cd75eb8b114d4",
+          "imagekitPath": "SFX/2.jpg",
+          "width": 1228,
+          "height": 1864,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "SFX 2",
+          "caption": ""
+        },
+        {
+          "id": "68f113665c7cd75eb8b11682",
+          "imagekitPath": "SFX/3.jpg",
+          "width": 1864,
+          "height": 1230,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "SFX 3",
+          "caption": ""
+        },
+        {
+          "id": "68f113665c7cd75eb8b11479",
+          "imagekitPath": "SFX/4.jpg",
+          "width": 663,
+          "height": 991,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "SFX 4",
+          "caption": ""
+        },
+        {
+          "id": "68f113675c7cd75eb8b11903",
+          "imagekitPath": "SFX/5.jpg",
+          "width": 1862,
+          "height": 1697,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "SFX 5",
+          "caption": ""
+        },
+        {
+          "id": "68f113675c7cd75eb8b119b3",
+          "imagekitPath": "SFX/6.jpg",
+          "width": 1757,
+          "height": 1864,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "SFX 6",
+          "caption": ""
+        },
+        {
+          "id": "68f113665c7cd75eb8b112e7",
+          "imagekitPath": "SFX/7.jpg",
+          "width": 854,
+          "height": 1280,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "SFX 7",
+          "caption": ""
+        },
+        {
+          "id": "68f113675c7cd75eb8b1199e",
+          "imagekitPath": "SFX/8.jpg",
+          "width": 1216,
+          "height": 1546,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "SFX 8",
+          "caption": ""
+        },
+        {
+          "id": "68f113665c7cd75eb8b116ea",
+          "imagekitPath": "SFX/9.jpg",
+          "width": 962,
+          "height": 1390,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "SFX 9",
+          "caption": ""
+        },
+        {
+          "id": "68f113675c7cd75eb8b11924",
+          "imagekitPath": "SFX/10.jpg",
+          "width": 882,
+          "height": 1162,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "SFX 10",
+          "caption": ""
+        },
+        {
+          "id": "68f113675c7cd75eb8b11a98",
+          "imagekitPath": "SFX/11.jpg",
+          "width": 951,
+          "height": 1926,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "SFX 11",
+          "caption": ""
+        },
+        {
+          "id": "68f113675c7cd75eb8b11901",
+          "imagekitPath": "SFX/12.jpg",
+          "width": 1695,
+          "height": 1864,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "SFX 12",
+          "caption": ""
+        },
+        {
+          "id": "68f113645c7cd75eb8b10ade",
+          "imagekitPath": "SFX/13.jpg",
+          "width": 292,
+          "height": 667,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "SFX 13",
+          "caption": ""
+        },
+        {
+          "id": "68f113665c7cd75eb8b11535",
+          "imagekitPath": "SFX/14.jpg",
+          "width": 1533,
+          "height": 1535,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "SFX 14",
+          "caption": ""
+        },
+        {
+          "id": "68f113665c7cd75eb8b1122f",
+          "imagekitPath": "SFX/15.jpg",
+          "width": 680,
+          "height": 915,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "SFX 15",
+          "caption": ""
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Theatrical",
+      "folder": "theatrical",
+      "slug": "theatrical",
+      "images": [
+        {
+          "id": "68f1138e5c7cd75eb8b236d8",
+          "imagekitPath": "theatrical/1.jpg",
+          "width": 1846,
+          "height": 1253,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Theatrical 1",
+          "caption": ""
+        },
+        {
+          "id": "68f1138f5c7cd75eb8b23d6e",
+          "imagekitPath": "theatrical/2.jpg",
+          "width": 1846,
+          "height": 1253,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Theatrical 2",
+          "caption": ""
+        },
+        {
+          "id": "68f1138f5c7cd75eb8b23d81",
+          "imagekitPath": "theatrical/3.jpg",
+          "width": 1846,
+          "height": 1253,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Theatrical 3",
+          "caption": ""
+        },
+        {
+          "id": "68f1138f5c7cd75eb8b23e2d",
+          "imagekitPath": "theatrical/4.jpg",
+          "width": 1500,
+          "height": 1999,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Theatrical 4",
+          "caption": ""
+        },
+        {
+          "id": "68f1138f5c7cd75eb8b23ce5",
+          "imagekitPath": "theatrical/5.jpg",
+          "width": 1500,
+          "height": 2308,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Theatrical 5",
+          "caption": ""
+        },
+        {
+          "id": "68f1138f5c7cd75eb8b23ccb",
+          "imagekitPath": "theatrical/6.jpg",
+          "width": 1100,
+          "height": 777,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Theatrical 6",
+          "caption": ""
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Wedding",
+      "folder": "wedding",
+      "slug": "wedding",
+      "images": [
+        {
+          "id": "68f113a75c7cd75eb8b2dac9",
+          "imagekitPath": "wedding/1.jpg",
+          "width": 1519,
+          "height": 2048,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Wedding 1",
+          "caption": ""
+        },
+        {
+          "id": "68f113a85c7cd75eb8b2dfd1",
+          "imagekitPath": "wedding/2.jpg",
+          "width": 1646,
+          "height": 2048,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Wedding 2",
+          "caption": ""
+        },
+        {
+          "id": "68f113a85c7cd75eb8b2dffa",
+          "imagekitPath": "wedding/3.jpg",
+          "width": 1360,
+          "height": 1851,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Wedding 3",
+          "caption": ""
+        },
+        {
+          "id": "68f113a85c7cd75eb8b2dcb5",
+          "imagekitPath": "wedding/4.jpg",
+          "width": 1500,
+          "height": 2000,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Wedding 4",
+          "caption": ""
+        },
+        {
+          "id": "68f113a85c7cd75eb8b2df6d",
+          "imagekitPath": "wedding/5.jpg",
+          "width": 527,
+          "height": 717,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Wedding 5",
+          "caption": ""
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Period",
+      "folder": "period",
+      "slug": "period",
+      "images": [
+        {
+          "id": "68f113485c7cd75eb8b02fba",
+          "imagekitPath": "period/1.jpg",
+          "width": 1009,
+          "height": 1468,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Period 1",
+          "caption": ""
+        },
+        {
+          "id": "68f113475c7cd75eb8b02bf0",
+          "imagekitPath": "period/2.jpg",
+          "width": 1064,
+          "height": 1448,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Period 2",
+          "caption": ""
+        },
+        {
+          "id": "68f113475c7cd75eb8b02dce",
+          "imagekitPath": "period/3.jpg",
+          "width": 1360,
+          "height": 1851,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Period 3",
+          "caption": ""
+        },
+        {
+          "id": "68f113495c7cd75eb8b035fd",
+          "imagekitPath": "period/4.jpg",
+          "width": 2400,
+          "height": 3600,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Period 4",
+          "caption": ""
+        },
+        {
+          "id": "68f113485c7cd75eb8b02fdd",
+          "imagekitPath": "period/5.jpg",
+          "width": 750,
+          "height": 925,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Period 5",
+          "caption": ""
+        },
+        {
+          "id": "68f113485c7cd75eb8b02ecf",
+          "imagekitPath": "period/6.jpg",
+          "width": 750,
+          "height": 920,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Period 6",
+          "caption": ""
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "On Site",
+      "folder": "onsite",
+      "slug": "on-site",
+      "images": [
+        {
+          "id": "68f1132c5c7cd75eb8af562a",
+          "imagekitPath": "onsite/1.jpg",
+          "width": 1200,
+          "height": 1600,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "On Site 1",
+          "caption": ""
+        },
+        {
+          "id": "68f1132c5c7cd75eb8af5b53",
+          "imagekitPath": "onsite/2.jpg",
+          "width": 1200,
+          "height": 1600,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "On Site 2",
+          "caption": ""
+        },
+        {
+          "id": "68f1132c5c7cd75eb8af5de4",
+          "imagekitPath": "onsite/3.jpg",
+          "width": 1200,
+          "height": 1600,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "On Site 3",
+          "caption": ""
+        },
+        {
+          "id": "68f1132d5c7cd75eb8af68de",
+          "imagekitPath": "onsite/4.jpg",
+          "width": 3024,
+          "height": 3826,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "On Site 4",
+          "caption": ""
+        },
+        {
+          "id": "68f1132d5c7cd75eb8af63bd",
+          "imagekitPath": "onsite/5.jpg",
+          "width": 2925,
+          "height": 2674,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "On Site 5",
+          "caption": ""
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Nails",
+      "folder": "nails",
+      "slug": "nails",
+      "images": [
+        {
+          "id": "68f113195c7cd75eb8aea87c",
+          "imagekitPath": "nails/1.jpg",
+          "width": 1694,
+          "height": 1851,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Nails 1",
+          "caption": ""
+        },
+        {
+          "id": "68f113195c7cd75eb8aea10e",
+          "imagekitPath": "nails/2.jpg",
+          "width": 1040,
+          "height": 1032,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Nails 2",
+          "caption": ""
+        },
+        {
+          "id": "68f113195c7cd75eb8aea3b7",
+          "imagekitPath": "nails/3.jpg",
+          "width": 750,
+          "height": 870,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Nails 3",
+          "caption": ""
+        },
+        {
+          "id": "68f113195c7cd75eb8aea32a",
+          "imagekitPath": "nails/4.jpg",
+          "width": 750,
+          "height": 677,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Nails 4",
+          "caption": ""
+        },
+        {
+          "id": "68f113195c7cd75eb8aea262",
+          "imagekitPath": "nails/5.jpg",
+          "width": 485,
+          "height": 709,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Nails 5",
+          "caption": ""
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Bodypaint",
+      "folder": "bodypaint",
+      "slug": "bodypaint",
+      "images": [
+        {
+          "id": "68f112ea5c7cd75eb8ad3b22",
+          "imagekitPath": "bodypaint/1.jpg",
+          "width": 1137,
+          "height": 1132,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Bodypaint 1",
+          "caption": ""
+        },
+        {
+          "id": "68f112ea5c7cd75eb8ad38d3",
+          "imagekitPath": "bodypaint/2.jpg",
+          "width": 667,
+          "height": 1000,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Bodypaint 2",
+          "caption": ""
+        },
+        {
+          "id": "68f112ea5c7cd75eb8ad3919",
+          "imagekitPath": "bodypaint/3.jpg",
+          "width": 667,
+          "height": 1000,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Bodypaint 3",
+          "caption": ""
+        },
+        {
+          "id": "68f112ea5c7cd75eb8ad3859",
+          "imagekitPath": "bodypaint/4.jpg",
+          "width": 786,
+          "height": 1132,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Bodypaint 4",
+          "caption": ""
+        },
+        {
+          "id": "68f112e95c7cd75eb8ad3746",
+          "imagekitPath": "bodypaint/5.jpg",
+          "width": 813,
+          "height": 1145,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Bodypaint 5",
+          "caption": ""
+        },
+        {
+          "id": "68f112ea5c7cd75eb8ad3a7e",
+          "imagekitPath": "bodypaint/6.jpg",
+          "width": 1148,
+          "height": 1156,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Bodypaint 6",
+          "caption": ""
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Camoflage",
+      "folder": "camoflage",
+      "slug": "camoflage",
+      "images": [
+        {
+          "id": "68f113005c7cd75eb8add6b0",
+          "imagekitPath": "camoflage/1.jpg",
+          "width": 379,
+          "height": 300,
+          "tags": [],
+          "featured": false,
+          "hero": false,
+          "alt": "Camoflage 1",
+          "caption": ""
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Film & TV",
+      "folder": "filmtv",
+      "slug": "film-tv",
+      "images": []
+    }
+  ]
+}
