@@ -8,14 +8,14 @@
 }
 
 /* Force body scrollable when home page is active */
-body:has(.home-minimal) {
+body:has(.home-minimal):not(.gallery-open) {
 	overflow-y: auto !important;
 	overflow-x: hidden !important;
 	height: auto !important;
 	overscroll-behavior-y: auto !important;
 }
 
-html:has(.home-minimal) {
+html:has(.home-minimal):not(:has(body.gallery-open)) {
 	overflow-y: auto !important;
 	height: auto !important;
 	overscroll-behavior-y: auto !important;
@@ -104,14 +104,12 @@ html:has(.home-minimal) {
 
 .hero-title {
 	opacity: 0;
-	animation: heroCopyRise 1.2s cubic-bezier(0.16, 1, 0.3, 1)
-		var(--hero-copy-delay-base) forwards;
+	animation: heroCopyRise 1.2s cubic-bezier(0.16, 1, 0.3, 1) var(--hero-copy-delay-base) forwards;
 }
 
 .hero-subtitle {
 	opacity: 0;
-	animation: heroCopyRise 1s cubic-bezier(0.16, 1, 0.3, 1)
-		calc(var(--hero-copy-delay-base) + var(--hero-copy-stagger)) forwards;
+	animation: heroCopyRise 1s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--hero-copy-delay-base) + var(--hero-copy-stagger)) forwards;
 }
 
 .hero-disciplines {
@@ -121,8 +119,7 @@ html:has(.home-minimal) {
 	flex-wrap: wrap;
 	gap: 0.75rem;
 	opacity: 0;
-	animation: heroCopyRiseCenter 1s cubic-bezier(0.16, 1, 0.3, 1)
-		calc(var(--hero-copy-delay-base) + (var(--hero-copy-stagger) * 2)) forwards;
+	animation: heroCopyRiseCenter 1s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--hero-copy-delay-base) + (var(--hero-copy-stagger) * 2)) forwards;
 	font-family: "ZaiRoyalVogueTypewriter", serif;
 	font-size: clamp(0.7rem, 1.2vw, 0.95rem);
 	letter-spacing: 0.25em;
@@ -683,10 +680,12 @@ html:has(.home-minimal) {
 }
 
 @media (max-width: 768px) {
+
 	body.gallery-open .home-minimal .hero-section,
 	body.gallery-open .home-minimal .home-footer-cta,
 	body.gallery-open .home-minimal .hero-divider {
 		opacity: 0;
+		visibility: hidden;
 		pointer-events: none;
 	}
 
