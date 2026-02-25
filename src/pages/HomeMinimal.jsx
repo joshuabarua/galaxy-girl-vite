@@ -3,6 +3,7 @@ import MenuToGrid from "../components/MenuToGrid/MenuToGrid";
 import { imagekitGalleries } from "./portfolio/data/imagekitGalleryData";
 import { UI_TUNING } from "../config/uiTuning";
 import DelayedLink from "../components/DelayedLink/DelayedLink";
+import useHeroParallax from "../hooks/useHeroParallax";
 import "./homeMinimal.css";
 
 const HomeMinimal = () => {
@@ -11,6 +12,9 @@ const HomeMinimal = () => {
 	const [isHeroLoaded, setIsHeroLoaded] = React.useState(false);
 	const heroReadyDispatchedRef = React.useRef(false);
 	const objectUrlRef = React.useRef("");
+	const heroSectionRef = React.useRef(null);
+
+	useHeroParallax(heroSectionRef, { maxShift: 8, lerp: 0.05 });
 
 	const markHeroReady = React.useCallback(() => {
 		if (typeof window === "undefined") return;
@@ -162,7 +166,8 @@ const HomeMinimal = () => {
 			<div className="page-shell">
 				<section
 					className="hero-section"
-					id="hero-logo-container">
+					id="hero-logo-container"
+					ref={heroSectionRef}>
 					{heroImageUrl && (
 						<div className="hero-gallery-wrap" aria-hidden="true">
 							<img
@@ -198,7 +203,7 @@ const HomeMinimal = () => {
 						<span>BEAUTY</span>
 						<span className="hero-disciplines__dot">·</span>
 						<span>FASHION</span>
-					
+
 					</div>
 				</section>
 

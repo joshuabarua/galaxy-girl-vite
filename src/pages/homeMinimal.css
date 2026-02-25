@@ -100,6 +100,7 @@ html:has(.home-minimal):not(:has(body.gallery-open)) {
 	box-sizing: border-box;
 	z-index: 11;
 	position: relative;
+	will-change: transform;
 }
 
 .hero-title {
@@ -132,6 +133,7 @@ html:has(.home-minimal):not(:has(body.gallery-open)) {
 	transform: translateX(-50%);
 	width: min(92vw, 980px);
 	z-index: 11;
+	will-change: transform;
 }
 
 /* Keep hero copy hidden until its own delayed animations run,
