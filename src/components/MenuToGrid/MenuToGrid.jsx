@@ -57,6 +57,7 @@ const MenuToGrid = ({
 
 	const unlockPageScroll = () => {
 		if (typeof window === "undefined") return;
+		const savedY = scrollLockYRef.current;
 		document.documentElement.classList.remove("oh");
 		document.body.classList.remove("oh");
 		document.body.classList.remove("gallery-open");
@@ -66,6 +67,7 @@ const MenuToGrid = ({
 		document.body.style.height = "";
 		document.documentElement.style.overscrollBehavior = "";
 		document.body.style.overscrollBehavior = "";
+		requestAnimationFrame(() => window.scrollTo(0, savedY));
 	};
 
 	useEffect(() => {
@@ -346,8 +348,10 @@ const MenuToGrid = ({
 					className="preview__close"
 					aria-label="Close preview"
 					onClick={handleClose}>
-					<span className="preview__close-icon" aria-hidden="true">←</span>
-					<span className="preview__close-label">Back</span>
+					<svg className="preview__close-x" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+						<path d="M14 4L4 14M4 4L14 14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+					</svg>
+					<span className="preview__close-label">Close</span>
 				</button>
 				<div className="preview__inner">
 					{items.map((gallery, index) => (
