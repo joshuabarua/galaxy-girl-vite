@@ -397,6 +397,16 @@ html:has(.home-minimal):not(:has(body.gallery-open)) {
 	stroke-linejoin: round;
 }
 
+.hero-divider--bottom {
+	padding: 0 0 clamp(0.7rem, 2.4vw, 1.6rem);
+	margin-top: 0;
+	margin-bottom: clamp(0.5rem, 1.6vw, 1.2rem);
+}
+
+.hero-divider--bottom .hero-divider__wave {
+	transform: scaleY(-1);
+}
+
 .featured-section {
 	padding: clamp(1.2rem, 3.5vw, 2.4rem) 0 clamp(2rem, 5vw, 4.5rem);
 }

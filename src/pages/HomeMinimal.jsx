@@ -224,6 +224,15 @@ const HomeMinimal = () => {
 					/>
 				</section>
 
+				<div className="hero-divider hero-divider--bottom" aria-hidden="true">
+					<svg
+						className="hero-divider__wave"
+						viewBox="0 0 1200 120"
+						preserveAspectRatio="none">
+						<path d="M0,62 C120,18 220,102 338,62 C456,22 548,102 662,62 C776,22 878,102 1002,62 C1098,31 1150,54 1200,62" />
+					</svg>
+				</div>
+
 				<footer className="home-footer-cta">
 					<p className="home-footer-cta__eyebrow">Planning a shoot?</p>
 					<h2 className="home-footer-cta__title">Lets plan something together.</h2>
