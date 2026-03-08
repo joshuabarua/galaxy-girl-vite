@@ -14,7 +14,12 @@ const HomeMinimal = () => {
 	const objectUrlRef = React.useRef("");
 	const heroSectionRef = React.useRef(null);
 
-	useHeroParallax(heroSectionRef, { maxShift: 8, lerp: 0.05 });
+	useHeroParallax(heroSectionRef, {
+		maxShift: 5,
+		lerp: 0.035,
+		tiltRange: 24,
+		maxRotate: 2.5,
+	});
 
 	const markHeroReady = React.useCallback(() => {
 		if (typeof window === "undefined") return;
