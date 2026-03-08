@@ -265,7 +265,7 @@ const NavbarMinimal = () => {
 							onClick={() => setIsMobileMenuOpen((prev) => !prev)}
 							aria-expanded={isMobileMenuOpen}
 							aria-label="Toggle navigation menu">
-							{isMobileMenuOpen ? "X" : "burger"}
+							{isMobileMenuOpen ? "X" : "☰"}
 						</button>
 					</div>
 

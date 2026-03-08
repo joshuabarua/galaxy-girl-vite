@@ -37,7 +37,7 @@ export default function useHeroParallax(sectionRef, opts = {}) {
         const section = sectionRef.current;
         if (!section) return [];
         return [
-            section.querySelector(".hero-title"),
+            section.querySelector(".hero-title-text"),
         ].filter(Boolean);
     }, [sectionRef]);
 
