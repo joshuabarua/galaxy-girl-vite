@@ -349,9 +349,9 @@ const MenuToGrid = ({
 					aria-label="Close preview"
 					onClick={handleClose}>
 					<svg className="preview__close-x" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-						<path d="M14 4L4 14M4 4L14 14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+						<path d="M10.75 4.5L5.25 9L10.75 13.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+						<path d="M6 9H13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
 					</svg>
-					<span className="preview__close-label">Close</span>
 				</button>
 				<div className="preview__inner">
 					{items.map((gallery, index) => (
