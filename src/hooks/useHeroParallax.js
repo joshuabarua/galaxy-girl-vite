@@ -73,6 +73,7 @@ export default function useHeroParallax(sectionRef, opts = {}) {
         rafId.current = requestAnimationFrame(tick);
 
         const updateTargetFromPoint = (clientX, clientY) => {
+            if (hasGyroData) return; // Prioritize gyro, stop jitter
             const rect = section.getBoundingClientRect();
             if (!rect.width || !rect.height) return;
             const normalizedX = ((clientX - rect.left) / rect.width - 0.5) * 2;
@@ -93,6 +94,7 @@ export default function useHeroParallax(sectionRef, opts = {}) {
         };
 
         const handlePointerLeave = () => {
+            if (hasGyroData) return;
             target.current.x = 0;
             target.current.y = 0;
         };
@@ -104,12 +106,20 @@ export default function useHeroParallax(sectionRef, opts = {}) {
 
         /* ── Mobile: DeviceOrientation (gyroscope) ── */
         let gyroAttached = false;
+        let hasGyroData = false;
 
         const handleOrientation = (e) => {
+            // If the hardware doesn't provide data (e.g. desktop with no gyro), bail out
+            if (e.gamma == null || e.beta == null) return;
+            
+            hasGyroData = true; // Prevents pointer/touch events from jittering
+
             // gamma: left-to-right tilt (-90…90)
             // beta:  front-to-back tilt (-180…180)
-            const gamma = e.gamma || 0;
-            const beta = e.beta || 0;
+            const gamma = e.gamma;
+            const beta = e.beta;
+            
+            // Limit the tilt angle strictly to prevent extreme spinning/jumping
             target.current.x = Math.max(-1, Math.min(1, gamma / tiltRange));
             target.current.y = Math.max(-1, Math.min(1, (beta - 45) / tiltRange)); // 45° is neutral hold angle
         };
@@ -123,18 +133,21 @@ export default function useHeroParallax(sectionRef, opts = {}) {
         // iOS 13+ requires permission
         if (typeof DeviceOrientationEvent !== "undefined" &&
             typeof DeviceOrientationEvent.requestPermission === "function") {
-            // We'll request on first user tap on the hero section
+            // We'll request on first user tap/click
             const requestPermission = async () => {
                 try {
                     const perm = await DeviceOrientationEvent.requestPermission();
                     if (perm === "granted") {
                         attachGyro();
                     }
-                } catch {}
+                } catch (err) {
+                    console.error("Device orientation permission error:", err);
+                }
             };
             permissionHandlerRef.current = requestPermission;
-            section.addEventListener("pointerdown", requestPermission, { once: true });
-            section.addEventListener("touchstart", requestPermission, { once: true, passive: true });
+            // Best practice is to use 'click' or 'touchend' for permissions to guarantee it's counted as a user gesture
+            window.addEventListener("click", requestPermission, { once: true });
+            window.addEventListener("touchend", requestPermission, { once: true });
         } else if (typeof DeviceOrientationEvent !== "undefined") {
             attachGyro();
         }
@@ -143,8 +156,8 @@ export default function useHeroParallax(sectionRef, opts = {}) {
         return () => {
             cancelAnimationFrame(rafId.current);
             if (permissionHandlerRef.current) {
-                section.removeEventListener("pointerdown", permissionHandlerRef.current);
-                section.removeEventListener("touchstart", permissionHandlerRef.current);
+                window.removeEventListener("click", permissionHandlerRef.current);
+                window.removeEventListener("touchend", permissionHandlerRef.current);
                 permissionHandlerRef.current = null;
             }
             section.removeEventListener("pointermove", handlePointerMove);
