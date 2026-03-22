@@ -1,11 +1,18 @@
 import React, { forwardRef, useRef, useImperativeHandle, useState, useEffect, useCallback } from 'react';
 import { getImageKitUrl } from '../../utils/imagekit';
+import Lightbox from 'yet-another-react-lightbox';
+import Zoom from 'yet-another-react-lightbox/plugins/zoom';
+import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails';
+import 'yet-another-react-lightbox/styles.css';
+import 'yet-another-react-lightbox/plugins/thumbnails.css';
 
 const Preview = forwardRef(({ data, index, isActive, onLoadMore, onClose, previewCount = 4 }, ref) => {
   const previewRef = useRef(null);
   const gridRef = useRef(null);
   const titleRef = useRef(null);
   const [visibleCount, setVisibleCount] = useState(20);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
 
   useEffect(() => {
     if (isActive) {
@@ -14,17 +21,26 @@ const Preview = forwardRef(({ data, index, isActive, onLoadMore, onClose, previe
     }
   }, [isActive]);
 
-  // Handle click outside images to close
+  // Close lightbox if the preview panel closes
+  useEffect(() => {
+    if (!isActive) setLightboxOpen(false);
+  }, [isActive]);
+
+  const openLightbox = useCallback((idx) => {
+    setLightboxIndex(idx);
+    setLightboxOpen(true);
+  }, []);
+
+  // Handle click outside images to close preview panel
   const handleBackgroundClick = useCallback((e) => {
-    // Check if click is on an image or the load more button
-    const isImage = e.target.closest('.preview__item-img') || 
+    if (lightboxOpen) return; // don't close preview while lightbox is open
+    const isImage = e.target.closest('.preview__item-img') ||
                     e.target.closest('.cell__img') ||
                     e.target.closest('.preview__load-more');
-    
     if (!isImage && onClose) {
       onClose();
     }
-  }, [onClose]);
+  }, [onClose, lightboxOpen]);
 
   useImperativeHandle(ref, () => ({
     DOM: {
@@ -36,6 +52,14 @@ const Preview = forwardRef(({ data, index, isActive, onLoadMore, onClose, previe
       }
     }
   }), []);
+
+  // Build full-res slides for the lightbox
+  const slides = data.images.map((img) => ({
+    src: img.src || (img.imagekitPath ? getImageKitUrl(img.imagekitPath, { width: 2400 }) : ''),
+    alt: img.alt || data.name,
+    width: img.width || 1600,
+    height: img.height || 2400,
+  }));
 
   return (
     <div
@@ -62,6 +86,12 @@ const Preview = forwardRef(({ data, index, isActive, onLoadMore, onClose, previe
                 className="preview__item-img"
                 data-img-index={idx}
                 data-flip-id={`${data.slug}-img-${idx}`}
+                style={{ cursor: 'zoom-in' }}
+                onClick={(e) => { e.stopPropagation(); openLightbox(idx); }}
+                role="button"
+                tabIndex={isActive ? 0 : -1}
+                aria-label={`View photo ${idx + 1} of ${data.name} fullscreen`}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.stopPropagation(); openLightbox(idx); } }}
               >
                 <div
                   className="preview__item-img-inner"
@@ -88,6 +118,17 @@ const Preview = forwardRef(({ data, index, isActive, onLoadMore, onClose, previe
           </button>
         )}
       </div>
+
+      <Lightbox
+        open={lightboxOpen}
+        close={() => setLightboxOpen(false)}
+        index={lightboxIndex}
+        slides={slides}
+        plugins={[Zoom, Thumbnails]}
+        zoom={{ maxZoomPixelRatio: 3, scrollToZoom: true }}
+        thumbnails={{ position: 'bottom', width: 80, height: 60, gap: 8, border: 1, borderRadius: 2, padding: 2 }}
+        styles={{ container: { backgroundColor: 'rgba(0,0,0,0.95)' } }}
+      />
     </div>
   );
 });
