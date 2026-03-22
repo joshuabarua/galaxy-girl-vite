@@ -17,6 +17,12 @@
       "title": "Films / TV / Short Films",
       "items": [
         {
+          "project": "Clover",
+          "period": "February 2026",
+          "role": "Makeup Junior - Crowd/Main Daily",
+          "collaborator": "Naomi Donne"
+        },
+        {
           "project": "Horrible Science 2",
           "period": "August 2025 - September 2025",
           "role": "Makeup Junior - Crowd Daily",
@@ -24,7 +30,7 @@
         },
         {
           "project": "House of Dragon Season 3",
-          "period": "August 2025 - Present",
+          "period": "August 2025",
           "role": "Makeup Junior - Crowd Daily",
           "collaborator": "Robb Crafer"
         },
@@ -258,6 +264,7 @@
     }
   ],
   "qualifications": [
+    "Christine Blundell Make-up Academy (CBMA) - Graduate 2026",
     "Extended Level 3 Theatrical hair and media makeup",
     "Further Prosthetics - Iver Academy",
     "Level 2 Barbering",

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { useParams, Link, useLocation } from "react-router-dom";
 import { gsap } from "gsap";
 import { Flip } from "gsap/Flip";
@@ -6,6 +6,11 @@ import { imagekitGalleries, spotlightGallery } from "./data/imagekitGalleryData"
 import { getImageKitUrl } from "../../utils/imagekit";
 import { slugify } from "../../utils/slugify";
 import { useGrained } from "../../hooks/useGrained";
+import Lightbox from "yet-another-react-lightbox";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import "yet-another-react-lightbox/styles.css";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 gsap.registerPlugin(Flip);
 
@@ -14,6 +19,13 @@ const PortfolioDetail = () => {
 	const location = useLocation();
 	const gridRef = useRef(null);
 	const hasAnimated = useRef(false);
+	const [lightboxOpen, setLightboxOpen] = useState(false);
+	const [lightboxIndex, setLightboxIndex] = useState(0);
+
+	const openLightbox = useCallback((idx) => {
+		setLightboxIndex(idx);
+		setLightboxOpen(true);
+	}, []);
 
 	const allGalleries = spotlightGallery
 		? [...imagekitGalleries, spotlightGallery]
@@ -135,6 +147,15 @@ const PortfolioDetail = () => {
 
 	const images = Array.isArray(gallery.images) ? gallery.images : [];
 
+	const slides = images.map((image) => ({
+		src: image.imagekitPath
+			? getImageKitUrl(image.imagekitPath, { width: 2400 })
+			: image.src || "",
+		alt: image.alt || gallery.name,
+		width: image.width || 1600,
+		height: image.height || 2400,
+	}));
+
 	return (
 		<div
 			id="portfolio-detail-bg"
@@ -204,28 +225,25 @@ const PortfolioDetail = () => {
 
 				<div ref={gridRef} className="masonry-grid pb-24">
 					{images.map((image, idx) => {
-						// Calculate aspect ratio styling
 						const imageWidth = image.width || 600;
 						const imageHeight = image.height || 800;
 						const aspectRatio = imageWidth / imageHeight;
-
-						// Calculate row span (assuming 20px gap and 10px row height as per CSS above)
-						// Height varies based on the column width. Assuming ~300px column width for calculation
 						const estimatedHeight = 300 / aspectRatio;
 						const rowSpan = Math.ceil((estimatedHeight + 20) / 30);
 
 						const imageUrl = image.imagekitPath
-							? getImageKitUrl(image.imagekitPath, {
-								width: 800, // increased for better detail perception
-							})
+							? getImageKitUrl(image.imagekitPath, { width: 800 })
 							: image.src || "";
 
 						return (
-							<div
+							<button
 								key={idx}
 								data-flip-id={`${slug}-img-${idx}`}
 								className="masonry-item"
-								style={{ gridRowEnd: `span ${rowSpan}` }}>
+								style={{ gridRowEnd: `span ${rowSpan}`, background: 'none', border: 'none', padding: 0, cursor: 'zoom-in', display: 'block', width: '100%', textAlign: 'left' }}
+								onClick={() => openLightbox(idx)}
+								aria-label={`View ${image.alt || `${gallery.name} photo ${idx + 1}`} in full screen`}
+							>
 								{imageUrl && (
 									<img
 										src={imageUrl}
@@ -234,10 +252,21 @@ const PortfolioDetail = () => {
 										loading="lazy"
 									/>
 								)}
-							</div>
+							</button>
 						);
 					})}
 				</div>
+
+				<Lightbox
+					open={lightboxOpen}
+					close={() => setLightboxOpen(false)}
+					index={lightboxIndex}
+					slides={slides}
+					plugins={[Zoom, Thumbnails]}
+					zoom={{ maxZoomPixelRatio: 3, scrollToZoom: true }}
+					thumbnails={{ position: "bottom", width: 80, height: 60, gap: 8, border: 1, borderRadius: 2, padding: 2 }}
+					styles={{ container: { backgroundColor: 'rgba(0,0,0,0.95)' } }}
+				/>
 			</div>
 		</div>
 	);

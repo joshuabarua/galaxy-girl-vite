@@ -74,6 +74,26 @@ const ResumeMinimal = () => {
 	const localCvUrl = new URL("../../assets/Resume.pdf", import.meta.url).href;
 	const cvUrl = import.meta?.env?.VITE_CV_URL || resumeData?.cvUrl || localCvUrl;
 
+	const handleDownload = async (e) => {
+		e.preventDefault();
+		try {
+			const res = await fetch(cvUrl);
+			if (!res.ok) throw new Error("fetch failed");
+			const blob = await res.blob();
+			const url = URL.createObjectURL(blob);
+			const a = document.createElement("a");
+			a.href = url;
+			a.download = "Emma-Barua-CV.pdf";
+			document.body.appendChild(a);
+			a.click();
+			a.remove();
+			URL.revokeObjectURL(url);
+		} catch {
+			// Fallback: open the PDF in a new tab if fetch/CORS fails
+			window.open(cvUrl, "_blank", "noopener,noreferrer");
+		}
+	};
+
 	const containerRef = useRef(null);
 
 	return (
@@ -88,9 +108,7 @@ const ResumeMinimal = () => {
 							<a
 							className="relative md:absolute md:top-0 md:right-0 z-20 inline-flex items-center justify-center w-11 h-11 rounded-full border border-brand/20 text-black pointer-events-auto transition-colors duration-200 hover:bg-black hover:text-white"
 							href={cvUrl}
-							target="_blank"
-							rel="noopener noreferrer"
-							download="Emma-Barua-CV.pdf"
+							onClick={handleDownload}
 							aria-label="Download CV"
 							title="Download CV">
 							<svg
